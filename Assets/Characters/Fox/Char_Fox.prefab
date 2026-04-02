@@ -93,6 +93,8 @@ GameObject:
   m_Component:
   - component: {fileID: 2727929157351720282}
   - component: {fileID: 6674054473733590719}
+  - component: {fileID: 8681671206454598398}
+  - component: {fileID: 3370733928436092656}
   m_Layer: 0
   m_Name: Char_Fox
   m_TagString: Untagged
@@ -114,7 +116,6 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 8618486384866644612}
-  - {fileID: 3780612910055916427}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!143 &6674054473733590719
@@ -142,45 +143,48 @@ CharacterController:
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0.001
   m_Center: {x: 0, y: 0, z: 0}
---- !u!1 &5578245914772174754
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 3780612910055916427}
-  - component: {fileID: 8496679287457708416}
-  m_Layer: 0
-  m_Name: Input
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &3780612910055916427
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5578245914772174754}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 2727929157351720282}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &8496679287457708416
+--- !u!114 &8681671206454598398
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5578245914772174754}
+  m_GameObject: {fileID: 3797445723825112220}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3e8a76c9134d46d8b2241eca27f0806a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::FoxShooter.Characters.KinematicCharacter
+  acceleration: 50
+  maxSpeed: 5
+  crouchedMaxSpeed: 5
+  friction: 50
+  isCrouched: 0
+  maxAirSpeedHorizontal: 10
+  maxAirSpeedVertical: 1000
+  airControlFactor: 0.5
+  gravity: 1
+  groundCheckDistance: 4
+  groundCheckDistanceAerial: 4
+  groundLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  jumpStrength: 100
+  jumpHeldGravityFactor: 0.5
+  numJumps: 2
+  numJumpsRemaining: 0
+  jumpTime: 0.5
+  coyoteTime: 0.5
+  lookSensitivity: 1
+  camera: {fileID: 653023276848462293}
+  currentVelocity: {x: 0, y: 0, z: 0}
+--- !u!114 &3370733928436092656
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3797445723825112220}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 62899f850307741f2a39c98a8b639597, type: 3}
@@ -201,6 +205,6 @@ MonoBehaviour:
   m_ActionEvents: []
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
-  m_DefaultActionMap: 
+  m_DefaultActionMap: Player
   m_SplitScreenIndex: -1
-  m_Camera: {fileID: 0}
+  m_Camera: {fileID: 653023276848462293}
