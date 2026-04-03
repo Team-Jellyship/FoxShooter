@@ -192,7 +192,6 @@ namespace FoxShooter.Characters
 
 		private void Land()
 		{
-			Debug.Log("Landed");
 			numJumpsRemaining = numJumps;
 			_coyoteTimer.Pause();
 		}
