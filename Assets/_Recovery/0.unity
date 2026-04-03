@@ -133,7 +133,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2727929157351720282, guid: e867e5ca3dce83c4e878a306fde78c18, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 5.32
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 2727929157351720282, guid: e867e5ca3dce83c4e878a306fde78c18, type: 3}
       propertyPath: m_LocalPosition.z
@@ -170,6 +170,22 @@ PrefabInstance:
     - target: {fileID: 3797445723825112220, guid: e867e5ca3dce83c4e878a306fde78c18, type: 3}
       propertyPath: m_Name
       value: Char_Fox
+      objectReference: {fileID: 0}
+    - target: {fileID: 8681671206454598398, guid: e867e5ca3dce83c4e878a306fde78c18, type: 3}
+      propertyPath: maxSpeed
+      value: 25
+      objectReference: {fileID: 0}
+    - target: {fileID: 8681671206454598398, guid: e867e5ca3dce83c4e878a306fde78c18, type: 3}
+      propertyPath: acceleration
+      value: 500
+      objectReference: {fileID: 0}
+    - target: {fileID: 8681671206454598398, guid: e867e5ca3dce83c4e878a306fde78c18, type: 3}
+      propertyPath: lookSensitivity
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8681671206454598398, guid: e867e5ca3dce83c4e878a306fde78c18, type: 3}
+      propertyPath: groundLayers.m_Bits
+      value: 4294967295
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

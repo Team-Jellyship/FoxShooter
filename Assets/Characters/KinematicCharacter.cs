@@ -1,4 +1,5 @@
 ﻿using System;
+using FoxShooter.Game;
 using FoxShooter.Scripts;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -54,10 +55,10 @@ namespace FoxShooter.Characters
 		private float gravity = 1.0f;
 
 		[SerializeField]
-		private float groundCheckDistance = 4.0f;
+		private float groundCheckDistance = 0.05f;
 
 		[SerializeField]
-		private float groundCheckDistanceAerial = 4.0f;
+		private float groundCheckDistanceAerial = 0.075f;
 
 		[SerializeField]
 		private LayerMask groundLayers;
@@ -92,7 +93,7 @@ namespace FoxShooter.Characters
 		[Header("Look")]
 		[SerializeField] private float lookSensitivity = 1.0f;
 
-		[SerializeField] private Camera camera;
+		[SerializeField] private Camera playerCamera;
 
 		[SerializeField] private Vector3 currentVelocity;
 
@@ -102,7 +103,9 @@ namespace FoxShooter.Characters
 		private bool _isJumping;
 		private Vector2 _moveInput;
 		private Vector3 _groundNormal;
-
+		private Vector3 _impulses;
+		private TimerHandle _coyoteTimer;
+		private TimerHandle _jumpTimer;
 		
 		// Component cached references
 		private CharacterController _characterController;
@@ -111,8 +114,27 @@ namespace FoxShooter.Characters
 			_characterController = GetComponent<CharacterController>();
 		}
 
+		private void Start()
+		{
+			_coyoteTimer = TimerManager.instance.CreateTimer(this, StopJumping);
+			_jumpTimer = TimerManager.instance.CreateTimer(this, StopJumping);
+		}
+
 		private void FixedUpdate()
 		{
+			var onFloor = _grounded;
+			CheckGround();
+			switch (_grounded)
+			{
+				case true when !onFloor:
+					Land();
+					break;
+
+				case false when onFloor:
+					LeavePlatform();
+					break;
+			}
+			
 			var currentVelocity2D = new Vector2(currentVelocity.x, currentVelocity.z);
 			var currentMaxSpeed = GetMaxHorizontalSpeed();
 			var rotatedInput = StarMath.RotateVector(_moveInput, -transform.rotation.eulerAngles.y * Mathf.Deg2Rad);
@@ -128,23 +150,16 @@ namespace FoxShooter.Characters
 			}
 			else
 			{
-				currentVelocity.y = 0.0f;
+				// currentVelocity.y = 0.0f;
 			}
 
 			currentVelocity.x = currentVelocity2D.x;
 			currentVelocity.z = currentVelocity2D.y;
+			
+			currentVelocity += ConsumeImpulses();
 			var moveHitResult = _characterController.Move(currentVelocity * Time.fixedDeltaTime);
+			
 			currentVelocity = _characterController.velocity;
-
-			CheckGround();
-			/*if (_grounded && !onFloorBeforeMove)
-			{
-				Land();
-			}
-			else if (!_grounded && onFloorBeforeMove)
-			{
-				LeavePlatform();
-			}*/
 		}
 
 		public void OnMove(InputValue value)
@@ -159,7 +174,64 @@ namespace FoxShooter.Characters
 
 			if (look.y == 0.0f) { return; }
 			cameraPitch = Mathf.Clamp(cameraPitch + look.y, -85.0f, 85.0f);
-			camera.transform.localEulerAngles = new Vector3(cameraPitch, 0.0f, 0.0f);
+			playerCamera.transform.localEulerAngles = new Vector3(cameraPitch, 0.0f, 0.0f);
+		}
+
+		public void AddImpulse(Vector3 impulse)
+		{
+			_impulses += impulse;
+		}
+
+		private void OnJump(InputValue value)
+		{
+			if (value.isPressed)
+			{
+				StartJumping();
+			}
+		}
+
+		private void Land()
+		{
+			Debug.Log("Landed");
+			numJumpsRemaining = numJumps;
+			_coyoteTimer.Pause();
+		}
+
+		private void LeavePlatform()
+		{
+			if (!_isJumping)
+			{
+				_coyoteTimer.Start(coyoteTime);
+			}
+		}
+
+		private void StartJumping()
+		{
+			if (CanJump())
+			{
+				Jump();
+			}
+		}
+
+		private void StopJumping()
+		{
+			_isJumping = false;
+		}
+		
+		private void Jump()
+		{
+			_coyoteTimer.Pause();
+			_jumpTimer.Start(jumpTime);
+			_isJumping = true;
+			AddImpulse(new Vector3(0.0f, jumpStrength, 0.0f));
+		
+			--numJumpsRemaining;
+		}
+
+		
+		private bool CanJump()
+		{
+			return numJumpsRemaining > 0;
 		}
 		
 		private float GetMaxHorizontalSpeed()
@@ -177,6 +249,13 @@ namespace FoxShooter.Characters
 		{
 			return _grounded ? friction : friction * airControlFactor;
 		}
+
+		private Vector3 ConsumeImpulses()
+		{
+			var impulses = _impulses;
+			_impulses = Vector3.zero;
+			return impulses;
+		}
 		
 		private void CheckGround()
         {
@@ -187,9 +266,14 @@ namespace FoxShooter.Characters
             _grounded = false;
             _groundNormal = Vector3.up;
             
-            // if we're grounded, collect info about the ground normal with a downward capsule cast representing our character capsule
-            if (!Physics.CapsuleCast(GetCapsuleBottomHemisphere(), GetCapsuleTopHemisphere(_characterController.height),
-                _characterController.radius, Vector3.down, out var hit, chosenGroundCheckDistance, groundLayers,
+            if (currentVelocity.y > 0.1f)
+            {
+	            return;
+            }
+            
+            var bottom = transform.position + _characterController.center + Vector3.up * (-_characterController.height * 0.5f + _characterController.radius);
+            var top = bottom + Vector3.up * (_characterController.height - _characterController.radius);
+            if (!Physics.CapsuleCast(bottom, top, _characterController.radius, Vector3.down, out var hit, chosenGroundCheckDistance, groundLayers,
                 QueryTriggerInteraction.Ignore))
             {
 	            return;
@@ -205,7 +289,7 @@ namespace FoxShooter.Characters
             }
             
             _grounded = true;
-            if (hit.distance >_characterController.skinWidth)
+            if (hit.distance < _characterController.skinWidth)
             {
 	            _characterController.Move(Vector3.down * hit.distance);
             }
@@ -214,17 +298,6 @@ namespace FoxShooter.Characters
         private bool IsNormalUnderSlopeLimit(Vector3 normal)
         {
 	        return Vector3.Angle(transform.up, normal) <= _characterController.slopeLimit;
-        }
-        
-        private Vector3 GetCapsuleBottomHemisphere()
-        {
-	        return transform.position + transform.up * _characterController.radius;
-        }
-
-        // Gets the center point of the top hemisphere of the character controller capsule    
-        private Vector3 GetCapsuleTopHemisphere(float atHeight)
-        {
-	        return transform.position + transform.up * (atHeight - _characterController.radius);
         }
     }
 }
