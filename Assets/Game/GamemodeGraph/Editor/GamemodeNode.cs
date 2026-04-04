@@ -28,6 +28,7 @@ class GamemodeNode : ContextNode
 {
     private const string InputCountName = "Inputs";
     private const string Name = "Name";
+    private const string TimeName = "Time";
     private const string ScriptName = "Script";
 
     protected override void OnDefineOptions(IOptionDefinitionContext context)
@@ -36,6 +37,9 @@ class GamemodeNode : ContextNode
         context.AddOption<int>(InputCountName)
             .WithDisplayName("Num Inputs")
             .WithDefaultValue(1).Build();
+        context.AddOption<float>(TimeName)
+            .WithDisplayName("Duration")
+            .WithDefaultValue(0.0f).Build();
         context.AddOption<Gamemode>(ScriptName).Build();
     }
 
@@ -51,6 +55,11 @@ class GamemodeNode : ContextNode
     public string GetModeName()
     {
         return GetNodeOptionByName(Name).TryGetValue<string>(out var name) ? name : "null";
+    }
+
+    public float GetModeTime()
+    {
+        return GetNodeOptionByName(TimeName).TryGetValue<float>(out var time) ? time : 0.0f;
     }
 }
 

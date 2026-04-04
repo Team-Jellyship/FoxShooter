@@ -21,8 +21,10 @@ namespace FoxShooter.Game.GamemodeGraph
                 {
                     continue;
                 }
-                
-                gamemodeNodeDictionary.Add(gamemodeNode, new Gamemode(gamemodeNode.GetModeName()));
+
+                var gamemode = new Gamemode(gamemodeNode.GetModeName(), gamemodeNode.GetModeTime());
+                gamemodeNodeDictionary.Add(gamemodeNode, gamemode);
+                gamemodeTransitionManager.gamemodes.Add(gamemode);
             }
 
             foreach (var node in gamemodeGraph.GetNodes())
@@ -37,7 +39,6 @@ namespace FoxShooter.Game.GamemodeGraph
 
                     case GamemodeNode gamemodeNode:
                     {
-                        gamemodeTransitionManager.gamemodes.Add(gamemodeNode.GetModeName());
                         foreach (var block in gamemodeNode.blockNodes)
                         {
                             if (block is not GamemodeTransitionNode transition)

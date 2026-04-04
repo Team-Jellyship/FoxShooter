@@ -48,7 +48,7 @@ MonoBehaviour:
           x: 292
           y: -200
           width: 868
-          height: 382
+          height: 403
         m_GraphElementMetaData:
         - m_Guid:
             m_Value0: 10556255837862617507
@@ -167,10 +167,12 @@ MonoBehaviour:
           - __option_Inputs
           - __option_Name
           - __option_Script
+          - __option_Time
           m_ValueList:
           - rid: 476172183886626956
           - rid: 476172183886626957
           - rid: 476172183886626978
+          - rid: 476172192214941756
         m_InputPortInfos:
           expandedPortsById:
             m_KeyList: []
@@ -276,10 +278,12 @@ MonoBehaviour:
           - __option_Name
           - __option_Inputs
           - __option_Script
+          - __option_Time
           m_ValueList:
           - rid: 476172183886626967
           - rid: 476172183886626968
           - rid: 476172183886626979
+          - rid: 476172192214941757
         m_InputPortInfos:
           expandedPortsById:
             m_KeyList: []
@@ -375,7 +379,21 @@ MonoBehaviour:
           m_Title: 0
     - rid: 476172183886626978
       type: {class: 'Constant`1[[FoxShooter.Game.GamemodeGraph.Runtime.Gamemode, Assembly-CSharp]]', ns: Unity.GraphToolkit.Editor, asm: Unity.GraphToolkit.Internal.Editor}
-      data: 
+      data:
+        m_Value:
+          <name>k__BackingField: 
+          <time>k__BackingField: 0
     - rid: 476172183886626979
       type: {class: 'Constant`1[[FoxShooter.Game.GamemodeGraph.Runtime.Gamemode, Assembly-CSharp]]', ns: Unity.GraphToolkit.Editor, asm: Unity.GraphToolkit.Internal.Editor}
-      data: 
+      data:
+        m_Value:
+          <name>k__BackingField: 
+          <time>k__BackingField: 0
+    - rid: 476172192214941756
+      type: {class: 'Constant`1[[System.Single, mscorlib]]', ns: Unity.GraphToolkit.Editor, asm: Unity.GraphToolkit.Internal.Editor}
+      data:
+        m_Value: 2
+    - rid: 476172192214941757
+      type: {class: 'Constant`1[[System.Single, mscorlib]]', ns: Unity.GraphToolkit.Editor, asm: Unity.GraphToolkit.Internal.Editor}
+      data:
+        m_Value: 0

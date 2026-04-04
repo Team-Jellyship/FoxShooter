@@ -12,4 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4ab6c17cf2f3480ab0e688796657ea68, type: 3}
   m_Name: GameSettings
   m_EditorClassIdentifier: Assembly-CSharp::FoxShooter.Game.GameSettings
-  transitions: {fileID: 3965311268370046156, guid: b871d8e3e0e77c345989916525f01457, type: 3}
+  transitions: {fileID: 3965311268370046156, guid: 8520392c2411a6549a6951d3b6493693, type: 3}
