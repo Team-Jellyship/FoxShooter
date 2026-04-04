@@ -13,7 +13,9 @@ namespace FoxShooter.Game.GamemodeGraph
         public override void OnImportAsset(AssetImportContext ctx)
         {
             var gamemodeGraph = GraphDatabase.LoadGraphForImporter<GamemodeGraph>(ctx.assetPath);
-            var gamemodeTransitionManager = ScriptableObject.CreateInstance<GamemodeTransitionManager>();
+            var gamemodeTransitionManager = ScriptableObject.CreateInstance<GamemodeTransitionData>();
+            gamemodeTransitionManager.gamemodes = new List<Gamemode>();
+            gamemodeTransitionManager.transitionEntries = new List<GamemodeTransitionEntry>();
             var gamemodeNodeDictionary = new Dictionary<GamemodeNode, Gamemode>();
             foreach (var node in gamemodeGraph.GetNodes())
             {
@@ -22,7 +24,7 @@ namespace FoxShooter.Game.GamemodeGraph
                     continue;
                 }
 
-                var gamemode = new Gamemode(gamemodeNode.GetModeName(), gamemodeNode.GetModeTime());
+                var gamemode = CreateGamemodeFromNode(node);
                 gamemodeNodeDictionary.Add(gamemodeNode, gamemode);
                 gamemodeTransitionManager.gamemodes.Add(gamemode);
             }
@@ -33,7 +35,7 @@ namespace FoxShooter.Game.GamemodeGraph
                 {
                     case StartNode startNode:
                     {
-                        gamemodeTransitionManager.startingGameMode = gamemodeNodeDictionary[startNode.GetNextNode()];
+                        gamemodeTransitionManager.startingGameModeId = gamemodeNodeDictionary[startNode.GetNextNode()].id;
                         break;
                     }
 
@@ -59,10 +61,39 @@ namespace FoxShooter.Game.GamemodeGraph
                     }
                 }
             }
-            Debug.Log($"[GamemodeGraphImporter] Loaded modes: '{string.Join(", ", gamemodeTransitionManager.gamemodes)}'");
-            Debug.Log($"[GamemodeGraphImporter] Starting mode: '{gamemodeTransitionManager.startingGameMode.name}'");
             ctx.AddObjectToAsset("RuntimeData", gamemodeTransitionManager);
             ctx.SetMainObject(gamemodeTransitionManager);
+        }
+
+        private static Gamemode CreateGamemodeFromNode(INode node)
+        {
+            Gamemode mode;
+            switch (node)
+            {
+                case Menu menu:
+                {
+                    mode = new MenuMode
+                    {
+                        name = menu.GetModeName(),
+                        time = menu.GetModeTime(),
+                        scene = menu.GetScene(),
+                        id = Guid.NewGuid().ToString()
+                    };
+                    return mode;
+                }
+                case GamemodeNode gamemode:
+                {
+                    mode = new Gamemode
+                    {
+                        name = gamemode.GetModeName(),
+                        time = gamemode.GetModeTime(),
+                        id = Guid.NewGuid().ToString()
+                    };
+                    return mode;
+                }
+                default:
+                    return null;
+            }
         }
     }
 }

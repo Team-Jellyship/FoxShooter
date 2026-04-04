@@ -24,7 +24,7 @@ class StartNode : Node
 }
     
 [Serializable]
-class GamemodeNode : ContextNode
+public class GamemodeNode : ContextNode
 {
     private const string InputCountName = "Inputs";
     private const string Name = "Name";

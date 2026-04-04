@@ -1,4 +1,5 @@
-﻿using Unity.VisualScripting;
+﻿using FoxShooter.Game.GamemodeGraph.Runtime;
+using Unity.VisualScripting;
 using UnityEngine;
 
 namespace FoxShooter.Game
@@ -8,6 +9,7 @@ namespace FoxShooter.Game
         public static Game instance { get; private set; }
 
         private GameSettings _gameSettings;
+        private readonly GameTransitionTable _transitionTable = new();
         
         [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.AfterAssembliesLoaded)]
         private static void OnAfterAssembliesLoaded()
@@ -20,7 +22,7 @@ namespace FoxShooter.Game
         private void Start()
         {
             _gameSettings = Resources.Load<GameSettings>(GameSettings.SettingsFileName);
-            _gameSettings.transitions.Startup();
+            _transitionTable.Startup(_gameSettings.transitions);
         }
     }
 }

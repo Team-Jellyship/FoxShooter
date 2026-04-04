@@ -9,7 +9,7 @@ namespace FoxShooter.Game
         public const string SettingsFileName = "GameSettings";
         public const string SettingsDefaultPath = "Assets/Resources/GameSettings.asset";
 
-        [SerializeField] public GamemodeTransitionManager transitions;
+        [SerializeField] public GamemodeTransitionData transitions;
 
         public static SerializedObject GetSerializedSettings()
         {

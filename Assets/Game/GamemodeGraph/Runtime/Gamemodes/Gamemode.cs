@@ -13,17 +13,14 @@ namespace FoxShooter.Game.GamemodeGraph.Runtime
     [Serializable]
     public class Gamemode
     {
-        public Gamemode(string name, float time)
-        {
-            this.name = name;
-            this.time = time;
-        }
+        [SerializeField]
+        public string id;
         
-        [field: SerializeField]
-        public string name { get; private set; }
+        [SerializeField]
+        public string name;
 
-        [field: SerializeField]
-        public float time { get; private set; }
+        [SerializeField]
+        public float time;
         
         public virtual void Enter()
         { }
