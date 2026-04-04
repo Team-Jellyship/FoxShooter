@@ -23,7 +23,7 @@ namespace FoxShooter.Game.GamemodeGraph.Runtime
     public class GamemodeTransitionData : ScriptableObject
     {
         // This data is serialized from GamemodeGraphImporter
-        [SerializeField] public List<Gamemode> gamemodes;
+        [SerializeReference] public List<Gamemode> gamemodes;
         [SerializeField] public List<GamemodeTransitionEntry> transitionEntries;
         [SerializeField] public string startingGameModeId;
         

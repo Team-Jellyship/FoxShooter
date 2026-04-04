@@ -1,5 +1,5 @@
 ﻿using FoxShooter.Game.GamemodeGraph.Runtime;
-using Unity.VisualScripting;
+using FoxShooter.Scripts;
 using UnityEngine;
 
 namespace FoxShooter.Game
@@ -10,6 +10,7 @@ namespace FoxShooter.Game
 
         private GameSettings _gameSettings;
         private readonly GameTransitionTable _transitionTable = new();
+        private GameObject _menuAttachmentPoint;
         
         [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.AfterAssembliesLoaded)]
         private static void OnAfterAssembliesLoaded()
@@ -21,8 +22,22 @@ namespace FoxShooter.Game
 
         private void Start()
         {
+            _menuAttachmentPoint = new GameObject("menu");
+            DontDestroyOnLoad(_menuAttachmentPoint);
             _gameSettings = Resources.Load<GameSettings>(GameSettings.SettingsFileName);
             _transitionTable.Startup(_gameSettings.transitions);
+        }
+
+        // Spawns a new menu object 
+        public void LoadMenu(GameObject menu)
+        {
+            UnloadMenu();
+            Instantiate(menu, _menuAttachmentPoint.transform, false);
+        }
+
+        public void UnloadMenu()
+        {
+            _menuAttachmentPoint.RemoveAllChildren();
         }
     }
 }

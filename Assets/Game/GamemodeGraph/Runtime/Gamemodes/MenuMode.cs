@@ -8,5 +8,15 @@ namespace FoxShooter.Game.GamemodeGraph.Runtime
     {
         [SerializeReference]
         public GameObject scene;
+
+        public override void Enter()
+        {
+            Game.instance.LoadMenu(scene);
+        }
+
+        public override void Exit()
+        {
+            Game.instance.UnloadMenu();
+        }
     }
 }
