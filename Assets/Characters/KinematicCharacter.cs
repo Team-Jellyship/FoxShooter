@@ -188,6 +188,10 @@ namespace FoxShooter.Characters
 			{
 				StartJumping();
 			}
+			else
+			{
+				StopJumping();
+			}
 		}
 
 		private void Land()

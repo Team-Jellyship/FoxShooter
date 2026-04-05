@@ -1,0 +1,407 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &1
+MonoBehaviour:
+  m_ObjectHideFlags: 61
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 790b4d75d92f4b0984310a268dbd952f, type: 3}
+  m_Name: DefaultGame
+  m_EditorClassIdentifier: Unity.GraphToolkit.Editor::Unity.GraphToolkit.Editor.Implementation.GraphObjectImp
+  m_GraphModel:
+    rid: 476172183886626816
+  references:
+    version: 2
+    RefIds:
+    - rid: -2
+      type: {class: , ns: , asm: }
+    - rid: 476172183886626816
+      type: {class: GraphModelImp, ns: Unity.GraphToolkit.Editor.Implementation, asm: Unity.GraphToolkit.Editor}
+      data:
+        m_Guid:
+          m_Value0: 5524046297895361786
+          m_Value1: 14934628939331208982
+        m_HashGuid:
+          serializedVersion: 2
+          Hash: fa5cdd1cd75aa94c16071bade47542cf
+        m_Name: 
+        m_GraphNodeModels:
+        - rid: 476172183886626952
+        - rid: 476172183886626966
+        - rid: 476172192735821887
+        m_GraphWireModels:
+        - rid: 476172192735821894
+        - rid: 476172192735821898
+        m_GraphStickyNoteModels: []
+        m_GraphPlacematModels: []
+        m_GraphVariableModels: []
+        m_GraphPortalModels: []
+        m_SectionModels:
+        - rid: 476172183886626817
+        m_LocalSubgraphs: []
+        m_LastKnownBounds:
+          serializedVersion: 2
+          x: 199
+          y: -213
+          width: 965
+          height: 427
+        m_GraphElementMetaData:
+        - m_Guid:
+            m_Value0: 10556255837862617507
+            m_Value1: 15384672439661188231
+          m_HashGuid:
+            serializedVersion: 2
+            Hash: a3e1f14dc15a7f928754bf87125681d5
+          m_Category: 0
+          m_Index: 0
+        - m_Guid:
+            m_Value0: 16728620616205462549
+            m_Value1: 10760061855872685108
+          m_HashGuid:
+            serializedVersion: 2
+            Hash: 15ec3383d1ff27e8349485a83f6b5395
+          m_Category: 4
+          m_Index: 1
+        - m_Guid:
+            m_Value0: 12408607508806562926
+            m_Value1: 4426821931673939257
+          m_HashGuid:
+            serializedVersion: 2
+            Hash: 6ef4a81fc93a34ac396d55b1173b6f3d
+          m_Category: 4
+          m_Index: 2
+        - m_Guid:
+            m_Value0: 10670834285580697167
+            m_Value1: 15093181646990684939
+          m_HashGuid:
+            serializedVersion: 2
+            Hash: 4fbe18093f6b16940b3353a7bdc075d1
+          m_Category: 2
+          m_Index: 0
+        - m_Guid:
+            m_Value0: 8182682533913927967
+            m_Value1: 15739842065240147183
+          m_HashGuid:
+            serializedVersion: 2
+            Hash: 1fa1bb2f69ba8e71efc4630ff7266fda
+          m_Category: 2
+          m_Index: 1
+        m_EntryPoint:
+          rid: 476172183886626952
+        m_Graph:
+          rid: 476172183886626951
+    - rid: 476172183886626817
+      type: {class: SectionModel, ns: Unity.GraphToolkit.Editor, asm: Unity.GraphToolkit.Internal.Editor}
+      data:
+        m_Guid:
+          m_Value0: 3398708469384766115
+          m_Value1: 10965314197715961219
+        m_HashGuid:
+          serializedVersion: 2
+          Hash: a362ca8458a32a2f834568852a9f2c98
+        m_Version: 2
+        m_Items: []
+        m_Title: 
+    - rid: 476172183886626951
+      type: {class: GamemodeGraph, ns: FoxShooter.Game.GamemodeGraph, asm: Assembly-CSharp-Editor}
+      data: 
+    - rid: 476172183886626952
+      type: {class: UserNodeModelImp, ns: Unity.GraphToolkit.Editor.Implementation, asm: Unity.GraphToolkit.Editor}
+      data:
+        m_Guid:
+          m_Value0: 10556255837862617507
+          m_Value1: 15384672439661188231
+        m_HashGuid:
+          serializedVersion: 2
+          Hash: a3e1f14dc15a7f928754bf87125681d5
+        m_Version: 2
+        m_Position: {x: 199.12247, y: -89.469986}
+        m_Title: 
+        m_Tooltip: 
+        m_NodePreviewModel:
+          rid: -2
+        m_State: 0
+        m_InputConstantsById:
+          m_KeyList: []
+          m_ValueList: []
+        m_InputPortInfos:
+          expandedPortsById:
+            m_KeyList: []
+            m_ValueList: 
+        m_OutputPortInfos:
+          expandedPortsById:
+            m_KeyList: []
+            m_ValueList: 
+        m_Collapsed: 0
+        m_CurrentModeIndex: 0
+        m_ElementColor:
+          m_Color: {r: 0, g: 0, b: 0, a: 0}
+          m_HasUserColor: 0
+        m_Node:
+          rid: 476172183886626953
+    - rid: 476172183886626953
+      type: {class: StartNode, ns: FoxShooter.Game.GamemodeGraph, asm: Assembly-CSharp-Editor}
+      data: 
+    - rid: 476172183886626966
+      type: {class: UserContextNodeModelImp, ns: Unity.GraphToolkit.Editor.Implementation, asm: Unity.GraphToolkit.Editor}
+      data:
+        m_Guid:
+          m_Value0: 16728620616205462549
+          m_Value1: 10760061855872685108
+        m_HashGuid:
+          serializedVersion: 2
+          Hash: 15ec3383d1ff27e8349485a83f6b5395
+        m_Version: 2
+        m_Position: {x: 1003.7777, y: -199.6975}
+        m_Title: 
+        m_Tooltip: 
+        m_NodePreviewModel:
+          rid: -2
+        m_State: 0
+        m_InputConstantsById:
+          m_KeyList:
+          - __option_Name
+          - __option_Inputs
+          - __option_Script
+          - __option_Time
+          m_ValueList:
+          - rid: 476172183886626967
+          - rid: 476172183886626968
+          - rid: 476172183886626979
+          - rid: 476172192214941757
+        m_InputPortInfos:
+          expandedPortsById:
+            m_KeyList: []
+            m_ValueList: 
+        m_OutputPortInfos:
+          expandedPortsById:
+            m_KeyList: []
+            m_ValueList: 
+        m_Collapsed: 0
+        m_CurrentModeIndex: 0
+        m_ElementColor:
+          m_Color: {r: 0, g: 0, b: 0, a: 0}
+          m_HasUserColor: 0
+        m_Blocks: []
+        m_BlockGuids: []
+        m_Subtitle: 
+        m_Node:
+          rid: 476172183886626969
+    - rid: 476172183886626967
+      type: {class: 'Constant`1[[System.String, mscorlib]]', ns: Unity.GraphToolkit.Editor, asm: Unity.GraphToolkit.Internal.Editor}
+      data:
+        m_Value: Main Game
+    - rid: 476172183886626968
+      type: {class: 'Constant`1[[System.Int32, mscorlib]]', ns: Unity.GraphToolkit.Editor, asm: Unity.GraphToolkit.Internal.Editor}
+      data:
+        m_Value: 1
+    - rid: 476172183886626969
+      type: {class: GamemodeNode, ns: FoxShooter.Game.GamemodeGraph, asm: Assembly-CSharp-Editor}
+      data: 
+    - rid: 476172183886626979
+      type: {class: 'Constant`1[[FoxShooter.Game.GamemodeGraph.Runtime.Gamemode, Assembly-CSharp]]', ns: Unity.GraphToolkit.Editor, asm: Unity.GraphToolkit.Internal.Editor}
+      data:
+        m_Value:
+          id: 
+          name: 
+          time: 0
+    - rid: 476172192214941757
+      type: {class: 'Constant`1[[System.Single, mscorlib]]', ns: Unity.GraphToolkit.Editor, asm: Unity.GraphToolkit.Internal.Editor}
+      data:
+        m_Value: 0
+    - rid: 476172192735821887
+      type: {class: UserContextNodeModelImp, ns: Unity.GraphToolkit.Editor.Implementation, asm: Unity.GraphToolkit.Editor}
+      data:
+        m_Guid:
+          m_Value0: 12408607508806562926
+          m_Value1: 4426821931673939257
+        m_HashGuid:
+          serializedVersion: 2
+          Hash: 6ef4a81fc93a34ac396d55b1173b6f3d
+        m_Version: 2
+        m_Position: {x: 543.5475, y: -212.9225}
+        m_Title: 
+        m_Tooltip: 
+        m_NodePreviewModel:
+          rid: -2
+        m_State: 0
+        m_InputConstantsById:
+          m_KeyList:
+          - __option_Name
+          - __option_Inputs
+          - __option_Time
+          - __option_Script
+          - Scene
+          m_ValueList:
+          - rid: 476172192735821888
+          - rid: 476172192735821889
+          - rid: 476172192735821890
+          - rid: 476172192735821891
+          - rid: 476172192735821892
+        m_InputPortInfos:
+          expandedPortsById:
+            m_KeyList: []
+            m_ValueList: 
+        m_OutputPortInfos:
+          expandedPortsById:
+            m_KeyList: []
+            m_ValueList: 
+        m_Collapsed: 0
+        m_CurrentModeIndex: 0
+        m_ElementColor:
+          m_Color: {r: 0, g: 0, b: 0, a: 0}
+          m_HasUserColor: 0
+        m_Blocks:
+        - rid: 476172192735821895
+        m_BlockGuids:
+        - serializedVersion: 2
+          Hash: 17b84490ed6772dff770b2a1799c518b
+        m_Subtitle: 
+        m_Node:
+          rid: 476172192735821893
+    - rid: 476172192735821888
+      type: {class: 'Constant`1[[System.String, mscorlib]]', ns: Unity.GraphToolkit.Editor, asm: Unity.GraphToolkit.Internal.Editor}
+      data:
+        m_Value: Test Menu
+    - rid: 476172192735821889
+      type: {class: 'Constant`1[[System.Int32, mscorlib]]', ns: Unity.GraphToolkit.Editor, asm: Unity.GraphToolkit.Internal.Editor}
+      data:
+        m_Value: 1
+    - rid: 476172192735821890
+      type: {class: 'Constant`1[[System.Single, mscorlib]]', ns: Unity.GraphToolkit.Editor, asm: Unity.GraphToolkit.Internal.Editor}
+      data:
+        m_Value: 5
+    - rid: 476172192735821891
+      type: {class: 'Constant`1[[FoxShooter.Game.GamemodeGraph.Runtime.Gamemode, Assembly-CSharp]]', ns: Unity.GraphToolkit.Editor, asm: Unity.GraphToolkit.Internal.Editor}
+      data:
+        m_Value:
+          id: 
+          name: 
+          time: 0
+    - rid: 476172192735821892
+      type: {class: 'Constant`1[[UnityEngine.GameObject, UnityEngine.CoreModule]]', ns: Unity.GraphToolkit.Editor, asm: Unity.GraphToolkit.Internal.Editor}
+      data:
+        m_Value: {fileID: 4656068244726179652, guid: 39de70021144afa4c822618e8ea57551, type: 3}
+    - rid: 476172192735821893
+      type: {class: Menu, ns: FoxShooter.Game.GamemodeGraph, asm: Assembly-CSharp-Editor}
+      data: 
+    - rid: 476172192735821894
+      type: {class: WireModel, ns: Unity.GraphToolkit.Editor, asm: Unity.GraphToolkit.Internal.Editor}
+      data:
+        m_Guid:
+          m_Value0: 10670834285580697167
+          m_Value1: 15093181646990684939
+        m_HashGuid:
+          serializedVersion: 2
+          Hash: 4fbe18093f6b16940b3353a7bdc075d1
+        m_Version: 2
+        m_FromPortReference:
+          m_NodeModelGuid:
+            m_Value0: 10556255837862617507
+            m_Value1: 15384672439661188231
+          m_NodeModelHashGuid:
+            serializedVersion: 2
+            Hash: a3e1f14dc15a7f928754bf87125681d5
+          m_UniqueId: Start
+          m_PortDirection: 2
+          m_PortOrientation: 0
+          m_Title: Start
+        m_ToPortReference:
+          m_NodeModelGuid:
+            m_Value0: 12408607508806562926
+            m_Value1: 4426821931673939257
+          m_NodeModelHashGuid:
+            serializedVersion: 2
+            Hash: 6ef4a81fc93a34ac396d55b1173b6f3d
+          m_UniqueId: 0
+          m_PortDirection: 1
+          m_PortOrientation: 0
+          m_Title: 0
+    - rid: 476172192735821895
+      type: {class: UserBlockNodeModelImp, ns: Unity.GraphToolkit.Editor.Implementation, asm: Unity.GraphToolkit.Editor}
+      data:
+        m_Guid:
+          m_Value0: 16101045887828277271
+          m_Value1: 10038977090603348215
+        m_HashGuid:
+          serializedVersion: 2
+          Hash: 17b84490ed6772dff770b2a1799c518b
+        m_Version: 2
+        m_Position: {x: 0, y: 0}
+        m_Title: UserBlockNodeModelImp
+        m_Tooltip: 
+        m_NodePreviewModel:
+          rid: -2
+        m_State: 0
+        m_InputConstantsById:
+          m_KeyList:
+          - __option_TransitionFlag
+          m_ValueList:
+          - rid: 476172192735821896
+        m_InputPortInfos:
+          expandedPortsById:
+            m_KeyList: []
+            m_ValueList: 
+        m_OutputPortInfos:
+          expandedPortsById:
+            m_KeyList: []
+            m_ValueList: 
+        m_Collapsed: 0
+        m_CurrentModeIndex: 0
+        m_ElementColor:
+          m_Color: {r: 0, g: 0, b: 0, a: 0}
+          m_HasUserColor: 0
+        m_ContextNodeModel:
+          rid: 476172192735821887
+        m_Node:
+          rid: 476172192735821897
+    - rid: 476172192735821896
+      type: {class: EnumConstant, ns: Unity.GraphToolkit.Editor, asm: Unity.GraphToolkit.Internal.Editor}
+      data:
+        m_Value:
+          m_EnumType:
+            m_Identification: FoxShooter.Game.GamemodeGraph.Runtime.GamemodeTransitionFlag,
+              Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+          m_Value: 0
+        m_EnumType:
+          m_Identification: FoxShooter.Game.GamemodeGraph.Runtime.GamemodeTransitionFlag,
+            Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+    - rid: 476172192735821897
+      type: {class: GamemodeTransitionNode, ns: FoxShooter.Game.GamemodeGraph, asm: Assembly-CSharp-Editor}
+      data: 
+    - rid: 476172192735821898
+      type: {class: WireModel, ns: Unity.GraphToolkit.Editor, asm: Unity.GraphToolkit.Internal.Editor}
+      data:
+        m_Guid:
+          m_Value0: 8182682533913927967
+          m_Value1: 15739842065240147183
+        m_HashGuid:
+          serializedVersion: 2
+          Hash: 1fa1bb2f69ba8e71efc4630ff7266fda
+        m_Version: 2
+        m_FromPortReference:
+          m_NodeModelGuid:
+            m_Value0: 16101045887828277271
+            m_Value1: 10038977090603348215
+          m_NodeModelHashGuid:
+            serializedVersion: 2
+            Hash: 17b84490ed6772dff770b2a1799c518b
+          m_UniqueId: Output
+          m_PortDirection: 2
+          m_PortOrientation: 0
+          m_Title: Output
+        m_ToPortReference:
+          m_NodeModelGuid:
+            m_Value0: 16728620616205462549
+            m_Value1: 10760061855872685108
+          m_NodeModelHashGuid:
+            serializedVersion: 2
+            Hash: 15ec3383d1ff27e8349485a83f6b5395
+          m_UniqueId: 0
+          m_PortDirection: 1
+          m_PortOrientation: 0
+          m_Title: 0
