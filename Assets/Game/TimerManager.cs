@@ -98,6 +98,7 @@ public class TimerManager : MonoBehaviour
     {
         var container = new GameObject("TimerManager");
         instance = container.AddComponent<TimerManager>();
+        DontDestroyOnLoad(container);
     }
     
     public void Update()
