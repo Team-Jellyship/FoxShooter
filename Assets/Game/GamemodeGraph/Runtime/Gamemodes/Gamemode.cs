@@ -7,7 +7,8 @@ namespace FoxShooter.Game.GamemodeGraph.Runtime
     public enum GamemodeTransitionFlag
     {
         Timeout,
-        Advance
+        Advance,
+        Loaded
     }
     
     [Serializable]

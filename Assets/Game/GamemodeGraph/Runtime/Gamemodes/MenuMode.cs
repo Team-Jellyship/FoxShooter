@@ -11,7 +11,10 @@ namespace FoxShooter.Game.GamemodeGraph.Runtime
 
         public override void Enter()
         {
-            Game.instance.LoadMenu(scene);
+            if (scene != null)
+            {
+                Game.instance.LoadMenu(scene);
+            }
         }
 
         public override void Exit()

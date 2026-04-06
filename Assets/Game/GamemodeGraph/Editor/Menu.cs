@@ -15,7 +15,7 @@ namespace FoxShooter.Game.GamemodeGraph
             context.AddInputPort<GameObject>(SceneName).Build();
         }
 
-        public GameObject GetScene()
+        public GameObject GetMenuScene()
         {
             return GetInputPortByName(SceneName).TryGetValue<GameObject>(out var scene) ? scene : null;
         }
