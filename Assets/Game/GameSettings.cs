@@ -1,4 +1,5 @@
 ﻿using FoxShooter.Game.GamemodeGraph.Runtime;
+using FoxShooter.Game.StatusEffects;
 using UnityEditor;
 using UnityEngine;
 
@@ -10,6 +11,7 @@ namespace FoxShooter.Game
         public const string SettingsDefaultPath = "Assets/Resources/GameSettings.asset";
 
         [SerializeField] public GamemodeTransitionData transitions;
+        [SerializeField] public StatusEffectList effectList;
 
         public static SerializedObject GetSerializedSettings()
         {

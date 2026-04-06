@@ -1,0 +1,17 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 92c2f2fed6bb41b38b6a4b10a97572b8, type: 3}
+  m_Name: SL_Default
+  m_EditorClassIdentifier: Assembly-CSharp::FoxShooter.Game.StatusEffects.StatusEffectList
+  <health>k__BackingField: {fileID: 11400000, guid: 1a2b183b5e3f7c04784c4d7a67b40647, type: 2}
+  <maxHealth>k__BackingField: {fileID: 11400000, guid: 733c7d38c3f4fcd43bf0a23990d06a7e, type: 2}
+  <invulnerability>k__BackingField: {fileID: 11400000, guid: 2065f3d442cc1df4bbb1cefc2a1fccab, type: 2}
