@@ -26,6 +26,7 @@ namespace FoxShooter.Game
             DontDestroyOnLoad(_menuAttachmentPoint);
             _gameSettings = Resources.Load<GameSettings>(GameSettings.SettingsFileName);
             _transitionTable.Startup(_gameSettings.transitions);
+            Cursor.lockState = CursorLockMode.Locked;
         }
 
         // Spawns a new menu object 
@@ -38,6 +39,11 @@ namespace FoxShooter.Game
         public void UnloadMenu()
         {
             _menuAttachmentPoint.RemoveAllChildren();
+        }
+
+        public void Command(GamemodeTransitionFlag flag)
+        {
+            _transitionTable.Command(flag);
         }
     }
 }

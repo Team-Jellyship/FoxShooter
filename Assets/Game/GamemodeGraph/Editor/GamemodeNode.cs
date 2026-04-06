@@ -34,9 +34,6 @@ public class GamemodeNode : ContextNode
     protected override void OnDefineOptions(IOptionDefinitionContext context)
     {
         context.AddOption<string>(Name).Build();
-        context.AddOption<int>(InputCountName)
-            .WithDisplayName("Num Inputs")
-            .WithDefaultValue(1).Build();
         context.AddOption<float>(TimeName)
             .WithDisplayName("Duration")
             .WithDefaultValue(0.0f).Build();
@@ -45,11 +42,7 @@ public class GamemodeNode : ContextNode
 
     protected override void OnDefinePorts(IPortDefinitionContext context)
     {
-        GetNodeOptionByName(InputCountName).TryGetValue<int>(out var numInputs);
-        for (var i = 0; i < numInputs; ++i)
-        {
-            context.AddInputPort($"{i}").Build();
-        }
+        context.AddInputPort("Input").Build();
     }
 
     public string GetModeName()

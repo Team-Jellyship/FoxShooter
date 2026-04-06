@@ -70,13 +70,25 @@ namespace FoxShooter.Game.GamemodeGraph
             Gamemode mode;
             switch (node)
             {
+                case LoadScene loading:
+                {
+                    mode = new LoadingMode
+                    {
+                        name = loading.GetModeName(),
+                        time = loading.GetModeTime(),
+                        scene = loading.GetMenuScene(),
+                        id = Guid.NewGuid().ToString(),
+                        sceneToLoad = loading.GetScene()
+                    };
+                    return mode;
+                }
                 case Menu menu:
                 {
                     mode = new MenuMode
                     {
                         name = menu.GetModeName(),
                         time = menu.GetModeTime(),
-                        scene = menu.GetScene(),
+                        scene = menu.GetMenuScene(),
                         id = Guid.NewGuid().ToString()
                     };
                     return mode;
