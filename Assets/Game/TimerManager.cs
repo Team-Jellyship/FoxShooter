@@ -142,6 +142,7 @@ public class TimerManager : MonoBehaviour
     {
         var newTimer = new TimerEntry(new WeakReference<MonoBehaviour>(owner), callback);
         _timers.Add(newTimer);
+        owner.destroyCancellationToken.Register(() => newTimer.expired = true, this);
         return new TimerHandle(newTimer);
     }
 }
