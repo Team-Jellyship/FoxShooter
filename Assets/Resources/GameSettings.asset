@@ -13,3 +13,4 @@ MonoBehaviour:
   m_Name: GameSettings
   m_EditorClassIdentifier: Assembly-CSharp::FoxShooter.Game.GameSettings
   transitions: {fileID: 3965311268370046156, guid: 8520392c2411a6549a6951d3b6493693, type: 3}
+  effectList: {fileID: 11400000, guid: 7cab1b392c168e54f8f09ae43b391ca2, type: 2}

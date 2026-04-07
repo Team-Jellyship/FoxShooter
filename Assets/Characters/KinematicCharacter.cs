@@ -91,16 +91,21 @@ namespace FoxShooter.Characters
 		private float coyoteTime = 0.5f;
 
 		[Header("Look")]
-		[SerializeField] private float lookSensitivity = 1.0f;
+		[SerializeField] private float lookSensitivityHorizontal = 1.0f;
+		[SerializeField] private float lookSensitivityVertical = 1.0f;
 
 		[SerializeField] private Camera playerCamera;
 
-		[SerializeField] private Vector3 currentVelocity;
-
 		[SerializeField] private float cameraPitch;
+
+
+		[SerializeField] private Vector3 additionalLocalSpaceVelocity;
+		[SerializeField] private Vector3 currentVelocity;
 		
+		private bool _immobilized;
 		private bool _grounded;
 		private bool _isJumping;
+		private bool _pendingJumpImpulse; // Jump impulses are a little special
 		private Vector2 _moveInput;
 		private Vector3 _groundNormal;
 		private Vector3 _impulses;
@@ -109,19 +114,40 @@ namespace FoxShooter.Characters
 		
 		// Component cached references
 		private CharacterController _characterController;
+		private CharacterStats _stats;
+		
 		private void Awake()
 		{
 			_characterController = GetComponent<CharacterController>();
+			_stats = GetComponent<CharacterStats>();
 		}
 
 		private void Start()
 		{
 			_coyoteTimer = TimerManager.instance.CreateTimer(this, StopJumping);
 			_jumpTimer = TimerManager.instance.CreateTimer(this, StopJumping);
+
+			if (_stats == null)
+			{
+				return;
+			}
+			
+			_stats.RegisterEffectAppliedCallback(Game.Game.instance.statusEffects.stunned, () => _immobilized = true, this);
+			_stats.RegisterEffectRemovedCallback(Game.Game.instance.statusEffects.stunned, () =>
+			{
+				_immobilized = false;
+				currentVelocity = Vector3.zero;
+			}, this);
 		}
 
 		private void FixedUpdate()
 		{
+			if (_immobilized)
+			{
+				_characterController.Move(GetVectorInLocalSpace(additionalLocalSpaceVelocity) * Time.fixedDeltaTime);
+				return;
+			}
+			
 			var onFloor = _grounded;
 			CheckGround();
 			switch (_grounded)
@@ -157,8 +183,14 @@ namespace FoxShooter.Characters
 			currentVelocity.z = currentVelocity2D.y;
 			
 			currentVelocity += ConsumeImpulses();
-			var moveHitResult = _characterController.Move(currentVelocity * Time.fixedDeltaTime);
-			
+			if (_pendingJumpImpulse)
+			{
+				currentVelocity.y = MathF.Max(jumpStrength, currentVelocity.y + jumpStrength);
+				_pendingJumpImpulse = false;
+			}
+
+			currentVelocity.y = StarMath.ClampTowards(currentVelocity.y, -maxAirSpeedVertical, maxAirSpeedVertical, friction);
+			_characterController.Move(currentVelocity * Time.fixedDeltaTime);
 			currentVelocity = _characterController.velocity;
 		}
 
@@ -170,10 +202,10 @@ namespace FoxShooter.Characters
 		public void OnLook(InputValue value)
 		{
 			var look = value.Get<Vector2>();
-			transform.Rotate(transform.up, look.x * lookSensitivity);
+			transform.Rotate(transform.up, look.x * lookSensitivityHorizontal);
 
 			if (look.y == 0.0f) { return; }
-			cameraPitch = Mathf.Clamp(cameraPitch + look.y, -85.0f, 85.0f);
+			cameraPitch = Mathf.Clamp(cameraPitch - look.y * lookSensitivityVertical, -85.0f, 85.0f);
 			playerCamera.transform.localEulerAngles = new Vector3(cameraPitch, 0.0f, 0.0f);
 		}
 
@@ -226,7 +258,8 @@ namespace FoxShooter.Characters
 			_coyoteTimer.Pause();
 			_jumpTimer.Start(jumpTime);
 			_isJumping = true;
-			AddImpulse(new Vector3(0.0f, jumpStrength, 0.0f));
+			// AddImpulse(new Vector3(0.0f, jumpStrength, 0.0f));
+			_pendingJumpImpulse = true;
 		
 			--numJumpsRemaining;
 		}
@@ -234,7 +267,7 @@ namespace FoxShooter.Characters
 		
 		private bool CanJump()
 		{
-			return numJumpsRemaining > 0;
+			return numJumpsRemaining > 0 && !_immobilized;
 		}
 		
 		private float GetMaxHorizontalSpeed()
@@ -258,6 +291,13 @@ namespace FoxShooter.Characters
 			var impulses = _impulses;
 			_impulses = Vector3.zero;
 			return impulses;
+		}
+
+		private Vector3 GetVectorInLocalSpace(Vector3 vector)
+		{
+			return vector.z * playerCamera.transform.forward +
+			       vector.y * playerCamera.transform.up +
+			       vector.x * playerCamera.transform.right;
 		}
 		
 		private void CheckGround()

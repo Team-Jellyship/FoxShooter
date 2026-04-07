@@ -1,4 +1,5 @@
 ﻿using FoxShooter.Game.GamemodeGraph.Runtime;
+using FoxShooter.Game.StatusEffects;
 using FoxShooter.Scripts;
 using UnityEngine;
 
@@ -7,6 +8,8 @@ namespace FoxShooter.Game
     public class Game : MonoBehaviour
     {
         public static Game instance { get; private set; }
+
+        public StatusEffectList statusEffects;
 
         private GameSettings _gameSettings;
         private readonly GameTransitionTable _transitionTable = new();
@@ -26,6 +29,7 @@ namespace FoxShooter.Game
             DontDestroyOnLoad(_menuAttachmentPoint);
             _gameSettings = Resources.Load<GameSettings>(GameSettings.SettingsFileName);
             _transitionTable.Startup(_gameSettings.transitions);
+            statusEffects = _gameSettings.effectList;
             Cursor.lockState = CursorLockMode.Locked;
         }
 

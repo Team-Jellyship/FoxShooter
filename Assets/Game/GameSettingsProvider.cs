@@ -25,6 +25,7 @@ namespace FoxShooter.Game
         public override void OnGUI(string searchContext)
         {
             EditorGUILayout.PropertyField(_settings.FindProperty("transitions"));
+            EditorGUILayout.PropertyField(_settings.FindProperty("effectList"));
             _settings.ApplyModifiedPropertiesWithoutUndo();
         }
     }
