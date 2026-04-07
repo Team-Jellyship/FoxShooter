@@ -14,11 +14,14 @@ namespace FoxShooter.Characters.Fox
 
         [SerializeField] [Min(0.0f)] private float cooldownTime = 5.0f;
         
+        private bool _onCooldown;
+        private TimerHandle _cooldownTimer;
+        private StatusEffectInstance _dashStun;
+        private StatusEffectInstance _dashInvuln;
+        
         private Animator _animator;
         private CharacterStats _stats;
-        private StatusEffectInstance _dashStun;
-        private TimerHandle _cooldownTimer;
-        private bool _onCooldown;
+        private ContactHitbox _hitbox;
         
         private void Awake()
         {
@@ -28,7 +31,15 @@ namespace FoxShooter.Characters.Fox
 
         private void Start()
         {
+            // Probably need to track whether the enemies were killed by this attack or
+            // a latent bullet
+            _stats.onKillCharacter.AddListener(_ =>
+            {
+                _cooldownTimer.Pause();
+                _onCooldown = false;
+            });
             _dashStun = new StatusEffectInstance(Game.Game.instance.statusEffects.stunned, this);
+            _dashInvuln = new StatusEffectInstance(Game.Game.instance.statusEffects.invulnerability, this);
             _cooldownTimer = TimerManager.instance.CreateTimer(this, () => _onCooldown = false);
         }
 
@@ -52,6 +63,16 @@ namespace FoxShooter.Characters.Fox
         public void RemoveStun()
         {
             _stats.RemoveStatusEffectInstance(_dashStun);
+        }
+
+        public void ApplyInvuln()
+        {
+            _stats.ApplyStatusEffect(_dashInvuln);
+        }
+
+        public void RemoveInvuln()
+        {
+            _stats.RemoveStatusEffectInstance(_dashInvuln);
         }
     }
 }

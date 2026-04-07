@@ -91,7 +91,8 @@ namespace FoxShooter.Characters
 		private float coyoteTime = 0.5f;
 
 		[Header("Look")]
-		[SerializeField] private float lookSensitivity = 1.0f;
+		[SerializeField] private float lookSensitivityHorizontal = 1.0f;
+		[SerializeField] private float lookSensitivityVertical = 1.0f;
 
 		[SerializeField] private Camera playerCamera;
 
@@ -104,6 +105,7 @@ namespace FoxShooter.Characters
 		private bool _immobilized;
 		private bool _grounded;
 		private bool _isJumping;
+		private bool _pendingJumpImpulse; // Jump impulses are a little special
 		private Vector2 _moveInput;
 		private Vector3 _groundNormal;
 		private Vector3 _impulses;
@@ -181,8 +183,14 @@ namespace FoxShooter.Characters
 			currentVelocity.z = currentVelocity2D.y;
 			
 			currentVelocity += ConsumeImpulses();
-			var moveHitResult = _characterController.Move(currentVelocity * Time.fixedDeltaTime);
-			
+			if (_pendingJumpImpulse)
+			{
+				currentVelocity.y = MathF.Max(jumpStrength, currentVelocity.y + jumpStrength);
+				_pendingJumpImpulse = false;
+			}
+
+			currentVelocity.y = StarMath.ClampTowards(currentVelocity.y, -maxAirSpeedVertical, maxAirSpeedVertical, friction);
+			_characterController.Move(currentVelocity * Time.fixedDeltaTime);
 			currentVelocity = _characterController.velocity;
 		}
 
@@ -194,10 +202,10 @@ namespace FoxShooter.Characters
 		public void OnLook(InputValue value)
 		{
 			var look = value.Get<Vector2>();
-			transform.Rotate(transform.up, look.x * lookSensitivity);
+			transform.Rotate(transform.up, look.x * lookSensitivityHorizontal);
 
 			if (look.y == 0.0f) { return; }
-			cameraPitch = Mathf.Clamp(cameraPitch + look.y, -85.0f, 85.0f);
+			cameraPitch = Mathf.Clamp(cameraPitch - look.y * lookSensitivityVertical, -85.0f, 85.0f);
 			playerCamera.transform.localEulerAngles = new Vector3(cameraPitch, 0.0f, 0.0f);
 		}
 
@@ -250,7 +258,8 @@ namespace FoxShooter.Characters
 			_coyoteTimer.Pause();
 			_jumpTimer.Start(jumpTime);
 			_isJumping = true;
-			AddImpulse(new Vector3(0.0f, jumpStrength, 0.0f));
+			// AddImpulse(new Vector3(0.0f, jumpStrength, 0.0f));
+			_pendingJumpImpulse = true;
 		
 			--numJumpsRemaining;
 		}

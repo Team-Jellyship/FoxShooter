@@ -12,9 +12,9 @@ namespace FoxShooter.Characters
 		public UnityEvent<float> onTakeDamage;
 		public UnityEvent onStunned;
 		public UnityEvent onStunEnd;
+		public UnityEvent<CharacterStats> onKillCharacter;
 
 
-		public bool canBeJumpedOn { get; }
 		public Team characterTeam { private set; get; }
 		[SerializeField] private float defaultHealth = 15;
 		[SerializeField] private float invulnerabilityTime;
@@ -49,6 +49,11 @@ namespace FoxShooter.Characters
 			{
 				return;
 			}
+
+			if (_effects.GetValue(Game.Game.instance.statusEffects.health) == 0)
+			{
+				return;
+			}
 			
 			Debug.Log($"[CharacterStats] '{gameObject.name}' took '{damageAmount}' damage.");
 			onTakeDamage.Invoke(damageAmount);
@@ -73,6 +78,8 @@ namespace FoxShooter.Characters
 
 		public virtual void KilledEnemy(CharacterStats enemy)
 		{
+			Debug.Log($"[CharacterStats] '{gameObject.name}' killed enemy '{enemy.gameObject.name}'");
+			onKillCharacter.Invoke(enemy);
 		}
 
 		public void RegisterEffectChangedDelegate(StatusEffect effect, UnityAction<int, float> action, MonoBehaviour owner)

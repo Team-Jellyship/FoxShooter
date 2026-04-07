@@ -180,7 +180,8 @@ MonoBehaviour:
   numJumpsRemaining: 0
   jumpTime: 0.5
   coyoteTime: 0.5
-  lookSensitivity: 1
+  lookSensitivityHorizontal: 0.5
+  lookSensitivityVertical: 0.2
   playerCamera: {fileID: 653023276848462293}
   cameraPitch: 0
   additionalLocalSpaceVelocity: {x: 0, y: 0, z: 0}
@@ -261,6 +262,9 @@ MonoBehaviour:
   onStunEnd:
     m_PersistentCalls:
       m_Calls: []
+  onKillCharacter:
+    m_PersistentCalls:
+      m_Calls: []
   defaultHealth: 15
   invulnerabilityTime: 0
 --- !u!114 &238749407478760749
@@ -289,7 +293,7 @@ GameObject:
   - component: {fileID: 2996634931115772379}
   - component: {fileID: 2036622942050709529}
   m_Layer: 7
-  m_Name: Hitbox
+  m_Name: DashHitbox
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -304,7 +308,7 @@ Transform:
   m_GameObject: {fileID: 4026868519989904096}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 2}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -343,6 +347,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eadcf8a4bdf346c9894d2580cf0967aa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::FoxShooter.Characters.ContactHitbox
+  damage: 3
 --- !u!54 &2036622942050709529
 Rigidbody:
   m_ObjectHideFlags: 0
