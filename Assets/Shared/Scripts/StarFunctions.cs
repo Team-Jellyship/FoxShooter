@@ -11,5 +11,23 @@ namespace FoxShooter.Scripts
                 Object.Destroy(child.gameObject);
             }
         }
+
+        public static T GetComponentInRoot<T>(this GameObject obj)
+            where T : Component
+        {
+            return obj.transform.root?.GetComponent<T>();
+        }
+
+        public static T GetComponentInRoot<T>(this MonoBehaviour obj)
+            where T : Component
+        {
+            return GetComponentInRoot<T>(obj.gameObject);
+        }
+
+        public static T GetComponentInRoot<T>(this Component obj)
+            where T : Component
+        {
+            return GetComponentInRoot<T>(obj.gameObject);
+        }
     }
 }
