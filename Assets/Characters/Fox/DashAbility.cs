@@ -25,6 +25,9 @@ namespace FoxShooter.Characters.Fox
         
         private void Awake()
         {
+            // Grab cached references for every component we need later
+            // I'm assuming that these will be on the Prefab's root,
+            // but that isn't always necessarily the case
             _animator = this.GetComponentInRoot<Animator>();
             _stats = this.GetComponentInRoot<CharacterStats>();
         }
@@ -33,16 +36,25 @@ namespace FoxShooter.Characters.Fox
         {
             // Probably need to track whether the enemies were killed by this attack or
             // a latent bullet
+            
+            // Listen for when the owner kills something, and reset the cooldown if that happens
             _stats.onKillCharacter.AddListener(_ =>
             {
                 _cooldownTimer.Pause();
                 _onCooldown = false;
             });
+            
+            // Create effect instances. We need to track this to easily remove, otherwise these would
+            // have to be set by duration
             _dashStun = new StatusEffectInstance(Game.Game.instance.statusEffects.stunned, this);
             _dashInvuln = new StatusEffectInstance(Game.Game.instance.statusEffects.invulnerability, this);
+            
+            // Create our cooldown timer, but don't start it yet
             _cooldownTimer = TimerManager.instance.CreateTimer(this, () => _onCooldown = false);
         }
 
+        // Listener for PlayerInput. Will automatically be called when
+        // 'Dash' is pressed
         private void OnDash()
         {
             if (_onCooldown)
@@ -55,24 +67,30 @@ namespace FoxShooter.Characters.Fox
             _animator.SetTrigger(DashParameter);
         }
 
-        public void ApplyStun()
+        // Animation event hooks!
+        // The animator can access private methods,so these
+        // are placed on the timeline and called based on the
+        // current animation, rather than being defined
+        // entirely programmatically
+        private void ApplyStun()
         {
             _stats.ApplyStatusEffect(_dashStun);
         }
 
-        public void RemoveStun()
+        private void RemoveStun()
         {
             _stats.RemoveStatusEffectInstance(_dashStun);
         }
 
-        public void ApplyInvuln()
+        private void ApplyInvuln()
         {
             _stats.ApplyStatusEffect(_dashInvuln);
         }
 
-        public void RemoveInvuln()
+        private void RemoveInvuln()
         {
             _stats.RemoveStatusEffectInstance(_dashInvuln);
         }
+        // End of animation event hooks
     }
 }
