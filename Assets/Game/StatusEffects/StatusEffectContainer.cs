@@ -10,7 +10,7 @@ namespace FoxShooter.Game.StatusEffects
 {
     public class StatusEffectContainer
     {
-        private Dictionary<StatusEffect, StatusEntry> _statusEffects = new ();
+        private readonly Dictionary<StatusEffect, StatusEntry> _statusEffects = new ();
 
         private readonly SparseEventMap<StatusEffect> _onStatusEffectAppliedMap = new();
         private readonly SparseEventMap<StatusEffect> _onStatusEffectRemovedMap = new();
@@ -60,6 +60,12 @@ namespace FoxShooter.Game.StatusEffects
 
         public void RemoveStatusEffectInstance(StatusEffectInstance instance)
         {
+            if (instance.effect == null)
+            {
+                Debug.LogWarning("[StatusEffectContainer] Attempted to remove a status effect instance, but the effect was null.");
+                return;
+            }
+            
             if (!_statusEffects.TryGetValue(instance.effect, out var effectList))
             {
                 return;

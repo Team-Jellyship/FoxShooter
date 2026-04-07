@@ -98,7 +98,8 @@ namespace FoxShooter.Characters
 		[SerializeField] private Vector3 currentVelocity;
 
 		[SerializeField] private float cameraPitch;
-		
+
+		private bool _immobilized;
 		private bool _grounded;
 		private bool _isJumping;
 		private Vector2 _moveInput;
@@ -109,19 +110,35 @@ namespace FoxShooter.Characters
 		
 		// Component cached references
 		private CharacterController _characterController;
+		private CharacterStats _stats;
+		
 		private void Awake()
 		{
 			_characterController = GetComponent<CharacterController>();
+			_stats = GetComponent<CharacterStats>();
 		}
 
 		private void Start()
 		{
 			_coyoteTimer = TimerManager.instance.CreateTimer(this, StopJumping);
 			_jumpTimer = TimerManager.instance.CreateTimer(this, StopJumping);
+
+			if (_stats == null)
+			{
+				return;
+			}
+			
+			_stats.RegisterEffectAppliedCallback(Game.Game.instance.statusEffects.stunned, () => _immobilized = true, this);
+			_stats.RegisterEffectRemovedCallback(Game.Game.instance.statusEffects.stunned, () => _immobilized = false, this);
 		}
 
 		private void FixedUpdate()
 		{
+			if (_immobilized)
+			{
+				return;
+			}
+			
 			var onFloor = _grounded;
 			CheckGround();
 			switch (_grounded)
@@ -234,7 +251,7 @@ namespace FoxShooter.Characters
 		
 		private bool CanJump()
 		{
-			return numJumpsRemaining > 0;
+			return numJumpsRemaining > 0 && !_immobilized;
 		}
 		
 		private float GetMaxHorizontalSpeed()

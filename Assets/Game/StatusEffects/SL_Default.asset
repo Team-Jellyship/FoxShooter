@@ -15,3 +15,4 @@ MonoBehaviour:
   <health>k__BackingField: {fileID: 11400000, guid: 1a2b183b5e3f7c04784c4d7a67b40647, type: 2}
   <maxHealth>k__BackingField: {fileID: 11400000, guid: 733c7d38c3f4fcd43bf0a23990d06a7e, type: 2}
   <invulnerability>k__BackingField: {fileID: 11400000, guid: 2065f3d442cc1df4bbb1cefc2a1fccab, type: 2}
+  <stunned>k__BackingField: {fileID: 11400000, guid: e6a97aa59562da0469365908513aff7b, type: 2}

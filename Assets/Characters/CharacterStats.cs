@@ -80,9 +80,34 @@ namespace FoxShooter.Characters
 			_effects.RegisterStatusEffectChangedEvent(effect, action, owner);
 		}
 
+		public void RegisterEffectAppliedCallback(StatusEffect effect, UnityAction action, MonoBehaviour owner)
+		{
+			_effects.RegisterEffectAppliedCallback(effect, action, owner);
+		}
+
+		public void RegisterEffectRemovedCallback(StatusEffect effect, UnityAction action, MonoBehaviour owner)
+		{
+			_effects.RegisterEffectRemovedCallback(effect, action, owner);
+		}
+
 		public float GetEffectValue(StatusEffect effect)
 		{
 			return _effects.GetValue(effect);
+		}
+
+		public void ApplyStatusEffect(StatusEffectInstance statusEffectInstance)
+		{
+			_effects.ApplyStatusEffectInstance(statusEffectInstance);
+		}
+
+		public void ApplyStatusEffect(StatusEffect effect, MonoBehaviour owner)
+		{
+			ApplyStatusEffect(new StatusEffectInstance(effect, owner));
+		}
+
+		public void RemoveStatusEffectInstance(StatusEffectInstance instance)
+		{
+			_effects.RemoveStatusEffectInstance(instance);
 		}
     }
 }

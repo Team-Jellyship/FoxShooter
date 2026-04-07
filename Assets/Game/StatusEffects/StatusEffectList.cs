@@ -8,5 +8,6 @@ namespace FoxShooter.Game.StatusEffects
         [field: SerializeField] public StatusEffect health { get; private set; }
         [field: SerializeField] public StatusEffect maxHealth { get; private set; }
         [field: SerializeField] public StatusEffect invulnerability { get; private set; }
+        [field: SerializeField] public StatusEffect stunned { get; private set; }
     }
 }

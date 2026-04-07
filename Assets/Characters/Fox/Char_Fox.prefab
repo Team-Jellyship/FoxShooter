@@ -98,6 +98,7 @@ GameObject:
   - component: {fileID: 3370733928436092656}
   - component: {fileID: 2693857677620479894}
   - component: {fileID: 6534221406128472239}
+  - component: {fileID: 238749407478760749}
   m_Layer: 3
   m_Name: Char_Fox
   m_TagString: Untagged
@@ -223,7 +224,7 @@ Animator:
   m_GameObject: {fileID: 3797445723825112220}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 9bcb3c487662c3b49a6a120ab7a305d1, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -261,6 +262,19 @@ MonoBehaviour:
       m_Calls: []
   defaultHealth: 15
   invulnerabilityTime: 0
+--- !u!114 &238749407478760749
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3797445723825112220}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: daa697f9cdd046c990d816aadadf753a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::FoxShooter.Characters.Fox.DashAbility
+  _stunned: 0
 --- !u!1 &4026868519989904096
 GameObject:
   m_ObjectHideFlags: 0
