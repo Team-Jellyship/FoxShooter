@@ -95,10 +95,12 @@ namespace FoxShooter.Characters
 
 		[SerializeField] private Camera playerCamera;
 
-		[SerializeField] private Vector3 currentVelocity;
-
 		[SerializeField] private float cameraPitch;
 
+
+		[SerializeField] private Vector3 additionalLocalSpaceVelocity;
+		[SerializeField] private Vector3 currentVelocity;
+		
 		private bool _immobilized;
 		private bool _grounded;
 		private bool _isJumping;
@@ -129,13 +131,18 @@ namespace FoxShooter.Characters
 			}
 			
 			_stats.RegisterEffectAppliedCallback(Game.Game.instance.statusEffects.stunned, () => _immobilized = true, this);
-			_stats.RegisterEffectRemovedCallback(Game.Game.instance.statusEffects.stunned, () => _immobilized = false, this);
+			_stats.RegisterEffectRemovedCallback(Game.Game.instance.statusEffects.stunned, () =>
+			{
+				_immobilized = false;
+				currentVelocity = Vector3.zero;
+			}, this);
 		}
 
 		private void FixedUpdate()
 		{
 			if (_immobilized)
 			{
+				_characterController.Move(GetVectorInLocalSpace(additionalLocalSpaceVelocity) * Time.fixedDeltaTime);
 				return;
 			}
 			
@@ -275,6 +282,13 @@ namespace FoxShooter.Characters
 			var impulses = _impulses;
 			_impulses = Vector3.zero;
 			return impulses;
+		}
+
+		private Vector3 GetVectorInLocalSpace(Vector3 vector)
+		{
+			return vector.z * playerCamera.transform.forward +
+			       vector.y * playerCamera.transform.up +
+			       vector.x * playerCamera.transform.right;
 		}
 		
 		private void CheckGround()
