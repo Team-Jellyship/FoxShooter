@@ -99,6 +99,7 @@ GameObject:
   - component: {fileID: 2693857677620479894}
   - component: {fileID: 6534221406128472239}
   - component: {fileID: 238749407478760749}
+  - component: {fileID: 3755345655590914097}
   m_Layer: 3
   m_Name: Char_Fox
   m_TagString: Untagged
@@ -210,7 +211,67 @@ MonoBehaviour:
   m_ControlsChangedEvent:
     m_PersistentCalls:
       m_Calls: []
-  m_ActionEvents: []
+  m_ActionEvents:
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 53a92d72-ef82-497e-84ec-4fa47498b3e7
+    m_ActionName: 'Player/Move[/Keyboard/w,/Keyboard/upArrow,/Keyboard/s,/Keyboard/downArrow,/Keyboard/a,/Keyboard/leftArrow,/Keyboard/d,/Keyboard/rightArrow]'
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 5d6c56d1-1a2b-4872-a0d4-ca6bc20d9456
+    m_ActionName: 'Player/Look[/Mouse/delta,/Touchscreen/delta,/Pen/delta]'
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 5de8e217-6cbf-4c35-ae03-a8bd492fd8a0
+    m_ActionName: 'Player/Fire[/Mouse/leftButton,/Touchscreen/primaryTouch/tap]'
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 9e44d31e-1403-48cf-b144-bed518f107f9
+    m_ActionName: 'Player/Jump[/Keyboard/space]'
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 33b81e7d-4636-4545-9cef-3de2fd63811a
+    m_ActionName: 'Player/Dash[/Keyboard/shift]'
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: c02cfaa0-6144-4738-88bc-98f3365baf50
+    m_ActionName: 'UI/Navigate[/Keyboard/w,/Keyboard/upArrow,/Keyboard/s,/Keyboard/downArrow,/Keyboard/a,/Keyboard/leftArrow,/Keyboard/d,/Keyboard/rightArrow]'
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 001e4898-0395-4d23-ae25-8088a5d05b66
+    m_ActionName: 'UI/Submit[/Keyboard/enter]'
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 71f0e773-7890-4d07-a42f-20657ecc6a0f
+    m_ActionName: 'UI/Cancel[/Keyboard/escape]'
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 688bf7fc-9a4e-48fe-b038-898e954c2dcc
+    m_ActionName: 'UI/Point[/Mouse/position,/Pen/position,/Touchscreen/touch0/position,/Touchscreen/touch1/position,/Touchscreen/touch2/position,/Touchscreen/touch3/position,/Touchscreen/touch4/position,/Touchscreen/touch5/position,/Touchscreen/touch6/position,/Touchscreen/touch7/position,/Touchscreen/touch8/position,/Touchscreen/touch9/position]'
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: e20f6942-b5dc-4246-9d40-41391503bea7
+    m_ActionName: 'UI/Click[/Mouse/leftButton,/Pen/tip,/Touchscreen/touch0/press,/Touchscreen/touch1/press,/Touchscreen/touch2/press,/Touchscreen/touch3/press,/Touchscreen/touch4/press,/Touchscreen/touch5/press,/Touchscreen/touch6/press,/Touchscreen/touch7/press,/Touchscreen/touch8/press,/Touchscreen/touch9/press]'
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: a6e7bd63-bb35-4fcd-8af0-6370e5391192
+    m_ActionName: 'UI/ScrollWheel[/Mouse/scroll]'
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: b302921e-c619-4a96-baf8-ad4232edc95f
+    m_ActionName: 'UI/MiddleClick[/Mouse/middleButton]'
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: aafb73c4-e712-4c87-aef7-0c1374317159
+    m_ActionName: 'UI/RightClick[/Mouse/rightButton]'
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 8594c727-5658-4b96-a992-367c7ed779e0
+    m_ActionName: UI/TrackedDevicePosition
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 8f8446d1-a06f-4f79-b492-09f628b20079
+    m_ActionName: UI/TrackedDeviceOrientation
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Player
@@ -280,6 +341,24 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::FoxShooter.Characters.Fox.DashAbility
   cooldownTime: 5
+--- !u!114 &3755345655590914097
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3797445723825112220}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 290643dc3e2848bb9c85a4aa18b441cb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::FoxShooter.Characters.ProjectileSource
+  origin: {fileID: 8618486384866644612}
+  projectilePrefab: {fileID: 5737718843795827397, guid: b43379484354e5949a0096874920ac4a, type: 3}
+  cooldownTime: 0
+  speed: 5
+  lifetime: 2
+  owner: {fileID: 6534221406128472239}
 --- !u!1 &4026868519989904096
 GameObject:
   m_ObjectHideFlags: 0
@@ -348,6 +427,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::FoxShooter.Characters.ContactHitbox
   damage: 3
+  owner: {fileID: 0}
 --- !u!54 &2036622942050709529
 Rigidbody:
   m_ObjectHideFlags: 0
