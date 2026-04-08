@@ -19,6 +19,11 @@ namespace FoxShooter.Characters
         
         private void OnTriggerEnter(Collider other)
         {
+            if (other.CompareTag("ignoreDamage"))
+            {
+                return;
+            }
+            
             var otherStats = other.GetComponentInRoot<CharacterStats>();
             if (otherStats == null || otherStats == owner)
             {

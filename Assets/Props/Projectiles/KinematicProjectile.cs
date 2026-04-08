@@ -9,8 +9,10 @@ namespace Props.Projectiles
     [RequireComponent(typeof(Rigidbody))]
     public class KinematicProjectile : MonoBehaviour
     {
+        public float speed { get; private set; }
         private ContactHitbox _hitbox;
         private Rigidbody _body;
+        private TimerHandle _lifetime;
         
         private void Awake()
         {
@@ -18,13 +20,13 @@ namespace Props.Projectiles
             _body = GetComponent<Rigidbody>();
         }
 
-
-        public void Setup(CharacterStats owner, Transform origin, float speed, float lifetime)
+        public void Setup(CharacterStats owner, Transform origin, float speedIn, float lifetime)
         {
+            _lifetime ??= TimerManager.instance.CreateTimer(this, Expire);
+            speed = speedIn;
             _body.linearVelocity = origin.transform.forward * speed;
             _hitbox.owner = owner;
-            
-            TimerManager.instance.CreateTimer(this, Expire).Start(lifetime);
+            _lifetime.Start(lifetime);
         }
 
         private void Expire()

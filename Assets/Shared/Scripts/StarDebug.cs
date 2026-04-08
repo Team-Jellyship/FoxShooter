@@ -192,7 +192,7 @@ namespace FoxShooter.Scripts
         }
     }
 
-    public static class Names
+    public static class StarNames
     {
         public static string GetNameSafe(GameObject obj)
         {
