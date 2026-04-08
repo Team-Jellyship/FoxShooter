@@ -1,4 +1,5 @@
-﻿using FoxShooter.Game.StatusEffects;
+﻿using FoxShooter.Game;
+using FoxShooter.Game.StatusEffects;
 using FoxShooter.Scripts;
 using UnityEngine;
 using UnityEngine.Events;
@@ -18,9 +19,10 @@ namespace FoxShooter.Characters
 		public Team characterTeam { private set; get; }
 		[SerializeField] private float defaultHealth = 15;
 		[SerializeField] private float invulnerabilityTime;
-		
+		[SerializeField] private float despawnTime = 0.5f;
 		
 		private bool _showingStats;
+		private TimerHandle _despawnTimer;
 		private readonly StatusEffectContainer _effects = new();
 		
 		public void Start()
@@ -30,6 +32,8 @@ namespace FoxShooter.Characters
 			
 			_effects.RegisterEffectAppliedCallback(Game.Game.instance.statusEffects.invulnerability, onStunned.Invoke, this);
 			_effects.RegisterEffectRemovedCallback(Game.Game.instance.statusEffects.invulnerability, onStunEnd.Invoke, this);
+
+			_despawnTimer = TimerManager.instance.CreateTimer(this, () => Destroy(gameObject));
 		}
 
 		public void Update()
@@ -74,6 +78,11 @@ namespace FoxShooter.Characters
 			_effects.SetBaseValue(Game.Game.instance.statusEffects.health, 0.0f);
 			source?.KilledEnemy(this);
 			onDeath.Invoke();
+
+			if (despawnTime > 0.0f)
+			{
+				_despawnTimer.Start(despawnTime);
+			}
 		}
 
 		public virtual void KilledEnemy(CharacterStats enemy)

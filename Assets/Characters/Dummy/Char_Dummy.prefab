@@ -67,7 +67,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 034c70f55b4818d4abed1aa606102ee3, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -172,8 +172,12 @@ MonoBehaviour:
   onStunEnd:
     m_PersistentCalls:
       m_Calls: []
+  onKillCharacter:
+    m_PersistentCalls:
+      m_Calls: []
   defaultHealth: 3
   invulnerabilityTime: 0
+  _despawnTime: 3
 --- !u!54 &3953417084980186901
 Rigidbody:
   m_ObjectHideFlags: 0

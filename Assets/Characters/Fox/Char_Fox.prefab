@@ -328,6 +328,7 @@ MonoBehaviour:
       m_Calls: []
   defaultHealth: 15
   invulnerabilityTime: 0
+  despawnTime: 0.5
 --- !u!114 &238749407478760749
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -356,8 +357,8 @@ MonoBehaviour:
   origin: {fileID: 8618486384866644612}
   projectilePrefab: {fileID: 5737718843795827397, guid: b43379484354e5949a0096874920ac4a, type: 3}
   cooldownTime: 0
-  speed: 5
-  lifetime: 2
+  speed: 25
+  lifetime: 1
   owner: {fileID: 6534221406128472239}
 --- !u!1 &4026868519989904096
 GameObject:
