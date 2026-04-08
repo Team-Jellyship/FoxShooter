@@ -31,6 +31,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 8261299192491786182}
+  - {fileID: 7514559829054232965}
   m_Father: {fileID: 2727929157351720282}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!20 &653023276848462293
@@ -99,7 +100,6 @@ GameObject:
   - component: {fileID: 2693857677620479894}
   - component: {fileID: 6534221406128472239}
   - component: {fileID: 238749407478760749}
-  - component: {fileID: 3755345655590914097}
   m_Layer: 3
   m_Name: Char_Fox
   m_TagString: Untagged
@@ -200,7 +200,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Unity.InputSystem::UnityEngine.InputSystem.PlayerInput
   m_Actions: {fileID: -944628639613478452, guid: 6cd90e475c2860a47bd7261f7b20a40f, type: 3}
-  m_NotificationBehavior: 0
+  m_NotificationBehavior: 2
   m_UIInputModule: {fileID: 0}
   m_DeviceLostEvent:
     m_PersistentCalls:
@@ -213,23 +213,83 @@ MonoBehaviour:
       m_Calls: []
   m_ActionEvents:
   - m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 8681671206454598398}
+        m_TargetAssemblyTypeName: FoxShooter.Characters.KinematicCharacter, Assembly-CSharp
+        m_MethodName: MoveInput
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_ActionId: 53a92d72-ef82-497e-84ec-4fa47498b3e7
     m_ActionName: 'Player/Move[/Keyboard/w,/Keyboard/upArrow,/Keyboard/s,/Keyboard/downArrow,/Keyboard/a,/Keyboard/leftArrow,/Keyboard/d,/Keyboard/rightArrow]'
   - m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 8681671206454598398}
+        m_TargetAssemblyTypeName: FoxShooter.Characters.KinematicCharacter, Assembly-CSharp
+        m_MethodName: Look
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_ActionId: 5d6c56d1-1a2b-4872-a0d4-ca6bc20d9456
     m_ActionName: 'Player/Look[/Mouse/delta,/Touchscreen/delta,/Pen/delta]'
   - m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 4743685795038467154}
+        m_TargetAssemblyTypeName: FoxShooter.Characters.ProjectileSource, Assembly-CSharp
+        m_MethodName: Fire
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_ActionId: 5de8e217-6cbf-4c35-ae03-a8bd492fd8a0
     m_ActionName: 'Player/Fire[/Mouse/leftButton,/Touchscreen/primaryTouch/tap]'
   - m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 8681671206454598398}
+        m_TargetAssemblyTypeName: FoxShooter.Characters.KinematicCharacter, Assembly-CSharp
+        m_MethodName: Jump
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_ActionId: 9e44d31e-1403-48cf-b144-bed518f107f9
     m_ActionName: 'Player/Jump[/Keyboard/space]'
   - m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 238749407478760749}
+        m_TargetAssemblyTypeName: FoxShooter.Characters.Fox.DashAbility, Assembly-CSharp
+        m_MethodName: Dash
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_ActionId: 33b81e7d-4636-4545-9cef-3de2fd63811a
     m_ActionName: 'Player/Dash[/Keyboard/shift]'
   - m_PersistentCalls:
@@ -272,6 +332,10 @@ MonoBehaviour:
       m_Calls: []
     m_ActionId: 8f8446d1-a06f-4f79-b492-09f628b20079
     m_ActionName: UI/TrackedDeviceOrientation
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 30b94f30-e7d4-4b10-b5ec-6ba03a7bdf0c
+    m_ActionName: 'Player/Secondary[/Mouse/rightButton]'
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Player
@@ -342,24 +406,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::FoxShooter.Characters.Fox.DashAbility
   cooldownTime: 5
---- !u!114 &3755345655590914097
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3797445723825112220}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 290643dc3e2848bb9c85a4aa18b441cb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::FoxShooter.Characters.ProjectileSource
-  origin: {fileID: 8618486384866644612}
-  projectilePrefab: {fileID: 5737718843795827397, guid: b43379484354e5949a0096874920ac4a, type: 3}
-  cooldownTime: 0
-  speed: 25
-  lifetime: 1
-  owner: {fileID: 6534221406128472239}
 --- !u!1 &4026868519989904096
 GameObject:
   m_ObjectHideFlags: 0
@@ -558,6 +604,55 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
+--- !u!1 &6098747816066575583
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7514559829054232965}
+  - component: {fileID: 4743685795038467154}
+  m_Layer: 3
+  m_Name: Gun
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7514559829054232965
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6098747816066575583}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 8618486384866644612}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &4743685795038467154
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6098747816066575583}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 290643dc3e2848bb9c85a4aa18b441cb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::FoxShooter.Characters.ProjectileSource
+  projectilePrefab: {fileID: 5737718843795827397, guid: b43379484354e5949a0096874920ac4a, type: 3}
+  cooldownTime: 0
+  speed: 25
+  lifetime: 1
+  owner: {fileID: 6534221406128472239}
 --- !u!1 &8741843954882508876
 GameObject:
   m_ObjectHideFlags: 0

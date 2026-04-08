@@ -4,12 +4,12 @@ using FoxShooter.Scripts;
 using Props.Projectiles;
 using UnityEditor;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 namespace FoxShooter.Characters
 {
     public class ProjectileSource : MonoBehaviour
     {
-        [SerializeField] private Transform origin;
         [SerializeField] private GameObject projectilePrefab;
         [SerializeField] [Min(0.0f)] private float cooldownTime;
         [SerializeField] [Min(0.0f)] private float speed;
@@ -24,10 +24,13 @@ namespace FoxShooter.Characters
         {
             _cooldownTimer = TimerManager.instance.CreateTimer(this, () => _onCooldown = false);
         }
-
-        // Input listener. Right now, uses SendMessage, but it should probably use UnityEvents
-        private void OnFire()
+        
+        public void Fire(InputAction.CallbackContext context)
         {
+            if (context.phase != InputActionPhase.Performed)
+            {
+                return;
+            }
             Fire();
         }
 
@@ -50,16 +53,13 @@ namespace FoxShooter.Characters
                 return;
             }
 
-            var bullet = Instantiate(projectilePrefab, origin.transform.position, origin.transform.rotation);
-            bullet.GetComponent<KinematicProjectile>()?.Setup(owner, origin, speed, lifetime);
+            var bullet = Instantiate(projectilePrefab, transform.position, transform.rotation);
+            bullet.GetComponent<KinematicProjectile>()?.Setup(owner, transform, speed, lifetime);
         }
 
         private void OnDrawGizmos()
         {
-            if (origin)
-            {
-                StarDebug.DrawArrow(origin.position, origin.position + origin.forward, Color.violetRed);
-            }
+            StarDebug.DrawArrow(transform.position, transform.position + transform.forward, Color.violetRed);
         }
     }
 }

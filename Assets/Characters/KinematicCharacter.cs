@@ -194,14 +194,14 @@ namespace FoxShooter.Characters
 			currentVelocity = _characterController.velocity;
 		}
 
-		public void OnMove(InputValue value)
+		public void MoveInput(InputAction.CallbackContext context)
 		{
-			_moveInput = value.Get<Vector2>();
+			_moveInput = context.ReadValue<Vector2>();
 		}
 
-		public void OnLook(InputValue value)
+		public void Look(InputAction.CallbackContext context)
 		{
-			var look = value.Get<Vector2>();
+			var look = context.ReadValue<Vector2>();
 			transform.Rotate(transform.up, look.x * lookSensitivityHorizontal);
 
 			if (look.y == 0.0f) { return; }
@@ -214,9 +214,14 @@ namespace FoxShooter.Characters
 			_impulses += impulse;
 		}
 
-		private void OnJump(InputValue value)
+		public void Jump(InputAction.CallbackContext context)
 		{
-			if (value.isPressed)
+			if (context.phase != InputActionPhase.Performed)
+			{
+				return;
+			}
+			
+			if (context.action.IsPressed())
 			{
 				StartJumping();
 			}
