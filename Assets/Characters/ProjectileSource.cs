@@ -1,6 +1,8 @@
 ﻿using System;
 using FoxShooter.Game;
+using FoxShooter.Scripts;
 using Props.Projectiles;
+using UnityEditor;
 using UnityEngine;
 
 namespace FoxShooter.Characters
@@ -23,7 +25,13 @@ namespace FoxShooter.Characters
             _cooldownTimer = TimerManager.instance.CreateTimer(this, () => _onCooldown = false);
         }
 
+        // Input listener. Right now, uses SendMessage, but it should probably use UnityEvents
         private void OnFire()
+        {
+            Fire();
+        }
+
+        public void Fire()
         {
             if (_onCooldown)
             {
@@ -34,6 +42,7 @@ namespace FoxShooter.Characters
             _cooldownTimer.Start(cooldownTime);
         }
 
+        // ReSharper disable Unity.PerformanceAnalysis
         private void SpawnProjectile()
         {
             if (!projectilePrefab)
@@ -43,6 +52,14 @@ namespace FoxShooter.Characters
 
             var bullet = Instantiate(projectilePrefab, origin.transform.position, origin.transform.rotation);
             bullet.GetComponent<KinematicProjectile>()?.Setup(owner, origin, speed, lifetime);
+        }
+
+        private void OnDrawGizmos()
+        {
+            if (origin)
+            {
+                StarDebug.DrawArrow(origin.position, origin.position + origin.forward, Color.violetRed);
+            }
         }
     }
 }
