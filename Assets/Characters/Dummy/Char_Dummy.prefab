@@ -125,6 +125,8 @@ GameObject:
   - component: {fileID: 5285784657511011634}
   - component: {fileID: 5213491490267880193}
   - component: {fileID: 3953417084980186901}
+  - component: {fileID: 277794378350528876}
+  - component: {fileID: 6995234177153659443}
   m_Layer: 0
   m_Name: Char_Dummy
   m_TagString: Untagged
@@ -177,7 +179,7 @@ MonoBehaviour:
       m_Calls: []
   defaultHealth: 3
   invulnerabilityTime: 0
-  _despawnTime: 3
+  despawnTime: 0.5
 --- !u!54 &3953417084980186901
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -205,3 +207,34 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &277794378350528876
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7192794133295583836}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 290643dc3e2848bb9c85a4aa18b441cb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::FoxShooter.Characters.ProjectileSource
+  origin: {fileID: 5285784657511011634}
+  projectilePrefab: {fileID: 5737718843795827397, guid: b43379484354e5949a0096874920ac4a, type: 3}
+  cooldownTime: 0
+  speed: 10
+  lifetime: 1
+  owner: {fileID: 5213491490267880193}
+--- !u!114 &6995234177153659443
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7192794133295583836}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 753643a0559648cd9424d5f3530c1c38, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::FoxShooter.Characters.AI.PeriodicShooter
+  repeatTime: 1

@@ -59,7 +59,7 @@ namespace FoxShooter.Characters
 				return;
 			}
 			
-			Debug.Log($"[CharacterStats] '{gameObject.name}' took '{damageAmount}' damage.");
+			Debug.Log($"[CharacterStats] '{gameObject.name}' took '{damageAmount}' damage from '{StarNames.GetNameSafe(source)}'.");
 			onTakeDamage.Invoke(damageAmount);
 			var healthEffect = Game.Game.instance.statusEffects.health;
 			if (!(_effects.AddBaseValue(healthEffect, -damageAmount) <= 0.0f))
