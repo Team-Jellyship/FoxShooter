@@ -1,6 +1,7 @@
 ﻿using System;
 using FoxShooter.Scripts;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace FoxShooter.Characters
 {
@@ -9,16 +10,26 @@ namespace FoxShooter.Characters
     {
         [SerializeField] [Min(0.0f)] private float damage = 1.0f;
         
-        private CharacterStats _stats;
+        public CharacterStats owner;
         
         private void Awake()
         {
-            _stats = this.GetComponentInRoot<CharacterStats>();
+            owner = this.GetComponentInRoot<CharacterStats>();
         }
         
         private void OnTriggerEnter(Collider other)
         {
-            other.GetComponentInRoot<CharacterStats>()?.TakeDamage(damage, _stats, false);
+            if (other.CompareTag("ignoreDamage"))
+            {
+                return;
+            }
+            
+            var otherStats = other.GetComponentInRoot<CharacterStats>();
+            if (otherStats == null || otherStats == owner)
+            {
+                return;
+            }
+            otherStats.TakeDamage(damage, owner, false);
         }
     }
 }

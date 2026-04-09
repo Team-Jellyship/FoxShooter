@@ -5,6 +5,7 @@ using System.Runtime.CompilerServices;
 using FoxShooter.Game;
 using UnityEngine;
 using FoxShooter.Scripts;
+using UnityEngine.InputSystem;
 
 namespace FoxShooter.Characters.Fox
 {
@@ -52,11 +53,14 @@ namespace FoxShooter.Characters.Fox
             // Create our cooldown timer, but don't start it yet
             _cooldownTimer = TimerManager.instance.CreateTimer(this, () => _onCooldown = false);
         }
-
-        // Listener for PlayerInput. Will automatically be called when
-        // 'Dash' is pressed
-        private void OnDash()
+        
+        public void Dash(InputAction.CallbackContext context)
         {
+            if (context.phase != InputActionPhase.Performed)
+            {
+                return;
+            }
+            
             if (_onCooldown)
             {
                 return;
