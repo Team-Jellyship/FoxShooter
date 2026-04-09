@@ -247,8 +247,8 @@ MonoBehaviour:
     m_ActionName: 'Player/Look[/Mouse/delta,/Touchscreen/delta,/Pen/delta]'
   - m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 4743685795038467154}
-        m_TargetAssemblyTypeName: FoxShooter.Characters.ProjectileSource, Assembly-CSharp
+      - m_Target: {fileID: 6959763318834364756}
+        m_TargetAssemblyTypeName: FoxShooter.Characters.HitscanSource, Assembly-CSharp
         m_MethodName: Fire
         m_Mode: 0
         m_Arguments:
@@ -626,7 +626,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7514559829054232965}
-  - component: {fileID: 4743685795038467154}
+  - component: {fileID: 6959763318834364756}
   m_Layer: 3
   m_Name: Gun
   m_TagString: Untagged
@@ -649,7 +649,7 @@ Transform:
   m_Children: []
   m_Father: {fileID: 8618486384866644612}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &4743685795038467154
+--- !u!114 &6959763318834364756
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -658,14 +658,16 @@ MonoBehaviour:
   m_GameObject: {fileID: 6098747816066575583}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 290643dc3e2848bb9c85a4aa18b441cb, type: 3}
+  m_Script: {fileID: 11500000, guid: d5777a00426a45b894190256130ed402, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::FoxShooter.Characters.ProjectileSource
-  projectilePrefab: {fileID: 5737718843795827397, guid: b43379484354e5949a0096874920ac4a, type: 3}
+  m_EditorClassIdentifier: Assembly-CSharp::FoxShooter.Characters.HitscanSource
   cooldownTime: 0
-  speed: 25
-  lifetime: 1
-  owner: {fileID: 6534221406128472239}
+  speed: 0
+  distance: 25
+  damage: 1
+  mask:
+    serializedVersion: 2
+    m_Bits: 64
 --- !u!1 &8741843954882508876
 GameObject:
   m_ObjectHideFlags: 0
@@ -807,5 +809,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 95a5c4260b6e4a8eaf7bca8b484946f2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::FoxShooter.Characters.Fox.AirBlastAbility
+  forceProjectileStrength: 1.5
+  projectileNewLifespan: 3
   cooldownTime: 0.5
   forceWindow: 0.25

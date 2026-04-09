@@ -95,15 +95,14 @@ namespace FoxShooter.Scripts
         {
             const float arrowheadLength = 0.2f;
 
-            var arrowForward = end - start;
-            var arrowRight = Vector3.Cross(arrowForward, Vector3.up);
+            var arrowForward = (end - start).normalized;
+            var arrowRight = Vector3.Cross(arrowForward, Vector3.up).normalized;
             
-            var arrowAngle = Mathf.Atan2(end.y - start.y, end.x - start.x);
             var arrowRightCap = end;
             var arrowLeftCap = end;
 
-            var arrowRightOffset = arrowRight * Mathf.Cos(arrowAngle + ArrowheadAngleOffsetRads) * arrowheadLength;
-            var arrowBackOffset = -arrowForward * Mathf.Sin(arrowAngle + ArrowheadAngleOffsetRads) * arrowheadLength;
+            var arrowRightOffset = arrowRight * Mathf.Cos(ArrowheadAngleOffsetRads) * arrowheadLength;
+            var arrowBackOffset = -arrowForward * Mathf.Sin(ArrowheadAngleOffsetRads) * arrowheadLength;
             
             arrowRightCap += arrowRightOffset;
             arrowRightCap += arrowBackOffset;
