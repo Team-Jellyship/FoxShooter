@@ -3,6 +3,7 @@ using FoxShooter.Game;
 using FoxShooter.Scripts;
 using Props.Projectiles;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.InputSystem;
 
 namespace FoxShooter.Characters.Fox
@@ -14,7 +15,8 @@ namespace FoxShooter.Characters.Fox
         [SerializeField] [Min(0.0f)] private float projectileNewLifespan = 3.0f;
         [SerializeField] [Min(0.0f)] private float cooldownTime = 5.0f;
         [SerializeField] [Min(0.0f)] private float forceWindow = 0.5f;
-
+        [SerializeField] private UnityEvent fired;
+        
         private CharacterStats _stats;
         private Collider _collider;
         private bool _onCooldown;
@@ -63,6 +65,7 @@ namespace FoxShooter.Characters.Fox
                 return;
             }
             
+            fired.Invoke();
             _collider.enabled = true;
             _onCooldown = true;
             _forceWindowTimer.Start(forceWindow);
