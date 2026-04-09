@@ -2,6 +2,7 @@
 using FoxShooter.Game;
 using FoxShooter.Scripts;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.InputSystem;
 
 namespace FoxShooter.Characters
@@ -12,6 +13,8 @@ namespace FoxShooter.Characters
         [SerializeField] [Min(0.0f)] private float distance;
         [SerializeField] private float damage;
         [SerializeField] private LayerMask mask;
+
+        [SerializeField] private UnityEvent fired;
 
         private bool _onCooldown;
         private TimerHandle _cooldownTimer;
@@ -37,6 +40,7 @@ namespace FoxShooter.Characters
                 return;
             }
             
+            fired.Invoke();
             Debug.DrawRay(transform.position, transform.forward * distance, Color.violetRed, 0.5f);
             if (Physics.Raycast(transform.position, transform.forward,
                     out var result, distance, mask, QueryTriggerInteraction.Collide))
