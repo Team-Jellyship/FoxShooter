@@ -114,5 +114,14 @@ public abstract class StarMath
             vector.x * Mathf.Sin(angle) + vector.y * Mathf.Cos(angle)
         );
     }
+    
+    public static Vector3 GetRandomPointInRadius(Vector3 center, float maxRadius, float minRadius)
+    {
+        var angle = Random.Range(0.0f, Mathf.PI * 2.0f);
+        var radius = Mathf.Sqrt(Random.Range(0, minRadius)) + (maxRadius - minRadius);
+            
+        var result = new Vector3(Mathf.Cos(angle) * radius, 0.0f, Mathf.Sin(angle) * radius);
+        return center + result;
+    }
 }
 }
