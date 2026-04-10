@@ -29,7 +29,7 @@ namespace Characters.AI.Polestar
             _queryTimer.Start(_interval, true);
         }
 
-        private void RunQuery()
+        public void RunQuery()
         {
             if (!_stack)
             {
@@ -39,8 +39,18 @@ namespace Characters.AI.Polestar
             _results = _stack.Evaluate(_self, _target);
         }
 
+        public void ClearQuery()
+        {
+            _results.Clear();
+        }
+
         private void OnDrawGizmos()
         {
+            if (_results.Count == 0)
+            {
+                return;
+            }
+            
             var offset = new Vector3(0.0f, -1.0f, 0.0f);
             var quat = Quaternion.FromToRotation(Vector3.forward, Vector3.down);
             var max = PolestarResult.Max(ref _results);
@@ -53,12 +63,11 @@ namespace Characters.AI.Polestar
                 }
             };
             
-            
             foreach (var result in _results)
             {
+                Handles.Label(result.position, $"{result.score:0.00}", style);
                 var color = result == _results[max] ? Color.dodgerBlue : new Color(result.score, 0.0f, 0.0f);
                 StarDebug.DrawCircle(result.position + offset, quat, 1.0f, color);
-                Handles.Label(result.position, $"{result.score:0.00}", style);
             }
             Handles.color = Color.white;
         }
