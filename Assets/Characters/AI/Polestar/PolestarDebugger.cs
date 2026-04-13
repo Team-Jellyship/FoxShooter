@@ -51,7 +51,6 @@ namespace Characters.AI.Polestar
                 return;
             }
             
-            var offset = new Vector3(0.0f, -1.0f, 0.0f);
             var quat = Quaternion.FromToRotation(Vector3.forward, Vector3.down);
             var max = PolestarResult.Max(ref _results);
             var style = new GUIStyle(GUI.skin.label)
@@ -67,7 +66,7 @@ namespace Characters.AI.Polestar
             {
                 Handles.Label(result.position, $"{result.score:0.00}", style);
                 var color = result == _results[max] ? Color.dodgerBlue : new Color(result.score, 0.0f, 0.0f);
-                StarDebug.DrawCircle(result.position + offset, quat, 1.0f, color);
+                StarDebug.DrawCircle(result.position, quat, 1.0f, color);
             }
             Handles.color = Color.white;
         }
