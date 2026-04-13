@@ -93,10 +93,9 @@ namespace FoxShooter.Characters
 		[Header("Look")]
 		[SerializeField] private float lookSensitivityHorizontal = 1.0f;
 		[SerializeField] private float lookSensitivityVertical = 1.0f;
-
 		[SerializeField] private Camera playerCamera;
-
 		[SerializeField] private float cameraPitch;
+		
 
 
 		[SerializeField] private Vector3 additionalLocalSpaceVelocity;
@@ -163,7 +162,7 @@ namespace FoxShooter.Characters
 			
 			var currentVelocity2D = new Vector2(currentVelocity.x, currentVelocity.z);
 			var currentMaxSpeed = GetMaxHorizontalSpeed();
-			var rotatedInput = StarMath.RotateVector(_moveInput, -transform.rotation.eulerAngles.y * Mathf.Deg2Rad);
+			var rotatedInput = playerCamera ? StarMath.RotateVector(_moveInput, -transform.rotation.eulerAngles.y * Mathf.Deg2Rad) : _moveInput;
 
 			currentVelocity2D = _moveInput.Equals(Vector2.zero) ?
 				StarMath.MoveTo(currentVelocity2D, Vector2.zero, GetFriction() * Time.fixedDeltaTime) :
@@ -173,10 +172,6 @@ namespace FoxShooter.Characters
 			{
 				var jumpFactor = _isJumping ? jumpHeldGravityFactor : 1.0f;
 				currentVelocity.y += GravityConstant * gravity  * Time.fixedDeltaTime * jumpFactor;
-			}
-			else
-			{
-				// currentVelocity.y = 0.0f;
 			}
 
 			currentVelocity.x = currentVelocity2D.x;
@@ -197,6 +192,14 @@ namespace FoxShooter.Characters
 		public void MoveInput(InputAction.CallbackContext context)
 		{
 			_moveInput = context.ReadValue<Vector2>();
+		}
+
+		public void MoveInput(Vector2 velocity)
+		{
+			var currentAcceleration = GetAcceleration();
+			var velocityDelta = velocity - currentVelocity.To2D();
+			var inputFactor = MathF.Min(1.0f, velocityDelta.magnitude / (currentAcceleration * Time.fixedDeltaTime));
+			_moveInput = inputFactor * velocity.normalized;
 		}
 
 		public void Look(InputAction.CallbackContext context)
@@ -346,6 +349,12 @@ namespace FoxShooter.Characters
         private bool IsNormalUnderSlopeLimit(Vector3 normal)
         {
 	        return Vector3.Angle(transform.up, normal) <= _characterController.slopeLimit;
+        }
+
+        private void OnDrawGizmos()
+        {
+	        StarDebug.DrawArrow(transform.position, transform.position + currentVelocity, Color.blueViolet);
+	        StarDebug.DrawArrow(transform.position, transform.position + _moveInput.To3D(), Color.mediumSeaGreen);
         }
     }
 }

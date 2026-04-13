@@ -5,7 +5,7 @@ using Random = UnityEngine.Random;
 
 namespace FoxShooter.Scripts
 {
-public abstract class StarMath
+public static class StarMath
 {
     /**
      * <summary>Get a number value, moved towards another value.
@@ -105,6 +105,22 @@ public abstract class StarMath
         }
 
         return normal * (length + delta);
+    }
+
+    // Convert to a planar velocity, dropping the up component
+    public static Vector2 To2D(this Vector3 vector)
+    {
+        return new Vector2(vector.x, vector.z);
+    }
+
+    public static Vector3 To3D(this Vector2 vector)
+    {
+        return new Vector3(vector.x, 0.0f, vector.y);
+    }
+
+    public static float Magnitude2D(this Vector3 vector)
+    {
+        return MathF.Sqrt(vector.x * vector.x + vector.z * vector.z);
     }
     
     public static Vector2 RotateVector(Vector2 vector, float angle)
