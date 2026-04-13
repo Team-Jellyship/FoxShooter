@@ -246,28 +246,28 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3e8a76c9134d46d8b2241eca27f0806a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::FoxShooter.Characters.KinematicCharacter
-  acceleration: 50
-  maxSpeed: 5
+  acceleration: 40
+  maxSpeed: 14
   crouchedMaxSpeed: 5
-  friction: 50
+  friction: 25
   isCrouched: 0
   maxAirSpeedHorizontal: 10
   maxAirSpeedVertical: 1000
   airControlFactor: 0.5
-  gravity: 1
+  gravity: 6
   groundCheckDistance: 0.1
   groundCheckDistanceAerial: 0.1
   groundLayers:
     serializedVersion: 2
     m_Bits: 1
-  jumpStrength: 5
+  jumpStrength: 12
   jumpHeldGravityFactor: 0.5
   numJumps: 2
   numJumpsRemaining: 0
   jumpTime: 0.5
   coyoteTime: 0.5
-  lookSensitivityHorizontal: 0.5
-  lookSensitivityVertical: 0.2
+  lookSensitivityHorizontal: 0.1
+  lookSensitivityVertical: 0.1
   playerCamera: {fileID: 653023276848462293}
   cameraPitch: 0
   additionalLocalSpaceVelocity: {x: 0, y: 0, z: 0}

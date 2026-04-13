@@ -10,11 +10,12 @@
       },
       "hash": "b849990020c30ac6ead4e4fb4881428f86dcde0d"
     },
-    "com.unity.2d.sprite": {
-      "version": "1.0.0",
+    "com.prenominal.realtimecsg": {
+      "version": "https://github.com/LogicalError/realtime-CSG-for-unity.git",
       "depth": 0,
-      "source": "builtin",
-      "dependencies": {}
+      "source": "git",
+      "dependencies": {},
+      "hash": "8ea1d81e917c538d8f4563327c2c657b50a355f0"
     },
     "com.unity.ai.navigation": {
       "version": "2.0.11",
