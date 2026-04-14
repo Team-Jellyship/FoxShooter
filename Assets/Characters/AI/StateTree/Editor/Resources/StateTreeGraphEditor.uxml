@@ -4,5 +4,5 @@
         <ui:Button text="New State" name="NewStateButton" style="margin-top: 0; margin-right: 1px; margin-left: 1px; margin-bottom: 0; background-size: 100% 32px;"/>
         <ui:Button text="Save" name="SaveButton" style="margin-top: 0; margin-right: 1px; margin-left: 1px; margin-bottom: 0; background-size: 100% 32px;"/>
     </ui:VisualElement>
-    <ui:VisualElement name="TreeContainer" style="flex-grow: 1; padding-top: 8px; padding-right: 8px; padding-bottom: 8px; padding-left: 8px;"/>
+    <ui:VisualElement name="TreeContainer" style="flex-grow: 1; padding-top: 8px; padding-right: 8px; padding-bottom: 8px; padding-left: 8px; background-color: rgb(20, 20, 20); margin-top: 4px; margin-right: 4px; margin-bottom: 4px; margin-left: 4px;"/>
 </ui:UXML>

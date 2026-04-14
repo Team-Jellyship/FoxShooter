@@ -9,7 +9,7 @@ namespace FoxShooter.Characters.AI.StateTree.UI
         public State data { get; private set; }
         public int id;
 
-        public virtual void Bind(State state)
+        public virtual void Bind(State state, StateTreeGraph graph)
         {
             data = state;
         }

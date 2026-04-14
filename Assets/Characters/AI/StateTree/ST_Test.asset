@@ -12,18 +12,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 66389089480c4268bcf2110fd8dabdfa, type: 3}
   m_Name: ST_Test
   m_EditorClassIdentifier: Assembly-CSharp::FoxShooter.Characters.AI.StateTree.StateTreeGraph
+  changed:
+    m_PersistentCalls:
+      m_Calls: []
   states:
-  - name: Walking to Enemy
-    childStates: 01000000
-    childTasks: []
-    successTask: 0
-    cancelTask: 0
-  - name: New State
+  - name: 
     childStates: 
     childTasks: []
-    successTask: 0
-    cancelTask: 0
-  rootStates: 00000000
+    successStateIndex: -1
+    cancelStateIndex: -1
+  - name: 
+    childStates: 
+    childTasks: []
+    successStateIndex: -1
+    cancelStateIndex: -1
+  rootStates: 000000000100000002000000
   references:
     version: 2
     RefIds: []

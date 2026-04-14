@@ -30,6 +30,7 @@
 
 .indented {
     flex-direction: row;
+    -unity-text-align: middle-left;
 }
 
 .task-list {

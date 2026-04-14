@@ -14,8 +14,8 @@ namespace FoxShooter.Characters.AI.StateTree
         [SerializeReference] public List<int> childStates = new();
         [SerializeReference] public List<Task> childTasks = new();
         
-        [SerializeReference] public int successTask;
-        [SerializeReference] public int cancelTask;
+        [SerializeReference] public int successStateIndex = -1;
+        [SerializeReference] public int cancelStateIndex = -1;
         
         public int id { get; private set; }
         

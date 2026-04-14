@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.UIElements;
 
@@ -25,24 +26,21 @@ namespace FoxShooter.Characters.AI.StateTree.UI
             _graph = graph;
             _stateEntryAsset = stateEntryAsset;
             _treeView = rootVisualElement.Q<TreeView>("TreeView");
-            _usedIndices.Clear();
-            
-            foreach (var rootState in graph.rootStates)
+            _graph.changed.RemoveAllListeners();
+            _graph.changed.AddListener(() =>
             {
-                if (rootState < 0 || rootState >= graph.states.Count)
-                {
-                    continue;
-                }
-                
-                if (GenerateData(rootState, out var data))
-                {
-                    _stateTreeItems.Add(data);
-                }
-            }
-            
+                _stateTreeItems.Clear();
+                GenerateData();
+                _treeView.SetRootItems(_stateTreeItems);
+                _treeView.RefreshItems();
+                _treeView.Rebuild();
+            });
+
+            GenerateData();
             _treeView.SetRootItems(_stateTreeItems);
             _treeView.makeItem = MakeItem;
             _treeView.bindItem = BindItem;
+            _treeView.destroyItem = DestroyItem;
             _treeView.dataSource = graph.states;
             _treeView.destroyItem = DestroyItem;
             _treeView.reorderable = true;
@@ -51,6 +49,11 @@ namespace FoxShooter.Characters.AI.StateTree.UI
             _treeView.setupDragAndDrop += args => OnSetupDragAndDrop(args, _treeView);
             _treeView.dragAndDropUpdate += args => OnDragAndDropUpdate(args, _treeView);
             _treeView.handleDrop += args => OnHandleDrop(args, _treeView);
+            _treeView.itemIndexChanged += (_, _) =>
+            {
+                Undo.RecordObject(_graph, "Reorder states");
+                Save();
+            };
             
             _treeView.Rebuild();
         }
@@ -65,7 +68,7 @@ namespace FoxShooter.Characters.AI.StateTree.UI
         {
             var data = _treeView.GetItemDataForIndex<State>(index);
             var playerView = element.Q<StateElement>();
-            playerView.Bind(data);
+            playerView.Bind(data, _graph);
             playerView.id = index;
         }
 
@@ -91,7 +94,7 @@ namespace FoxShooter.Characters.AI.StateTree.UI
             return startDragArgs;
         }
 
-        private static DragVisualMode OnDragAndDropUpdate(HandleDragAndDropArgs args, BaseVerticalCollectionView destination, bool isLobby = false)
+        private DragVisualMode OnDragAndDropUpdate(HandleDragAndDropArgs args, BaseVerticalCollectionView destination, bool isLobby = false)
         {
             var source = args.dragAndDropData.GetGenericData(SourceKey);
             if (source == destination)
@@ -99,7 +102,12 @@ namespace FoxShooter.Characters.AI.StateTree.UI
                 return DragVisualMode.None;
             }
 
-            return !isLobby && destination.itemsSource.Count >= 3 ? DragVisualMode.Rejected : DragVisualMode.Move;
+            if (!isLobby && destination.itemsSource.Count >= 3)
+            {
+                return DragVisualMode.Rejected;
+            }
+            
+            return DragVisualMode.Move;
         }
 
         private DragVisualMode OnHandleDrop(HandleDragAndDropArgs args, BaseVerticalCollectionView destination, bool isLobby = false)
@@ -133,11 +141,15 @@ namespace FoxShooter.Characters.AI.StateTree.UI
 
             // Let default reordering happen.
             if (source == destination)
+            {
                 return DragVisualMode.None;
+            }
 
             // Be coherent with the dragAndDropUpdate condition.
             if (!isLobby && destination.itemsSource.Count >= 3)
+            {
                 return DragVisualMode.Rejected;
+            }
 
             var treeViewSource = source as BaseTreeView;
 
@@ -218,6 +230,24 @@ namespace FoxShooter.Characters.AI.StateTree.UI
             Debug.Log($"Red: {_treeView.viewController.GetItemsCount()} / 3");
         }
 
+        private void GenerateData()
+        {
+            _usedIndices.Clear();
+
+            foreach (var rootState in _graph.rootStates)
+            {
+                if (rootState < 0 || rootState >= _graph.states.Count)
+                {
+                    continue;
+                }
+                
+                if (GenerateData(rootState, out var data))
+                {
+                    _stateTreeItems.Add(data);
+                }
+            }
+        }
+
         private bool GenerateData(int stateIndex, out TreeViewItemData<State> data, int stackDepth = 0)
         {
             if (stackDepth > MaxDepth)
@@ -278,7 +308,11 @@ namespace FoxShooter.Characters.AI.StateTree.UI
         public void Save()
         {
             var oldStates = new List<State>(_graph.states);
-            _graph.states = new List<State>(oldStates.Count);
+            _graph.states.Clear();
+            for (var i = 0; i < oldStates.Count; ++i)
+            {
+                _graph.states.Add(null);
+            }
             
             var processedStates = new List<int>();
             var saveQueue = new Queue<int>();
@@ -304,7 +338,7 @@ namespace FoxShooter.Characters.AI.StateTree.UI
                 }
                 state.childStates = childIndices;
             }
-            _graph.states.TrimExcess();
+            _graph.states.RemoveAll(state => state == null);
         }
 
         public void AddState()
@@ -313,6 +347,7 @@ namespace FoxShooter.Characters.AI.StateTree.UI
             {
                 name = "New State"
             };
+            Undo.RecordObject(_graph, "Add state");
             _graph.states.Add(state);
             _graph.rootStates.Add(_graph.states.Count - 1);
         }

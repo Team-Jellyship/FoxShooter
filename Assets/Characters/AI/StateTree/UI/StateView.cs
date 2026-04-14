@@ -7,13 +7,15 @@ namespace FoxShooter.Characters.AI.StateTree.UI
     public partial class StateView : StateElement
     {
         private TextField _title;
+        private Label _resultLabel;
 
-        public override void Bind(State state)
+        public override void Bind(State state, StateTreeGraph graph)
         {
-            base.Bind(state);
+            base.Bind(state, graph);
 
             _title = this.Q<TextField>("Title");
-
+            _resultLabel = this.Q<Label>("Result");
+            
             if (_title == null)
             {
                 return;
@@ -24,6 +26,16 @@ namespace FoxShooter.Characters.AI.StateTree.UI
             { 
                 data.name = evt.newValue;
             });
+
+            _resultLabel.text = null;
+            if (graph.TryGetState(state.successStateIndex, out var success))
+            {
+                _resultLabel.text += $"✓ {success.name} ";
+            }
+            if (graph.TryGetState(state.cancelStateIndex, out var cancel))
+            {
+                _resultLabel.text += $"x {cancel.name}";
+            }
         }
     }
 }
