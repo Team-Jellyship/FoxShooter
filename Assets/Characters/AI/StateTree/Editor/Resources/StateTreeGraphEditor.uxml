@@ -1,0 +1,8 @@
+<ui:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <Style src="project://database/Assets/Characters/AI/StateTree/Editor/Resources/StateTreeGraphEditor.uss?fileID=7433441132597879392&amp;guid=8bf753afdf2fb12449e8a8309dbbcac8&amp;type=3#StateTreeGraphEditor"/>
+    <ui:VisualElement name="Toolbar" style="background-color: rgb(32, 32, 32); flex-direction: row;">
+        <ui:Button text="New State" name="NewStateButton" style="margin-top: 0; margin-right: 1px; margin-left: 1px; margin-bottom: 0; background-size: 100% 32px;"/>
+        <ui:Button text="Save" name="SaveButton" style="margin-top: 0; margin-right: 1px; margin-left: 1px; margin-bottom: 0; background-size: 100% 32px;"/>
+    </ui:VisualElement>
+    <ui:VisualElement name="TreeContainer" style="flex-grow: 1; padding-top: 8px; padding-right: 8px; padding-bottom: 8px; padding-left: 8px;"/>
+</ui:UXML>

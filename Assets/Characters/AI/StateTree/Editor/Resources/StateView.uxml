@@ -1,0 +1,8 @@
+<ui:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <Style src="project://database/Assets/Characters/AI/StateTree/Editor/Resources/StateTreeGraphEditor.uss?fileID=7433441132597879392&amp;guid=8bf753afdf2fb12449e8a8309dbbcac8&amp;type=3#StateTreeGraphEditor"/>
+    <FoxShooter.Characters.AI.StateTree.UI.StateView class="indented">
+        <ui:Image source="project://database/Assets/Characters/AI/StateTree/Editor/Resources/StateTreePipes.png?fileID=-1314778685&amp;guid=3106a8b0fed43614891151f298a9cf7e&amp;type=3#StateTreePipes_2" style="height: 32px;"/>
+        <ui:TextField label="" placeholder-text="State" hide-soft-keyboard="false" multiline="false" name="Title" class="state" style="padding-top: 0; padding-right: 0; padding-bottom: 0; padding-left: 0;"/>
+        <ui:Label text="Move to enemy" class="state task-list"/>
+    </FoxShooter.Characters.AI.StateTree.UI.StateView>
+</ui:UXML>
