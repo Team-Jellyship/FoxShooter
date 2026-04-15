@@ -1,4 +1,4 @@
-﻿namespace FoxShooter.Characters.AI.StateTree
+﻿namespace FoxShooter.Characters.AI.StateTree.Tasks
 {
     public enum TaskStatus
     {

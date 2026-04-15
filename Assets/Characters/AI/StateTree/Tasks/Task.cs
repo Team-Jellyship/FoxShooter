@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace FoxShooter.Characters.AI.StateTree
+namespace FoxShooter.Characters.AI.StateTree.Tasks
 {
     [Serializable]
     public class Task

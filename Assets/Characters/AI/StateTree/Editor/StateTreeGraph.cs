@@ -1,7 +1,19 @@
-﻿namespace Characters.AI.StateTree.Editor
+﻿using System;
+using Unity.GraphToolkit.Editor;
+using UnityEditor;
+
+namespace Characters.AI.StateTree.Editor
 {
-    public class StateTreeGraph
+    [Graph(AssetExtension)]
+    [Serializable]
+    public class StateTreeGraph : Graph
     {
-        
+        public const string AssetExtension = "stg";
+
+        [MenuItem("Assets/Create/StateTreeGraph", false)]
+        private static void CreateAssetFile()
+        {
+            GraphDatabase.PromptInProjectBrowserToCreateNewAsset<StateTreeGraph>();
+        }
     }
 }

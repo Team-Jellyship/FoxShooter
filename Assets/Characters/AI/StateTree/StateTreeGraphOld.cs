@@ -25,7 +25,7 @@ namespace FoxShooter.Characters.AI.StateTree
             changed.Invoke();
         }
 
-        [OnOpenAsset(OnOpenAssetAttributeMode.Execute)]
+        // [OnOpenAsset(OnOpenAssetAttributeMode.Execute)]
         public static bool OpenGameStateWindow(int instanceID)
         {
             if (!EditorWindow.HasOpenInstances<StateTreeGraphEditor>())

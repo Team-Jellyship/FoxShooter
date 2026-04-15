@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using FoxShooter.Characters.AI.StateTree.Tasks;
 using UnityEngine;
 
 // ReSharper disable ForeachCanBeConvertedToQueryUsingAnotherGetEnumerator
@@ -18,8 +19,6 @@ namespace FoxShooter.Characters.AI.StateTree
         public State cancelState;
         
         public int id { get; private set; }
-        
-        private int _childStateIndex;
         
         // returns true if this state is ended, and the parent should progress to the next one
         public State Enter(TreeContext context)
