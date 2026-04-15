@@ -4,7 +4,7 @@ namespace FoxShooter.Characters.AI.StateTree
 {
     public class TreeContext
     {
-        public StateTreeGraph currentGraph;
+        public StateTreeGraphOld currentGraph;
 
         public State GetState(int index)
         {

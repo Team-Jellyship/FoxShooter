@@ -19,9 +19,9 @@ namespace FoxShooter.Characters.AI.StateTree.UI
         private readonly VisualTreeAsset _stateEntryAsset;
         private readonly List<int> _usedIndices = new();
 
-        private StateTreeGraph _graph;
+        private StateTreeGraphOld _graph;
 
-        public StateTreeView(VisualElement rootVisualElement, VisualTreeAsset stateEntryAsset, StateTreeGraph graph)
+        public StateTreeView(VisualElement rootVisualElement, VisualTreeAsset stateEntryAsset, StateTreeGraphOld graph)
         {
             _graph = graph;
             _stateEntryAsset = stateEntryAsset;

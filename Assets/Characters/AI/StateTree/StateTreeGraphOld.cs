@@ -9,7 +9,7 @@ using UnityEngine.Events;
 namespace FoxShooter.Characters.AI.StateTree
 {
     [CreateAssetMenu(menuName = "StateTree/Graph", fileName = "ST_Tree")]
-    public class StateTreeGraph : ScriptableObject
+    public class StateTreeGraphOld : ScriptableObject
     {
         public UnityEvent changed;
         
@@ -37,7 +37,7 @@ namespace FoxShooter.Characters.AI.StateTree
                 EditorWindow.FocusWindowIfItsOpen<StateTreeGraphEditor>();
             }
 
-            var asset = EditorUtility.EntityIdToObject(instanceID) as StateTreeGraph;
+            var asset = EditorUtility.EntityIdToObject(instanceID) as StateTreeGraphOld;
             var window = EditorWindow.GetWindow<StateTreeGraphEditor>();
             window.LoadState(asset);
             return true;

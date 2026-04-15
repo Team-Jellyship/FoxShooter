@@ -10,7 +10,7 @@ namespace FoxShooter.Characters.AI.StateTree.UI
         private Label _resultLabel;
         private Label _tasksLabel;
 
-        public override void Bind(State state, StateTreeGraph graph)
+        public override void Bind(State state, StateTreeGraphOld graph)
         {
             base.Bind(state, graph);
 

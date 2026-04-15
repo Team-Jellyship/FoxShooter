@@ -10,7 +10,7 @@ namespace FoxShooter.Characters.AI.StateTree.UI
         private const string StateTreeViewFilename = "StateTreeView";
         private const string StateTreeEntryFilename = "StateView";
 
-        private StateTreeGraph _stateTreeGraph;
+        private StateTreeGraphOld _stateTreeGraphOld;
 
         private VisualElement _stateTreeView;
         
@@ -38,9 +38,9 @@ namespace FoxShooter.Characters.AI.StateTree.UI
             rootVisualElement.Query<Button>("SaveButton").First().clicked += Save;
         }
 
-        public void LoadState(StateTreeGraph graph)
+        public void LoadState(StateTreeGraphOld graph)
         {
-            _stateTreeGraph = graph;
+            _stateTreeGraphOld = graph;
             Rebuild();
         }
 
@@ -57,7 +57,7 @@ namespace FoxShooter.Characters.AI.StateTree.UI
             _stateTreeView = new VisualElement();
             _stateTreeViewAsset.CloneTree(_stateTreeView);
             rootVisualElement.Q("TreeContainer").Add(_stateTreeView);
-            _treeView = new StateTreeView(_stateTreeView, _stateView, _stateTreeGraph);
+            _treeView = new StateTreeView(_stateTreeView, _stateView, _stateTreeGraphOld);
             SaveChanges();
         }
 
