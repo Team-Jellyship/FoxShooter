@@ -95,7 +95,9 @@ namespace FoxShooter.Characters
 		[SerializeField] private float lookSensitivityVertical = 1.0f;
 		[SerializeField] private Camera playerCamera;
 		[SerializeField] private float cameraPitch;
-		
+		[SerializeField] private bool lookAt;
+		[SerializeField][Min(0.0f)] private float lookAtSpeed = 5.0f;
+		[SerializeField] [Range(-180.0f, 180.0f)] private float lookAtYaw;
 
 
 		[SerializeField] private Vector3 additionalLocalSpaceVelocity;
@@ -187,6 +189,15 @@ namespace FoxShooter.Characters
 			currentVelocity.y = StarMath.ClampTowards(currentVelocity.y, -maxAirSpeedVertical, maxAirSpeedVertical, friction);
 			_characterController.Move(currentVelocity * Time.fixedDeltaTime);
 			currentVelocity = _characterController.velocity;
+
+			if (lookAt)
+			{
+				var characterRotation = _characterController.transform.eulerAngles;
+				var currentYaw = characterRotation.y;
+				var desiredYaw = lookAtYaw;
+				characterRotation.y = Mathf.MoveTowardsAngle(currentYaw, desiredYaw, lookAtSpeed);
+				_characterController.transform.eulerAngles = characterRotation;
+			}
 		}
 
 		public void MoveInput(InputAction.CallbackContext context)
@@ -232,6 +243,13 @@ namespace FoxShooter.Characters
 			{
 				StopJumping();
 			}
+		}
+
+		public void LookAt(Vector3 location)
+		{
+			lookAt = true;
+			var direction = (location - _characterController.transform.position).To2D().normalized;
+			lookAtYaw = MathF.Atan2(direction.y, direction.x);
 		}
 
 		private void Land()
