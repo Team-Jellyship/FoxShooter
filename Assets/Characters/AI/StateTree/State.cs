@@ -12,7 +12,7 @@ namespace FoxShooter.Characters.AI.StateTree
     {
         [SerializeField] public string name;
         [SerializeReference] public List<int> childStates = new();
-        [SerializeReference] public List<Task> childTasks = new();
+        [SerializeReference] public List<string> childTasks = new();
         
         [SerializeReference] public int successStateIndex = -1;
         [SerializeReference] public int cancelStateIndex = -1;
@@ -37,14 +37,14 @@ namespace FoxShooter.Characters.AI.StateTree
                 }
             }
             
-            foreach (var task in childTasks)
+            /*foreach (var task in childTasks)
             {
                 var result = task.Enter();
                 if (result == TaskStatus.Completed)
                 {
                     shouldExit = true;
                 }
-            }
+            }*/
 
             return shouldExit;
         }
@@ -55,14 +55,14 @@ namespace FoxShooter.Characters.AI.StateTree
             
             context.GetState(_childStateIndex).Update(context);
             
-            foreach (var task in childTasks)
+            /*foreach (var task in childTasks)
             {
                 var result = task.Update();
                 if (result == TaskStatus.Completed)
                 {
                     shouldExit = true;
                 }
-            }
+            }*/
 
             return shouldExit;
         }

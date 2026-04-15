@@ -16,17 +16,17 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   states:
-  - name: 
+  - name: Start
+    childStates: 01000000
+    childTasks:
+    - Find Target
+    - Run Navigation
+    successStateIndex: 1
+    cancelStateIndex: 0
+  - name: Follow
     childStates: 
-    childTasks: []
+    childTasks:
+    - Move to Target
     successStateIndex: -1
     cancelStateIndex: -1
-  - name: 
-    childStates: 
-    childTasks: []
-    successStateIndex: -1
-    cancelStateIndex: -1
-  rootStates: 000000000100000002000000
-  references:
-    version: 2
-    RefIds: []
+  rootStates: 00000000
