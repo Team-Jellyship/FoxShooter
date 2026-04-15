@@ -7,7 +7,7 @@ namespace FoxShooter.Characters.AI.StateTree
     {
         public virtual TaskStatus Enter()
         {
-            return TaskStatus.Completed;
+            return TaskStatus.Succeeded;
         }
 
         public virtual TaskStatus Update()

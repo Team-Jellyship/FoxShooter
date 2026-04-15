@@ -281,10 +281,10 @@ namespace FoxShooter.Characters.AI.StateTree.UI
             var subData = new List<TreeViewItemData<State>>();
             foreach (var childStateIndex in state.childStates)
             {
-                if (GenerateData(childStateIndex, out var child, stackDepth + 1))
+                /*if (GenerateData(childStateIndex, out var child, stackDepth + 1))
                 {
                     subData.Add(child);
-                }
+                }*/
             }
             data = new TreeViewItemData<State>(stateIndex, state, subData);
             return true;
@@ -322,7 +322,7 @@ namespace FoxShooter.Characters.AI.StateTree.UI
                 saveQueue.Enqueue(stateData);
                 var state = oldStates[stateData];
                 var newChildIndices = _treeView.GetChildrenIdsForIndex(stateData).ToList();
-                state.childStates = newChildIndices;
+                // state.childStates = newChildIndices;
             }
 
             while (saveQueue.Count > 0)
@@ -336,7 +336,7 @@ namespace FoxShooter.Characters.AI.StateTree.UI
                 {
                     saveQueue.Enqueue(childIndex);
                 }
-                state.childStates = childIndices;
+                // state.childStates = childIndices;
             }
             _graph.states.RemoveAll(state => state == null);
         }

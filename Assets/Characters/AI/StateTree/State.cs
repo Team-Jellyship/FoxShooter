@@ -7,64 +7,73 @@ using UnityEngine;
 
 namespace FoxShooter.Characters.AI.StateTree
 {
-    [Serializable]
     public class State
     {
         [SerializeField] public string name;
-        [SerializeReference] public List<int> childStates = new();
-        [SerializeReference] public List<string> childTasks = new();
-        
-        [SerializeReference] public int successStateIndex = -1;
-        [SerializeReference] public int cancelStateIndex = -1;
+        [SerializeReference] public List<State> childStates = new();
+        [SerializeReference] public List<Task> childTasks = new();
+
+        public State parent;
+        public State successState;
+        public State cancelState;
         
         public int id { get; private set; }
         
         private int _childStateIndex;
         
         // returns true if this state is ended, and the parent should progress to the next one
-        public bool Enter(TreeContext context)
+        public State Enter(TreeContext context)
         {
-            var shouldExit = false;
-
-            if (childStates.Count > 0)
-            {
-                _childStateIndex = 0;
-                var childState = context.GetState(_childStateIndex);
-                while (childState.Enter(context))
-                {
-                    ++_childStateIndex;
-                    childState = context.GetState(_childStateIndex);
-                }
-            }
+            var cancelled = false;
+            var succeeded = false;
             
-            /*foreach (var task in childTasks)
+            foreach (var task in childTasks)
             {
                 var result = task.Enter();
-                if (result == TaskStatus.Completed)
+                switch (result)
                 {
-                    shouldExit = true;
-                }
-            }*/
+                    case TaskStatus.Succeeded:
+                        succeeded = true;
+                        continue;
 
-            return shouldExit;
+                    case TaskStatus.Cancelled:
+                        cancelled = true;
+                        continue;
+
+                    default:
+                    case TaskStatus.Active:
+                        break;
+                }
+            }
+
+            return cancelled ? cancelState : succeeded ? successState : null;
         }
 
-        public bool Update(TreeContext context)
+        public State Update(TreeContext context)
         {
-            var shouldExit = false;
+            var succeeded = false;
+            var canceled = false;
             
-            context.GetState(_childStateIndex).Update(context);
-            
-            /*foreach (var task in childTasks)
+            foreach (var task in childTasks)
             {
                 var result = task.Update();
-                if (result == TaskStatus.Completed)
+                switch (result)
                 {
-                    shouldExit = true;
-                }
-            }*/
+                    case TaskStatus.Succeeded:
+                        succeeded = true;
+                        break;
 
-            return shouldExit;
+                    case TaskStatus.Cancelled:
+                        canceled = true;
+                        break;
+
+                    case TaskStatus.Active:
+                    default:
+                        break;
+                }
+            }
+
+            return canceled ? cancelState : succeeded ? successState : null;
         }
 
         public void Exit()

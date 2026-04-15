@@ -32,13 +32,13 @@ namespace FoxShooter.Characters.AI.StateTree.UI
             });
 
             _resultLabel.text = null;
-            if (graph.TryGetState(state.successStateIndex, out var success))
+            if (state.successState != null)
             {
-                _resultLabel.text += $"✓ {success.name} ";
+                _resultLabel.text += $"✓ {state.successState.name} ";
             }
-            if (graph.TryGetState(state.cancelStateIndex, out var cancel))
+            if (state.cancelState != null)
             {
-                _resultLabel.text += $"x {cancel.name}";
+                _resultLabel.text += $"x {state.cancelState.name}";
             }
         }
     }

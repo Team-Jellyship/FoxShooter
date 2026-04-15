@@ -3,6 +3,7 @@
     public enum TaskStatus
     {
         Active,
-        Completed
+        Succeeded,
+        Cancelled
     }
 }
