@@ -4,6 +4,7 @@ using FoxShooter.Scripts;
 using Props.Projectiles;
 using UnityEditor;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.InputSystem;
 
 namespace FoxShooter.Characters
@@ -16,13 +17,19 @@ namespace FoxShooter.Characters
         [SerializeField] [Min(0.0f)] private float lifetime;
 
         [SerializeField] private CharacterStats owner;
+
+        public UnityEvent onCooldownEnded;
         
         private bool _onCooldown;
         private TimerHandle _cooldownTimer;
 
         private void Start()
         {
-            _cooldownTimer = TimerManager.instance.CreateTimer(this, () => _onCooldown = false);
+            _cooldownTimer = TimerManager.instance.CreateTimer(this, () =>
+            {
+                _onCooldown = false;
+                onCooldownEnded.Invoke();
+            });
         }
         
         public void Fire(InputAction.CallbackContext context)

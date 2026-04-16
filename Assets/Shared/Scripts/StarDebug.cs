@@ -4,36 +4,6 @@ namespace FoxShooter.Scripts
 {
     public static class StarDebug
     {
-        // Lazy initialized mesh
-        private static Mesh _quadMesh;
-        private static Mesh quadMesh
-        {
-            get
-            {
-                if (!_quadMesh)
-                {
-                    _quadMesh = new Mesh
-                    {
-                        vertices = new Vector3[]
-                        {
-                            new(-0.5f, 0.5f, 0.0f),
-                            new(0.5f, 0.5f, 0.0f),
-                            new(0.5f, -0.5f, 0.0f),
-                            new(-0.5f, -0.5f, 0.0f)
-                        },
-                        normals = new[]
-                        {
-                            Vector3.forward,
-                            Vector3.forward,
-                            Vector3.forward,
-                            Vector3.forward
-                        },
-                        triangles = new[] { 0, 1, 2, 2, 3, 0 }
-                    };
-                }
-                return _quadMesh;
-            }
-        }
 
         // Lazy initialized mesh
         private static Mesh _circleMesh;
@@ -48,11 +18,10 @@ namespace FoxShooter.Scripts
 
                 return _circleMesh;
             }
-
-            set => _circleMesh = value;
         }
         
         private const float ArrowheadAngleOffsetRads = 2.5f;
+        
         public static void DrawArrow(Vector3 position, Vector2 direction, float length, Color color, float duration)
         {
             var arrowEnd = position;
@@ -115,35 +84,25 @@ namespace FoxShooter.Scripts
             Gizmos.DrawLine(end, arrowLeftCap);
         }
 
-        public static void DrawBox(Vector3 position, Vector2 extents, Color color)
-        {
-            Gizmos.color = color;
-            Gizmos.DrawMesh(quadMesh, position, Quaternion.identity, extents);
-            
-            var outlineColor = color;
-            outlineColor.a += 0.5f;
-            Gizmos.color = outlineColor;
-            DrawLineStrip(quadMesh.vertices, position, Quaternion.identity, extents);
-
-        }
-
         public static void DrawCross(Vector3 position, float radius, Color color, float duration)
         {
             Debug.DrawLine(position + new Vector3(radius, radius, 0.0f), position + new Vector3(-radius, -radius, 0.0f), color, duration);
             Debug.DrawLine(position + new Vector3(-radius, radius, 0.0f), position + new Vector3(radius, -radius, 0.0f), color, duration);
         }
 
-        public static void DrawCircle(Vector3 position, float radius, Color color)
+        
+        
+        public static void DrawCircle(Vector3 position, Quaternion quaternion, float radius, Color color)
         {
             Gizmos.color = color;
-            Gizmos.DrawMesh(circleMesh, position, Quaternion.identity, Vector3.one * radius);
+            Gizmos.DrawMesh(circleMesh, position, quaternion, Vector3.one * radius);
             var solidColor = color;
             solidColor.a += 0.5f;
             Gizmos.color = solidColor;
-            DrawLineStrip(circleMesh.vertices, position, Quaternion.identity, Vector3.one * radius);
+            DrawLineStrip(circleMesh.vertices, position, quaternion, Vector3.one * radius);
         }
 
-        public static void DrawLineStrip(Vector3[] vertices, Vector3 position, Quaternion rotation, Vector3 scale)
+        private static void DrawLineStrip(Vector3[] vertices, Vector3 position, Quaternion rotation, Vector3 scale)
         {
             var verticesTransformed = new Vector3[vertices.Length];
             var transform = Matrix4x4.TRS(position, rotation, scale);

@@ -3,6 +3,7 @@
     "com.eflatun.scenereference": "git+https://github.com/starikcetin/Eflatun.SceneReference.git#4.1.1",
     "com.prenominal.realtimecsg": "https://github.com/LogicalError/realtime-CSG-for-unity.git",
     "com.unity.ai.navigation": "2.0.11",
+    "com.unity.behavior": "1.0.15",
     "com.unity.collab-proxy": "2.11.4",
     "com.unity.graphtoolkit": "0.4.0-exp.2",
     "com.unity.ide.rider": "3.0.39",
