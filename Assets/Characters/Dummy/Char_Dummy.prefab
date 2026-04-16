@@ -126,11 +126,11 @@ GameObject:
   - component: {fileID: 5213491490267880193}
   - component: {fileID: 3953417084980186901}
   - component: {fileID: 277794378350528876}
-  - component: {fileID: 6995234177153659443}
   - component: {fileID: 5054400896633340000}
   - component: {fileID: 6706005868839819652}
   - component: {fileID: 2959766590651571530}
   - component: {fileID: 303101044422742064}
+  - component: {fileID: 41714647447288395}
   m_Layer: 0
   m_Name: Char_Dummy
   m_TagString: Untagged
@@ -226,21 +226,11 @@ MonoBehaviour:
   projectilePrefab: {fileID: 5737718843795827397, guid: b43379484354e5949a0096874920ac4a, type: 3}
   cooldownTime: 0
   speed: 10
-  lifetime: 1
+  lifetime: 2
   owner: {fileID: 5213491490267880193}
---- !u!114 &6995234177153659443
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7192794133295583836}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 753643a0559648cd9424d5f3530c1c38, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::FoxShooter.Characters.AI.PeriodicShooter
-  repeatTime: 1
+  onCooldownEnded:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!195 &5054400896633340000
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -301,7 +291,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::FoxShooter.Characters.KinematicCharacter
   acceleration: 5
-  maxSpeed: 1
+  maxSpeed: 5
   crouchedMaxSpeed: 1
   friction: 50
   isCrouched: 0
@@ -324,6 +314,9 @@ MonoBehaviour:
   lookSensitivityVertical: 1
   playerCamera: {fileID: 0}
   cameraPitch: 0
+  lookAt: 0
+  lookAtSpeed: 5
+  lookAtYaw: 0
   additionalLocalSpaceVelocity: {x: 0, y: 0, z: 0}
   currentVelocity: {x: 0, y: 0, z: 0}
 --- !u!114 &303101044422742064
@@ -338,4 +331,41 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dd8972c8b62747a9a832d7a0ed525605, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::FoxShooter.Characters.AI.KinematicAgent
-  target: {fileID: 0}
+--- !u!114 &41714647447288395
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7192794133295583836}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f0038c16c34866b4f9e25c9c0dc0f7e6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.Behavior::Unity.Behavior.BehaviorGraphAgent
+  m_Graph: {fileID: -9092849885899099460, guid: f70fb5acf6d519a458806b9392b69be6, type: 2}
+  m_BlackboardVariableOverridesList:
+  - rid: 476172455168180914
+  - rid: 476172455168180915
+  m_OriginalGraph: {fileID: 0}
+  m_IsInitialised: 0
+  m_IsStarted: 0
+  references:
+    version: 2
+    RefIds:
+    - rid: 476172455168180914
+      type: {class: 'BlackboardVariable`1[[UnityEngine.GameObject, UnityEngine.CoreModule]]', ns: Unity.Behavior, asm: Unity.Behavior}
+      data:
+        GUID:
+          m_Value0: 1
+          m_Value1: 0
+        Name: Self
+        m_Value: {fileID: 7192794133295583836}
+    - rid: 476172455168180915
+      type: {class: 'BlackboardVariable`1[[FoxShooter.Characters.AI.Polestar.PolestarStack, Assembly-CSharp]]', ns: Unity.Behavior, asm: Unity.Behavior}
+      data:
+        GUID:
+          m_Value0: 9440391232447118814
+          m_Value1: 11466659204414179661
+        Name: FindPositionQuery
+        m_Value: {fileID: 11400000, guid: 3083258a1fb8d24468e645a11fbdebed, type: 2}

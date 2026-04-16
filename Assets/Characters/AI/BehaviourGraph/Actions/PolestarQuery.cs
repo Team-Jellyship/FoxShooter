@@ -12,7 +12,7 @@ namespace FoxShooter.Characters.AI.BehaviourGraph.Actions
     [NodeDescription(
         name: "PolestarQuery",
         story: "Run a polestar stack [Query] and write it to [position]",
-        category: "Action/Polestar",
+        category: "Action/FoxShooter/Polestar",
         id: "b42103bd915d5fd1b2d574b7f2d45bb0")]
     public class PolestarQuery : Action
     {

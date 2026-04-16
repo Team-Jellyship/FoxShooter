@@ -9,8 +9,8 @@ namespace FoxShooter.Characters.AI.BehaviourGraph.Actions
     [Serializable] [GeneratePropertyBag]
     [NodeDescription(
         name: "FireProjectile",
-        story: "[Self] fires [Projectile]",
-        category: "Action",
+        story: "Fires ProjectileSource",
+        category: "Action/FoxShooter",
         id: "81813bc11c702048994bfc4c6a8920e6")]
     
     public class FireWeapon : Action

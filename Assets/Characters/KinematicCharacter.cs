@@ -249,7 +249,7 @@ namespace FoxShooter.Characters
 		{
 			lookAt = true;
 			var direction = (location - _characterController.transform.position).To2D().normalized;
-			lookAtYaw = MathF.Atan2(direction.y, direction.x);
+			lookAtYaw = -MathF.Atan2(direction.y, direction.x) * Mathf.Rad2Deg + 90.0f;
 		}
 
 		private void Land()

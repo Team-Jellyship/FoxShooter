@@ -9,7 +9,7 @@ namespace FoxShooter.Characters.AI.BehaviourGraph.Actions
     [NodeDescription(
         name: "LookAtAction",
         story: "[Agent] looks at [Target]",
-        category: "Action/FpxShooter",
+        category: "Action/FoxShooter",
         id: "40419517b30d00fb07be5845ccf8974e")]
     public class LookAt : Unity.Behavior.Action
     {

@@ -1,6 +1,7 @@
 ﻿using System;
 using FoxShooter.Game;
 using FoxShooter.Scripts;
+using Unity.Behavior;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -10,11 +11,10 @@ namespace FoxShooter.Characters.AI
     [RequireComponent(typeof(KinematicCharacter))]
     public class KinematicAgent : MonoBehaviour
     {
-        [SerializeField] private CharacterStats target;
-        
         private NavMeshAgent _agent;
         private KinematicCharacter _character;
         private TimerHandle _updateTimer;
+        private GameObject _locationProxy;
 
         private void Awake()
         {
@@ -25,24 +25,29 @@ namespace FoxShooter.Characters.AI
         private void Start()
         {
             _agent.updatePosition = false;
-            // _agent.updateRotation = false;
+            _agent.updateRotation = false;
 
-            _updateTimer = TimerManager.instance.CreateTimer(this, SetDestination);
-            _updateTimer.Start(1.0f, true);
+            var behaviorGraph = GetComponent<BehaviorGraphAgent>();
+            if (!behaviorGraph)
+            {
+                return;
+            }
+            
+            _locationProxy = new GameObject($"{name}_LocationProxy")
+            {
+                transform =
+                {
+                    position = transform.position
+                }
+            };
+
+            behaviorGraph.SetVariableValue("LocationProxy", _locationProxy.transform);
         }
 
         private void FixedUpdate()
         {
             _character.MoveInput(_agent.desiredVelocity.To2D());
             _agent.nextPosition = _character.transform.position;
-        }
-
-        private void SetDestination()
-        {
-            if (target)
-            {
-                _agent.SetDestination(target.gameObject.transform.position);
-            }
         }
     }
 }
