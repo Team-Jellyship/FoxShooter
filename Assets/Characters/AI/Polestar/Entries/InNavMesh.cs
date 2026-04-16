@@ -8,7 +8,7 @@ namespace Characters.AI.Polestar.Entries
     [CreateAssetMenu(fileName = "PsE_InNavMesh", menuName = "Polestar/Stack/InNavMesh")]
     public class InNavMesh : PolestarEntry
     {
-        public override void Evaluate(ref List<PolestarResult> results, CharacterStats self, CharacterStats other)
+        public override void Evaluate(ref List<PolestarResult> results, in PolestarContext context)
         {
             results.RemoveAll(result => !PolestarNavigation.IsLocationInNavMesh(result.position));
         }

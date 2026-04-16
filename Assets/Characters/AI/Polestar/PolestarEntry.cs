@@ -6,7 +6,6 @@ namespace FoxShooter.Characters.AI.Polestar
 {
     public abstract class PolestarEntry : ScriptableObject
     {
-        public abstract void Evaluate(ref List<PolestarResult> results, CharacterStats self,
-            CharacterStats other);
+        public abstract void Evaluate(ref List<PolestarResult> results, in PolestarContext context);
     }
 }

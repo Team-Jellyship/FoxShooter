@@ -9,12 +9,12 @@ namespace FoxShooter.Characters.AI.Polestar
     {
         [SerializeField] private List<PolestarEntry> queries = new();
 
-        public List<PolestarResult> Evaluate(CharacterStats self, CharacterStats target)
+        public List<PolestarResult> Evaluate(in PolestarContext context)
         {
-            var result = new List<PolestarResult> { new(target.transform.position, 1.0f) };
+            var result = new List<PolestarResult> { new(context.target.transform.position, 1.0f) };
             foreach (var entry in queries)
             {
-                entry.Evaluate(ref result, self, target);
+                entry.Evaluate(ref result, context);
                 if (result.Count == 0)
                 {
                     return result;

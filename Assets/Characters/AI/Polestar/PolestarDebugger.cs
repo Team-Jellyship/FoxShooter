@@ -36,7 +36,11 @@ namespace Characters.AI.Polestar
                 return;
             }
 
-            _results = _stack.Evaluate(_self, _target);
+            _results = _stack.Evaluate(new PolestarContext()
+            {
+                self = _self.transform,
+                target = _target.transform
+            });
         }
 
         public void ClearQuery()

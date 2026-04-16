@@ -12,7 +12,7 @@ namespace FoxShooter.Characters.AI.Polestar
         [SerializeField] [Min(0.0f)] private float maxRadius;
         [SerializeField] [Min(1)] private int maxIterations = 10;
         
-        public override void Evaluate(ref List<PolestarResult> results, CharacterStats self, CharacterStats other)
+        public override void Evaluate(ref List<PolestarResult> results, in PolestarContext context)
         {
             var newList = new List<PolestarResult>();
             
