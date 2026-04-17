@@ -15,6 +15,7 @@ namespace FoxShooter.Characters
         [SerializeField] private LayerMask mask;
 
         [SerializeField] private UnityEvent fired;
+        [SerializeField] private ViewRecoil viewRecoil;
 
         private bool _onCooldown;
         private TimerHandle _cooldownTimer;
@@ -38,6 +39,11 @@ namespace FoxShooter.Characters
             if (_onCooldown)
             {
                 return;
+            }
+            
+            if (viewRecoil != null)
+            {
+                viewRecoil.AddRecoil();
             }
             
             fired.Invoke();
