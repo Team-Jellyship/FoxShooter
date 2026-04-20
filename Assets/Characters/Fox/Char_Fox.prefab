@@ -682,6 +682,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::FoxShooter.Characters.Fox.DashAbility
   cooldownTime: 5
+  healAmount: 1
 --- !u!114 &7662852286266705577
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -700,7 +701,7 @@ MonoBehaviour:
   onTakeDamage:
     m_PersistentCalls:
       m_Calls: []
-  onHealthChanged:
+  onHeal:
     m_PersistentCalls:
       m_Calls: []
   onStunned:
@@ -783,6 +784,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eadcf8a4bdf346c9894d2580cf0967aa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::FoxShooter.Characters.ContactHitbox
+  damageType: 2
   damage: 3
   owner: {fileID: 0}
 --- !u!54 &2036622942050709529

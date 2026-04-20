@@ -166,9 +166,10 @@ namespace FoxShooter.Characters
 			var currentMaxSpeed = GetMaxHorizontalSpeed();
 			var rotatedInput = playerCamera ? StarMath.RotateVector(_moveInput, -transform.rotation.eulerAngles.y * Mathf.Deg2Rad) : _moveInput;
 
+			var extraFrictionFactor = Vector2.Dot(rotatedInput, currentVelocity2D.normalized) * -0.5f + 0.5f;
 			currentVelocity2D = _moveInput.Equals(Vector2.zero) ?
 				StarMath.MoveTo(currentVelocity2D, Vector2.zero, GetFriction() * Time.fixedDeltaTime) :
-				StarMath.MoveTo(currentVelocity2D, rotatedInput * currentMaxSpeed,GetAcceleration() * Time.fixedDeltaTime);
+				StarMath.MoveTo(currentVelocity2D, rotatedInput * currentMaxSpeed, (GetAcceleration() + extraFrictionFactor * GetFriction()) * Time.fixedDeltaTime);
 			
 			if (!_grounded)
 			{
