@@ -7,13 +7,21 @@ using UnityEngine.Serialization;
 
 namespace FoxShooter.Characters
 {
+	public enum DamageType
+	{
+		Unaspected,
+		Gunfire,
+		Melee
+	}
+	
     public class CharacterStats : MonoBehaviour
     {
 		public UnityEvent onDeath;
 		public UnityEvent<float> onTakeDamage;
+		public UnityEvent<float> onHeal;
 		public UnityEvent onStunned;
 		public UnityEvent onStunEnd;
-		public UnityEvent<CharacterStats> onKillCharacter;
+		public UnityEvent<CharacterStats, DamageType> onKillCharacter;
 
 
 		public Team characterTeam { private set; get; }
@@ -48,14 +56,14 @@ namespace FoxShooter.Characters
 		 *     and triggers the OnDeath signal if the damage causes this character to die
 		 * </summary>
 		 */
-		public virtual void TakeDamage(float damageAmount, CharacterStats source, bool canBeBlocked)
+		public virtual void TakeDamage(float damageAmount, CharacterStats source, bool canBeBlocked, DamageType type = DamageType.Unaspected)
 		{
 			if (_effects.HasEffect(Game.Game.instance.statusEffects.invulnerability))
 			{
 				return;
 			}
 
-			if (_effects.GetValue(Game.Game.instance.statusEffects.health) == 0)
+			if (_effects.GetValue(Game.Game.instance.statusEffects.health) == 0.0f)
 			{
 				return;
 			}
@@ -71,15 +79,36 @@ namespace FoxShooter.Characters
 				}
 				return;
 			}
-			Kill(source);
+			Kill(source, type);
 		}
 
-		public virtual void Kill(CharacterStats source)
+		public void Heal(float amount)
+		{
+			if (amount < 0.0f)
+			{
+				return;
+			}
+			
+			Debug.Log($"[CharacterStats] '{gameObject.name} healed by '{amount}'.");
+			onHeal.Invoke(amount);
+			
+			var healthEffect = Game.Game.instance.statusEffects.health;
+			var maxHealthEffect = Game.Game.instance.statusEffects.maxHealth;
+			var maxHealth = GetEffectValue(maxHealthEffect);
+			
+			// Cap health
+			if (_effects.AddBaseValue(healthEffect, amount) > maxHealth)
+			{
+				_effects.SetBaseValue(healthEffect, maxHealth);
+			}
+		}
+
+		public virtual void Kill(CharacterStats source, DamageType type = DamageType.Unaspected)
 		{
 			_effects.SetBaseValue(Game.Game.instance.statusEffects.health, 0.0f);
 			if (source != this)
 			{
-				source?.KilledEnemy(this);
+				source?.KilledEnemy(this, type);
 			}
 			onDeath.Invoke();
 
@@ -91,10 +120,10 @@ namespace FoxShooter.Characters
 		}
 
 		// ReSharper disable Unity.PerformanceAnalysis
-		protected virtual void KilledEnemy(CharacterStats enemy)
+		protected virtual void KilledEnemy(CharacterStats enemy, DamageType type)
 		{
 			Debug.Log($"[CharacterStats] '{gameObject.name}' killed enemy '{enemy.gameObject.name}'");
-			onKillCharacter.Invoke(enemy);
+			onKillCharacter.Invoke(enemy, type);
 		}
 
 		public void RegisterEffectChangedDelegate(StatusEffect effect, UnityAction<int, float> action, MonoBehaviour owner)

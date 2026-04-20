@@ -8,6 +8,7 @@ namespace FoxShooter.Characters
     [RequireComponent(typeof(Collider))]
     public class ContactHitbox : MonoBehaviour
     {
+        [SerializeField] private DamageType damageType = DamageType.Unaspected;
         [SerializeField] [Min(0.0f)] private float damage = 1.0f;
         
         public CharacterStats owner;
@@ -29,7 +30,7 @@ namespace FoxShooter.Characters
             {
                 return;
             }
-            otherStats.TakeDamage(damage, owner, false);
+            otherStats.TakeDamage(damage, owner, false, damageType);
         }
     }
 }
