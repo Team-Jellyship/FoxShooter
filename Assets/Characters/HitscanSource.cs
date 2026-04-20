@@ -35,7 +35,7 @@ namespace FoxShooter.Characters
 
         private void Fire()
         {
-            if (_onCooldown)
+            if (!CanFire())
             {
                 return;
             }
@@ -54,6 +54,17 @@ namespace FoxShooter.Characters
 
             _onCooldown = true;
             _cooldownTimer.Start(cooldownTime);
+            Fired();
+        }
+
+        protected virtual bool CanFire()
+        {
+            return !_onCooldown;
+        }
+
+        protected virtual void Fired()
+        {
+            
         }
     }
 }

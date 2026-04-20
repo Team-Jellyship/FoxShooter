@@ -334,8 +334,8 @@ MonoBehaviour:
     m_ActionName: 'Player/Look[/Mouse/delta,/Touchscreen/delta,/Pen/delta]'
   - m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 6959763318834364756}
-        m_TargetAssemblyTypeName: FoxShooter.Characters.HitscanSource, Assembly-CSharp
+      - m_Target: {fileID: 284168735926605301}
+        m_TargetAssemblyTypeName: FoxShooter.Characters.Fox.Blaster, Assembly-CSharp
         m_MethodName: Fire
         m_Mode: 0
         m_Arguments:
@@ -843,7 +843,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7514559829054232965}
-  - component: {fileID: 6959763318834364756}
+  - component: {fileID: 284168735926605301}
   m_Layer: 3
   m_Name: Gun
   m_TagString: Untagged
@@ -867,7 +867,7 @@ Transform:
   - {fileID: 4547339799519839763}
   m_Father: {fileID: 8618486384866644612}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &6959763318834364756
+--- !u!114 &284168735926605301
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -876,10 +876,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 6098747816066575583}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d5777a00426a45b894190256130ed402, type: 3}
+  m_Script: {fileID: 11500000, guid: 7813c7134d7b47da93931b3f1bd0f4fe, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::FoxShooter.Characters.HitscanSource
-  cooldownTime: 0
+  m_EditorClassIdentifier: Assembly-CSharp::FoxShooter.Characters.Fox.Blaster
+  cooldownTime: 0.25
   distance: 25
   damage: 1
   mask:
@@ -912,6 +912,11 @@ MonoBehaviour:
           m_StringArgument: Fire
           m_BoolArgument: 0
         m_CallState: 2
+  currentHeat: 0
+  maxHeat: 100
+  heatPerShot: 10
+  passiveCooldownRate: 5
+  activeCooldownRate: 1
 --- !u!1 &7655491514423308967
 GameObject:
   m_ObjectHideFlags: 0
