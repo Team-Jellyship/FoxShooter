@@ -43,7 +43,9 @@ namespace FoxShooter.Game.StatusEffects
         {
             if (!_statusEffects.TryGetValue(effect, out var effectList))
             {
-                _statusEffects.Add(effect, new StatusEntry(effect, newBaseValue));
+                effectList = new StatusEntry(effect, newBaseValue);
+                _statusEffects.Add(effect, effectList);
+                _onStatusEffectStacksChangedMap.TriggerEvent(effect, effectList.count, effectList.Accumulate());
                 return;
             }
 

@@ -266,6 +266,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Char_Fox
       objectReference: {fileID: 0}
+    - target: {fileID: 6228323802545246593, guid: e867e5ca3dce83c4e878a306fde78c18, type: 3}
+      propertyPath: m_fontSize
+      value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 6228323802545246593, guid: e867e5ca3dce83c4e878a306fde78c18, type: 3}
+      propertyPath: m_fontSizeBase
+      value: 12
+      objectReference: {fileID: 0}
     - target: {fileID: 8681671206454598398, guid: e867e5ca3dce83c4e878a306fde78c18, type: 3}
       propertyPath: gravity
       value: 6

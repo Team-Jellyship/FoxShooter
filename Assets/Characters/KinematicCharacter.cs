@@ -11,7 +11,7 @@ namespace FoxShooter.Characters
     {
 	    private const float GravityConstant = -9.8f;
 		private const float DefaultMaxFallSpeed = 1000.0f;
-		private const float NegativeKillY = 1000.0f;
+		private const float NegativeKillY = -200.0f;
 
 		// MOVEMENT
 		[Header("Movement")]
@@ -197,6 +197,14 @@ namespace FoxShooter.Characters
 				var desiredYaw = lookAtYaw;
 				characterRotation.y = Mathf.MoveTowardsAngle(currentYaw, desiredYaw, lookAtSpeed);
 				_characterController.transform.eulerAngles = characterRotation;
+			}
+
+			if (_characterController.transform.position.y < NegativeKillY)
+			{
+				// This should only happen once
+				
+				// ReSharper disable once Unity.PerformanceCriticalCodeInvocation
+				_stats?.Kill(null);
 			}
 		}
 
