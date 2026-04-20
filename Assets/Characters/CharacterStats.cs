@@ -20,6 +20,7 @@ namespace FoxShooter.Characters
 		[SerializeField] private float defaultHealth = 15;
 		[SerializeField] private float invulnerabilityTime;
 		[SerializeField] private float despawnTime = 0.5f;
+		[SerializeField] private float score;
 		
 		private bool _showingStats;
 		private TimerHandle _despawnTimer;
@@ -73,19 +74,24 @@ namespace FoxShooter.Characters
 			Kill(source);
 		}
 
-		public void Kill(CharacterStats source)
+		public virtual void Kill(CharacterStats source)
 		{
 			_effects.SetBaseValue(Game.Game.instance.statusEffects.health, 0.0f);
-			source?.KilledEnemy(this);
+			if (source != this)
+			{
+				source?.KilledEnemy(this);
+			}
 			onDeath.Invoke();
 
+			Game.Game.instance.Score(score);
 			if (despawnTime > 0.0f)
 			{
 				_despawnTimer.Start(despawnTime);
 			}
 		}
 
-		public virtual void KilledEnemy(CharacterStats enemy)
+		// ReSharper disable Unity.PerformanceAnalysis
+		protected virtual void KilledEnemy(CharacterStats enemy)
 		{
 			Debug.Log($"[CharacterStats] '{gameObject.name}' killed enemy '{enemy.gameObject.name}'");
 			onKillCharacter.Invoke(enemy);

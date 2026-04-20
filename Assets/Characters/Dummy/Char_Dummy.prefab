@@ -184,6 +184,7 @@ MonoBehaviour:
   defaultHealth: 3
   invulnerabilityTime: 0
   despawnTime: 0.5
+  score: 10
 --- !u!54 &3953417084980186901
 Rigidbody:
   m_ObjectHideFlags: 0
