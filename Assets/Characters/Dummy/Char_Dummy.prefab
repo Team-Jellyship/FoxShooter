@@ -131,6 +131,7 @@ GameObject:
   - component: {fileID: 2959766590651571530}
   - component: {fileID: 303101044422742064}
   - component: {fileID: 41714647447288395}
+  - component: {fileID: 6842945112353292969}
   m_Layer: 0
   m_Name: Char_Dummy
   m_TagString: Untagged
@@ -370,3 +371,34 @@ MonoBehaviour:
           m_Value1: 11466659204414179661
         Name: FindPositionQuery
         m_Value: {fileID: 11400000, guid: 3083258a1fb8d24468e645a11fbdebed, type: 2}
+--- !u!114 &6842945112353292969
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7192794133295583836}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9ba0b690894d42269132f0d42c1a2992, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::FoxShooter.Characters.AI.VisionCone
+  coneRadius: 15
+  coneHalfAngle: 30
+  minimumVisibilityRadius: 3
+  visibilityContactFilter:
+    useTriggers: 0
+    useLayerMask: 0
+    useDepth: 0
+    useOutsideDepth: 0
+    useNormalAngle: 0
+    useOutsideNormalAngle: 0
+    layerMask:
+      serializedVersion: 2
+      m_Bits: 0
+    minDepth: 0
+    maxDepth: 0
+    minNormalAngle: 0
+    maxNormalAngle: 0
+  agent: {fileID: 41714647447288395}
+  lostSightTime: 0
