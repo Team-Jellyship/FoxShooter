@@ -15,7 +15,6 @@ namespace FoxShooter.Characters
         [SerializeField] private LayerMask mask;
 
         [SerializeField] private UnityEvent fired;
-        [SerializeField] private ViewRecoil viewRecoil;
 
         private bool _onCooldown;
         private TimerHandle _cooldownTimer;
@@ -41,13 +40,8 @@ namespace FoxShooter.Characters
                 return;
             }
             
-            if (viewRecoil != null)
-            {
-                viewRecoil.AddRecoil();
-            }
-            
             fired.Invoke();
-            Debug.DrawRay(transform.position, transform.forward * distance, Color.violetRed, 0.5f);
+            // Debug.DrawRay(transform.position, transform.forward * distance, Color.violetRed, 0.5f);
             if (Physics.Raycast(transform.position, transform.forward,
                     out var result, distance, mask, QueryTriggerInteraction.Collide))
             {

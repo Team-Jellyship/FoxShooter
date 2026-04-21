@@ -5,7 +5,8 @@ using UnityEngine;
 
 public class ViewRecoil : MonoBehaviour
 {
-    [SerializeField] Transform pivotPoint;
+    [SerializeField] private Transform pivotPoint;
+    
     [Header("Kick (Degrees per Shot)")]
     public float pitchKick = 1.2f;      // Up
     public float yawKick = 0.4f;        // Side-to-side
@@ -21,41 +22,38 @@ public class ViewRecoil : MonoBehaviour
     [Header("Limits")]
     public float maxPitch = 20f;
 
-    private Vector2 recoilOffset;      // x = yaw, y = pitch
-    private Vector2 recoilVelocity;    // Spring Velocity
+    private Vector2 _recoilOffset;      // x = yaw, y = pitch
+    private Vector2 _recoilVelocity;    // Spring Velocity
 
     private void LateUpdate()
     {
         //Critically damped-ish spring back to zero
         // v += (-k * x - c * v) * dt; x += v * dt
-        float dt = Time.deltaTime;
 
-        Vector2 accel = (-returnStrength * recoilOffset) - (damping * recoilVelocity);
-        recoilVelocity += accel * dt;
-        recoilOffset += recoilVelocity * dt;
+        var acceleration = -returnStrength * _recoilOffset - damping * _recoilVelocity;
+        _recoilVelocity += acceleration * Time.deltaTime;
+        _recoilOffset += _recoilVelocity * Time.deltaTime;
 
         //recoilOffset.y = Mathf.Clamp(recoilOffset.y, -maxPitch, maxPitch);
         
         //Apply local rotation offset (pitch up is negative X rotation in unity)
-        pivotPoint.localRotation = Quaternion.Euler(-recoilOffset.y, recoilOffset.x, 0f);
+        pivotPoint.localRotation = Quaternion.Euler(-_recoilOffset.y, _recoilOffset.x, 0.0f);
     }
 
     /// <summary>Call on each shot.</summary>
-    public void AddRecoil(float recoilMultiplier = 1f)
+    public void AddRecoil(float recoilMultiplier = 1.0f)
     {
-        float yaw = Random.Range(-yawKick, yawKick) * yawRandomness;
+        var yaw = Random.Range(-yawKick, yawKick) * yawRandomness;
 
-        recoilOffset.y += pitchKick * recoilMultiplier;
-        recoilOffset.x += yaw * recoilMultiplier;
-        
-        //recoilOffset.y = Mathf.Clamp(recoilOffset.y, -maxPitch, maxPitch);
+        _recoilOffset.y += pitchKick * recoilMultiplier;
+        _recoilOffset.x += yaw * recoilMultiplier;
     }
 
     /// <summary>Optional: clear recoil immediately.</summary>
     public void ResetRecoil()
     {
-        recoilOffset = Vector2.zero;
-        recoilVelocity = Vector2.zero;
+        _recoilOffset = Vector2.zero;
+        _recoilVelocity = Vector2.zero;
         pivotPoint.localRotation = Quaternion.identity;
     }
 }
