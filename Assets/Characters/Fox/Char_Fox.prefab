@@ -390,6 +390,7 @@ GameObject:
   - component: {fileID: 2693857677620479894}
   - component: {fileID: 238749407478760749}
   - component: {fileID: 7662852286266705577}
+  - component: {fileID: 5651063101989064351}
   m_Layer: 3
   m_Name: Char_Fox
   m_TagString: Untagged
@@ -700,9 +701,6 @@ MonoBehaviour:
   onTakeDamage:
     m_PersistentCalls:
       m_Calls: []
-  onHealthChanged:
-    m_PersistentCalls:
-      m_Calls: []
   onStunned:
     m_PersistentCalls:
       m_Calls: []
@@ -716,6 +714,18 @@ MonoBehaviour:
   invulnerabilityTime: 0
   despawnTime: 0.5
   score: 0
+--- !u!114 &5651063101989064351
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3797445723825112220}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cfbadf760e794b848c1fd1acfb9bfa4f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::FoxShooter.Characters.PerceptionSource
 --- !u!1 &4026868519989904096
 GameObject:
   m_ObjectHideFlags: 0
