@@ -16,6 +16,8 @@ namespace FoxShooter.Characters.Fox
         [SerializeField] [Min(0.0f)] private float cooldownTime = 5.0f;
         [SerializeField] [Min(0.0f)] private float forceWindow = 0.5f;
         [SerializeField] private UnityEvent fired;
+        [SerializeField] private UnityEvent reflectBlastHit;
+        [SerializeField] private UnityEvent onReflect;
         
         private CharacterStats _stats;
         private Collider _collider;
@@ -51,6 +53,9 @@ namespace FoxShooter.Characters.Fox
             
             projectile.Setup(_stats, transform, projectile.speed * forceProjectileStrength, projectileNewLifespan);
             projectile.transform.rotation = transform.rotation;
+            onReflect.Invoke();
+            projectile.hit.RemoveListener(ProjectileHit);
+            projectile.hit.AddListener(ProjectileHit);
         }
 
         public void Fire(InputAction.CallbackContext context)
@@ -70,6 +75,11 @@ namespace FoxShooter.Characters.Fox
             _onCooldown = true;
             _forceWindowTimer.Start(forceWindow);
             _cooldownTimer.Start(cooldownTime);
+        }
+
+        private void ProjectileHit()
+        {
+            reflectBlastHit.Invoke();
         }
     }
 }

@@ -1,4 +1,5 @@
-﻿using FoxShooter.Characters;
+﻿using System;
+using FoxShooter.Characters;
 using FoxShooter.Game;
 using UnityEngine;
 using UnityEngine.Events;
@@ -9,7 +10,9 @@ namespace Props.Projectiles
     [RequireComponent(typeof(Rigidbody))]
     public class KinematicProjectile : MonoBehaviour
     {
+        public UnityEvent hit;
         public float speed { get; private set; }
+        
         private ContactHitbox _hitbox;
         private Rigidbody _body;
         private TimerHandle _lifetime;
@@ -18,6 +21,11 @@ namespace Props.Projectiles
         {
             _hitbox = GetComponent<ContactHitbox>();
             _body = GetComponent<Rigidbody>();
+        }
+
+        private void Start()
+        {
+            _hitbox.hit.AddListener(() => hit.Invoke());
         }
 
         public void Setup(CharacterStats owner, Transform origin, float speedIn, float lifetime)

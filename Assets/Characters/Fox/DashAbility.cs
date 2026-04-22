@@ -1,6 +1,7 @@
 ﻿using FoxShooter.Game;
 using UnityEngine;
 using FoxShooter.Scripts;
+using UnityEngine.Events;
 using UnityEngine.InputSystem;
 
 namespace FoxShooter.Characters.Fox
@@ -11,6 +12,7 @@ namespace FoxShooter.Characters.Fox
 
         [SerializeField] [Min(0.0f)] private float cooldownTime = 5.0f;
         [SerializeField] private float healAmount = 1.0f;
+        [SerializeField] private UnityEvent hitEnemy; 
         
         private bool _onCooldown;
         private TimerHandle _cooldownTimer;
@@ -97,6 +99,7 @@ namespace FoxShooter.Characters.Fox
             {
                 return;
             }
+            hitEnemy.Invoke();
             _stats.Heal(healAmount);
             _cooldownTimer.Pause();
             _onCooldown = false;

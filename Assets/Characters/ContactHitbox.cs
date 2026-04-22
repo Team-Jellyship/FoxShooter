@@ -1,6 +1,7 @@
 ﻿using System;
 using FoxShooter.Scripts;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.Serialization;
 
 namespace FoxShooter.Characters
@@ -10,6 +11,8 @@ namespace FoxShooter.Characters
     {
         [SerializeField] private DamageType damageType = DamageType.Unaspected;
         [SerializeField] [Min(0.0f)] private float damage = 1.0f;
+
+        public UnityEvent hit;
         
         public CharacterStats owner;
         
@@ -30,6 +33,7 @@ namespace FoxShooter.Characters
             {
                 return;
             }
+            hit.Invoke();
             otherStats.TakeDamage(damage, owner, false, damageType);
         }
     }

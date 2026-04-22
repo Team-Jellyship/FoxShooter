@@ -15,6 +15,7 @@ namespace FoxShooter.Characters
         [SerializeField] private LayerMask mask;
 
         [SerializeField] private UnityEvent fired;
+        [SerializeField] private UnityEvent hitTarget;
 
         private bool _onCooldown;
         private TimerHandle _cooldownTimer;
@@ -48,6 +49,7 @@ namespace FoxShooter.Characters
                 var stats = result.transform.gameObject.GetComponentInRoot<CharacterStats>();
                 if (stats && stats != _owner)
                 {
+                    hitTarget.Invoke();
                     stats.TakeDamage(damage, _owner, false);
                 }
             }
