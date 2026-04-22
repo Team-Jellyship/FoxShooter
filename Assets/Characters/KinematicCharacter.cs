@@ -213,6 +213,7 @@ namespace FoxShooter.Characters
 				// ReSharper disable once Unity.PerformanceCriticalCodeInvocation
 				_stats?.Kill(null);
 			}
+			
 		}
 
 		public void MoveInput(InputAction.CallbackContext context)
