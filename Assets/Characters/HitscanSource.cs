@@ -42,11 +42,6 @@ namespace FoxShooter.Characters
             }
             
             fired.Invoke();
-
-            if (viewRecoil != null)
-            {
-                viewRecoil.AddRecoil();
-            }
             
             // Debug.DrawRay(transform.position, transform.forward * distance, Color.violetRed, 0.5f);
             if (Physics.Raycast(transform.position, transform.forward,
@@ -57,6 +52,11 @@ namespace FoxShooter.Characters
                 {
                     stats.TakeDamage(damage, _owner, false);
                 }
+            }
+            
+            if (viewRecoil != null)
+            {
+                viewRecoil.AddRecoil();
             }
 
             _onCooldown = true;

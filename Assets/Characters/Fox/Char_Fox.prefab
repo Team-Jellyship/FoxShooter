@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 8618486384866644612}
   - component: {fileID: 653023276848462293}
   - component: {fileID: 3571957839748470204}
+  - component: {fileID: 4577427329450689634}
   m_Layer: 3
   m_Name: Camera
   m_TagString: Untagged
@@ -26,15 +27,15 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 302000666510668142}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.5, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 8261299192491786182}
   - {fileID: 7514559829054232965}
   - {fileID: 6789625588682487033}
-  m_Father: {fileID: 2727929157351720282}
+  m_Father: {fileID: 5428572684973649403}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!20 &653023276848462293
 Camera:
@@ -95,6 +96,25 @@ AudioListener:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 302000666510668142}
   m_Enabled: 1
+--- !u!114 &4577427329450689634
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 302000666510668142}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 642b2cb76f83a2344b2662a94b8dd253, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ViewRecoil
+  pivotPoint: {fileID: 5428572684973649403}
+  pitchKick: 1.2
+  yawKick: 0.4
+  yawRandomness: 1
+  returnStrength: 20
+  damping: 18
+  maxPitch: 20
 --- !u!1 &1134186192417829152
 GameObject:
   m_ObjectHideFlags: 0
@@ -205,7 +225,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 8618486384866644612}
+  - {fileID: 5428572684973649403}
   - {fileID: 7937297218539249760}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -481,6 +501,9 @@ MonoBehaviour:
   onTakeDamage:
     m_PersistentCalls:
       m_Calls: []
+  onHeal:
+    m_PersistentCalls:
+      m_Calls: []
   onStunned:
     m_PersistentCalls:
       m_Calls: []
@@ -493,6 +516,7 @@ MonoBehaviour:
   defaultHealth: 15
   invulnerabilityTime: 0
   despawnTime: 0.5
+  score: 0
 --- !u!114 &238749407478760749
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -506,6 +530,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::FoxShooter.Characters.Fox.DashAbility
   cooldownTime: 5
+  healAmount: 1
 --- !u!1 &4026868519989904096
 GameObject:
   m_ObjectHideFlags: 0
@@ -573,6 +598,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eadcf8a4bdf346c9894d2580cf0967aa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::FoxShooter.Characters.ContactHitbox
+  damageType: 0
   damage: 3
   owner: {fileID: 0}
 --- !u!54 &2036622942050709529
@@ -882,6 +908,7 @@ MonoBehaviour:
   cooldownTime: 0
   distance: 25
   damage: 1
+  viewRecoil: {fileID: 0}
   mask:
     serializedVersion: 2
     m_Bits: 64
@@ -1041,6 +1068,38 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!1 &8427014517299334193
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5428572684973649403}
+  m_Layer: 3
+  m_Name: Recoil
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5428572684973649403
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8427014517299334193}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0.5, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 8618486384866644612}
+  m_Father: {fileID: 2727929157351720282}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &8741843954882508876
 GameObject:
   m_ObjectHideFlags: 0
