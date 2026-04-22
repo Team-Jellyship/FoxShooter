@@ -13,18 +13,18 @@ MonoBehaviour:
   m_Name: Combo_Fox
   m_EditorClassIdentifier: Assembly-CSharp::FoxShooter.Game.Combo.ComboTable
   combos:
-  - tag: 0
+  - tag: hit
     description: Hit an Enemy
     comboAmount: 10
-  - tag: 1
+  - tag: kill
     description: Killed an Enemy
     comboAmount: 50
-  - tag: 2
+  - tag: reflect
     description: Reflected a projectile
     comboAmount: 10
-  - tag: 3
+  - tag: reflectHit
     description: A reflected projectile hit something
     comboAmount: 20
-  - tag: 4
+  - tag: dash
     description: Dashed through an enemy
     comboAmount: 40

@@ -40,7 +40,7 @@ AnimationClip:
         inWeight: 0
         outWeight: 0
       - serializedVersion: 3
-        time: 0.75
+        time: 0.625
         value: 0
         inSlope: Infinity
         outSlope: Infinity
@@ -52,7 +52,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_Enabled
-    path: Camera/AirBlast/Sound
+    path: Recoil/Camera/AirBlast/Sound
     classID: 82
     script: {fileID: 0}
     flags: 0
@@ -72,7 +72,7 @@ AnimationClip:
     - time: 0.625
       value: {fileID: -1179691749, guid: 32f7cb3293a482a4985263f00d99d6ad, type: 3}
     attribute: m_Sprite
-    path: Camera/Canvas/LeftHand
+    path: Recoil/Camera/Hud/LeftHand
     classID: 114
     script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
     flags: 2
@@ -84,7 +84,7 @@ AnimationClip:
   m_ClipBindingConstant:
     genericBindings:
     - serializedVersion: 2
-      path: 2160794511
+      path: 2912872548
       attribute: 3305885265
       script: {fileID: 0}
       typeID: 82
@@ -93,7 +93,7 @@ AnimationClip:
       isIntCurve: 0
       isSerializeReferenceCurve: 0
     - serializedVersion: 2
-      path: 1033425298
+      path: 2924528326
       attribute: 2015549526
       script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
       typeID: 114
@@ -152,7 +152,7 @@ AnimationClip:
         inWeight: 0
         outWeight: 0
       - serializedVersion: 3
-        time: 0.75
+        time: 0.625
         value: 0
         inSlope: Infinity
         outSlope: Infinity
@@ -164,7 +164,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_Enabled
-    path: Camera/AirBlast/Sound
+    path: Recoil/Camera/AirBlast/Sound
     classID: 82
     script: {fileID: 0}
     flags: 0

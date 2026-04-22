@@ -2,6 +2,7 @@
 using FoxShooter.Game;
 using FoxShooter.Scripts;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.InputSystem;
 
 namespace FoxShooter.Characters
@@ -12,7 +13,6 @@ namespace FoxShooter.Characters
 	    private const float GravityConstant = -9.8f;
 		private const float DefaultMaxFallSpeed = 1000.0f;
 		private const float NegativeKillY = -200.0f;
-		public Animator camAnim;
 
 		// MOVEMENT
 		[Header("Movement")]
@@ -103,6 +103,8 @@ namespace FoxShooter.Characters
 
 		[SerializeField] private Vector3 additionalLocalSpaceVelocity;
 		[SerializeField] private Vector3 currentVelocity;
+
+		[SerializeField] private UnityEvent<string, bool> walkingChanged;
 		
 		private bool _immobilized;
 		private bool _grounded;
@@ -203,9 +205,7 @@ namespace FoxShooter.Characters
 				characterRotation.y = Mathf.MoveTowardsAngle(currentYaw, desiredYaw, lookAtSpeed);
 				_characterController.transform.eulerAngles = characterRotation;
 			}
-
-			camAnim.SetBool("isWalking", _isWalking);
-
+			
 			if (_characterController.transform.position.y < NegativeKillY)
 			{
 				// This should only happen once
@@ -217,15 +217,16 @@ namespace FoxShooter.Characters
 
 		public void MoveInput(InputAction.CallbackContext context)
 		{
-			_moveInput = context.ReadValue<Vector2>();
+			SetMoveInput(context.ReadValue<Vector2>());
 		}
 
 		public void MoveInput(Vector2 velocity)
 		{
 			var currentAcceleration = GetAcceleration();
 			var velocityDelta = velocity - currentVelocity.To2D();
-			var inputFactor = MathF.Min(1.0f, velocityDelta.magnitude / (currentAcceleration * Time.fixedDeltaTime));
-			_moveInput = inputFactor * velocity.normalized;
+			// var inputFactor = MathF.Min(1.0f, velocityDelta.magnitude / (currentAcceleration * Time.fixedDeltaTime));
+			// _moveInput = inputFactor * velocity.normalized;
+			SetMoveInput(velocity.normalized);
 		}
 
 		public void Look(InputAction.CallbackContext context)
@@ -304,11 +305,22 @@ namespace FoxShooter.Characters
 		
 			--numJumpsRemaining;
 		}
-
 		
 		private bool CanJump()
 		{
 			return numJumpsRemaining > 0 && !_immobilized;
+		}
+
+		private void SetMoveInput(Vector2 input)
+		{
+			_moveInput = input;
+
+			var walking = input.sqrMagnitude > 0.01f;
+			if (_isWalking != walking)
+			{
+				walkingChanged.Invoke("isWalking", walking);
+			}
+			_isWalking = walking;
 		}
 		
 		private float GetMaxHorizontalSpeed()

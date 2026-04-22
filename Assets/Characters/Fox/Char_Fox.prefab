@@ -126,11 +126,12 @@ GameObject:
   - component: {fileID: 2727929157351720282}
   - component: {fileID: 6674054473733590719}
   - component: {fileID: 8681671206454598398}
+  - component: {fileID: 1850841802817211589}
   - component: {fileID: 3370733928436092656}
   - component: {fileID: 2693857677620479894}
-  - component: {fileID: 6534221406128472239}
   - component: {fileID: 238749407478760749}
   - component: {fileID: 377293708466771247}
+  - component: {fileID: 3790364163721861716}
   m_Layer: 3
   m_Name: Char_Fox
   m_TagString: Untagged
@@ -221,6 +222,67 @@ MonoBehaviour:
   lookAtYaw: 0
   additionalLocalSpaceVelocity: {x: 0, y: 0, z: 0}
   currentVelocity: {x: 0, y: 0, z: 0}
+  walkingChanged:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 2693857677620479894}
+        m_TargetAssemblyTypeName: UnityEngine.Animator, UnityEngine
+        m_MethodName: SetBool
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &1850841802817211589
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3797445723825112220}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4c7e739e07094e8cbd1d7732083508f1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::FoxShooter.Characters.Fox.FoxStats
+  onDeath:
+    m_PersistentCalls:
+      m_Calls: []
+  onTakeDamage:
+    m_PersistentCalls:
+      m_Calls: []
+  onHeal:
+    m_PersistentCalls:
+      m_Calls: []
+  onStunned:
+    m_PersistentCalls:
+      m_Calls: []
+  onStunEnd:
+    m_PersistentCalls:
+      m_Calls: []
+  onKillCharacter:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 377293708466771247}
+        m_TargetAssemblyTypeName: FoxShooter.Characters.Fox.ComboMeter, Assembly-CSharp
+        m_MethodName: SendComboEvent
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: kill
+          m_BoolArgument: 0
+        m_CallState: 2
+  defaultHealth: 15
+  invulnerabilityTime: 0
+  despawnTime: 0.5
+  score: 0
 --- !u!114 &3370733928436092656
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -261,7 +323,7 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
     m_ActionId: 53a92d72-ef82-497e-84ec-4fa47498b3e7
-    m_ActionName: Player/Move[/Keyboard/w,/Keyboard/upArrow,/Keyboard/s,/Keyboard/downArrow,/Keyboard/a,/Keyboard/leftArrow,/Keyboard/d,/Keyboard/rightArrow]
+    m_ActionName: 'Player/Move[/Keyboard/w,/Keyboard/upArrow,/Keyboard/s,/Keyboard/downArrow,/Keyboard/a,/Keyboard/leftArrow,/Keyboard/d,/Keyboard/rightArrow]'
   - m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 8681671206454598398}
@@ -277,11 +339,11 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
     m_ActionId: 5d6c56d1-1a2b-4872-a0d4-ca6bc20d9456
-    m_ActionName: Player/Look[/Mouse/delta,/Touchscreen/delta,/Pen/delta]
+    m_ActionName: 'Player/Look[/Mouse/delta,/Touchscreen/delta,/Pen/delta]'
   - m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 6959763318834364756}
-        m_TargetAssemblyTypeName: FoxShooter.Characters.HitscanSource, Assembly-CSharp
+      - m_Target: {fileID: 1894906088613744609}
+        m_TargetAssemblyTypeName: FoxShooter.Characters.Fox.Blaster, Assembly-CSharp
         m_MethodName: Fire
         m_Mode: 0
         m_Arguments:
@@ -293,7 +355,7 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
     m_ActionId: 5de8e217-6cbf-4c35-ae03-a8bd492fd8a0
-    m_ActionName: Player/Fire[/Mouse/leftButton,/Touchscreen/primaryTouch/tap]
+    m_ActionName: 'Player/Fire[/Mouse/leftButton,/Touchscreen/primaryTouch/tap]'
   - m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 8681671206454598398}
@@ -309,7 +371,7 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
     m_ActionId: 9e44d31e-1403-48cf-b144-bed518f107f9
-    m_ActionName: Player/Jump[/Keyboard/space]
+    m_ActionName: 'Player/Jump[/Keyboard/space]'
   - m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 238749407478760749}
@@ -325,39 +387,39 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
     m_ActionId: 33b81e7d-4636-4545-9cef-3de2fd63811a
-    m_ActionName: Player/Dash[/Keyboard/shift]
+    m_ActionName: 'Player/Dash[/Keyboard/shift]'
   - m_PersistentCalls:
       m_Calls: []
     m_ActionId: c02cfaa0-6144-4738-88bc-98f3365baf50
-    m_ActionName: UI/Navigate[/Keyboard/w,/Keyboard/upArrow,/Keyboard/s,/Keyboard/downArrow,/Keyboard/a,/Keyboard/leftArrow,/Keyboard/d,/Keyboard/rightArrow]
+    m_ActionName: 'UI/Navigate[/Keyboard/w,/Keyboard/upArrow,/Keyboard/s,/Keyboard/downArrow,/Keyboard/a,/Keyboard/leftArrow,/Keyboard/d,/Keyboard/rightArrow]'
   - m_PersistentCalls:
       m_Calls: []
     m_ActionId: 001e4898-0395-4d23-ae25-8088a5d05b66
-    m_ActionName: UI/Submit[/Keyboard/enter]
+    m_ActionName: 'UI/Submit[/Keyboard/enter]'
   - m_PersistentCalls:
       m_Calls: []
     m_ActionId: 71f0e773-7890-4d07-a42f-20657ecc6a0f
-    m_ActionName: UI/Cancel[/Keyboard/escape]
+    m_ActionName: 'UI/Cancel[/Keyboard/escape]'
   - m_PersistentCalls:
       m_Calls: []
     m_ActionId: 688bf7fc-9a4e-48fe-b038-898e954c2dcc
-    m_ActionName: UI/Point[/Mouse/position,/Pen/position,/Touchscreen/touch0/position,/Touchscreen/touch1/position,/Touchscreen/touch2/position,/Touchscreen/touch3/position,/Touchscreen/touch4/position,/Touchscreen/touch5/position,/Touchscreen/touch6/position,/Touchscreen/touch7/position,/Touchscreen/touch8/position,/Touchscreen/touch9/position]
+    m_ActionName: 'UI/Point[/Mouse/position,/Pen/position,/Touchscreen/touch0/position,/Touchscreen/touch1/position,/Touchscreen/touch2/position,/Touchscreen/touch3/position,/Touchscreen/touch4/position,/Touchscreen/touch5/position,/Touchscreen/touch6/position,/Touchscreen/touch7/position,/Touchscreen/touch8/position,/Touchscreen/touch9/position]'
   - m_PersistentCalls:
       m_Calls: []
     m_ActionId: e20f6942-b5dc-4246-9d40-41391503bea7
-    m_ActionName: UI/Click[/Mouse/leftButton,/Pen/tip,/Touchscreen/touch0/press,/Touchscreen/touch1/press,/Touchscreen/touch2/press,/Touchscreen/touch3/press,/Touchscreen/touch4/press,/Touchscreen/touch5/press,/Touchscreen/touch6/press,/Touchscreen/touch7/press,/Touchscreen/touch8/press,/Touchscreen/touch9/press]
+    m_ActionName: 'UI/Click[/Mouse/leftButton,/Pen/tip,/Touchscreen/touch0/press,/Touchscreen/touch1/press,/Touchscreen/touch2/press,/Touchscreen/touch3/press,/Touchscreen/touch4/press,/Touchscreen/touch5/press,/Touchscreen/touch6/press,/Touchscreen/touch7/press,/Touchscreen/touch8/press,/Touchscreen/touch9/press]'
   - m_PersistentCalls:
       m_Calls: []
     m_ActionId: a6e7bd63-bb35-4fcd-8af0-6370e5391192
-    m_ActionName: UI/ScrollWheel[/Mouse/scroll]
+    m_ActionName: 'UI/ScrollWheel[/Mouse/scroll]'
   - m_PersistentCalls:
       m_Calls: []
     m_ActionId: b302921e-c619-4a96-baf8-ad4232edc95f
-    m_ActionName: UI/MiddleClick[/Mouse/middleButton]
+    m_ActionName: 'UI/MiddleClick[/Mouse/middleButton]'
   - m_PersistentCalls:
       m_Calls: []
     m_ActionId: aafb73c4-e712-4c87-aef7-0c1374317159
-    m_ActionName: UI/RightClick[/Mouse/rightButton]
+    m_ActionName: 'UI/RightClick[/Mouse/rightButton]'
   - m_PersistentCalls:
       m_Calls: []
     m_ActionId: 8594c727-5658-4b96-a992-367c7ed779e0
@@ -381,7 +443,7 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
     m_ActionId: 30b94f30-e7d4-4b10-b5ec-6ba03a7bdf0c
-    m_ActionName: Player/Secondary[/Mouse/rightButton]
+    m_ActionName: 'Player/Secondary[/Mouse/rightButton]'
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Player
@@ -409,40 +471,6 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!114 &6534221406128472239
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3797445723825112220}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a456740b4207406095de01d1a663da5e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::FoxShooter.Characters.CharacterStats
-  onDeath:
-    m_PersistentCalls:
-      m_Calls: []
-  onTakeDamage:
-    m_PersistentCalls:
-      m_Calls: []
-  onHeal:
-    m_PersistentCalls:
-      m_Calls: []
-  onStunned:
-    m_PersistentCalls:
-      m_Calls: []
-  onStunEnd:
-    m_PersistentCalls:
-      m_Calls: []
-  onKillCharacter:
-    m_PersistentCalls:
-      m_Calls: []
-  defaultHealth: 15
-  invulnerabilityTime: 0
-  despawnTime: 0.5
-  score: 0
 --- !u!114 &238749407478760749
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -490,6 +518,18 @@ MonoBehaviour:
   comboValueChanged:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &3790364163721861716
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3797445723825112220}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cfbadf760e794b848c1fd1acfb9bfa4f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::FoxShooter.Characters.PerceptionSource
 --- !u!1 &4026868519989904096
 GameObject:
   m_ObjectHideFlags: 0
@@ -562,7 +602,7 @@ MonoBehaviour:
   hit:
     m_PersistentCalls:
       m_Calls: []
-  owner: {fileID: 7662852286266705577}
+  owner: {fileID: 0}
 --- !u!54 &2036622942050709529
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -590,11 +630,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!224 &8261299192491786182 stripped
-RectTransform:
-  m_CorrespondingSourceObject: {fileID: 3433851258638080969, guid: 569aa1bbba5adf746aad755487d50476, type: 3}
-  m_PrefabInstance: {fileID: 6701772267419280399}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &4510806853082837436
 GameObject:
   m_ObjectHideFlags: 0
@@ -733,7 +768,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7514559829054232965}
-  - component: {fileID: 6959763318834364756}
+  - component: {fileID: 1894906088613744609}
   m_Layer: 3
   m_Name: Gun
   m_TagString: Untagged
@@ -757,7 +792,7 @@ Transform:
   - {fileID: 4547339799519839763}
   m_Father: {fileID: 8618486384866644612}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &6959763318834364756
+--- !u!114 &1894906088613744609
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -766,9 +801,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 6098747816066575583}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d5777a00426a45b894190256130ed402, type: 3}
+  m_Script: {fileID: 11500000, guid: 7813c7134d7b47da93931b3f1bd0f4fe, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::FoxShooter.Characters.HitscanSource
+  m_EditorClassIdentifier: Assembly-CSharp::FoxShooter.Characters.Fox.Blaster
   cooldownTime: 0
   distance: 25
   damage: 1
@@ -803,6 +838,26 @@ MonoBehaviour:
           m_StringArgument: Fire
           m_BoolArgument: 0
         m_CallState: 2
+  hitTarget:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 377293708466771247}
+        m_TargetAssemblyTypeName: FoxShooter.Characters.Fox.ComboMeter, Assembly-CSharp
+        m_MethodName: SendComboEvent
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: hit
+          m_BoolArgument: 0
+        m_CallState: 2
+  currentHeat: 0
+  maxHeat: 100
+  heatPerShot: 10
+  passiveCooldownRate: 5
+  activeCooldownRate: 1
 --- !u!1 &7655491514423308967
 GameObject:
   m_ObjectHideFlags: 0
@@ -1183,7 +1238,7 @@ PrefabInstance:
     - target: {fileID: 7347520937000077799, guid: 569aa1bbba5adf746aad755487d50476, type: 3}
       propertyPath: character
       value: 
-      objectReference: {fileID: 7662852286266705577}
+      objectReference: {fileID: 1850841802817211589}
     - target: {fileID: 7364125661306584235, guid: 569aa1bbba5adf746aad755487d50476, type: 3}
       propertyPath: m_Name
       value: Hud
@@ -1193,3 +1248,8 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 569aa1bbba5adf746aad755487d50476, type: 3}
+--- !u!224 &8261299192491786182 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 3433851258638080969, guid: 569aa1bbba5adf746aad755487d50476, type: 3}
+  m_PrefabInstance: {fileID: 6701772267419280399}
+  m_PrefabAsset: {fileID: 0}
