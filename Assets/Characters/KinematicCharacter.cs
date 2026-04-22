@@ -12,6 +12,7 @@ namespace FoxShooter.Characters
 	    private const float GravityConstant = -9.8f;
 		private const float DefaultMaxFallSpeed = 1000.0f;
 		private const float NegativeKillY = -200.0f;
+		public Animator camAnim;
 
 		// MOVEMENT
 		[Header("Movement")]
@@ -105,6 +106,7 @@ namespace FoxShooter.Characters
 		
 		private bool _immobilized;
 		private bool _grounded;
+		private bool _isWalking; // Used for head bob animation
 		private bool _isJumping;
 		private bool _pendingJumpImpulse; // Jump impulses are a little special
 		private Vector2 _moveInput;
@@ -149,8 +151,10 @@ namespace FoxShooter.Characters
 				return;
 			}
 			
+			
 			var onFloor = _grounded;
 			CheckGround();
+			CheckForHeadbob();
 			switch (_grounded)
 			{
 				case true when !onFloor:
@@ -199,6 +203,8 @@ namespace FoxShooter.Characters
 				characterRotation.y = Mathf.MoveTowardsAngle(currentYaw, desiredYaw, lookAtSpeed);
 				_characterController.transform.eulerAngles = characterRotation;
 			}
+
+			camAnim.SetBool("isWalking", _isWalking);
 
 			if (_characterController.transform.position.y < NegativeKillY)
 			{
@@ -371,6 +377,18 @@ namespace FoxShooter.Characters
             {
 	            _characterController.Move(Vector3.down * hit.distance);
             }
+        }
+
+        void CheckForHeadbob()
+        {
+	        if (currentVelocity.magnitude > 0.1f)
+	        {
+		        _isWalking = true;
+	        }
+	        else
+	        {
+		        _isWalking = false;
+	        }
         }
 		
         private bool IsNormalUnderSlopeLimit(Vector3 normal)
