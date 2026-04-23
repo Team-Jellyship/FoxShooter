@@ -24,7 +24,7 @@ public class ViewRecoil : MonoBehaviour
 
     private Vector2 _recoilOffset;      // x = yaw, y = pitch
     private Vector2 _recoilVelocity;    // Spring Velocity
-
+    
     private void LateUpdate()
     {
         //Critically damped-ish spring back to zero
