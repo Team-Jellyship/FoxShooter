@@ -100,13 +100,13 @@ TextureImporter:
       name: Sp_flash_0
       rect:
         serializedVersion: 2
-        x: 180
+        x: 258
         y: 0
-        width: 147
-        height: 128
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
+        width: 72
+        height: 68
+      alignment: 9
+      pivot: {x: 0.5211953, y: 0.3737626}
+      border: {x: 34, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
@@ -122,13 +122,13 @@ TextureImporter:
       name: Sp_flash_1
       rect:
         serializedVersion: 2
-        x: 327
+        x: 389
         y: 0
-        width: 147
-        height: 128
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
+        width: 72
+        height: 68
+      alignment: 9
+      pivot: {x: 0.48080486, y: 0.37235996}
+      border: {x: 0, y: 0, z: 0, w: 70}
       customData: 
       outline: []
       physicsShape: []
@@ -144,12 +144,12 @@ TextureImporter:
       name: Sp_flash_2
       rect:
         serializedVersion: 2
-        x: 474
+        x: 526
         y: 0
-        width: 147
-        height: 128
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+        width: 72
+        height: 68
+      alignment: 9
+      pivot: {x: 0.4072698, y: 0.33168346}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -166,12 +166,12 @@ TextureImporter:
       name: Sp_flash_3
       rect:
         serializedVersion: 2
-        x: 621
+        x: 659
         y: 0
-        width: 147
-        height: 128
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+        width: 72
+        height: 68
+      alignment: 9
+      pivot: {x: 0.38077545, y: 0.3036307}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
