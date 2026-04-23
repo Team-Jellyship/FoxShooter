@@ -9,6 +9,7 @@ namespace FoxShooter.Characters
 {
     public class HitscanSource : MonoBehaviour
     {
+        [SerializeField] public Animator camAnim; // For Animation Triggers
         [SerializeField] [Min(0.0f)] private float cooldownTime;
         [SerializeField] [Min(0.0f)] private float distance;
         [SerializeField] private float damage;
@@ -18,6 +19,7 @@ namespace FoxShooter.Characters
         [SerializeField] private UnityEvent fired;
         [SerializeField] private UnityEvent hitTarget;
 
+        private bool hasHitTarget;
         private bool _onCooldown;
         private TimerHandle _cooldownTimer;
         private CharacterStats _owner;
@@ -52,6 +54,8 @@ namespace FoxShooter.Characters
                 if (stats && stats != _owner)
                 {
                     hitTarget.Invoke();
+                    hasHitTarget = true;
+                    camAnim.SetBool("hasHitTarget", hasHitTarget);
                     stats.TakeDamage(damage, _owner, false);
                 }
             }
@@ -73,7 +77,7 @@ namespace FoxShooter.Characters
 
         protected virtual void Fired()
         {
-            
+            hasHitTarget = false;
         }
     }
 }

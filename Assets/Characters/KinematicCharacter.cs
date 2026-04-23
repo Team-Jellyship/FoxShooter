@@ -12,7 +12,7 @@ namespace FoxShooter.Characters
 	    private const float GravityConstant = -9.8f;
 		private const float DefaultMaxFallSpeed = 1000.0f;
 		private const float NegativeKillY = -200.0f;
-		public Animator camAnim;
+		public Animator camAnim; // For Animation Triggers
 
 		// MOVEMENT
 		[Header("Movement")]
