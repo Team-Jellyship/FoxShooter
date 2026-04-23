@@ -204,7 +204,13 @@ namespace FoxShooter.Characters
 				_characterController.transform.eulerAngles = characterRotation;
 			}
 
-			camAnim.SetBool("isWalking", _isWalking);
+			if (!_isJumping)
+			{
+				camAnim.SetBool("isWalking", _isWalking);
+
+			}
+			
+			camAnim.SetBool("isJumping", _isJumping);
 
 			if (_characterController.transform.position.y < NegativeKillY)
 			{
