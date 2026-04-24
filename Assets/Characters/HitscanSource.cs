@@ -19,7 +19,6 @@ namespace FoxShooter.Characters
         [SerializeField] private UnityEvent fired;
         [SerializeField] private UnityEvent hitTarget;
 
-        public bool _hasHitTarget;
         private bool _onCooldown;
         private TimerHandle _cooldownTimer;
         private CharacterStats _owner;
@@ -54,11 +53,10 @@ namespace FoxShooter.Characters
                 if (stats && stats != _owner)
                 {
                     hitTarget.Invoke();
+                    crosshairAnim.SetTrigger("hitMarker");
                     stats.TakeDamage(damage, _owner, false);
                 }
                 
-                _hasHitTarget = true;
-                crosshairAnim.SetBool("hasHitTarget", _hasHitTarget);
             }
             
             if (viewRecoil != null)
