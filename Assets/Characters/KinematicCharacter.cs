@@ -12,7 +12,7 @@ namespace FoxShooter.Characters
 	    private const float GravityConstant = -9.8f;
 		private const float DefaultMaxFallSpeed = 1000.0f;
 		private const float NegativeKillY = -200.0f;
-		public Animator camAnim; // For Animation Triggers
+		private Animator camAnim; // For Animation Triggers
 
 		// MOVEMENT
 		[Header("Movement")]
@@ -130,6 +130,8 @@ namespace FoxShooter.Characters
 			_coyoteTimer = TimerManager.instance.CreateTimer(this, StopJumping);
 			_jumpTimer = TimerManager.instance.CreateTimer(this, StopJumping);
 
+			camAnim = GetComponent<Animator>();
+			
 			if (_stats == null)
 			{
 				return;
