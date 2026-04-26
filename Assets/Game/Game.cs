@@ -1,4 +1,5 @@
-﻿using FoxShooter.Characters;
+﻿using Eflatun.SceneReference;
+using FoxShooter.Characters;
 using FoxShooter.Game.GamemodeGraph.Runtime;
 using FoxShooter.Game.StatusEffects;
 using FoxShooter.Scripts;
@@ -80,6 +81,10 @@ namespace FoxShooter.Game
         {
             score = newScore;
             scoreChanged.Invoke(score);
+        }
+
+        public void SetNextLevel(SceneReference level)
+        {
         }
     }
 }
