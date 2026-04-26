@@ -132,7 +132,7 @@ GameObject:
   - component: {fileID: 303101044422742064}
   - component: {fileID: 41714647447288395}
   - component: {fileID: 6842945112353292969}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Char_Dummy
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -171,6 +171,9 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   onTakeDamage:
+    m_PersistentCalls:
+      m_Calls: []
+  onHeal:
     m_PersistentCalls:
       m_Calls: []
   onStunned:
