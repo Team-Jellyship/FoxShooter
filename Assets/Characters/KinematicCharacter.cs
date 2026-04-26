@@ -12,7 +12,7 @@ namespace FoxShooter.Characters
 	    private const float GravityConstant = -9.8f;
 		private const float DefaultMaxFallSpeed = 1000.0f;
 		private const float NegativeKillY = -200.0f;
-		public Animator camAnim; // For Animation Triggers
+		private Animator _animator; // For Animation Triggers
 
 		// MOVEMENT
 		[Header("Movement")]
@@ -123,6 +123,7 @@ namespace FoxShooter.Characters
 		{
 			_characterController = GetComponent<CharacterController>();
 			_stats = GetComponent<CharacterStats>();
+			_animator = GetComponent<Animator>();
 		}
 
 		private void Start()
@@ -206,11 +207,10 @@ namespace FoxShooter.Characters
 
 			if (!_isJumping)
 			{
-				camAnim.SetBool("isWalking", _isWalking);
-
+				_animator.SetBool("isWalking", _isWalking);
 			}
 			
-			camAnim.SetBool("isJumping", _isJumping);
+			_animator.SetBool("isJumping", _isJumping);
 
 			if (_characterController.transform.position.y < NegativeKillY)
 			{

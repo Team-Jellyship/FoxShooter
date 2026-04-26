@@ -13,12 +13,14 @@ namespace FoxShooter.Characters.AI
     {
         private NavMeshAgent _agent;
         private KinematicCharacter _character;
+        private Animator _animator;
         private TimerHandle _updateTimer;
         private GameObject _locationProxy;
 
         private void Awake()
         {
             _agent = GetComponent<NavMeshAgent>();
+            _animator = GetComponent<Animator>();
             _character = GetComponent<KinematicCharacter>();
         }
 

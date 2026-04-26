@@ -13,7 +13,7 @@ namespace FoxShooter.Characters
         [SerializeField] [Min(0.0f)] private float distance;
         [SerializeField] private float damage;
         [SerializeField] private ViewRecoil viewRecoil;
-        [SerializeField] public Animator crosshairAnim; // For Animation Triggers
+        [SerializeField] public Animator animator; // For Animation Triggers
         [SerializeField] private LayerMask mask;
 
         [SerializeField] private UnityEvent fired;
@@ -53,7 +53,7 @@ namespace FoxShooter.Characters
                 if (stats && stats != _owner)
                 {
                     hitTarget.Invoke();
-                    crosshairAnim.SetTrigger("hitMarker");
+                    animator.SetTrigger("hitMarker");
                     stats.TakeDamage(damage, _owner, false);
                 }
                 
