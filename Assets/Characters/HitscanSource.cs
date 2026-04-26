@@ -13,7 +13,7 @@ namespace FoxShooter.Characters
         [SerializeField] [Min(0.0f)] private float distance;
         [SerializeField] private float damage;
         [SerializeField] private ViewRecoil viewRecoil;
-        [SerializeField] public Animator animator; // For Animation Triggers
+        [SerializeField] public Animator _animator; // For Animation Triggers
         [SerializeField] private LayerMask mask;
 
         [SerializeField] private UnityEvent fired;
@@ -25,6 +25,7 @@ namespace FoxShooter.Characters
         
         private void Start()
         {
+            _animator = GetComponentInParent<Animator>();
             _cooldownTimer = TimerManager.instance.CreateTimer(this, () => _onCooldown = false);
         }
 
@@ -53,7 +54,7 @@ namespace FoxShooter.Characters
                 if (stats && stats != _owner)
                 {
                     hitTarget.Invoke();
-                    animator.SetTrigger("hitMarker");
+                    _animator.SetTrigger("hitMarker");
                     stats.TakeDamage(damage, _owner, false);
                 }
                 
