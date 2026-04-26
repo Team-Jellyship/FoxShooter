@@ -1,10 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Runtime.CompilerServices;
-using FoxShooter.Game;
+﻿using FoxShooter.Game;
 using UnityEngine;
 using FoxShooter.Scripts;
+using UnityEngine.Events;
+using UnityEngine.InputSystem;
 
 namespace FoxShooter.Characters.Fox
 {
@@ -13,6 +11,8 @@ namespace FoxShooter.Characters.Fox
         private readonly static int DashParameter = Animator.StringToHash("Dash");
 
         [SerializeField] [Min(0.0f)] private float cooldownTime = 5.0f;
+        [SerializeField] private float healAmount = 1.0f;
+        [SerializeField] private UnityEvent hitEnemy; 
         
         private bool _onCooldown;
         private TimerHandle _cooldownTimer;
@@ -38,11 +38,7 @@ namespace FoxShooter.Characters.Fox
             // a latent bullet
             
             // Listen for when the owner kills something, and reset the cooldown if that happens
-            _stats.onKillCharacter.AddListener(_ =>
-            {
-                _cooldownTimer.Pause();
-                _onCooldown = false;
-            });
+            _stats.onKillCharacter.AddListener(KilledEnemy);
             
             // Create effect instances. We need to track this to easily remove, otherwise these would
             // have to be set by duration
@@ -52,11 +48,14 @@ namespace FoxShooter.Characters.Fox
             // Create our cooldown timer, but don't start it yet
             _cooldownTimer = TimerManager.instance.CreateTimer(this, () => _onCooldown = false);
         }
-
-        // Listener for PlayerInput. Will automatically be called when
-        // 'Dash' is pressed
-        private void OnDash()
+        
+        public void Dash(InputAction.CallbackContext context)
         {
+            if (context.phase != InputActionPhase.Performed)
+            {
+                return;
+            }
+            
             if (_onCooldown)
             {
                 return;
@@ -92,5 +91,18 @@ namespace FoxShooter.Characters.Fox
             _stats.RemoveStatusEffectInstance(_dashInvuln);
         }
         // End of animation event hooks
+
+        private void KilledEnemy(CharacterStats enemy, DamageType type)
+        {
+            // Technically any damage type can restore the cooldown
+            if (type != DamageType.Melee)
+            {
+                return;
+            }
+            hitEnemy.Invoke();
+            _stats.Heal(healAmount);
+            _cooldownTimer.Pause();
+            _onCooldown = false;
+    }
     }
 }

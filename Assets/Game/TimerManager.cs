@@ -47,7 +47,7 @@ public class TimerHandle
         }
     }
 
-    public void Start(float duration)
+    public void Start(float duration, bool repeats = false)
     {
         if (!_timer.TryGetTarget(out var timer))
         {
@@ -56,6 +56,7 @@ public class TimerHandle
         timer.currentTime = 0.0f;
         timer.duration = duration;
         timer.paused = false;
+        timer.repeats = repeats;
     }
 
     public float GetRemainingTime()
@@ -77,6 +78,7 @@ public class TimerEntry
     public readonly Action callback;
     public bool paused;
     public bool expired;
+    public bool repeats;
 
     public TimerEntry(WeakReference<MonoBehaviour> monoOwner, Action callback)
     {
@@ -123,7 +125,11 @@ public class TimerManager : MonoBehaviour
             {
                 continue;
             }
-            
+
+            if (timer.repeats)
+            {
+                timer.currentTime -= timer.duration;
+            }
             if (timer.monoOwner.TryGetTarget(out var owner) && owner)
             {
                 // ReSharper disable once Unity.PerformanceCriticalCodeInvocation

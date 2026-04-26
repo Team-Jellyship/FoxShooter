@@ -28,7 +28,7 @@
                     "name": "Fire",
                     "type": "Button",
                     "id": "5de8e217-6cbf-4c35-ae03-a8bd492fd8a0",
-                    "expectedControlType": "Button",
+                    "expectedControlType": "",
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
@@ -46,6 +46,24 @@
                     "name": "Dash",
                     "type": "Button",
                     "id": "33b81e7d-4636-4545-9cef-3de2fd63811a",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Secondary",
+                    "type": "Button",
+                    "id": "30b94f30-e7d4-4b10-b5ec-6ba03a7bdf0c",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Interact",
+                    "type": "Button",
+                    "id": "c5018af3-4d30-4366-8ffa-4923943dc52b",
                     "expectedControlType": "",
                     "processors": "",
                     "interactions": "",
@@ -301,6 +319,17 @@
                     "processors": "",
                     "groups": ";Keyboard&Mouse",
                     "action": "Dash",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "543b707f-71e8-4eab-8ebb-09007d7ac0d4",
+                    "path": "<Mouse>/rightButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Secondary",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },

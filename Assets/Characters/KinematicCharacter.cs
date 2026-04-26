@@ -11,7 +11,8 @@ namespace FoxShooter.Characters
     {
 	    private const float GravityConstant = -9.8f;
 		private const float DefaultMaxFallSpeed = 1000.0f;
-		private const float NegativeKillY = 1000.0f;
+		private const float NegativeKillY = -200.0f;
+		public Animator camAnim; // For Animation Triggers
 
 		// MOVEMENT
 		[Header("Movement")]
@@ -93,10 +94,11 @@ namespace FoxShooter.Characters
 		[Header("Look")]
 		[SerializeField] private float lookSensitivityHorizontal = 1.0f;
 		[SerializeField] private float lookSensitivityVertical = 1.0f;
-
 		[SerializeField] private Camera playerCamera;
-
 		[SerializeField] private float cameraPitch;
+		[SerializeField] private bool lookAt;
+		[SerializeField][Min(0.0f)] private float lookAtSpeed = 5.0f;
+		[SerializeField] [Range(-180.0f, 180.0f)] private float lookAtYaw;
 
 
 		[SerializeField] private Vector3 additionalLocalSpaceVelocity;
@@ -104,6 +106,7 @@ namespace FoxShooter.Characters
 		
 		private bool _immobilized;
 		private bool _grounded;
+		private bool _isWalking; // Used for head bob animation
 		private bool _isJumping;
 		private bool _pendingJumpImpulse; // Jump impulses are a little special
 		private Vector2 _moveInput;
@@ -148,8 +151,10 @@ namespace FoxShooter.Characters
 				return;
 			}
 			
+			
 			var onFloor = _grounded;
 			CheckGround();
+			CheckForHeadbob();
 			switch (_grounded)
 			{
 				case true when !onFloor:
@@ -163,20 +168,17 @@ namespace FoxShooter.Characters
 			
 			var currentVelocity2D = new Vector2(currentVelocity.x, currentVelocity.z);
 			var currentMaxSpeed = GetMaxHorizontalSpeed();
-			var rotatedInput = StarMath.RotateVector(_moveInput, -transform.rotation.eulerAngles.y * Mathf.Deg2Rad);
+			var rotatedInput = playerCamera ? StarMath.RotateVector(_moveInput, -transform.rotation.eulerAngles.y * Mathf.Deg2Rad) : _moveInput;
 
+			var extraFrictionFactor = Vector2.Dot(rotatedInput, currentVelocity2D.normalized) * -0.5f + 0.5f;
 			currentVelocity2D = _moveInput.Equals(Vector2.zero) ?
 				StarMath.MoveTo(currentVelocity2D, Vector2.zero, GetFriction() * Time.fixedDeltaTime) :
-				StarMath.MoveTo(currentVelocity2D, rotatedInput * currentMaxSpeed,GetAcceleration() * Time.fixedDeltaTime);
+				StarMath.MoveTo(currentVelocity2D, rotatedInput * currentMaxSpeed, (GetAcceleration() + extraFrictionFactor * GetFriction()) * Time.fixedDeltaTime);
 			
 			if (!_grounded)
 			{
 				var jumpFactor = _isJumping ? jumpHeldGravityFactor : 1.0f;
 				currentVelocity.y += GravityConstant * gravity  * Time.fixedDeltaTime * jumpFactor;
-			}
-			else
-			{
-				// currentVelocity.y = 0.0f;
 			}
 
 			currentVelocity.x = currentVelocity2D.x;
@@ -192,16 +194,50 @@ namespace FoxShooter.Characters
 			currentVelocity.y = StarMath.ClampTowards(currentVelocity.y, -maxAirSpeedVertical, maxAirSpeedVertical, friction);
 			_characterController.Move(currentVelocity * Time.fixedDeltaTime);
 			currentVelocity = _characterController.velocity;
+
+			if (lookAt)
+			{
+				var characterRotation = _characterController.transform.eulerAngles;
+				var currentYaw = characterRotation.y;
+				var desiredYaw = lookAtYaw;
+				characterRotation.y = Mathf.MoveTowardsAngle(currentYaw, desiredYaw, lookAtSpeed);
+				_characterController.transform.eulerAngles = characterRotation;
+			}
+
+			if (!_isJumping)
+			{
+				camAnim.SetBool("isWalking", _isWalking);
+
+			}
+			
+			camAnim.SetBool("isJumping", _isJumping);
+
+			if (_characterController.transform.position.y < NegativeKillY)
+			{
+				// This should only happen once
+				
+				// ReSharper disable once Unity.PerformanceCriticalCodeInvocation
+				_stats?.Kill(null);
+			}
+			
 		}
 
-		public void OnMove(InputValue value)
+		public void MoveInput(InputAction.CallbackContext context)
 		{
-			_moveInput = value.Get<Vector2>();
+			_moveInput = context.ReadValue<Vector2>();
 		}
 
-		public void OnLook(InputValue value)
+		public void MoveInput(Vector2 velocity)
 		{
-			var look = value.Get<Vector2>();
+			var currentAcceleration = GetAcceleration();
+			var velocityDelta = velocity - currentVelocity.To2D();
+			var inputFactor = MathF.Min(1.0f, velocityDelta.magnitude / (currentAcceleration * Time.fixedDeltaTime));
+			_moveInput = inputFactor * velocity.normalized;
+		}
+
+		public void Look(InputAction.CallbackContext context)
+		{
+			var look = context.ReadValue<Vector2>();
 			transform.Rotate(transform.up, look.x * lookSensitivityHorizontal);
 
 			if (look.y == 0.0f) { return; }
@@ -214,9 +250,14 @@ namespace FoxShooter.Characters
 			_impulses += impulse;
 		}
 
-		private void OnJump(InputValue value)
+		public void Jump(InputAction.CallbackContext context)
 		{
-			if (value.isPressed)
+			if (context.phase != InputActionPhase.Performed)
+			{
+				return;
+			}
+			
+			if (context.action.IsPressed())
 			{
 				StartJumping();
 			}
@@ -224,6 +265,13 @@ namespace FoxShooter.Characters
 			{
 				StopJumping();
 			}
+		}
+
+		public void LookAt(Vector3 location)
+		{
+			lookAt = true;
+			var direction = (location - _characterController.transform.position).To2D().normalized;
+			lookAtYaw = -MathF.Atan2(direction.y, direction.x) * Mathf.Rad2Deg + 90.0f;
 		}
 
 		private void Land()
@@ -337,10 +385,28 @@ namespace FoxShooter.Characters
 	            _characterController.Move(Vector3.down * hit.distance);
             }
         }
+
+        void CheckForHeadbob()
+        {
+	        if (currentVelocity.magnitude > 0.1f)
+	        {
+		        _isWalking = true;
+	        }
+	        else
+	        {
+		        _isWalking = false;
+	        }
+        }
 		
         private bool IsNormalUnderSlopeLimit(Vector3 normal)
         {
 	        return Vector3.Angle(transform.up, normal) <= _characterController.slopeLimit;
+        }
+
+        private void OnDrawGizmos()
+        {
+	        StarDebug.DrawArrow(transform.position, transform.position + currentVelocity, Color.blueViolet);
+	        StarDebug.DrawArrow(transform.position, transform.position + _moveInput.To3D(), Color.mediumSeaGreen);
         }
     }
 }
