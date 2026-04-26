@@ -441,7 +441,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::FoxShooter.Characters.Fox.ComboMeter
   <maxCombo>k__BackingField: 100
-  comboDecayRate: 1
+  comboDecayRate: 10
   combos: {fileID: 11400000, guid: 030b4c825671afd41bbad8b3002e26d5, type: 2}
   comboValueChanged:
     m_PersistentCalls:
@@ -1259,6 +1259,18 @@ PrefabInstance:
     - target: {fileID: 7364125661306584235, guid: 569aa1bbba5adf746aad755487d50476, type: 3}
       propertyPath: m_Name
       value: Canvas
+      objectReference: {fileID: 0}
+    - target: {fileID: 8610817855612100065, guid: 569aa1bbba5adf746aad755487d50476, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0.0000041551934
+      objectReference: {fileID: 0}
+    - target: {fileID: 8610817855612100065, guid: 569aa1bbba5adf746aad755487d50476, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -49.999977
+      objectReference: {fileID: 0}
+    - target: {fileID: 8610817855612100065, guid: 569aa1bbba5adf746aad755487d50476, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 16
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
