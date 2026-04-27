@@ -16,17 +16,39 @@ namespace FoxShooter.Characters.AI.BehaviourGraph.Actions
         [SerializeReference] public BlackboardVariable<GameObject> agent;
         [SerializeReference] public BlackboardVariable<Transform> target;
 
+        private bool _doneLooking;
+        private KinematicCharacter _character;
+        
         protected override Status OnStart()
         {
-            var kinematicCharacterController = agent.Value.GetComponent<KinematicCharacter>();
+            _character = agent.Value.GetComponent<KinematicCharacter>();
 
-            if (!kinematicCharacterController)
+            if (!_character)
             {
                 return Status.Failure;
             }
-    
-            kinematicCharacterController.LookAt(target.Value.position);
+
+            _doneLooking = false;
+            _character.LookAt(target.Value.position);
+            _character.lookAtComplete.AddListener(LookAtDone);
+            return Status.Running;
+        }
+
+        protected override Status OnUpdate()
+        {
+            if (!_doneLooking)
+            {
+                return Status.Running;
+            }
+            _character.lookAtComplete.RemoveListener(LookAtDone);
             return Status.Success;
+
+        }
+
+        private void LookAtDone()
+        {
+            _doneLooking = true;
+            Debug.Log("Done rotating");
         }
     }
 }
