@@ -15,6 +15,9 @@ namespace FoxShooter.Characters
 
 		// MOVEMENT
 		[Header("Movement")]
+		[SerializeField]
+		private bool moveRelativeToCamera = true;
+		
 		// How quickly the character accelerates
 		[SerializeField]
 		private float acceleration = 50.0f;
@@ -93,11 +96,11 @@ namespace FoxShooter.Characters
 		[Header("Look")]
 		[SerializeField] private float lookSensitivityHorizontal = 1.0f;
 		[SerializeField] private float lookSensitivityVertical = 1.0f;
-		[SerializeField] private Camera playerCamera;
+		[SerializeField] private GameObject playerCamera;
 		[SerializeField] private float cameraPitch;
 		[SerializeField] private bool lookAt;
 		[SerializeField][Min(0.0f)] private float lookAtSpeed = 5.0f;
-		[SerializeField] [Range(-180.0f, 180.0f)] private float lookAtYaw;
+		[SerializeField] private Vector3 lookAtDirection; // Look at angle is pitch/yaw, no roll
 
 
 		[SerializeField] private Vector3 additionalLocalSpaceVelocity;
@@ -169,7 +172,7 @@ namespace FoxShooter.Characters
 			
 			var currentVelocity2D = new Vector2(currentVelocity.x, currentVelocity.z);
 			var currentMaxSpeed = GetMaxHorizontalSpeed();
-			var rotatedInput = playerCamera ? StarMath.RotateVector(_moveInput, -transform.rotation.eulerAngles.y * Mathf.Deg2Rad) : _moveInput;
+			var rotatedInput = playerCamera && moveRelativeToCamera ? StarMath.RotateVector(_moveInput, -transform.rotation.eulerAngles.y * Mathf.Deg2Rad) : _moveInput;
 
 			var extraFrictionFactor = Vector2.Dot(rotatedInput, currentVelocity2D.normalized) * -0.5f + 0.5f;
 			currentVelocity2D = _moveInput.Equals(Vector2.zero) ?
@@ -196,14 +199,15 @@ namespace FoxShooter.Characters
 			_characterController.Move(currentVelocity * Time.fixedDeltaTime);
 			currentVelocity = _characterController.velocity;
 
-			if (lookAt)
+			if (lookAt && playerCamera)
 			{
-				var characterRotation = _characterController.transform.eulerAngles;
-				var currentYaw = characterRotation.y;
-				var desiredYaw = lookAtYaw;
-				characterRotation.y = Mathf.MoveTowardsAngle(currentYaw, desiredYaw, lookAtSpeed);
-				_characterController.transform.eulerAngles = characterRotation;
-			}
+				var currentRotation = playerCamera.transform.rotation;
+				var desiredRotation = Quaternion.LookRotation(lookAtDirection, Vector3.up);
+				var nextRotation = Quaternion.RotateTowards(currentRotation, desiredRotation, lookAtSpeed * Time.fixedDeltaTime);
+				var nextEuler = nextRotation.eulerAngles;
+				_characterController.transform.eulerAngles = new Vector3(0.0f, nextEuler.y, 0.0f);
+				playerCamera.transform.localEulerAngles = new Vector3(nextEuler.x, 0.0f, 0.0f);
+			}	
 
 			if (_camAnim)
 			{
@@ -269,8 +273,9 @@ namespace FoxShooter.Characters
 		public void LookAt(Vector3 location)
 		{
 			lookAt = true;
-			var direction = (location - _characterController.transform.position).To2D().normalized;
-			lookAtYaw = -MathF.Atan2(direction.y, direction.x) * Mathf.Rad2Deg + 90.0f;
+			lookAtDirection = location - transform.position;
+			lookAtDirection.y += 0.5f;
+			lookAtDirection.Normalize();
 		}
 
 		private void Land()

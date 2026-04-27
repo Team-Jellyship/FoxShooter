@@ -17,12 +17,13 @@ namespace FoxShooter.Characters.AI.BehaviourGraph.Actions
     {
         [SerializeReference] public BlackboardVariable<GameObject> agent;
         [SerializeReference] public BlackboardVariable<bool> waitForAttackCompletion;
+        [SerializeReference] public BlackboardVariable<ProjectileSource> source;
 
         [CreateProperty] private bool _completed;
         
         protected override Status OnStart()
         {
-            var attackController = agent.Value.GetComponent<ProjectileSource>();
+            var attackController = source.Value;
             if (attackController == null)
             {
                 return Status.Failure;
