@@ -45,7 +45,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::FoxShooter.Characters.ProjectileSource
   projectilePrefab: {fileID: 5737718843795827397, guid: b43379484354e5949a0096874920ac4a, type: 3}
-  cooldownTime: 0
+  cooldownTime: 0.5
   speed: 10
   lifetime: 2
   owner: {fileID: 5213491490267880193}
@@ -357,6 +357,9 @@ MonoBehaviour:
   lookAtDirection: {x: 0, y: 0, z: 0}
   additionalLocalSpaceVelocity: {x: 0, y: 0, z: 0}
   currentVelocity: {x: 0, y: 0, z: 0}
+  lookAtComplete:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!114 &303101044422742064
 MonoBehaviour:
   m_ObjectHideFlags: 0

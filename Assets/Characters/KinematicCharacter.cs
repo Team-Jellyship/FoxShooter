@@ -2,7 +2,9 @@
 using FoxShooter.Game;
 using FoxShooter.Scripts;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.InputSystem;
+using UnityEngine.Serialization;
 
 namespace FoxShooter.Characters
 {
@@ -105,6 +107,8 @@ namespace FoxShooter.Characters
 
 		[SerializeField] private Vector3 additionalLocalSpaceVelocity;
 		[SerializeField] private Vector3 currentVelocity;
+
+		public UnityEvent lookAtComplete;
 		
 		private bool _immobilized;
 		private bool _grounded;
@@ -203,10 +207,18 @@ namespace FoxShooter.Characters
 			{
 				var currentRotation = playerCamera.transform.rotation;
 				var desiredRotation = Quaternion.LookRotation(lookAtDirection, Vector3.up);
-				var nextRotation = Quaternion.RotateTowards(currentRotation, desiredRotation, lookAtSpeed * Time.fixedDeltaTime);
+				var deltaAngle = lookAtSpeed * Time.fixedDeltaTime;
+				var nextRotation = Quaternion.RotateTowards(currentRotation, desiredRotation, deltaAngle);
+				
 				var nextEuler = nextRotation.eulerAngles;
 				_characterController.transform.eulerAngles = new Vector3(0.0f, nextEuler.y, 0.0f);
 				playerCamera.transform.localEulerAngles = new Vector3(nextEuler.x, 0.0f, 0.0f);
+				
+				if (Quaternion.Angle(desiredRotation, nextRotation) < 0.01f)
+				{
+					lookAt = false;
+					lookAtComplete.Invoke();
+				}
 			}	
 
 			if (_camAnim)

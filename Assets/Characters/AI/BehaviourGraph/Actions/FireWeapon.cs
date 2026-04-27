@@ -52,7 +52,7 @@ namespace FoxShooter.Characters.AI.BehaviourGraph.Actions
             {
                 return;
             }
-            var attackController = agent.Value.GetComponent<ProjectileSource>();
+            var attackController = source.Value;
             attackController.onCooldownEnded.RemoveListener(CooldownEnded);
             _completed = true;
         }
