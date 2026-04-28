@@ -13,6 +13,7 @@ namespace FoxShooter.Game.GamemodeGraph.Runtime
 
         public override void Enter()
         {
+            Time.timeScale = 0.0f;
             if (showMouse)
             {
                 Cursor.lockState = CursorLockMode.None;
@@ -31,6 +32,7 @@ namespace FoxShooter.Game.GamemodeGraph.Runtime
 
         public override void Exit()
         {
+            Time.timeScale = 1.0f;
             Cursor.lockState = CursorLockMode.Confined;
             Cursor.visible = false;
             

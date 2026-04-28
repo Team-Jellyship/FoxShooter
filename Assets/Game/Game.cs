@@ -51,7 +51,7 @@ namespace FoxShooter.Game
         public void LoadMenu(GameObject menu)
         {
             UnloadMenu();
-            SceneManager.LoadScene(_gameSettings.defaultScene.BuildIndex);
+            // SceneManager.LoadScene(_gameSettings.defaultScene.BuildIndex);
             Instantiate(menu, _menuAttachmentPoint.transform, false);
         }
 
