@@ -95,7 +95,8 @@ namespace FoxShooter.Game.GamemodeGraph
                         name = menu.GetModeName(),
                         time = menu.GetModeTime(),
                         scene = menu.GetMenuScene(),
-                        id = Guid.NewGuid().ToString()
+                        id = Guid.NewGuid().ToString(),
+                        showMouse = menu.GetShowMouse()
                     };
                     return mode;
                 }

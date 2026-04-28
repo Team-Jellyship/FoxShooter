@@ -8,7 +8,9 @@ namespace FoxShooter.Game.GamemodeGraph.Runtime
     {
         Timeout,
         Advance,
-        Loaded
+        Return,
+        Loaded,
+        Death
     }
     
     [Serializable]

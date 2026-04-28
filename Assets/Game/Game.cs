@@ -5,6 +5,8 @@ using FoxShooter.Game.StatusEffects;
 using FoxShooter.Scripts;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.EventSystems;
+using UnityEngine.InputSystem.UI;
 using UnityEngine.SceneManagement;
 
 namespace FoxShooter.Game
@@ -23,6 +25,7 @@ namespace FoxShooter.Game
         private GameSettings _gameSettings;
         private readonly GameTransitionTable _transitionTable = new();
         private GameObject _menuAttachmentPoint;
+        private EventSystem _eventSystem;
         
         [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.AfterAssembliesLoaded)]
         private static void OnAfterAssembliesLoaded()
@@ -34,18 +37,21 @@ namespace FoxShooter.Game
 
         private void Start()
         {
+            _eventSystem = gameObject.AddComponent<EventSystem>();
+            gameObject.AddComponent<InputSystemUIInputModule>();
             _menuAttachmentPoint = new GameObject("menu");
             DontDestroyOnLoad(_menuAttachmentPoint);
             _gameSettings = Resources.Load<GameSettings>(GameSettings.SettingsFileName);
             _transitionTable.Startup(_gameSettings.transitions);
             statusEffects = _gameSettings.effectList;
-            Cursor.lockState = CursorLockMode.Locked;
+            // Cursor.lockState = CursorLockMode.Locked;
         }
 
         // Spawns a new menu object 
         public void LoadMenu(GameObject menu)
         {
             UnloadMenu();
+            SceneManager.LoadScene(_gameSettings.defaultScene.BuildIndex);
             Instantiate(menu, _menuAttachmentPoint.transform, false);
         }
 
