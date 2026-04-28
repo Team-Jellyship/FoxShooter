@@ -194,6 +194,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3e8a76c9134d46d8b2241eca27f0806a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::FoxShooter.Characters.KinematicCharacter
+  moveRelativeToCamera: 1
   acceleration: 40
   maxSpeed: 14
   crouchedMaxSpeed: 5
@@ -220,9 +221,12 @@ MonoBehaviour:
   cameraPitch: 0
   lookAt: 0
   lookAtSpeed: 5
-  lookAtAngle: {x: 0, y: 0}
+  lookAtDirection: {x: 0, y: 0, z: 0}
   additionalLocalSpaceVelocity: {x: 0, y: 0, z: 0}
   currentVelocity: {x: 0, y: 0, z: 0}
+  lookAtComplete:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!114 &3370733928436092656
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -443,7 +447,14 @@ MonoBehaviour:
   <maxCombo>k__BackingField: 100
   comboDecayRate: 10
   combos: {fileID: 11400000, guid: 030b4c825671afd41bbad8b3002e26d5, type: 2}
+  killTime: 2
   comboValueChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  killCountChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  killComboEnded:
     m_PersistentCalls:
       m_Calls: []
 --- !u!114 &1513443341371445949
@@ -492,6 +503,18 @@ MonoBehaviour:
         m_TargetAssemblyTypeName: FoxShooter.Characters.Fox.ComboMeter, Assembly-CSharp
         m_MethodName: SendComboEvent
         m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: kill
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 759520291792908217}
+        m_TargetAssemblyTypeName: FoxShooter.Characters.Fox.ComboMeter, Assembly-CSharp
+        m_MethodName: IncreaseKillCount
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -783,6 +806,7 @@ MonoBehaviour:
   damage: 1
   viewRecoil: {fileID: 4577427329450689634}
   crosshairAnim: {fileID: 2693857677620479894}
+  owner: {fileID: 2413653789905979878}
   mask:
     serializedVersion: 2
     m_Bits: 64
@@ -1252,6 +1276,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5662212912797052302, guid: 569aa1bbba5adf746aad755487d50476, type: 3}
+      propertyPath: comboMeter
+      value: 
+      objectReference: {fileID: 759520291792908217}
     - target: {fileID: 7347520937000077799, guid: 569aa1bbba5adf746aad755487d50476, type: 3}
       propertyPath: character
       value: 

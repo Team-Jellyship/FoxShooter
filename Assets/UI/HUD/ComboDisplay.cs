@@ -6,7 +6,7 @@ namespace FoxShooter.UI.HUD
     public class ComboDisplay : MonoBehaviour
     {
         [SerializeField] private ComboMeter meter;
-        [SerializeField] private RectTransform rect;
+        [SerializeField] private ProgressBar bar;
 
         private void Start()
         {
@@ -16,9 +16,7 @@ namespace FoxShooter.UI.HUD
 
         private void ComboChanged(float comboValue)
         {
-            var scale = rect.localScale;
-            scale.x = comboValue / meter.maxCombo;
-            rect.localScale = scale;
+            bar.SetPercentage(comboValue / meter.maxCombo);
         }
     }
 }

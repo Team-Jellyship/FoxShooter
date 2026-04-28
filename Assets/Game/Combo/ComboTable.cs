@@ -8,6 +8,7 @@ namespace FoxShooter.Game.Combo
     public class ComboTable : ScriptableObject
     {
         public List<ComboDefinition> combos;
+        public List<ComboRank> ranks;
 
         public bool TryGetValue(string tag, out ComboDefinition result)
         {

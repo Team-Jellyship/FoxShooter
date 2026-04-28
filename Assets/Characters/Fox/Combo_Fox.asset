@@ -28,3 +28,20 @@ MonoBehaviour:
   - tag: dash
     description: Dashed through an enemy
     comboAmount: 40
+  ranks:
+  - name: D
+    decayRate: 1
+    pointsToNextRank: 100
+    startingPoints: 50
+  - name: C
+    decayRate: 1.5
+    pointsToNextRank: 100
+    startingPoints: 50
+  - name: B
+    decayRate: 2.5
+    pointsToNextRank: 100
+    startingPoints: 50
+  - name: A
+    decayRate: 4
+    pointsToNextRank: 100
+    startingPoints: 50

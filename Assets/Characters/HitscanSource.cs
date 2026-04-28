@@ -14,6 +14,7 @@ namespace FoxShooter.Characters
         [SerializeField] private float damage;
         [SerializeField] private ViewRecoil viewRecoil;
         [SerializeField] public Animator crosshairAnim; // For Animation Triggers
+        [SerializeField] private CharacterStats owner;
         [SerializeField] private LayerMask mask;
 
         [SerializeField] private UnityEvent fired;
@@ -21,7 +22,6 @@ namespace FoxShooter.Characters
 
         private bool _onCooldown;
         private TimerHandle _cooldownTimer;
-        private CharacterStats _owner;
         
         private void Start()
         {
@@ -50,11 +50,11 @@ namespace FoxShooter.Characters
                     out var result, distance, mask, QueryTriggerInteraction.Collide))
             {
                 var stats = result.transform.gameObject.GetComponentInRoot<CharacterStats>();
-                if (stats && stats != _owner)
+                if (stats && stats != owner)
                 {
                     hitTarget.Invoke();
                     crosshairAnim.SetTrigger("hitMarker");
-                    stats.TakeDamage(damage, _owner, false);
+                    stats.TakeDamage(damage, owner, false);
                 }
                 
             }
