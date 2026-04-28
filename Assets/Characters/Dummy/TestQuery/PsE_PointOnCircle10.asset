@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3da96191657667d4788d4a2a02cee8c2, type: 3}
   m_Name: PsE_PointOnCircle10
   m_EditorClassIdentifier: Assembly-CSharp::FoxShooter.Characters.AI.Polestar.PointOnCircle
-  radius: 15
+  radius: 3
   numPoints: 10

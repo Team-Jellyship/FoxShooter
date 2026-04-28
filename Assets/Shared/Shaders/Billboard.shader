@@ -8,6 +8,10 @@ Shader "Custom/Billboard"
 
     SubShader
     {
+        Tags
+        {
+            "DisableBatching" = "True"
+        }
         Pass
         {
             Tags
