@@ -8,11 +8,15 @@ Shader "Custom/BillboardOverlay"
 
     SubShader
     {
+        Tags
+        {
+            "DisableBatching" = "True"
+        }
         Pass
         {
             Tags
             {
-                "Queue" = "Overlay"
+                "Queue" = "Default"
                 "RenderPipeline" = "UniversalPipeline"
             }
             

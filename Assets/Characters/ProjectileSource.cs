@@ -15,7 +15,8 @@ namespace FoxShooter.Characters
         [SerializeField] [Min(0.0f)] private float cooldownTime;
         [SerializeField] [Min(0.0f)] private float speed;
         [SerializeField] [Min(0.0f)] private float lifetime;
-
+        
+        [SerializeField] private Animator _animator; // For Animation Triggers
         [SerializeField] private CharacterStats owner;
 
         public UnityEvent onCooldownEnded;
@@ -25,6 +26,7 @@ namespace FoxShooter.Characters
 
         private void Start()
         {
+            _animator = GetComponent<Animator>();
             _cooldownTimer = TimerManager.instance.CreateTimer(this, () =>
             {
                 _onCooldown = false;
@@ -43,12 +45,16 @@ namespace FoxShooter.Characters
 
         public void Fire()
         {
+            _animator.SetTrigger("Fire");
+            
             if (_onCooldown)
             {
                 return;
             }
+            
             SpawnProjectile();
             _onCooldown = true;
+            
             _cooldownTimer.Start(cooldownTime);
         }
 

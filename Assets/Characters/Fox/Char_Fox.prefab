@@ -216,11 +216,11 @@ MonoBehaviour:
   coyoteTime: 0.5
   lookSensitivityHorizontal: 0.1
   lookSensitivityVertical: 0.1
-  playerCamera: {fileID: 653023276848462293}
+  playerCamera: {fileID: 302000666510668142}
   cameraPitch: 0
   lookAt: 0
   lookAtSpeed: 5
-  lookAtYaw: 0
+  lookAtAngle: {x: 0, y: 0}
   additionalLocalSpaceVelocity: {x: 0, y: 0, z: 0}
   currentVelocity: {x: 0, y: 0, z: 0}
 --- !u!114 &3370733928436092656
