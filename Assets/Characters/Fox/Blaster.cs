@@ -32,6 +32,11 @@ namespace FoxShooter.Characters.Fox
 
         private void Update()
         {
+            if (_overheating)
+            {
+                _animator.SetTrigger("overheating");
+            }
+            
             if (currentHeat == 0.0f)
             {
                 return;
