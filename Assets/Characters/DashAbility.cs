@@ -4,7 +4,7 @@ using FoxShooter.Scripts;
 using UnityEngine.Events;
 using UnityEngine.InputSystem;
 
-namespace FoxShooter.Characters.Fox
+namespace FoxShooter.Characters
 {
     public class DashAbility : MonoBehaviour
     {
@@ -12,7 +12,9 @@ namespace FoxShooter.Characters.Fox
 
         [SerializeField] [Min(0.0f)] private float cooldownTime = 5.0f;
         [SerializeField] private float healAmount = 1.0f;
-        [SerializeField] private UnityEvent hitEnemy; 
+        [SerializeField] private UnityEvent hitEnemy;
+
+        public UnityEvent cooldownEnded;
         
         private bool _onCooldown;
         private TimerHandle _cooldownTimer;
@@ -46,7 +48,7 @@ namespace FoxShooter.Characters.Fox
             _dashInvuln = new StatusEffectInstance(Game.Game.instance.statusEffects.invulnerability, this);
             
             // Create our cooldown timer, but don't start it yet
-            _cooldownTimer = TimerManager.instance.CreateTimer(this, () => _onCooldown = false);
+            _cooldownTimer = TimerManager.instance.CreateTimer(this, EndCooldown);
         }
         
         public void Dash(InputAction.CallbackContext context)
@@ -56,6 +58,11 @@ namespace FoxShooter.Characters.Fox
                 return;
             }
             
+            Dash();
+        }
+
+        public void Dash()
+        {
             if (_onCooldown)
             {
                 return;
@@ -101,8 +108,14 @@ namespace FoxShooter.Characters.Fox
             }
             hitEnemy.Invoke();
             _stats.Heal(healAmount);
+            EndCooldown();
+        }
+
+        private void EndCooldown()
+        {
             _cooldownTimer.Pause();
             _onCooldown = false;
-    }
+            cooldownEnded.Invoke();
+        }
     }
 }
