@@ -1,12 +1,21 @@
-﻿using FoxShooter.Game.GamemodeGraph.Runtime;
+﻿using Eflatun.SceneReference;
+using FoxShooter.Characters;
+using FoxShooter.Game.GamemodeGraph.Runtime;
 using FoxShooter.Game.StatusEffects;
 using FoxShooter.Scripts;
 using UnityEngine;
+using UnityEngine.Events;
+using UnityEngine.SceneManagement;
 
 namespace FoxShooter.Game
 {
     public class Game : MonoBehaviour
     {
+        [field: SerializeField] public float score { get; private set; }
+        [field: SerializeField] public CharacterStats player { get; private set; }
+        
+        public UnityEvent<float> scoreChanged = new();
+        
         public static Game instance { get; private set; }
 
         public StatusEffectList statusEffects;
@@ -48,6 +57,34 @@ namespace FoxShooter.Game
         public void Command(GamemodeTransitionFlag flag)
         {
             _transitionTable.Command(flag);
+        }
+
+        public void Score(float points)
+        {
+            if (points < 0.0f)
+            {
+                return;
+            }
+
+            score += points;
+            scoreChanged.Invoke(score);
+        }
+
+        public void RestartCurrentLevel()
+        {
+            // This isn't an ideal way, but it works okay for now
+            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+            SetScore(0.0f);
+        }
+
+        private void SetScore(float newScore)
+        {
+            score = newScore;
+            scoreChanged.Invoke(score);
+        }
+
+        public void SetNextLevel(SceneReference level)
+        {
         }
     }
 }

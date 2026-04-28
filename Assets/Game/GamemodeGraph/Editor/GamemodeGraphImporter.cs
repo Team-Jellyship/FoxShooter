@@ -49,13 +49,19 @@ namespace FoxShooter.Game.GamemodeGraph
                             }
                             var currentNode = gamemodeNodeDictionary[gamemodeNode];
                             var transitionType = transition.GetTransitionFlag();
-                            var nextNode = gamemodeNodeDictionary[transition.GetNextNode()];
+                            var nextNode = transition.GetNextNode();
+                            if (transition.GetNextNode() == null)
+                            {
+                                continue;
+                            }
+                            
+                            var nextGamemode = gamemodeNodeDictionary[transition.GetNextNode()];
 
                             if (nextNode == null)
                             {
                                 continue;
                             }
-                            gamemodeTransitionManager.AddTransition(currentNode, transitionType, nextNode);
+                            gamemodeTransitionManager.AddTransition(currentNode, transitionType, nextGamemode);
                         }
                         break;
                     }

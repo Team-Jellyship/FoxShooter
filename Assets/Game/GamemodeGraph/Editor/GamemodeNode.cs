@@ -9,6 +9,7 @@ namespace FoxShooter.Game.GamemodeGraph
 {
 
 [Serializable]
+[UseWithGraph(typeof(GamemodeGraph))]
 class StartNode : Node
 {
     protected override void OnDefinePorts(IPortDefinitionContext context)
@@ -24,6 +25,7 @@ class StartNode : Node
 }
     
 [Serializable]
+[UseWithGraph(typeof(GamemodeGraph))]
 public class GamemodeNode : ContextNode
 {
     private const string InputCountName = "Inputs";
