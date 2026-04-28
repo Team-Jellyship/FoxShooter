@@ -125,7 +125,6 @@ GameObject:
   - component: {fileID: 5285784657511011634}
   - component: {fileID: 5213491490267880193}
   - component: {fileID: 3953417084980186901}
-  - component: {fileID: 277794378350528876}
   - component: {fileID: 5054400896633340000}
   - component: {fileID: 6706005868839819652}
   - component: {fileID: 2959766590651571530}
@@ -155,6 +154,7 @@ Transform:
   m_Children:
   - {fileID: 2693698109235313576}
   - {fileID: 1021603083393001354}
+  - {fileID: 6922762387611701479}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &5213491490267880193
@@ -219,27 +219,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &277794378350528876
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7192794133295583836}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 290643dc3e2848bb9c85a4aa18b441cb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::FoxShooter.Characters.ProjectileSource
-  projectilePrefab: {fileID: 5737718843795827397, guid: b43379484354e5949a0096874920ac4a, type: 3}
-  cooldownTime: 0
-  speed: 10
-  lifetime: 2
-  _animator: {fileID: 0}
-  owner: {fileID: 5213491490267880193}
-  onCooldownEnded:
-    m_PersistentCalls:
-      m_Calls: []
 --- !u!195 &5054400896633340000
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -299,6 +278,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3e8a76c9134d46d8b2241eca27f0806a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::FoxShooter.Characters.KinematicCharacter
+  moveRelativeToCamera: 0
   acceleration: 5
   maxSpeed: 5
   crouchedMaxSpeed: 1
@@ -321,13 +301,16 @@ MonoBehaviour:
   coyoteTime: 0.5
   lookSensitivityHorizontal: 1
   lookSensitivityVertical: 1
-  playerCamera: {fileID: 0}
+  playerCamera: {fileID: 8876689230686348931}
   cameraPitch: 0
   lookAt: 0
-  lookAtSpeed: 5
-  lookAtYaw: 0
+  lookAtSpeed: 360
+  lookAtDirection: {x: 0, y: 0, z: 0}
   additionalLocalSpaceVelocity: {x: 0, y: 0, z: 0}
   currentVelocity: {x: 0, y: 0, z: 0}
+  lookAtComplete:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!114 &303101044422742064
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -357,6 +340,7 @@ MonoBehaviour:
   - rid: 476172455168180914
   - rid: 476172455168180915
   - rid: 476172455168180916
+  - rid: 476172736573997128
   m_OriginalGraph: {fileID: 0}
   m_IsInitialised: 0
   m_IsStarted: 0
@@ -387,6 +371,14 @@ MonoBehaviour:
           m_Value1: 6736056064601575708
         Name: Target
         m_Value: {fileID: 0}
+    - rid: 476172736573997128
+      type: {class: 'BlackboardVariable`1[[FoxShooter.Characters.ProjectileSource, Assembly-CSharp]]', ns: Unity.Behavior, asm: Unity.Behavior}
+      data:
+        GUID:
+          m_Value0: 2603617188089070325
+          m_Value1: 8219334632014535771
+        Name: Gun
+        m_Value: {fileID: 1963727912028641837}
 --- !u!114 &6842945112353292969
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -531,3 +523,56 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_SpriteSortPoint: 0
+--- !u!1 &8876689230686348931
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6922762387611701479}
+  - component: {fileID: 1963727912028641837}
+  m_Layer: 3
+  m_Name: Gun
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6922762387611701479
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8876689230686348931}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 5285784657511011634}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1963727912028641837
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8876689230686348931}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 290643dc3e2848bb9c85a4aa18b441cb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::FoxShooter.Characters.ProjectileSource
+  projectilePrefab: {fileID: 5737718843795827397, guid: b43379484354e5949a0096874920ac4a, type: 3}
+  cooldownTime: 0.5
+  speed: 10
+  lifetime: 2
+  _animator: {fileID: 482385922048550689}
+  owner: {fileID: 5213491490267880193}
+  onCooldownEnded:
+    m_PersistentCalls:
+      m_Calls: []

@@ -26,7 +26,7 @@ namespace FoxShooter.Characters
 
         private void Start()
         {
-            _animator = GetComponent<Animator>();
+            // _animator = GetComponent<Animator>();
             _cooldownTimer = TimerManager.instance.CreateTimer(this, () =>
             {
                 _onCooldown = false;
@@ -45,7 +45,7 @@ namespace FoxShooter.Characters
 
         public void Fire()
         {
-            _animator.SetTrigger("Fire");
+            _animator?.SetTrigger("Fire");
             
             if (_onCooldown)
             {
