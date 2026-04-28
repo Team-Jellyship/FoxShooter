@@ -18,6 +18,7 @@ namespace FoxShooter.Characters.AI.BehaviourGraph.Actions
         [SerializeReference] public BlackboardVariable<GameObject> agent;
         [SerializeReference] public BlackboardVariable<bool> waitForAttackCompletion;
         [SerializeReference] public BlackboardVariable<ProjectileSource> source;
+        [SerializeReference] public BlackboardVariable<GameObject> target;
 
         [CreateProperty] private bool _completed;
         
@@ -29,7 +30,7 @@ namespace FoxShooter.Characters.AI.BehaviourGraph.Actions
                 return Status.Failure;
             }
         
-            attackController.Fire();
+            attackController.Fire(target.Value.GetComponent<CharacterStats>());
             if (!waitForAttackCompletion.Value)
             {
                 return Status.Success;

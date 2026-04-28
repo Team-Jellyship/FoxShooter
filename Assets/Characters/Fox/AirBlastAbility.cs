@@ -51,7 +51,7 @@ namespace FoxShooter.Characters.Fox
                 return;
             }
             
-            projectile.Setup(_stats, transform, projectile.speed * forceProjectileStrength, projectileNewLifespan);
+            projectile.Setup(_stats, null, transform, projectile.speed * forceProjectileStrength, projectileNewLifespan);
             projectile.transform.rotation = transform.rotation;
             onReflect.Invoke();
             projectile.hit.RemoveListener(ProjectileHit);

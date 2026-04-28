@@ -13,14 +13,15 @@ namespace Props.Projectiles
         public UnityEvent hit;
         public float speed { get; private set; }
         
+        protected CharacterStats target;
+        protected Rigidbody body;
         private ContactHitbox _hitbox;
-        private Rigidbody _body;
         private TimerHandle _lifetime;
         
         private void Awake()
         {
             _hitbox = GetComponent<ContactHitbox>();
-            _body = GetComponent<Rigidbody>();
+            body = GetComponent<Rigidbody>();
         }
 
         private void Start()
@@ -28,13 +29,14 @@ namespace Props.Projectiles
             _hitbox.hit.AddListener(() => hit.Invoke());
         }
 
-        public void Setup(CharacterStats owner, Transform origin, float speedIn, float lifetime)
+        public void Setup(CharacterStats owner, CharacterStats targetIn, Transform origin, float speedIn, float lifetime)
         {
             _lifetime ??= TimerManager.instance.CreateTimer(this, Expire);
             speed = speedIn;
-            _body.linearVelocity = origin.transform.forward * speed;
+            body.linearVelocity = origin.transform.forward * speed;
             _hitbox.owner = owner;
             _lifetime.Start(lifetime);
+            target = targetIn;
         }
 
         private void Expire()
