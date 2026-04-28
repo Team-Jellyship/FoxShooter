@@ -21,11 +21,15 @@ namespace FoxShooter.Characters.AI.BehaviourGraph.Conditions
 
         public override bool IsTrue()
         {
-            return (_targetStartingPosition - target.Value.position).sqrMagnitude > _maxDistanceSquared;
+            return target.Value && (_targetStartingPosition - target.Value.position).sqrMagnitude > _maxDistanceSquared;
         }
 
         public override void OnStart()
         {
+            if (!target.Value)
+            {
+                return;
+            }
             _targetStartingPosition = target.Value.position;
             _maxDistanceSquared = distance * distance;
         }

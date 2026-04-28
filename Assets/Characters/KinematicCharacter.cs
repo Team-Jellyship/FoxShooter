@@ -228,12 +228,11 @@ namespace FoxShooter.Characters
 			
 			_animator.SetBool("isJumping", _isJumping);
 
-			if (_characterController.transform.position.y < NegativeKillY)
+			if (_characterController.transform.position.y < NegativeKillY && _stats && _stats.alive)
 			{
 				// This should only happen once
-				
 				// ReSharper disable once Unity.PerformanceCriticalCodeInvocation
-				_stats?.Kill(null);
+				_stats.Kill(null);
 			}
 			
 		}

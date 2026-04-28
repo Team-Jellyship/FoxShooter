@@ -19,8 +19,9 @@ namespace FoxShooter.Game
         public UnityEvent<float> scoreChanged = new();
         
         public static Game instance { get; private set; }
-
         public StatusEffectList statusEffects;
+        public SceneReference nextLevel;
+        public CharacterStats character;
 
         private GameSettings _gameSettings;
         private readonly GameTransitionTable _transitionTable = new();
@@ -83,14 +84,18 @@ namespace FoxShooter.Game
             SetScore(0.0f);
         }
 
+        public void DestroyPlayer()
+        {
+            if (character && character.gameObject)
+            {
+                Destroy(character.gameObject);
+            }
+        }
+
         private void SetScore(float newScore)
         {
             score = newScore;
             scoreChanged.Invoke(score);
-        }
-
-        public void SetNextLevel(SceneReference level)
-        {
         }
     }
 }

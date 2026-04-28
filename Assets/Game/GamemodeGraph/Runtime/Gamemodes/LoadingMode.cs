@@ -10,18 +10,22 @@ namespace FoxShooter.Game.GamemodeGraph.Runtime
     {
         [SerializeField] public SceneReference sceneToLoad;
 
+        private SceneReference _nextScene;
+        
         public override void Enter()
         {
             base.Enter();
 
-            var buildIndex = sceneToLoad.BuildIndex;
+            _nextScene = sceneToLoad.State == SceneReferenceState.Unsafe ? Game.instance.nextLevel : sceneToLoad;
+
+            var buildIndex = _nextScene.BuildIndex;
             if (buildIndex < 0)
             {
                 Debug.Log("cant load scene, index is -1");
                 return;
             }
             
-            var result = SceneManager.LoadSceneAsync(sceneToLoad.BuildIndex);
+            var result = SceneManager.LoadSceneAsync(_nextScene.BuildIndex);
             if (result == null)
             {
                 return;
@@ -38,7 +42,7 @@ namespace FoxShooter.Game.GamemodeGraph.Runtime
                 return;
             }
 
-            SceneManager.LoadScene(sceneToLoad.BuildIndex);
+            SceneManager.LoadScene(_nextScene.BuildIndex);
             Game.instance.Command(GamemodeTransitionFlag.Loaded);
         }
     }
