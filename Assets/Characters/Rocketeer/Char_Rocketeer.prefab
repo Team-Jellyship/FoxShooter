@@ -570,7 +570,7 @@ MonoBehaviour:
   projectilePrefab: {fileID: 5737718843795827397, guid: aa2a13b0d45d0d346ba7c6d4c1a7ef91, type: 3}
   cooldownTime: 1
   speed: 5
-  lifetime: 4
+  lifetime: 2
   _animator: {fileID: 482385922048550689}
   owner: {fileID: 5213491490267880193}
   onCooldownEnded:

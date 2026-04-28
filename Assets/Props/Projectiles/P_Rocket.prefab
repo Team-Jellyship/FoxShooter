@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 6302007939622099136}
   - component: {fileID: 7865606601596074722}
   - component: {fileID: 675258265693433476}
-  - component: {fileID: 8202202302408006917}
+  - component: {fileID: 4998446407938376049}
   m_Layer: 7
   m_Name: P_Rocket
   m_TagString: projectile
@@ -102,7 +102,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   owner: {fileID: 0}
---- !u!114 &8202202302408006917
+--- !u!114 &4998446407938376049
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -111,12 +111,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 5737718843795827397}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bb506e31a7d9435387da6e8d77a5cb7b, type: 3}
+  m_Script: {fileID: 11500000, guid: 42334701bffd46dfa637711542c6b4d6, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Props.Projectiles.KinematicProjectile
+  m_EditorClassIdentifier: Assembly-CSharp::Props.Projectiles.Missile
   hit:
     m_PersistentCalls:
       m_Calls: []
+  rotationSpeed: 180
 --- !u!1 &8452977163491089942
 GameObject:
   m_ObjectHideFlags: 0
