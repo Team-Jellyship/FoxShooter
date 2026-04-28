@@ -12,7 +12,6 @@ namespace FoxShooter.Characters
 	    private const float GravityConstant = -9.8f;
 		private const float DefaultMaxFallSpeed = 1000.0f;
 		private const float NegativeKillY = -200.0f;
-		public Animator camAnim; // For Animation Triggers
 
 		// MOVEMENT
 		[Header("Movement")]
@@ -114,6 +113,7 @@ namespace FoxShooter.Characters
 		private Vector3 _impulses;
 		private TimerHandle _coyoteTimer;
 		private TimerHandle _jumpTimer;
+		private Animator _camAnim; // For Animation Triggers
 		
 		// Component cached references
 		private CharacterController _characterController;
@@ -123,6 +123,7 @@ namespace FoxShooter.Characters
 		{
 			_characterController = GetComponent<CharacterController>();
 			_stats = GetComponent<CharacterStats>();
+			_camAnim = GetComponent<Animator>();
 		}
 
 		private void Start()
@@ -204,13 +205,11 @@ namespace FoxShooter.Characters
 				_characterController.transform.eulerAngles = characterRotation;
 			}
 
-			if (!_isJumping)
+			if (_camAnim)
 			{
-				camAnim.SetBool("isWalking", _isWalking);
-
+				_camAnim.SetBool("isJumping", _isJumping);
+				_camAnim.SetBool("isWalking", _isWalking && !_isJumping);
 			}
-			
-			camAnim.SetBool("isJumping", _isJumping);
 
 			if (_characterController.transform.position.y < NegativeKillY)
 			{

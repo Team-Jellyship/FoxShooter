@@ -15,7 +15,7 @@ MonoBehaviour:
   combos:
   - tag: hit
     description: Hit an Enemy
-    comboAmount: 10
+    comboAmount: 5
   - tag: kill
     description: Killed an Enemy
     comboAmount: 50

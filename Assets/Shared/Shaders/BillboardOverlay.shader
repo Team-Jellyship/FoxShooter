@@ -1,4 +1,4 @@
-Shader "Custom/Billboard"
+Shader "Custom/BillboardOverlay"
 {
     Properties
     {
@@ -102,7 +102,8 @@ Shader "Custom/Billboard"
 
             half4 frag(Varyings IN) : SV_Target
             {
-                return SAMPLE_TEXTURE2D(_MainTex, sampler_MainTex, IN.uv) * IN.color;
+                float4 texColor = SAMPLE_TEXTURE2D(_MainTex, sampler_MainTex, IN.uv);
+                return half4(lerp(texColor.rgb, IN.color.rgb, 1.0 - IN.color.a), texColor.a);
             }
             
             ENDHLSL
