@@ -29,6 +29,7 @@ namespace FoxShooter.Characters
 		[SerializeField] private float invulnerabilityTime;
 		[SerializeField] private float despawnTime = 0.5f;
 		[SerializeField] private float score;
+		[SerializeField] private Animator _animator; // For Animation Triggers
 		
 		private bool _showingStats;
 		private TimerHandle _despawnTimer;
@@ -42,6 +43,7 @@ namespace FoxShooter.Characters
 			_effects.RegisterEffectAppliedCallback(Game.Game.instance.statusEffects.invulnerability, onStunned.Invoke, this);
 			_effects.RegisterEffectRemovedCallback(Game.Game.instance.statusEffects.invulnerability, onStunEnd.Invoke, this);
 
+			_animator = GetComponent<Animator>();
 			_despawnTimer = TimerManager.instance.CreateTimer(this, () => Destroy(gameObject));
 		}
 
@@ -70,6 +72,7 @@ namespace FoxShooter.Characters
 			
 			Debug.Log($"[CharacterStats] '{gameObject.name}' took '{damageAmount}' damage from '{StarNames.GetNameSafe(source)}'.");
 			onTakeDamage.Invoke(damageAmount);
+			_animator.SetTrigger("Damage");
 			var healthEffect = Game.Game.instance.statusEffects.health;
 			if (!(_effects.AddBaseValue(healthEffect, -damageAmount) <= 0.0f))
 			{
