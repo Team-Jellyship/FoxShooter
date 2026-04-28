@@ -286,7 +286,7 @@ namespace FoxShooter.Characters
 		public void LookAt(Vector3 location)
 		{
 			lookAt = true;
-			lookAtDirection = location - transform.position;
+			lookAtDirection = location - playerCamera.transform.position;
 			lookAtDirection.y += 0.5f;
 			lookAtDirection.Normalize();
 		}
