@@ -1279,8 +1279,35 @@ MonoBehaviour:
   passiveCooldownRate: 5
   overheat:
     m_PersistentCalls:
-      m_Calls: []
-  activeCooldownRate: 4
+      m_Calls:
+      - m_Target: {fileID: 2693857677620479894}
+        m_TargetAssemblyTypeName: UnityEngine.Animator, UnityEngine
+        m_MethodName: SetTrigger
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: Overheat
+          m_BoolArgument: 0
+        m_CallState: 2
+  cooldown:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 2693857677620479894}
+        m_TargetAssemblyTypeName: UnityEngine.Animator, UnityEngine
+        m_MethodName: SetTrigger
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: Cooldown
+          m_BoolArgument: 0
+        m_CallState: 2
+  activeCooldownRate: 25
 --- !u!1 &6944823478681033851
 GameObject:
   m_ObjectHideFlags: 0
