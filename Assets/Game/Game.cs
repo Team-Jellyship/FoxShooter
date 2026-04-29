@@ -20,6 +20,7 @@ namespace FoxShooter.Game
         
         public static Game instance { get; private set; }
 
+        public int levelMaxCombo;
         public LevelDefinition currentLevel;
         public LevelDefinition nextLevel;
         public StatusEffectList statusEffects;
@@ -92,6 +93,10 @@ namespace FoxShooter.Game
             if (character && character.gameObject)
             {
                 Destroy(character.gameObject);
+            }
+            else
+            {
+                Debug.LogWarning("[Game] Attempted to destroy player, but player was null.");
             }
         }
 

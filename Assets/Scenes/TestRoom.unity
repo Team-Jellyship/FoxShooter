@@ -279,10 +279,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 238749407478760749, guid: e867e5ca3dce83c4e878a306fde78c18, type: 3}
-      propertyPath: cooldownTime
-      value: 1.5
-      objectReference: {fileID: 0}
     - target: {fileID: 2727929157351720282, guid: e867e5ca3dce83c4e878a306fde78c18, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -327,41 +323,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Char_Fox
       objectReference: {fileID: 0}
-    - target: {fileID: 6228323802545246593, guid: e867e5ca3dce83c4e878a306fde78c18, type: 3}
-      propertyPath: m_fontSize
-      value: 12
-      objectReference: {fileID: 0}
-    - target: {fileID: 6228323802545246593, guid: e867e5ca3dce83c4e878a306fde78c18, type: 3}
-      propertyPath: m_fontSizeBase
-      value: 12
-      objectReference: {fileID: 0}
-    - target: {fileID: 8681671206454598398, guid: e867e5ca3dce83c4e878a306fde78c18, type: 3}
-      propertyPath: gravity
-      value: 6
-      objectReference: {fileID: 0}
-    - target: {fileID: 8681671206454598398, guid: e867e5ca3dce83c4e878a306fde78c18, type: 3}
-      propertyPath: friction
-      value: 100
-      objectReference: {fileID: 0}
-    - target: {fileID: 8681671206454598398, guid: e867e5ca3dce83c4e878a306fde78c18, type: 3}
-      propertyPath: maxSpeed
-      value: 15
-      objectReference: {fileID: 0}
-    - target: {fileID: 8681671206454598398, guid: e867e5ca3dce83c4e878a306fde78c18, type: 3}
-      propertyPath: jumpStrength
-      value: 12
-      objectReference: {fileID: 0}
-    - target: {fileID: 8681671206454598398, guid: e867e5ca3dce83c4e878a306fde78c18, type: 3}
-      propertyPath: lookSensitivityHorizontal
-      value: 0.2
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 3797445723825112220, guid: e867e5ca3dce83c4e878a306fde78c18, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1950871508}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e867e5ca3dce83c4e878a306fde78c18, type: 3}
 --- !u!4 &172512069 stripped
 Transform:
@@ -1027,23 +992,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f902dc58afd1b074280123714b58f66f, type: 3}
---- !u!1 &1950871501 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 3797445723825112220, guid: e867e5ca3dce83c4e878a306fde78c18, type: 3}
-  m_PrefabInstance: {fileID: 172512068}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &1950871508
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1950871501}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cfbadf760e794b848c1fd1acfb9bfa4f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::FoxShooter.Characters.PerceptionSource
 --- !u!1 &1972970014
 GameObject:
   m_ObjectHideFlags: 0

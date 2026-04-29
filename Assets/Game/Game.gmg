@@ -1448,7 +1448,7 @@ MonoBehaviour:
     - rid: 476172750722170888
       type: {class: 'Constant`1[[UnityEngine.GameObject, UnityEngine.CoreModule]]', ns: Unity.GraphToolkit.Editor, asm: Unity.GraphToolkit.Internal.Editor}
       data:
-        m_Value: {fileID: 0}
+        m_Value: {fileID: 4656068244726179652, guid: 20206df99770c2444a60ad3f4481df39, type: 3}
     - rid: 476172750722170889
       type: {class: 'Constant`1[[System.Boolean, mscorlib]]', ns: Unity.GraphToolkit.Editor, asm: Unity.GraphToolkit.Internal.Editor}
       data:

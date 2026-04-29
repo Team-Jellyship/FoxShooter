@@ -30,6 +30,7 @@ namespace FoxShooter.Game.GamemodeGraph.Runtime
             }
 
             SceneManager.LoadScene(_nextSceneName);
+            Game.instance.levelMaxCombo = 0;
             Game.instance.Command(GamemodeTransitionFlag.Loaded);
         }
     }

@@ -70,18 +70,9 @@ namespace FoxShooter.Characters.Fox
             return Mathf.Clamp(_killComboTimer.GetRemainingTime() / killTime, 0.0f, 1.0f);
         }
 
-        private void DecreaseRank()
-        {
-            if (_currentRankIndex == 0)
-            {
-                return;
-            }
-            
-            
-        }
-
         private void EndKillCombo()
         {
+            Game.Game.instance.levelMaxCombo = Math.Max(Game.Game.instance.levelMaxCombo, killCount);
             killComboEnded.Invoke(killCount);
             killCount = 0;
             killCountChanged.Invoke(0);

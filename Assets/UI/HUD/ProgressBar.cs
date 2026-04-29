@@ -9,7 +9,7 @@ namespace FoxShooter.UI.HUD
         public void SetPercentage(float percentage)
         {
             var scale = rect.localScale;
-            scale.x = percentage;
+            scale.y = percentage;
             rect.localScale = scale;
         }
     }
