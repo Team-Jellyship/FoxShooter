@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 799061803142270640}
   - component: {fileID: 6569203832740094242}
   - component: {fileID: 1622157019175835160}
+  - component: {fileID: 9114281575359533324}
   m_Layer: 6
   m_Name: Hurtbox
   m_TagString: Untagged
@@ -28,10 +29,12 @@ Transform:
   m_GameObject: {fileID: 6883791174585411006}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 7, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 1021603083393001354}
+  - {fileID: 6922762387611701479}
   m_Father: {fileID: 5285784657511011634}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &799061803142270640
@@ -114,6 +117,37 @@ CapsuleCollider:
   m_Height: 2
   m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &9114281575359533324
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6883791174585411006}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9ba0b690894d42269132f0d42c1a2992, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::FoxShooter.Characters.AI.VisionCone
+  coneRadius: 15
+  coneHalfAngle: 30
+  minimumVisibilityRadius: 3
+  visibilityContactFilter:
+    useTriggers: 0
+    useLayerMask: 0
+    useDepth: 0
+    useOutsideDepth: 0
+    useNormalAngle: 0
+    useOutsideNormalAngle: 0
+    layerMask:
+      serializedVersion: 2
+      m_Bits: 0
+    minDepth: 0
+    maxDepth: 0
+    minNormalAngle: 0
+    maxNormalAngle: 0
+  agent: {fileID: 41714647447288395}
+  lostSightTime: 0
 --- !u!1 &7192794133295583836
 GameObject:
   m_ObjectHideFlags: 0
@@ -130,10 +164,9 @@ GameObject:
   - component: {fileID: 2959766590651571530}
   - component: {fileID: 303101044422742064}
   - component: {fileID: 41714647447288395}
-  - component: {fileID: 6842945112353292969}
   - component: {fileID: 482385922048550689}
   m_Layer: 3
-  m_Name: Char_Dummy
+  m_Name: Char_Rocketeer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -153,8 +186,6 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 2693698109235313576}
-  - {fileID: 1021603083393001354}
-  - {fileID: 6922762387611701479}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &5213491490267880193
@@ -227,7 +258,7 @@ NavMeshAgent:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7192794133295583836}
   m_Enabled: 1
-  m_AgentTypeID: 0
+  m_AgentTypeID: -1372625422
   m_Radius: 0.5
   m_Speed: 3.5
   m_Acceleration: 8
@@ -379,37 +410,6 @@ MonoBehaviour:
           m_Value1: 8219334632014535771
         Name: Gun
         m_Value: {fileID: 1963727912028641837}
---- !u!114 &6842945112353292969
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7192794133295583836}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9ba0b690894d42269132f0d42c1a2992, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::FoxShooter.Characters.AI.VisionCone
-  coneRadius: 15
-  coneHalfAngle: 30
-  minimumVisibilityRadius: 3
-  visibilityContactFilter:
-    useTriggers: 0
-    useLayerMask: 0
-    useDepth: 0
-    useOutsideDepth: 0
-    useNormalAngle: 0
-    useOutsideNormalAngle: 0
-    layerMask:
-      serializedVersion: 2
-      m_Bits: 0
-    minDepth: 0
-    maxDepth: 0
-    minNormalAngle: 0
-    maxNormalAngle: 0
-  agent: {fileID: 41714647447288395}
-  lostSightTime: 0
 --- !u!95 &482385922048550689
 Animator:
   serializedVersion: 7
@@ -457,12 +457,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7732642167410694038}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 3.5, y: 3.5, z: 3.5}
   m_ConstrainProportionsScale: 1
   m_Children: []
-  m_Father: {fileID: 5285784657511011634}
+  m_Father: {fileID: 2693698109235313576}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &7072818560394628340
 SpriteRenderer:
@@ -548,12 +548,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8876689230686348931}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0.4, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 5285784657511011634}
+  m_Father: {fileID: 2693698109235313576}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1963727912028641837
 MonoBehaviour:
@@ -567,9 +567,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 290643dc3e2848bb9c85a4aa18b441cb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::FoxShooter.Characters.ProjectileSource
-  projectilePrefab: {fileID: 5737718843795827397, guid: b43379484354e5949a0096874920ac4a, type: 3}
-  cooldownTime: 0.5
-  speed: 10
+  projectilePrefab: {fileID: 5737718843795827397, guid: aa2a13b0d45d0d346ba7c6d4c1a7ef91, type: 3}
+  cooldownTime: 1
+  speed: 5
   lifetime: 2
   _animator: {fileID: 482385922048550689}
   owner: {fileID: 5213491490267880193}

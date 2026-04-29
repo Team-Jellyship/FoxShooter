@@ -26,7 +26,7 @@ namespace FoxShooter.Characters
 
         private void Start()
         {
-            _animator = GetComponent<Animator>();
+            // _animator = GetComponent<Animator>();
             _cooldownTimer = TimerManager.instance.CreateTimer(this, () =>
             {
                 _onCooldown = false;
@@ -43,23 +43,23 @@ namespace FoxShooter.Characters
             Fire();
         }
 
-        public void Fire()
+        public void Fire(CharacterStats target = null)
         {
-            _animator.SetTrigger("Fire");
+            _animator?.SetTrigger("Fire");
             
             if (_onCooldown)
             {
                 return;
             }
             
-            SpawnProjectile();
+            SpawnProjectile(target);
             _onCooldown = true;
             
             _cooldownTimer.Start(cooldownTime);
         }
 
         // ReSharper disable Unity.PerformanceAnalysis
-        private void SpawnProjectile()
+        private void SpawnProjectile(CharacterStats target)
         {
             if (!projectilePrefab)
             {
@@ -67,7 +67,7 @@ namespace FoxShooter.Characters
             }
 
             var bullet = Instantiate(projectilePrefab, transform.position, transform.rotation);
-            bullet.GetComponent<KinematicProjectile>()?.Setup(owner, transform, speed, lifetime);
+            bullet.GetComponent<KinematicProjectile>()?.Setup(owner, target, transform, speed, lifetime);
         }
 
         private void OnDrawGizmos()

@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: db920e62f70f420bb33c771449926fa4, type: 3}
-  m_Name: BG_Dummy
+  m_Name: BG_Claw
   m_EditorClassIdentifier: Unity.Behavior::Unity.Behavior.BehaviorGraph
   Graphs:
   - rid: 476172455168180436
@@ -25,15 +25,15 @@ MonoBehaviour:
       type: {class: BehaviorGraphModule, ns: Unity.Behavior, asm: Unity.Behavior}
       data:
         AuthoringAssetID:
-          m_Value0: 11824717552074166263
-          m_Value1: 16617075990768353368
+          m_Value0: 10672846591146151020
+          m_Value1: 2760038336564030249
         m_DebugInfo: {fileID: -6449159189562359339}
         BlackboardReference:
           rid: 476172455168180437
         BlackboardGroupReferences: []
         Root:
-          rid: 476172736573997152
-        m_VersionTimestamp: 639129392969312304
+          rid: 476172735841042561
+        m_VersionTimestamp: 639129332821873824
     - rid: 476172455168180437
       type: {class: BlackboardReference, ns: Unity.Behavior, asm: Unity.Behavior}
       data:
@@ -44,13 +44,13 @@ MonoBehaviour:
       type: {class: Blackboard, ns: Unity.Behavior, asm: Unity.Behavior}
       data:
         m_Variables:
-        - rid: 476172713352233102
-        - rid: 476172713352233103
-        - rid: 476172713352233104
-        - rid: 476172713352233105
-        - rid: 476172713352233106
-        - rid: 476172713352233107
-    - rid: 476172713352233102
+        - rid: 476172734244323641
+        - rid: 476172734244323642
+        - rid: 476172734244323643
+        - rid: 476172734244323644
+        - rid: 476172734244323645
+        - rid: 476172734244323646
+    - rid: 476172734244323641
       type: {class: 'BlackboardVariable`1[[UnityEngine.GameObject, UnityEngine.CoreModule]]', ns: Unity.Behavior, asm: Unity.Behavior}
       data:
         GUID:
@@ -58,7 +58,7 @@ MonoBehaviour:
           m_Value1: 0
         Name: Self
         m_Value: {fileID: 0}
-    - rid: 476172713352233103
+    - rid: 476172734244323642
       type: {class: 'BlackboardVariable`1[[FoxShooter.Characters.AI.Polestar.PolestarStack, Assembly-CSharp]]', ns: Unity.Behavior, asm: Unity.Behavior}
       data:
         GUID:
@@ -66,7 +66,7 @@ MonoBehaviour:
           m_Value1: 11466659204414179661
         Name: FindPositionQuery
         m_Value: {fileID: 0}
-    - rid: 476172713352233104
+    - rid: 476172734244323643
       type: {class: 'BlackboardVariable`1[[UnityEngine.Transform, UnityEngine.CoreModule]]', ns: Unity.Behavior, asm: Unity.Behavior}
       data:
         GUID:
@@ -74,7 +74,7 @@ MonoBehaviour:
           m_Value1: 17916082115669604130
         Name: LocationProxy
         m_Value: {fileID: 0}
-    - rid: 476172713352233105
+    - rid: 476172734244323644
       type: {class: 'BlackboardVariable`1[[UnityEngine.Transform, UnityEngine.CoreModule]]', ns: Unity.Behavior, asm: Unity.Behavior}
       data:
         GUID:
@@ -82,15 +82,7 @@ MonoBehaviour:
           m_Value1: 6736056064601575708
         Name: Target
         m_Value: {fileID: 0}
-    - rid: 476172713352233106
-      type: {class: 'BlackboardVariable`1[[FoxShooter.Characters.ProjectileSource, Assembly-CSharp]]', ns: Unity.Behavior, asm: Unity.Behavior}
-      data:
-        GUID:
-          m_Value0: 2603617188089070325
-          m_Value1: 8219334632014535771
-        Name: Gun
-        m_Value: {fileID: 0}
-    - rid: 476172713352233107
+    - rid: 476172734244323645
       type: {class: 'BlackboardVariable`1[[FoxShooter.Characters.AI.SpottedEnemy, Assembly-CSharp]]', ns: Unity.Behavior, asm: Unity.Behavior}
       data:
         GUID:
@@ -98,7 +90,87 @@ MonoBehaviour:
           m_Value1: 1034025830170275787
         Name: SeenEnemy
         m_Value: {fileID: 0}
-    - rid: 476172736573997152
+    - rid: 476172734244323646
+      type: {class: 'BlackboardVariable`1[[FoxShooter.Characters.DashAbility, Assembly-CSharp]]', ns: Unity.Behavior, asm: Unity.Behavior}
+      data:
+        GUID:
+          m_Value0: 6226642420582316124
+          m_Value1: 5006461379674930761
+        Name: Ability
+        m_Value: {fileID: 0}
+    - rid: 476172735841042538
+      type: {class: 'BlackboardVariable`1[[UnityEngine.GameObject, UnityEngine.CoreModule]]', ns: Unity.Behavior, asm: Unity.Behavior}
+      data:
+        GUID:
+          m_Value0: 0
+          m_Value1: 0
+        Name: 
+        m_Value: {fileID: 0}
+    - rid: 476172735841042549
+      type: {class: 'BlackboardVariable`1[[System.Single, mscorlib]]', ns: Unity.Behavior, asm: Unity.Behavior}
+      data:
+        GUID:
+          m_Value0: 0
+          m_Value1: 0
+        Name: 
+        m_Value: 2
+    - rid: 476172735841042551
+      type: {class: 'BlackboardVariable`1[[System.Single, mscorlib]]', ns: Unity.Behavior, asm: Unity.Behavior}
+      data:
+        GUID:
+          m_Value0: 0
+          m_Value1: 0
+        Name: 
+        m_Value: 1
+    - rid: 476172735841042552
+      type: {class: 'BlackboardVariable`1[[System.Single, mscorlib]]', ns: Unity.Behavior, asm: Unity.Behavior}
+      data:
+        GUID:
+          m_Value0: 0
+          m_Value1: 0
+        Name: 
+        m_Value: 0.2
+    - rid: 476172735841042553
+      type: {class: 'BlackboardVariable`1[[System.String, mscorlib]]', ns: Unity.Behavior, asm: Unity.Behavior}
+      data:
+        GUID:
+          m_Value0: 0
+          m_Value1: 0
+        Name: 
+        m_Value: SpeedMagnitude
+    - rid: 476172735841042554
+      type: {class: 'BlackboardVariable`1[[System.Single, mscorlib]]', ns: Unity.Behavior, asm: Unity.Behavior}
+      data:
+        GUID:
+          m_Value0: 0
+          m_Value1: 0
+        Name: 
+        m_Value: 1
+    - rid: 476172735841042555
+      type: {class: 'BlackboardVariable`1[[Unity.Behavior.NavigateToTargetAction/TargetPositionMode, Unity.Behavior]]', ns: Unity.Behavior, asm: Unity.Behavior}
+      data:
+        GUID:
+          m_Value0: 0
+          m_Value1: 0
+        Name: 
+        m_Value: 0
+    - rid: 476172735841042559
+      type: {class: 'BlackboardVariable`1[[FoxShooter.Characters.AI.Polestar.PolestarStack, Assembly-CSharp]]', ns: Unity.Behavior, asm: Unity.Behavior}
+      data:
+        GUID:
+          m_Value0: 0
+          m_Value1: 0
+        Name: 
+        m_Value: {fileID: 11400000, guid: 287779d57b6b9ea44822e944bd510dac, type: 2}
+    - rid: 476172735841042560
+      type: {class: 'BlackboardVariable`1[[System.Single, mscorlib]]', ns: Unity.Behavior, asm: Unity.Behavior}
+      data:
+        GUID:
+          m_Value0: 0
+          m_Value1: 0
+        Name: 
+        m_Value: 10
+    - rid: 476172735841042561
       type: {class: ParallelAllComposite, ns: Unity.Behavior, asm: Unity.Behavior}
       data:
         ID:
@@ -109,10 +181,10 @@ MonoBehaviour:
         m_Parent:
           rid: -2
         m_Children:
-        - rid: 476172736573997153
-        - rid: 476172736573997154
+        - rid: 476172735841042562
+        - rid: 476172735841042563
         m_RegisteredObservers: []
-    - rid: 476172736573997153
+    - rid: 476172735841042562
       type: {class: StartOnEvent, ns: Unity.Behavior, asm: Unity.Behavior}
       data:
         ID:
@@ -121,18 +193,18 @@ MonoBehaviour:
         Graph:
           rid: 476172455168180436
         m_Parent:
-          rid: 476172736573997152
+          rid: 476172735841042561
         m_Child:
-          rid: 476172736573997155
+          rid: 476172735841042564
         ChannelVariable:
-          rid: 476172713352233107
+          rid: 476172734244323645
         MessageVariables:
-        - rid: 476172736573997156
-        - rid: 476172713352233105
+        - rid: 476172735841042538
+        - rid: 476172734244323644
         - rid: -2
         - rid: -2
         Mode: 0
-    - rid: 476172736573997154
+    - rid: 476172735841042563
       type: {class: Start, ns: Unity.Behavior, asm: Unity.Behavior}
       data:
         ID:
@@ -141,12 +213,12 @@ MonoBehaviour:
         Graph:
           rid: 476172455168180436
         m_Parent:
-          rid: 476172736573997152
+          rid: 476172735841042561
         m_Child:
           rid: -2
         Repeat: 0
         AllowMultipleRepeatsPerTick: 0
-    - rid: 476172736573997155
+    - rid: 476172735841042564
       type: {class: ParallelAllComposite, ns: Unity.Behavior, asm: Unity.Behavior}
       data:
         ID:
@@ -155,20 +227,12 @@ MonoBehaviour:
         Graph:
           rid: 476172455168180436
         m_Parent:
-          rid: 476172736573997153
+          rid: 476172735841042562
         m_Children:
-        - rid: 476172736573997157
-        - rid: 476172736573997158
+        - rid: 476172735841042565
+        - rid: 476172735841042566
         m_RegisteredObservers: []
-    - rid: 476172736573997156
-      type: {class: 'BlackboardVariable`1[[UnityEngine.GameObject, UnityEngine.CoreModule]]', ns: Unity.Behavior, asm: Unity.Behavior}
-      data:
-        GUID:
-          m_Value0: 0
-          m_Value1: 0
-        Name: 
-        m_Value: {fileID: 0}
-    - rid: 476172736573997157
+    - rid: 476172735841042565
       type: {class: RepeaterModifier, ns: Unity.Behavior, asm: Unity.Behavior}
       data:
         ID:
@@ -177,11 +241,11 @@ MonoBehaviour:
         Graph:
           rid: 476172455168180436
         m_Parent:
-          rid: 476172736573997155
+          rid: 476172735841042564
         m_Child:
-          rid: 476172736573997159
+          rid: 476172735841042567
         m_AllowMultipleRepeatsPerTick: 0
-    - rid: 476172736573997158
+    - rid: 476172735841042566
       type: {class: RepeaterModifier, ns: Unity.Behavior, asm: Unity.Behavior}
       data:
         ID:
@@ -190,11 +254,11 @@ MonoBehaviour:
         Graph:
           rid: 476172455168180436
         m_Parent:
-          rid: 476172736573997155
+          rid: 476172735841042564
         m_Child:
-          rid: 476172736573997160
+          rid: 476172735841042568
         m_AllowMultipleRepeatsPerTick: 0
-    - rid: 476172736573997159
+    - rid: 476172735841042567
       type: {class: RestartModifier, ns: Unity.Behavior, asm: Unity.Behavior}
       data:
         ID:
@@ -203,14 +267,14 @@ MonoBehaviour:
         Graph:
           rid: 476172455168180436
         m_Parent:
-          rid: 476172736573997157
+          rid: 476172735841042565
         m_Child:
-          rid: 476172736573997161
+          rid: 476172735841042569
         m_Conditions:
-        - rid: 476172736573997162
+        - rid: 476172735841042570
         m_RequiresAllConditions: 0
         m_ObserverType: 0
-    - rid: 476172736573997160
+    - rid: 476172735841042568
       type: {class: SequenceComposite, ns: Unity.Behavior, asm: Unity.Behavior}
       data:
         ID:
@@ -219,12 +283,12 @@ MonoBehaviour:
         Graph:
           rid: 476172455168180436
         m_Parent:
-          rid: 476172736573997158
+          rid: 476172735841042566
         m_Children:
-        - rid: 476172736573997163
-        - rid: 476172736573997164
+        - rid: 476172735841042571
+        - rid: 476172735841042572
         m_RegisteredObservers: []
-    - rid: 476172736573997161
+    - rid: 476172735841042569
       type: {class: SequenceComposite, ns: Unity.Behavior, asm: Unity.Behavior}
       data:
         ID:
@@ -233,21 +297,21 @@ MonoBehaviour:
         Graph:
           rid: 476172455168180436
         m_Parent:
-          rid: 476172736573997159
+          rid: 476172735841042567
         m_Children:
-        - rid: 476172736573997165
-        - rid: 476172736573997166
+        - rid: 476172735841042573
+        - rid: 476172735841042574
         m_RegisteredObservers: []
-    - rid: 476172736573997162
+    - rid: 476172735841042570
       type: {class: TargetMoved, ns: FoxShooter.Characters.AI.BehaviourGraph.Conditions, asm: Assembly-CSharp}
       data:
         Graph:
           rid: 476172455168180436
         target:
-          rid: 476172713352233105
+          rid: 476172734244323644
         distance:
-          rid: 476172736573997167
-    - rid: 476172736573997163
+          rid: 476172735841042549
+    - rid: 476172735841042571
       type: {class: NavigateToTargetAction, ns: Unity.Behavior, asm: Unity.Behavior}
       data:
         ID:
@@ -256,22 +320,22 @@ MonoBehaviour:
         Graph:
           rid: 476172455168180436
         m_Parent:
-          rid: 476172736573997160
+          rid: 476172735841042568
         Agent:
-          rid: 476172713352233102
+          rid: 476172734244323641
         Target:
-          rid: 476172736573997168
+          rid: 476172735841042575
         Speed:
-          rid: 476172736573997169
+          rid: 476172735841042551
         DistanceThreshold:
-          rid: 476172736573997170
+          rid: 476172735841042552
         AnimatorSpeedParam:
-          rid: 476172736573997171
+          rid: 476172735841042553
         SlowDownDistance:
-          rid: 476172736573997172
+          rid: 476172735841042554
         m_TargetPositionMode:
-          rid: 476172736573997173
-    - rid: 476172736573997164
+          rid: 476172735841042555
+    - rid: 476172735841042572
       type: {class: SequenceComposite, ns: Unity.Behavior, asm: Unity.Behavior}
       data:
         ID:
@@ -280,12 +344,12 @@ MonoBehaviour:
         Graph:
           rid: 476172455168180436
         m_Parent:
-          rid: 476172736573997160
+          rid: 476172735841042568
         m_Children:
-        - rid: 476172736573997174
-        - rid: 476172736573997175
+        - rid: 476172735841042576
+        - rid: 476172735841042577
         m_RegisteredObservers: []
-    - rid: 476172736573997165
+    - rid: 476172735841042573
       type: {class: PolestarQuery, ns: FoxShooter.Characters.AI.BehaviourGraph.Actions, asm: Assembly-CSharp}
       data:
         ID:
@@ -294,16 +358,16 @@ MonoBehaviour:
         Graph:
           rid: 476172455168180436
         m_Parent:
-          rid: 476172736573997161
+          rid: 476172735841042569
         self:
-          rid: 476172736573997176
+          rid: 476172735841042578
         target:
-          rid: 476172713352233105
+          rid: 476172734244323644
         query:
-          rid: 476172713352233103
+          rid: 476172735841042559
         position:
-          rid: 476172713352233104
-    - rid: 476172736573997166
+          rid: 476172734244323643
+    - rid: 476172735841042574
       type: {class: WaitAction, ns: Unity.Behavior, asm: Unity.Behavior}
       data:
         ID:
@@ -312,18 +376,10 @@ MonoBehaviour:
         Graph:
           rid: 476172455168180436
         m_Parent:
-          rid: 476172736573997161
+          rid: 476172735841042569
         SecondsToWait:
-          rid: 476172736573997177
-    - rid: 476172736573997167
-      type: {class: 'BlackboardVariable`1[[System.Single, mscorlib]]', ns: Unity.Behavior, asm: Unity.Behavior}
-      data:
-        GUID:
-          m_Value0: 0
-          m_Value1: 0
-        Name: 
-        m_Value: 5
-    - rid: 476172736573997168
+          rid: 476172735841042560
+    - rid: 476172735841042575
       type: {class: 'ComponentToGameObjectBlackboardVariable`1[[UnityEngine.Transform, UnityEngine.CoreModule]]', ns: Unity.Behavior, asm: Unity.Behavior}
       data:
         GUID:
@@ -332,48 +388,8 @@ MonoBehaviour:
         Name: 
         m_Value: {fileID: 0}
         m_LinkedVariable:
-          rid: 476172713352233104
-    - rid: 476172736573997169
-      type: {class: 'BlackboardVariable`1[[System.Single, mscorlib]]', ns: Unity.Behavior, asm: Unity.Behavior}
-      data:
-        GUID:
-          m_Value0: 0
-          m_Value1: 0
-        Name: 
-        m_Value: 1
-    - rid: 476172736573997170
-      type: {class: 'BlackboardVariable`1[[System.Single, mscorlib]]', ns: Unity.Behavior, asm: Unity.Behavior}
-      data:
-        GUID:
-          m_Value0: 0
-          m_Value1: 0
-        Name: 
-        m_Value: 0.2
-    - rid: 476172736573997171
-      type: {class: 'BlackboardVariable`1[[System.String, mscorlib]]', ns: Unity.Behavior, asm: Unity.Behavior}
-      data:
-        GUID:
-          m_Value0: 0
-          m_Value1: 0
-        Name: 
-        m_Value: SpeedMagnitude
-    - rid: 476172736573997172
-      type: {class: 'BlackboardVariable`1[[System.Single, mscorlib]]', ns: Unity.Behavior, asm: Unity.Behavior}
-      data:
-        GUID:
-          m_Value0: 0
-          m_Value1: 0
-        Name: 
-        m_Value: 1
-    - rid: 476172736573997173
-      type: {class: 'BlackboardVariable`1[[Unity.Behavior.NavigateToTargetAction/TargetPositionMode, Unity.Behavior]]', ns: Unity.Behavior, asm: Unity.Behavior}
-      data:
-        GUID:
-          m_Value0: 0
-          m_Value1: 0
-        Name: 
-        m_Value: 0
-    - rid: 476172736573997174
+          rid: 476172734244323643
+    - rid: 476172735841042576
       type: {class: LookAt, ns: FoxShooter.Characters.AI.BehaviourGraph.Actions, asm: Assembly-CSharp}
       data:
         ID:
@@ -382,30 +398,26 @@ MonoBehaviour:
         Graph:
           rid: 476172455168180436
         m_Parent:
-          rid: 476172736573997164
+          rid: 476172735841042572
         agent:
-          rid: 476172713352233102
+          rid: 476172734244323641
         target:
-          rid: 476172713352233105
-    - rid: 476172736573997175
-      type: {class: FireWeapon, ns: FoxShooter.Characters.AI.BehaviourGraph.Actions, asm: Assembly-CSharp}
+          rid: 476172734244323644
+    - rid: 476172735841042577
+      type: {class: SequenceComposite, ns: Unity.Behavior, asm: Unity.Behavior}
       data:
         ID:
-          m_Value0: 1334277320606528956
-          m_Value1: 3760679452200608372
+          m_Value0: 7330449677622740295
+          m_Value1: 11291670729390518923
         Graph:
           rid: 476172455168180436
         m_Parent:
-          rid: 476172736573997164
-        agent:
-          rid: 476172713352233102
-        waitForAttackCompletion:
-          rid: 476172736573997178
-        source:
-          rid: 476172713352233106
-        target:
-          rid: 476172736573997179
-    - rid: 476172736573997176
+          rid: 476172735841042572
+        m_Children:
+        - rid: 476172735841042579
+        - rid: 476172735841042580
+        m_RegisteredObservers: []
+    - rid: 476172735841042578
       type: {class: 'GameObjectToComponentBlackboardVariable`1[[UnityEngine.Transform, UnityEngine.CoreModule]]', ns: Unity.Behavior, asm: Unity.Behavior}
       data:
         GUID:
@@ -414,25 +426,39 @@ MonoBehaviour:
         Name: 
         m_Value: {fileID: 0}
         m_LinkedVariable:
-          rid: 476172713352233102
-    - rid: 476172736573997177
-      type: {class: 'BlackboardVariable`1[[System.Single, mscorlib]]', ns: Unity.Behavior, asm: Unity.Behavior}
+          rid: 476172734244323641
+    - rid: 476172735841042579
+      type: {class: Dash, ns: FoxShooter.Characters.AI.BehaviourGraph.Actions, asm: Assembly-CSharp}
       data:
-        GUID:
-          m_Value0: 0
-          m_Value1: 0
-        Name: 
-        m_Value: 10
-    - rid: 476172736573997178
-      type: {class: 'BlackboardVariable`1[[System.Boolean, mscorlib]]', ns: Unity.Behavior, asm: Unity.Behavior}
+        ID:
+          m_Value0: 7330449677622740295
+          m_Value1: 11291670729390518923
+        Graph:
+          rid: 476172455168180436
+        m_Parent:
+          rid: 476172735841042577
+        dashAbility:
+          rid: 476172734244323646
+    - rid: 476172735841042580
+      type: {class: PolestarQuery, ns: FoxShooter.Characters.AI.BehaviourGraph.Actions, asm: Assembly-CSharp}
       data:
-        GUID:
-          m_Value0: 0
-          m_Value1: 0
-        Name: 
-        m_Value: 1
-    - rid: 476172736573997179
-      type: {class: 'ComponentToGameObjectBlackboardVariable`1[[UnityEngine.Transform, UnityEngine.CoreModule]]', ns: Unity.Behavior, asm: Unity.Behavior}
+        ID:
+          m_Value0: 741124566876054948
+          m_Value1: 18426360754857183883
+        Graph:
+          rid: 476172455168180436
+        m_Parent:
+          rid: 476172735841042577
+        self:
+          rid: 476172735841042581
+        target:
+          rid: 476172734244323644
+        query:
+          rid: 476172735841042582
+        position:
+          rid: 476172734244323643
+    - rid: 476172735841042581
+      type: {class: 'GameObjectToComponentBlackboardVariable`1[[UnityEngine.Transform, UnityEngine.CoreModule]]', ns: Unity.Behavior, asm: Unity.Behavior}
       data:
         GUID:
           m_Value0: 0
@@ -440,7 +466,15 @@ MonoBehaviour:
         Name: 
         m_Value: {fileID: 0}
         m_LinkedVariable:
-          rid: 476172713352233105
+          rid: 476172734244323641
+    - rid: 476172735841042582
+      type: {class: 'BlackboardVariable`1[[FoxShooter.Characters.AI.Polestar.PolestarStack, Assembly-CSharp]]', ns: Unity.Behavior, asm: Unity.Behavior}
+      data:
+        GUID:
+          m_Value0: 0
+          m_Value1: 0
+        Name: 
+        m_Value: {fileID: 11400000, guid: 287779d57b6b9ea44822e944bd510dac, type: 2}
 --- !u!114 &-6449159189562359339
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -451,7 +485,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5b27bb6d9a2c8d540a10dff10acc543e, type: 3}
-  m_Name: BG_Dummy Debug Info
+  m_Name: BG_Claw Debug Info
   m_EditorClassIdentifier: Unity.Behavior::Unity.Behavior.BehaviorGraphDebugInfo
   m_CodeBreakPointsList: []
 --- !u!114 &-2388592736101092144
@@ -464,19 +498,19 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2dd922ae02c94c87a66e46a10a7319b9, type: 3}
-  m_Name: BG_Dummy Blackboard
+  m_Name: BG_Claw Blackboard
   m_EditorClassIdentifier: Unity.Behavior.Authoring::Unity.Behavior.BehaviorBlackboardAuthoringAsset
   AssetID:
-    m_Value0: 11824717552074166263
-    m_Value1: 16617075990768353368
+    m_Value0: 10672846591146151020
+    m_Value1: 2760038336564030249
   m_Variables:
   - rid: 476172455168180441
   - rid: 476172455168180488
   - rid: 476172455168180503
   - rid: 476172455168180623
-  - rid: 476172713113944146
   - rid: 476172713352233069
-  m_VersionTimestamp: 639128461548536977
+  - rid: 476172734244323571
+  m_VersionTimestamp: 639129307273127455
   m_CommandBuffer:
     m_Commands: []
   m_RuntimeBlackboardAsset: {fileID: 4054346572060690264}
@@ -523,16 +557,6 @@ MonoBehaviour:
         IsExposed: 1
         m_IsShared: 0
         m_Value: {fileID: 0}
-    - rid: 476172713113944146
-      type: {class: 'TypedVariableModel`1[[FoxShooter.Characters.ProjectileSource, Assembly-CSharp]]', ns: Unity.Behavior.GraphFramework, asm: Unity.Behavior.GraphFramework}
-      data:
-        ID:
-          m_Value0: 2603617188089070325
-          m_Value1: 8219334632014535771
-        Name: Gun
-        IsExposed: 1
-        m_IsShared: 0
-        m_Value: {fileID: 0}
     - rid: 476172713352233069
       type: {class: 'TypedVariableModel`1[[FoxShooter.Characters.AI.SpottedEnemy, Assembly-CSharp]]', ns: Unity.Behavior.GraphFramework, asm: Unity.Behavior.GraphFramework}
       data:
@@ -540,6 +564,16 @@ MonoBehaviour:
           m_Value0: 8202579383142319091
           m_Value1: 1034025830170275787
         Name: SeenEnemy
+        IsExposed: 1
+        m_IsShared: 0
+        m_Value: {fileID: 0}
+    - rid: 476172734244323571
+      type: {class: 'TypedVariableModel`1[[FoxShooter.Characters.DashAbility, Assembly-CSharp]]', ns: Unity.Behavior.GraphFramework, asm: Unity.Behavior.GraphFramework}
+      data:
+        ID:
+          m_Value0: 6226642420582316124
+          m_Value1: 5006461379674930761
+        Name: Ability
         IsExposed: 1
         m_IsShared: 0
         m_Value: {fileID: 0}
@@ -553,7 +587,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: bad8f2220607dac4db5082ff333fafb8, type: 3}
-  m_Name: BG_Dummy
+  m_Name: BG_Claw
   m_EditorClassIdentifier: Unity.Behavior.Authoring::Unity.Behavior.BehaviorAuthoringGraph
   Blackboard: {fileID: -2388592736101092144}
   m_Description: 
@@ -565,17 +599,18 @@ MonoBehaviour:
   - rid: 476172455168180543
   - rid: 476172455168180587
   - rid: 476172455168180689
-  - rid: 476172455168180723
   - rid: 476172455168180757
   - rid: 476172455168181167
   - rid: 476172713352233128
-  m_VersionTimestamp: 639129392969312304
+  - rid: 476172734244323544
+  - rid: 476172735841042520
+  m_VersionTimestamp: 639129332821873824
   m_SerializedVersion: 2
   m_DebugInfo: {fileID: -6449159189562359339}
   m_RuntimeGraph: {fileID: -9092849885899099460}
   AssetID:
-    m_Value0: 11824717552074166263
-    m_Value1: 16617075990768353368
+    m_Value0: 10672846591146151020
+    m_Value1: 2760038336564030249
   Story:
     Story: 
     StoryVariableNames: []
@@ -706,36 +741,6 @@ MonoBehaviour:
       Tooltip: 
     NamedChildren: []
     IsPlaceholder: 0
-  - Name: FireProjectile
-    Story: Fires ProjectileSource
-    RuntimeTypeString: FoxShooter.Characters.AI.BehaviourGraph.Actions.FireWeapon,
-      Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-    RuntimeTypeID:
-      m_Value0: 5197277238788850049
-      m_Value1: 16582404917629307801
-    Variables:
-    - Name: agent
-      Type:
-        m_SerializableType: UnityEngine.GameObject, UnityEngine.CoreModule, Version=0.0.0.0,
-          Culture=neutral, PublicKeyToken=null
-      Tooltip: 
-    - Name: waitForAttackCompletion
-      Type:
-        m_SerializableType: System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral,
-          PublicKeyToken=b77a5c561934e089
-      Tooltip: 
-    - Name: source
-      Type:
-        m_SerializableType: FoxShooter.Characters.ProjectileSource, Assembly-CSharp,
-          Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-      Tooltip: 
-    - Name: target
-      Type:
-        m_SerializableType: UnityEngine.GameObject, UnityEngine.CoreModule, Version=0.0.0.0,
-          Culture=neutral, PublicKeyToken=null
-      Tooltip: 
-    NamedChildren: []
-    IsPlaceholder: 0
   - Name: Restart
     Story: 
     RuntimeTypeString: Unity.Behavior.RestartModifier, Unity.Behavior, Version=0.0.0.0,
@@ -772,6 +777,21 @@ MonoBehaviour:
     - Name: ChannelVariable
       Type:
         m_SerializableType: Unity.Behavior.BlackboardVariable, Unity.Behavior, Version=0.0.0.0,
+          Culture=neutral, PublicKeyToken=null
+      Tooltip: 
+    NamedChildren: []
+    IsPlaceholder: 0
+  - Name: Dash
+    Story: 'Dash using [DashAbility]'
+    RuntimeTypeString: FoxShooter.Characters.AI.BehaviourGraph.Actions.Dash, Assembly-CSharp,
+      Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+    RuntimeTypeID:
+      m_Value0: 1940768344740149228
+      m_Value1: 9021272212868613812
+    Variables:
+    - Name: dashAbility
+      Type:
+        m_SerializableType: FoxShooter.Characters.DashAbility, Assembly-CSharp, Version=0.0.0.0,
           Culture=neutral, PublicKeyToken=null
       Tooltip: 
     NamedChildren: []
@@ -860,7 +880,7 @@ MonoBehaviour:
     - rid: 476172455168180466
       type: {class: ActionNodeModel, ns: Unity.Behavior, asm: Unity.Behavior.Authoring}
       data:
-        Position: {x: 28.361176, y: 70.23151}
+        Position: {x: -100.138824, y: 64.23151}
         ID:
           m_Value0: 9828262998604797843
           m_Value1: 7100405456729215767
@@ -909,7 +929,7 @@ MonoBehaviour:
         LocalValue:
           rid: 476172455168180473
         LinkedVariable:
-          rid: 476172455168180920
+          rid: 476172735841042527
     - rid: 476172455168180470
       type: {class: BehaviorGraphNodeModel/FieldModel, ns: Unity.Behavior, asm: Unity.Behavior.Authoring}
       data:
@@ -920,7 +940,7 @@ MonoBehaviour:
         LocalValue:
           rid: 476172455168180474
         LinkedVariable:
-          rid: 476172455168180624
+          rid: 476172735841042528
     - rid: 476172455168180471
       type: {class: BehaviorGraphNodeModel/FieldModel, ns: Unity.Behavior, asm: Unity.Behavior.Authoring}
       data:
@@ -931,7 +951,7 @@ MonoBehaviour:
         LocalValue:
           rid: 476172455168180475
         LinkedVariable:
-          rid: 476172455168180489
+          rid: -2
     - rid: 476172455168180472
       type: {class: BehaviorGraphNodeModel/FieldModel, ns: Unity.Behavior, asm: Unity.Behavior.Authoring}
       data:
@@ -942,7 +962,7 @@ MonoBehaviour:
         LocalValue:
           rid: 476172455168180476
         LinkedVariable:
-          rid: 476172455168180504
+          rid: 476172735841042529
     - rid: 476172455168180473
       type: {class: 'BlackboardVariable`1[[UnityEngine.Transform, UnityEngine.CoreModule]]', ns: Unity.Behavior, asm: Unity.Behavior}
       data:
@@ -966,7 +986,7 @@ MonoBehaviour:
           m_Value0: 0
           m_Value1: 0
         Name: 
-        m_Value: {fileID: 0}
+        m_Value: {fileID: 11400000, guid: 287779d57b6b9ea44822e944bd510dac, type: 2}
     - rid: 476172455168180476
       type: {class: 'BlackboardVariable`1[[UnityEngine.Transform, UnityEngine.CoreModule]]', ns: Unity.Behavior, asm: Unity.Behavior}
       data:
@@ -974,16 +994,6 @@ MonoBehaviour:
           m_Value0: 0
           m_Value1: 0
         Name: 
-        m_Value: {fileID: 0}
-    - rid: 476172455168180489
-      type: {class: 'TypedVariableModel`1[[FoxShooter.Characters.AI.Polestar.PolestarStack, Assembly-CSharp]]', ns: Unity.Behavior.GraphFramework, asm: Unity.Behavior.GraphFramework}
-      data:
-        ID:
-          m_Value0: 9440391232447118814
-          m_Value1: 11466659204414179661
-        Name: FindPositionQuery
-        IsExposed: 1
-        m_IsShared: 0
         m_Value: {fileID: 0}
     - rid: 476172455168180504
       type: {class: 'TypedVariableModel`1[[UnityEngine.Transform, UnityEngine.CoreModule]]', ns: Unity.Behavior.GraphFramework, asm: Unity.Behavior.GraphFramework}
@@ -998,7 +1008,7 @@ MonoBehaviour:
     - rid: 476172455168180520
       type: {class: RepeatNodeModel, ns: Unity.Behavior, asm: Unity.Behavior.Authoring}
       data:
-        Position: {x: 28.361176, y: -129.7685}
+        Position: {x: -100.138824, y: -131.7685}
         ID:
           m_Value0: 14977376709976392550
           m_Value1: 5390422440764986692
@@ -1043,7 +1053,7 @@ MonoBehaviour:
     - rid: 476172455168180543
       type: {class: ActionNodeModel, ns: Unity.Behavior, asm: Unity.Behavior.Authoring}
       data:
-        Position: {x: 374.36118, y: -39.768494}
+        Position: {x: 395.86118, y: -43.768494}
         ID:
           m_Value0: 6412539028160841379
           m_Value1: 14367972632736255969
@@ -1231,7 +1241,7 @@ MonoBehaviour:
     - rid: 476172455168180587
       type: {class: ActionNodeModel, ns: Unity.Behavior, asm: Unity.Behavior.Authoring}
       data:
-        Position: {x: 374.36118, y: 70.23151}
+        Position: {x: 395.86118, y: 64.23151}
         ID:
           m_Value0: 17565353504081823198
           m_Value1: 15538433897529157640
@@ -1267,7 +1277,7 @@ MonoBehaviour:
         m_NodeModel:
           rid: 476172455168180587
         m_Connections:
-        - rid: 476172455168180724
+        - rid: 476172734244323545
     - rid: 476172455168180590
       type: {class: BehaviorGraphNodeModel/FieldModel, ns: Unity.Behavior, asm: Unity.Behavior.Authoring}
       data:
@@ -1319,7 +1329,7 @@ MonoBehaviour:
     - rid: 476172455168180689
       type: {class: RepeatNodeModel, ns: Unity.Behavior, asm: Unity.Behavior.Authoring}
       data:
-        Position: {x: 374.36118, y: -129.7685}
+        Position: {x: 395.86118, y: -131.7685}
         ID:
           m_Value0: 11693420969448655818
           m_Value1: 15125197030150476165
@@ -1361,89 +1371,10 @@ MonoBehaviour:
           rid: 476172455168180689
         m_Connections:
         - rid: 476172455168180544
-    - rid: 476172455168180723
-      type: {class: ActionNodeModel, ns: Unity.Behavior, asm: Unity.Behavior.Authoring}
-      data:
-        Position: {x: 374.36118, y: 250.2315}
-        ID:
-          m_Value0: 1334277320606528956
-          m_Value1: 3760679452200608372
-        Parents: []
-        PortModels:
-        - rid: 476172455168180724
-        - rid: 476172455168180725
-        NodeType:
-          m_SerializableType: FoxShooter.Characters.AI.BehaviourGraph.Actions.FireWeapon,
-            Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-        NodeTypeID:
-          m_Value0: 5197277238788850049
-          m_Value1: 16582404917629307801
-        m_FieldValues:
-        - rid: 476172455168180726
-        - rid: 476172455168180727
-        - rid: 476172713113944144
-        - rid: 476172736573997149
-    - rid: 476172455168180724
-      type: {class: PortModel, ns: Unity.Behavior.GraphFramework, asm: Unity.Behavior.GraphFramework}
-      data:
-        m_Name: InputPort
-        m_PortDataFlowType: 0
-        m_IsFloating: 0
-        m_NodeModel:
-          rid: 476172455168180723
-        m_Connections:
-        - rid: 476172455168180589
-    - rid: 476172455168180725
-      type: {class: PortModel, ns: Unity.Behavior.GraphFramework, asm: Unity.Behavior.GraphFramework}
-      data:
-        m_Name: OutputPort
-        m_PortDataFlowType: 1
-        m_IsFloating: 0
-        m_NodeModel:
-          rid: 476172455168180723
-        m_Connections: []
-    - rid: 476172455168180726
-      type: {class: BehaviorGraphNodeModel/FieldModel, ns: Unity.Behavior, asm: Unity.Behavior.Authoring}
-      data:
-        FieldName: agent
-        Type:
-          m_SerializableType: UnityEngine.GameObject, UnityEngine.CoreModule, Version=0.0.0.0,
-            Culture=neutral, PublicKeyToken=null
-        LocalValue:
-          rid: 476172455168180728
-        LinkedVariable:
-          rid: 476172455168180886
-    - rid: 476172455168180727
-      type: {class: BehaviorGraphNodeModel/FieldModel, ns: Unity.Behavior, asm: Unity.Behavior.Authoring}
-      data:
-        FieldName: waitForAttackCompletion
-        Type:
-          m_SerializableType: System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral,
-            PublicKeyToken=b77a5c561934e089
-        LocalValue:
-          rid: 476172455168180729
-        LinkedVariable:
-          rid: -2
-    - rid: 476172455168180728
-      type: {class: 'BlackboardVariable`1[[UnityEngine.GameObject, UnityEngine.CoreModule]]', ns: Unity.Behavior, asm: Unity.Behavior}
-      data:
-        GUID:
-          m_Value0: 0
-          m_Value1: 0
-        Name: 
-        m_Value: {fileID: 0}
-    - rid: 476172455168180729
-      type: {class: 'BlackboardVariable`1[[System.Boolean, mscorlib]]', ns: Unity.Behavior, asm: Unity.Behavior}
-      data:
-        GUID:
-          m_Value0: 0
-          m_Value1: 0
-        Name: 
-        m_Value: 1
     - rid: 476172455168180757
       type: {class: AbortNodeModel, ns: Unity.Behavior, asm: Unity.Behavior.Authoring}
       data:
-        Position: {x: 28.361176, y: -39.768494}
+        Position: {x: -100.138824, y: -43.768494}
         ID:
           m_Value0: 6557031070191018320
           m_Value1: 1566892089556029544
@@ -1537,7 +1468,7 @@ MonoBehaviour:
           m_Value0: 0
           m_Value1: 0
         Name: 
-        m_Value: 5
+        m_Value: 2
     - rid: 476172455168180810
       type: {class: 'TypedVariableModel`1[[UnityEngine.Transform, UnityEngine.CoreModule]]', ns: Unity.Behavior.GraphFramework, asm: Unity.Behavior.GraphFramework}
       data:
@@ -1548,30 +1479,10 @@ MonoBehaviour:
         IsExposed: 1
         m_IsShared: 0
         m_Value: {fileID: 0}
-    - rid: 476172455168180886
-      type: {class: 'TypedVariableModel`1[[UnityEngine.GameObject, UnityEngine.CoreModule]]', ns: Unity.Behavior.GraphFramework, asm: Unity.Behavior.GraphFramework}
-      data:
-        ID:
-          m_Value0: 1
-          m_Value1: 0
-        Name: Self
-        IsExposed: 1
-        m_IsShared: 0
-        m_Value: {fileID: 0}
-    - rid: 476172455168180920
-      type: {class: 'TypedVariableModel`1[[UnityEngine.GameObject, UnityEngine.CoreModule]]', ns: Unity.Behavior.GraphFramework, asm: Unity.Behavior.GraphFramework}
-      data:
-        ID:
-          m_Value0: 1
-          m_Value1: 0
-        Name: Self
-        IsExposed: 1
-        m_IsShared: 0
-        m_Value: {fileID: 0}
     - rid: 476172455168181167
       type: {class: ActionNodeModel, ns: Unity.Behavior, asm: Unity.Behavior.Authoring}
       data:
-        Position: {x: 28.361176, y: 160.2315}
+        Position: {x: -100.138824, y: 152.2315}
         ID:
           m_Value0: 5300754929065682323
           m_Value1: 10886983712665668233
@@ -1625,35 +1536,6 @@ MonoBehaviour:
           m_Value1: 0
         Name: 
         m_Value: 10
-    - rid: 476172713113944144
-      type: {class: BehaviorGraphNodeModel/FieldModel, ns: Unity.Behavior, asm: Unity.Behavior.Authoring}
-      data:
-        FieldName: source
-        Type:
-          m_SerializableType: FoxShooter.Characters.ProjectileSource, Assembly-CSharp,
-            Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-        LocalValue:
-          rid: 476172713113944145
-        LinkedVariable:
-          rid: 476172713113944147
-    - rid: 476172713113944145
-      type: {class: 'BlackboardVariable`1[[FoxShooter.Characters.ProjectileSource, Assembly-CSharp]]', ns: Unity.Behavior, asm: Unity.Behavior}
-      data:
-        GUID:
-          m_Value0: 0
-          m_Value1: 0
-        Name: 
-        m_Value: {fileID: 0}
-    - rid: 476172713113944147
-      type: {class: 'TypedVariableModel`1[[FoxShooter.Characters.ProjectileSource, Assembly-CSharp]]', ns: Unity.Behavior.GraphFramework, asm: Unity.Behavior.GraphFramework}
-      data:
-        ID:
-          m_Value0: 2603617188089070325
-          m_Value1: 8219334632014535771
-        Name: Gun
-        IsExposed: 1
-        m_IsShared: 0
-        m_Value: {fileID: 0}
     - rid: 476172713352233128
       type: {class: StartOnEventModel, ns: Unity.Behavior, asm: Unity.Behavior.Authoring}
       data:
@@ -1762,26 +1644,170 @@ MonoBehaviour:
         IsExposed: 1
         m_IsShared: 0
         m_Value: {fileID: 0}
-    - rid: 476172736573997149
+    - rid: 476172734244323544
+      type: {class: ActionNodeModel, ns: Unity.Behavior, asm: Unity.Behavior.Authoring}
+      data:
+        Position: {x: 395.86118, y: 152.2315}
+        ID:
+          m_Value0: 7330449677622740295
+          m_Value1: 11291670729390518923
+        Parents: []
+        PortModels:
+        - rid: 476172734244323545
+        - rid: 476172734244323546
+        NodeType:
+          m_SerializableType: FoxShooter.Characters.AI.BehaviourGraph.Actions.Dash,
+            Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+        NodeTypeID:
+          m_Value0: 1940768344740149228
+          m_Value1: 9021272212868613812
+        m_FieldValues:
+        - rid: 476172734244323547
+    - rid: 476172734244323545
+      type: {class: PortModel, ns: Unity.Behavior.GraphFramework, asm: Unity.Behavior.GraphFramework}
+      data:
+        m_Name: InputPort
+        m_PortDataFlowType: 0
+        m_IsFloating: 0
+        m_NodeModel:
+          rid: 476172734244323544
+        m_Connections:
+        - rid: 476172455168180589
+    - rid: 476172734244323546
+      type: {class: PortModel, ns: Unity.Behavior.GraphFramework, asm: Unity.Behavior.GraphFramework}
+      data:
+        m_Name: OutputPort
+        m_PortDataFlowType: 1
+        m_IsFloating: 0
+        m_NodeModel:
+          rid: 476172734244323544
+        m_Connections:
+        - rid: 476172735841042521
+    - rid: 476172734244323547
       type: {class: BehaviorGraphNodeModel/FieldModel, ns: Unity.Behavior, asm: Unity.Behavior.Authoring}
       data:
-        FieldName: target
+        FieldName: dashAbility
         Type:
-          m_SerializableType: UnityEngine.GameObject, UnityEngine.CoreModule, Version=0.0.0.0,
-            Culture=neutral, PublicKeyToken=null
+          m_SerializableType: FoxShooter.Characters.DashAbility, Assembly-CSharp,
+            Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
         LocalValue:
-          rid: 476172736573997150
+          rid: 476172734244323548
         LinkedVariable:
-          rid: 476172736573997151
-    - rid: 476172736573997150
-      type: {class: 'BlackboardVariable`1[[UnityEngine.GameObject, UnityEngine.CoreModule]]', ns: Unity.Behavior, asm: Unity.Behavior}
+          rid: 476172734244323572
+    - rid: 476172734244323548
+      type: {class: 'BlackboardVariable`1[[FoxShooter.Characters.DashAbility, Assembly-CSharp]]', ns: Unity.Behavior, asm: Unity.Behavior}
       data:
         GUID:
           m_Value0: 0
           m_Value1: 0
         Name: 
         m_Value: {fileID: 0}
-    - rid: 476172736573997151
+    - rid: 476172734244323572
+      type: {class: 'TypedVariableModel`1[[FoxShooter.Characters.DashAbility, Assembly-CSharp]]', ns: Unity.Behavior.GraphFramework, asm: Unity.Behavior.GraphFramework}
+      data:
+        ID:
+          m_Value0: 6226642420582316124
+          m_Value1: 5006461379674930761
+        Name: Ability
+        IsExposed: 1
+        m_IsShared: 0
+        m_Value: {fileID: 0}
+    - rid: 476172735841042520
+      type: {class: ActionNodeModel, ns: Unity.Behavior, asm: Unity.Behavior.Authoring}
+      data:
+        Position: {x: 395.86118, y: 240.2315}
+        ID:
+          m_Value0: 741124566876054948
+          m_Value1: 18426360754857183883
+        Parents: []
+        PortModels:
+        - rid: 476172735841042521
+        - rid: 476172735841042522
+        NodeType:
+          m_SerializableType: FoxShooter.Characters.AI.BehaviourGraph.Actions.PolestarQuery,
+            Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+        NodeTypeID:
+          m_Value0: 15086880157237191092
+          m_Value1: 12707984912481047986
+        m_FieldValues:
+        - rid: 476172735841042523
+        - rid: 476172735841042524
+        - rid: 476172735841042525
+        - rid: 476172735841042526
+    - rid: 476172735841042521
+      type: {class: PortModel, ns: Unity.Behavior.GraphFramework, asm: Unity.Behavior.GraphFramework}
+      data:
+        m_Name: InputPort
+        m_PortDataFlowType: 0
+        m_IsFloating: 0
+        m_NodeModel:
+          rid: 476172735841042520
+        m_Connections:
+        - rid: 476172734244323546
+    - rid: 476172735841042522
+      type: {class: PortModel, ns: Unity.Behavior.GraphFramework, asm: Unity.Behavior.GraphFramework}
+      data:
+        m_Name: OutputPort
+        m_PortDataFlowType: 1
+        m_IsFloating: 0
+        m_NodeModel:
+          rid: 476172735841042520
+        m_Connections: []
+    - rid: 476172735841042523
+      type: {class: BehaviorGraphNodeModel/FieldModel, ns: Unity.Behavior, asm: Unity.Behavior.Authoring}
+      data:
+        FieldName: self
+        Type:
+          m_SerializableType: UnityEngine.Transform, UnityEngine.CoreModule, Version=0.0.0.0,
+            Culture=neutral, PublicKeyToken=null
+        LocalValue:
+          rid: 476172735841042530
+        LinkedVariable:
+          rid: 476172735841042527
+    - rid: 476172735841042524
+      type: {class: BehaviorGraphNodeModel/FieldModel, ns: Unity.Behavior, asm: Unity.Behavior.Authoring}
+      data:
+        FieldName: target
+        Type:
+          m_SerializableType: UnityEngine.Transform, UnityEngine.CoreModule, Version=0.0.0.0,
+            Culture=neutral, PublicKeyToken=null
+        LocalValue:
+          rid: 476172735841042531
+        LinkedVariable:
+          rid: 476172735841042528
+    - rid: 476172735841042525
+      type: {class: BehaviorGraphNodeModel/FieldModel, ns: Unity.Behavior, asm: Unity.Behavior.Authoring}
+      data:
+        FieldName: query
+        Type:
+          m_SerializableType: FoxShooter.Characters.AI.Polestar.PolestarStack, Assembly-CSharp,
+            Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+        LocalValue:
+          rid: 476172735841042532
+        LinkedVariable:
+          rid: -2
+    - rid: 476172735841042526
+      type: {class: BehaviorGraphNodeModel/FieldModel, ns: Unity.Behavior, asm: Unity.Behavior.Authoring}
+      data:
+        FieldName: position
+        Type:
+          m_SerializableType: UnityEngine.Transform, UnityEngine.CoreModule, Version=0.0.0.0,
+            Culture=neutral, PublicKeyToken=null
+        LocalValue:
+          rid: 476172735841042533
+        LinkedVariable:
+          rid: 476172735841042529
+    - rid: 476172735841042527
+      type: {class: 'TypedVariableModel`1[[UnityEngine.GameObject, UnityEngine.CoreModule]]', ns: Unity.Behavior.GraphFramework, asm: Unity.Behavior.GraphFramework}
+      data:
+        ID:
+          m_Value0: 1
+          m_Value1: 0
+        Name: Self
+        IsExposed: 1
+        m_IsShared: 0
+        m_Value: {fileID: 0}
+    - rid: 476172735841042528
       type: {class: 'TypedVariableModel`1[[UnityEngine.Transform, UnityEngine.CoreModule]]', ns: Unity.Behavior.GraphFramework, asm: Unity.Behavior.GraphFramework}
       data:
         ID:
@@ -1790,6 +1816,48 @@ MonoBehaviour:
         Name: Target
         IsExposed: 1
         m_IsShared: 0
+        m_Value: {fileID: 0}
+    - rid: 476172735841042529
+      type: {class: 'TypedVariableModel`1[[UnityEngine.Transform, UnityEngine.CoreModule]]', ns: Unity.Behavior.GraphFramework, asm: Unity.Behavior.GraphFramework}
+      data:
+        ID:
+          m_Value0: 12121901846035604727
+          m_Value1: 17916082115669604130
+        Name: LocationProxy
+        IsExposed: 1
+        m_IsShared: 0
+        m_Value: {fileID: 0}
+    - rid: 476172735841042530
+      type: {class: 'BlackboardVariable`1[[UnityEngine.Transform, UnityEngine.CoreModule]]', ns: Unity.Behavior, asm: Unity.Behavior}
+      data:
+        GUID:
+          m_Value0: 0
+          m_Value1: 0
+        Name: 
+        m_Value: {fileID: 0}
+    - rid: 476172735841042531
+      type: {class: 'BlackboardVariable`1[[UnityEngine.Transform, UnityEngine.CoreModule]]', ns: Unity.Behavior, asm: Unity.Behavior}
+      data:
+        GUID:
+          m_Value0: 0
+          m_Value1: 0
+        Name: 
+        m_Value: {fileID: 0}
+    - rid: 476172735841042532
+      type: {class: 'BlackboardVariable`1[[FoxShooter.Characters.AI.Polestar.PolestarStack, Assembly-CSharp]]', ns: Unity.Behavior, asm: Unity.Behavior}
+      data:
+        GUID:
+          m_Value0: 0
+          m_Value1: 0
+        Name: 
+        m_Value: {fileID: 11400000, guid: 287779d57b6b9ea44822e944bd510dac, type: 2}
+    - rid: 476172735841042533
+      type: {class: 'BlackboardVariable`1[[UnityEngine.Transform, UnityEngine.CoreModule]]', ns: Unity.Behavior, asm: Unity.Behavior}
+      data:
+        GUID:
+          m_Value0: 0
+          m_Value1: 0
+        Name: 
         m_Value: {fileID: 0}
 --- !u!114 &4054346572060690264
 MonoBehaviour:
@@ -1801,20 +1869,20 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5c02bb70996b49eba31d0c206e28da24, type: 3}
-  m_Name: BG_Dummy Blackboard
+  m_Name: BG_Claw Blackboard
   m_EditorClassIdentifier: Unity.Behavior::Unity.Behavior.RuntimeBlackboardAsset
-  VersionTimestamp: 639128461548536977
+  VersionTimestamp: 639129307273127455
   AssetID:
-    m_Value0: 11824717552074166263
-    m_Value1: 16617075990768353368
+    m_Value0: 10672846591146151020
+    m_Value1: 2760038336564030249
   m_Blackboard:
     m_Variables:
     - rid: 476172455168180444
     - rid: 476172455168180496
     - rid: 476172455168180512
     - rid: 476172455168180638
-    - rid: 476172713113944180
     - rid: 476172713352233099
+    - rid: 476172734244323596
   m_SharedBlackboardVariableGuids: []
   references:
     version: 2
@@ -1851,14 +1919,6 @@ MonoBehaviour:
           m_Value1: 6736056064601575708
         Name: Target
         m_Value: {fileID: 0}
-    - rid: 476172713113944180
-      type: {class: 'BlackboardVariable`1[[FoxShooter.Characters.ProjectileSource, Assembly-CSharp]]', ns: Unity.Behavior, asm: Unity.Behavior}
-      data:
-        GUID:
-          m_Value0: 2603617188089070325
-          m_Value1: 8219334632014535771
-        Name: Gun
-        m_Value: {fileID: 0}
     - rid: 476172713352233099
       type: {class: 'BlackboardVariable`1[[FoxShooter.Characters.AI.SpottedEnemy, Assembly-CSharp]]', ns: Unity.Behavior, asm: Unity.Behavior}
       data:
@@ -1866,4 +1926,12 @@ MonoBehaviour:
           m_Value0: 8202579383142319091
           m_Value1: 1034025830170275787
         Name: SeenEnemy
+        m_Value: {fileID: 0}
+    - rid: 476172734244323596
+      type: {class: 'BlackboardVariable`1[[FoxShooter.Characters.DashAbility, Assembly-CSharp]]', ns: Unity.Behavior, asm: Unity.Behavior}
+      data:
+        GUID:
+          m_Value0: 6226642420582316124
+          m_Value1: 5006461379674930761
+        Name: Ability
         m_Value: {fileID: 0}
