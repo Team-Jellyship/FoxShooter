@@ -11,12 +11,12 @@ namespace FoxShooter.Game.GamemodeGraph
         {
             base.OnDefinePorts(context);
 
-            context.AddInputPort<SceneReference>(ScenePinName).Build();
+            context.AddInputPort<LevelDefinition>(ScenePinName).Build();
         }
 
-        public SceneReference GetScene()
+        public LevelDefinition GetScene()
         {
-            return GetInputPortByName(ScenePinName).TryGetValue<SceneReference>(out var scene) ? scene : null;
+            return GetInputPortByName(ScenePinName).TryGetValue<LevelDefinition>(out var scene) ? scene : null;
         }
     }
 }

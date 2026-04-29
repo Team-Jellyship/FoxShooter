@@ -228,14 +228,22 @@ namespace FoxShooter.Characters
 			
 			_animator.SetBool("isJumping", _isJumping);
 
-			if (_characterController.transform.position.y < NegativeKillY)
+			if (_characterController.transform.position.y < NegativeKillY && _stats && _stats.alive)
 			{
 				// This should only happen once
-				
 				// ReSharper disable once Unity.PerformanceCriticalCodeInvocation
-				_stats?.Kill(null);
+				_stats.Kill(null);
 			}
 			
+		}
+
+		private void LateUpdate()
+		{
+			if (lookAt)
+			{
+				return;
+			}
+			playerCamera.transform.localEulerAngles = new Vector3(cameraPitch, 0.0f, 0.0f);
 		}
 
 		public void MoveInput(InputAction.CallbackContext context)
@@ -253,6 +261,11 @@ namespace FoxShooter.Characters
 
 		public void Look(InputAction.CallbackContext context)
 		{
+			if (Game.Game.instance.paused)
+			{
+				return;
+			}
+			
 			var look = context.ReadValue<Vector2>();
 			transform.Rotate(transform.up, look.x * lookSensitivityHorizontal);
 

@@ -24,6 +24,7 @@ namespace FoxShooter.Characters
 		public UnityEvent<CharacterStats, DamageType> onKillCharacter;
 
 
+		public bool alive {private set; get;  } = true;
 		public Team characterTeam { private set; get; }
 		[SerializeField] private float defaultHealth = 15;
 		[SerializeField] private float invulnerabilityTime;
@@ -120,6 +121,7 @@ namespace FoxShooter.Characters
 			{
 				_despawnTimer.Start(despawnTime);
 			}
+			alive = false;
 		}
 
 		// ReSharper disable Unity.PerformanceAnalysis

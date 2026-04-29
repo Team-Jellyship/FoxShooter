@@ -31,6 +31,10 @@ namespace FoxShooter.Characters
 
         public void Fire(InputAction.CallbackContext context)
         {
+            if (Game.Game.instance.paused)
+            {
+                return;
+            }
             if (context.phase == InputActionPhase.Performed)
             {
                 Fire();

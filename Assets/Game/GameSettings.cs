@@ -1,4 +1,5 @@
-﻿using FoxShooter.Game.GamemodeGraph.Runtime;
+﻿using Eflatun.SceneReference;
+using FoxShooter.Game.GamemodeGraph.Runtime;
 using FoxShooter.Game.StatusEffects;
 using UnityEditor;
 using UnityEngine;
@@ -12,7 +13,8 @@ namespace FoxShooter.Game
 
         [SerializeField] public GamemodeTransitionData transitions;
         [SerializeField] public StatusEffectList effectList;
-
+        [SerializeField] public SceneReference defaultScene;
+        
         public static SerializedObject GetSerializedSettings()
         {
             var settings = AssetDatabase.LoadAssetAtPath<GameSettings>(SettingsDefaultPath);

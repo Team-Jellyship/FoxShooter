@@ -84,10 +84,24 @@ namespace FoxShooter.Game.GamemodeGraph
                         time = loading.GetModeTime(),
                         scene = loading.GetMenuScene(),
                         id = Guid.NewGuid().ToString(),
-                        sceneToLoad = loading.GetScene()
+                        level = loading.GetScene()
                     };
                     return mode;
                 }
+                
+                case ReloadScene reload:
+                {
+                    mode = new ReloadMode
+                    {
+                        name = reload.GetModeName(),
+                        time = reload.GetModeTime(),
+                        scene = reload.GetMenuScene(),
+                        id = Guid.NewGuid().ToString(),
+                        showMouse = reload.GetShowMouse()
+                    };
+                    return mode;
+                }
+                
                 case Menu menu:
                 {
                     mode = new MenuMode
@@ -95,10 +109,12 @@ namespace FoxShooter.Game.GamemodeGraph
                         name = menu.GetModeName(),
                         time = menu.GetModeTime(),
                         scene = menu.GetMenuScene(),
-                        id = Guid.NewGuid().ToString()
+                        id = Guid.NewGuid().ToString(),
+                        showMouse = menu.GetShowMouse()
                     };
                     return mode;
                 }
+                
                 case GamemodeNode gamemode:
                 {
                     mode = new Gamemode

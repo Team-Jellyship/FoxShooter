@@ -11,7 +11,7 @@ namespace FoxShooter.Characters.AI.Polestar
 
         public List<PolestarResult> Evaluate(in PolestarContext context)
         {
-            var result = new List<PolestarResult> { new(context.target.transform.position, 1.0f) };
+            var result = new List<PolestarResult> { new (context.target ? context.target.transform.position : Vector3.zero, 1.0f) };
             foreach (var entry in queries)
             {
                 entry.Evaluate(ref result, context);

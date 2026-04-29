@@ -8,20 +8,25 @@ namespace FoxShooter.Game.GamemodeGraph.Runtime
     [Serializable]
     public class LoadingMode : MenuMode
     {
-        [SerializeField] public SceneReference sceneToLoad;
+        [SerializeField] public LevelDefinition level;
 
+        private SceneReference _nextScene;
+        
         public override void Enter()
         {
             base.Enter();
 
-            var buildIndex = sceneToLoad.BuildIndex;
+            _nextScene = level ? level.scene : Game.instance.nextLevel.scene;
+
+            var buildIndex = _nextScene.BuildIndex;
             if (buildIndex < 0)
             {
                 Debug.Log("cant load scene, index is -1");
                 return;
             }
             
-            var result = SceneManager.LoadSceneAsync(sceneToLoad.BuildIndex);
+            Game.instance.DestroyPlayer();
+            var result = SceneManager.LoadSceneAsync(_nextScene.BuildIndex);
             if (result == null)
             {
                 return;
@@ -38,7 +43,8 @@ namespace FoxShooter.Game.GamemodeGraph.Runtime
                 return;
             }
 
-            SceneManager.LoadScene(sceneToLoad.BuildIndex);
+            SceneManager.LoadScene(_nextScene.BuildIndex);
+            Game.instance.currentLevel = level;
             Game.instance.Command(GamemodeTransitionFlag.Loaded);
         }
     }
