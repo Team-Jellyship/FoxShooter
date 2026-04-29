@@ -1229,7 +1229,7 @@ MonoBehaviour:
   viewRecoil: {fileID: 4577427329450689634}
   mask:
     serializedVersion: 2
-    m_Bits: 64
+    m_Bits: 65
   fired:
     m_PersistentCalls:
       m_Calls:

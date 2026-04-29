@@ -29,6 +29,11 @@ namespace Props.Projectiles
             _hitbox.hit.AddListener(() => hit.Invoke());
         }
 
+        private void OnCollisionEnter(Collision other)
+        {
+            Destroy(gameObject);
+        }
+
         public void Setup(CharacterStats owner, CharacterStats targetIn, Transform origin, float speedIn, float lifetime)
         {
             _lifetime ??= TimerManager.instance.CreateTimer(this, Expire);
