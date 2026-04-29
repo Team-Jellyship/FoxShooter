@@ -22,6 +22,7 @@ namespace FoxShooter.Game
         public StatusEffectList statusEffects;
         public SceneReference nextLevel;
         public CharacterStats character;
+        public bool paused;
 
         private GameSettings _gameSettings;
         private readonly GameTransitionTable _transitionTable = new();

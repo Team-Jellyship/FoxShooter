@@ -149,6 +149,11 @@ namespace FoxShooter.Characters
 				_immobilized = false;
 				currentVelocity = Vector3.zero;
 			}, this);
+
+			if (_animator)
+			{
+				_animator.keepAnimatorStateOnDisable = true;
+			}
 		}
 
 		private void FixedUpdate()
@@ -237,6 +242,15 @@ namespace FoxShooter.Characters
 			
 		}
 
+		private void LateUpdate()
+		{
+			if (lookAt)
+			{
+				return;
+			}
+			playerCamera.transform.localEulerAngles = new Vector3(cameraPitch, 0.0f, 0.0f);
+		}
+
 		public void MoveInput(InputAction.CallbackContext context)
 		{
 			_moveInput = context.ReadValue<Vector2>();
@@ -252,6 +266,11 @@ namespace FoxShooter.Characters
 
 		public void Look(InputAction.CallbackContext context)
 		{
+			if (Game.Game.instance.paused)
+			{
+				return;
+			}
+			
 			var look = context.ReadValue<Vector2>();
 			transform.Rotate(transform.up, look.x * lookSensitivityHorizontal);
 

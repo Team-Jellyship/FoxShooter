@@ -21,7 +21,7 @@ namespace FoxShooter.Game.GamemodeGraph.Runtime
             }
             else
             {
-                Cursor.lockState = CursorLockMode.Confined;
+                Cursor.lockState = CursorLockMode.Locked;
                 Cursor.visible = false;
             }
             if (scene != null)
@@ -33,7 +33,7 @@ namespace FoxShooter.Game.GamemodeGraph.Runtime
         public override void Exit()
         {
             Time.timeScale = 1.0f;
-            Cursor.lockState = CursorLockMode.Confined;
+            Cursor.lockState = CursorLockMode.Locked;
             Cursor.visible = false;
             
             Game.instance.UnloadMenu();
