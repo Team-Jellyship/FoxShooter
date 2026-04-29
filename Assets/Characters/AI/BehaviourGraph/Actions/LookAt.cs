@@ -48,7 +48,6 @@ namespace FoxShooter.Characters.AI.BehaviourGraph.Actions
         private void LookAtDone()
         {
             _doneLooking = true;
-            Debug.Log("Done rotating");
         }
     }
 }
