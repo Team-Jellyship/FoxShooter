@@ -17,6 +17,8 @@ namespace FoxShooter.Characters.Fox
         // How long it takes for the gun to cool down after it overheats
         [SerializeField] private float activeCooldownRate = 1.0f;
 
+        public UnityEvent<float> heatValueChanged;
+
         private bool _overheating;
 
         protected override bool CanFire()
@@ -48,14 +50,17 @@ namespace FoxShooter.Characters.Fox
             currentHeat -= (_overheating ? activeCooldownRate : passiveCooldownRate) * Time.deltaTime;
             if (!(currentHeat <= 0.0f))
             {
+                heatValueChanged.Invoke(currentHeat / maxHeat);
                 return;
             }
+            
             if (_overheating)
             {
                 cooldown.Invoke();
             }
             _overheating = false;
             currentHeat = 0.0f;
+            heatValueChanged.Invoke(currentHeat / maxHeat);
         }
     }
 }
