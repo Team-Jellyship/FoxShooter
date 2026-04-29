@@ -15,7 +15,7 @@ namespace FoxShooter.Game.GamemodeGraph.Runtime
         public override void Enter()
         {
             base.Enter();
-
+            
             _nextScene = sceneToLoad.State == SceneReferenceState.Unsafe ? Game.instance.nextLevel : sceneToLoad;
 
             var buildIndex = _nextScene.BuildIndex;
@@ -25,6 +25,7 @@ namespace FoxShooter.Game.GamemodeGraph.Runtime
                 return;
             }
             
+            Game.instance.DestroyPlayer();
             var result = SceneManager.LoadSceneAsync(_nextScene.BuildIndex);
             if (result == null)
             {

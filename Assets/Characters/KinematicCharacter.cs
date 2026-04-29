@@ -149,11 +149,6 @@ namespace FoxShooter.Characters
 				_immobilized = false;
 				currentVelocity = Vector3.zero;
 			}, this);
-
-			if (_animator)
-			{
-				_animator.keepAnimatorStateOnDisable = true;
-			}
 		}
 
 		private void FixedUpdate()
