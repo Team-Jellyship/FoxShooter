@@ -702,9 +702,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5efbb2c3eb704f44928961f9517a6e57, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::FoxShooter.Props.StageEndTrigger
-  nextLevel:
-    asset: {fileID: 102900000, guid: 75ecebfc18f04b643a41791d56e144d0, type: 3}
-    guid: 75ecebfc18f04b643a41791d56e144d0
+  nextLevel: {fileID: 11400000, guid: b506faff8b505af4e8d37e91de4500f3, type: 2}
 --- !u!1001 &734346270
 PrefabInstance:
   m_ObjectHideFlags: 0

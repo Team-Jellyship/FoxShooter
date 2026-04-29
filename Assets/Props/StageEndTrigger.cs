@@ -1,6 +1,7 @@
 ﻿using System;
 using Eflatun.SceneReference;
 using FoxShooter.Characters.Fox;
+using FoxShooter.Game;
 using FoxShooter.Game.GamemodeGraph.Runtime;
 using UnityEngine;
 
@@ -8,7 +9,7 @@ namespace FoxShooter.Props
 {
     public class StageEndTrigger : MonoBehaviour
     {
-        [SerializeField] public SceneReference nextLevel;
+        [SerializeField] public LevelDefinition nextLevel;
         
         private void OnTriggerEnter(Collider other)
         {

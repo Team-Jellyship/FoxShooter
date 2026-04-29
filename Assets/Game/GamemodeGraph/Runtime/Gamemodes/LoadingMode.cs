@@ -8,15 +8,15 @@ namespace FoxShooter.Game.GamemodeGraph.Runtime
     [Serializable]
     public class LoadingMode : MenuMode
     {
-        [SerializeField] public SceneReference sceneToLoad;
+        [SerializeField] public LevelDefinition level;
 
         private SceneReference _nextScene;
         
         public override void Enter()
         {
             base.Enter();
-            
-            _nextScene = sceneToLoad.State == SceneReferenceState.Unsafe ? Game.instance.nextLevel : sceneToLoad;
+
+            _nextScene = level ? level.scene : Game.instance.nextLevel.scene;
 
             var buildIndex = _nextScene.BuildIndex;
             if (buildIndex < 0)
@@ -44,6 +44,7 @@ namespace FoxShooter.Game.GamemodeGraph.Runtime
             }
 
             SceneManager.LoadScene(_nextScene.BuildIndex);
+            Game.instance.currentLevel = level;
             Game.instance.Command(GamemodeTransitionFlag.Loaded);
         }
     }

@@ -409,7 +409,7 @@ MonoBehaviour:
           - rid: 476172748636291080
           - rid: 476172748636291081
           - rid: 476172748636291082
-          - rid: 476172748636291083
+          - rid: 476172758378872909
           - rid: 476172748636291221
         m_InputPortInfos:
           expandedPortsById:
@@ -451,12 +451,6 @@ MonoBehaviour:
       type: {class: 'Constant`1[[UnityEngine.GameObject, UnityEngine.CoreModule]]', ns: Unity.GraphToolkit.Editor, asm: Unity.GraphToolkit.Internal.Editor}
       data:
         m_Value: {fileID: 4656068244726179652, guid: 20206df99770c2444a60ad3f4481df39, type: 3}
-    - rid: 476172748636291083
-      type: {class: 'Constant`1[[Eflatun.SceneReference.SceneReference, Eflatun.SceneReference]]', ns: Unity.GraphToolkit.Editor, asm: Unity.GraphToolkit.Internal.Editor}
-      data:
-        m_Value:
-          asset: {fileID: 102900000, guid: 3e1f5341f44ca674ba0fcec3ca44be50, type: 3}
-          guid: 3e1f5341f44ca674ba0fcec3ca44be50
     - rid: 476172748636291084
       type: {class: LoadScene, ns: FoxShooter.Game.GamemodeGraph, asm: Assembly-CSharp-Editor}
       data: 
@@ -1414,7 +1408,7 @@ MonoBehaviour:
           - rid: 476172750722170887
           - rid: 476172750722170888
           - rid: 476172750722170889
-          - rid: 476172750722170890
+          - rid: 476172758378872910
         m_InputPortInfos:
           expandedPortsById:
             m_KeyList: []
@@ -1459,12 +1453,6 @@ MonoBehaviour:
       type: {class: 'Constant`1[[System.Boolean, mscorlib]]', ns: Unity.GraphToolkit.Editor, asm: Unity.GraphToolkit.Internal.Editor}
       data:
         m_Value: 0
-    - rid: 476172750722170890
-      type: {class: 'Constant`1[[Eflatun.SceneReference.SceneReference, Eflatun.SceneReference]]', ns: Unity.GraphToolkit.Editor, asm: Unity.GraphToolkit.Internal.Editor}
-      data:
-        m_Value:
-          asset: {fileID: 0}
-          guid: 00000000000000000000000000000000
     - rid: 476172750722170891
       type: {class: LoadScene, ns: FoxShooter.Game.GamemodeGraph, asm: Assembly-CSharp-Editor}
       data: 
@@ -2184,3 +2172,11 @@ MonoBehaviour:
           m_PortDirection: 1
           m_PortOrientation: 0
           m_Title: Input
+    - rid: 476172758378872909
+      type: {class: 'Constant`1[[FoxShooter.Game.LevelDefinition, Assembly-CSharp]]', ns: Unity.GraphToolkit.Editor, asm: Unity.GraphToolkit.Internal.Editor}
+      data:
+        m_Value: {fileID: 11400000, guid: 87df3872615f3594595951867717d60a, type: 2}
+    - rid: 476172758378872910
+      type: {class: 'Constant`1[[FoxShooter.Game.LevelDefinition, Assembly-CSharp]]', ns: Unity.GraphToolkit.Editor, asm: Unity.GraphToolkit.Internal.Editor}
+      data:
+        m_Value: {fileID: 0}

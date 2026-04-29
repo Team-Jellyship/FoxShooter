@@ -84,7 +84,7 @@ namespace FoxShooter.Game.GamemodeGraph
                         time = loading.GetModeTime(),
                         scene = loading.GetMenuScene(),
                         id = Guid.NewGuid().ToString(),
-                        sceneToLoad = loading.GetScene()
+                        level = loading.GetScene()
                     };
                     return mode;
                 }

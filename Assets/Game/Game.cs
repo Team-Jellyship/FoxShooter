@@ -19,8 +19,10 @@ namespace FoxShooter.Game
         public UnityEvent<float> scoreChanged = new();
         
         public static Game instance { get; private set; }
+
+        public LevelDefinition currentLevel;
+        public LevelDefinition nextLevel;
         public StatusEffectList statusEffects;
-        public SceneReference nextLevel;
         public CharacterStats character;
         public bool paused;
 
