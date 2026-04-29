@@ -279,10 +279,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 238749407478760749, guid: e867e5ca3dce83c4e878a306fde78c18, type: 3}
-      propertyPath: cooldownTime
-      value: 1.5
-      objectReference: {fileID: 0}
     - target: {fileID: 2727929157351720282, guid: e867e5ca3dce83c4e878a306fde78c18, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -327,156 +323,28 @@ PrefabInstance:
       propertyPath: m_Name
       value: Char_Fox
       objectReference: {fileID: 0}
-    - target: {fileID: 6228323802545246593, guid: e867e5ca3dce83c4e878a306fde78c18, type: 3}
-      propertyPath: m_fontSize
-      value: 12
+    - target: {fileID: 4624604317608692083, guid: e867e5ca3dce83c4e878a306fde78c18, type: 3}
+      propertyPath: activeCooldownRate
+      value: 50
       objectReference: {fileID: 0}
-    - target: {fileID: 6228323802545246593, guid: e867e5ca3dce83c4e878a306fde78c18, type: 3}
-      propertyPath: m_fontSizeBase
-      value: 12
+    - target: {fileID: 4624604317608692083, guid: e867e5ca3dce83c4e878a306fde78c18, type: 3}
+      propertyPath: overheat.m_PersistentCalls.m_Calls.Array.size
+      value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 6959763318834364756, guid: e867e5ca3dce83c4e878a306fde78c18, type: 3}
-      propertyPath: m_Enabled
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8681671206454598398, guid: e867e5ca3dce83c4e878a306fde78c18, type: 3}
-      propertyPath: gravity
-      value: 6
-      objectReference: {fileID: 0}
-    - target: {fileID: 8681671206454598398, guid: e867e5ca3dce83c4e878a306fde78c18, type: 3}
-      propertyPath: friction
-      value: 100
-      objectReference: {fileID: 0}
-    - target: {fileID: 8681671206454598398, guid: e867e5ca3dce83c4e878a306fde78c18, type: 3}
-      propertyPath: maxSpeed
-      value: 15
-      objectReference: {fileID: 0}
-    - target: {fileID: 8681671206454598398, guid: e867e5ca3dce83c4e878a306fde78c18, type: 3}
-      propertyPath: jumpStrength
-      value: 12
-      objectReference: {fileID: 0}
-    - target: {fileID: 8681671206454598398, guid: e867e5ca3dce83c4e878a306fde78c18, type: 3}
-      propertyPath: lookSensitivityHorizontal
-      value: 0.2
+    - target: {fileID: 4624604317608692083, guid: e867e5ca3dce83c4e878a306fde78c18, type: 3}
+      propertyPath: overheat.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
-    m_AddedGameObjects:
-    - targetCorrespondingSourceObject: {fileID: 7656180942869666107, guid: e867e5ca3dce83c4e878a306fde78c18, type: 3}
-      insertIndex: 5
-      addedObject: {fileID: 874903920}
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 3797445723825112220, guid: e867e5ca3dce83c4e878a306fde78c18, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1950871508}
-    - targetCorrespondingSourceObject: {fileID: 6098747816066575583, guid: e867e5ca3dce83c4e878a306fde78c18, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 172512074}
+    m_AddedGameObjects: []
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e867e5ca3dce83c4e878a306fde78c18, type: 3}
 --- !u!4 &172512069 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2727929157351720282, guid: e867e5ca3dce83c4e878a306fde78c18, type: 3}
   m_PrefabInstance: {fileID: 172512068}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &172512070 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 759520291792908217, guid: e867e5ca3dce83c4e878a306fde78c18, type: 3}
-  m_PrefabInstance: {fileID: 172512068}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1950871501}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f81747f529634a988c298a4d6eb7acd2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::FoxShooter.Characters.Fox.ComboMeter
---- !u!82 &172512071 stripped
-AudioSource:
-  m_CorrespondingSourceObject: {fileID: 2115820952305835636, guid: e867e5ca3dce83c4e878a306fde78c18, type: 3}
-  m_PrefabInstance: {fileID: 172512068}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &172512072 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 6098747816066575583, guid: e867e5ca3dce83c4e878a306fde78c18, type: 3}
-  m_PrefabInstance: {fileID: 172512068}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &172512073 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 4577427329450689634, guid: e867e5ca3dce83c4e878a306fde78c18, type: 3}
-  m_PrefabInstance: {fileID: 172512068}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 642b2cb76f83a2344b2662a94b8dd253, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::ViewRecoil
---- !u!114 &172512074
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 172512072}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7813c7134d7b47da93931b3f1bd0f4fe, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::FoxShooter.Characters.Fox.Blaster
-  cooldownTime: 0
-  distance: 25
-  damage: 1
-  viewRecoil: {fileID: 172512073}
-  _animator: {fileID: 0}
-  mask:
-    serializedVersion: 2
-    m_Bits: 64
-  fired:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 2693857677620479894, guid: e867e5ca3dce83c4e878a306fde78c18, type: 3}
-        m_TargetAssemblyTypeName: UnityEngine.Animator, UnityEngine
-        m_MethodName: SetTrigger
-        m_Mode: 5
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: Fire
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 172512071}
-        m_TargetAssemblyTypeName: UnityEngine.AudioSource, UnityEngine
-        m_MethodName: Play
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-  hitTarget:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 172512070}
-        m_TargetAssemblyTypeName: FoxShooter.Characters.Fox.ComboMeter, Assembly-CSharp
-        m_MethodName: SendComboEvent
-        m_Mode: 5
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: hit
-          m_BoolArgument: 0
-        m_CallState: 2
-  currentHeat: 0
-  maxHeat: 100
-  heatPerShot: 10
-  passiveCooldownRate: 5
-  activeCooldownRate: 1
 --- !u!1 &205431530
 GameObject:
   m_ObjectHideFlags: 0
@@ -763,81 +631,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 063d40d5f213dff4f9203ddb26c34c5a, type: 3}
---- !u!1 &874903919
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 874903920}
-  - component: {fileID: 874903922}
-  - component: {fileID: 874903921}
-  m_Layer: 5
-  m_Name: Particle
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!224 &874903920
-RectTransform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 874903919}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 1
-  m_Children: []
-  m_Father: {fileID: 2012251914}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0}
-  m_AnchorMax: {x: 0.5, y: 0}
-  m_AnchoredPosition: {x: -48.750004, y: 24.5}
-  m_SizeDelta: {x: 50, y: 50}
-  m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &874903921
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 874903919}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
-  m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
-  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
-  m_Maskable: 1
-  m_OnCullStateChanged:
-    m_PersistentCalls:
-      m_Calls: []
-  m_Sprite: {fileID: 1744133294, guid: 221bf3503692e214eb24feefb11fc38d, type: 3}
-  m_Type: 1
-  m_PreserveAspect: 0
-  m_FillCenter: 1
-  m_FillMethod: 4
-  m_FillAmount: 1
-  m_FillClockwise: 1
-  m_FillOrigin: 0
-  m_UseSpriteMesh: 0
-  m_PixelsPerUnitMultiplier: 1
---- !u!222 &874903922
-CanvasRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 874903919}
-  m_CullTransparentMesh: 1
 --- !u!1001 &1546325608
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1103,23 +896,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1950871501 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 3797445723825112220, guid: e867e5ca3dce83c4e878a306fde78c18, type: 3}
-  m_PrefabInstance: {fileID: 172512068}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &1950871508
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1950871501}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cfbadf760e794b848c1fd1acfb9bfa4f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::FoxShooter.Characters.PerceptionSource
 --- !u!1 &1972970014
 GameObject:
   m_ObjectHideFlags: 0
@@ -1297,11 +1073,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!224 &2012251914 stripped
-RectTransform:
-  m_CorrespondingSourceObject: {fileID: 7656180942869666107, guid: e867e5ca3dce83c4e878a306fde78c18, type: 3}
-  m_PrefabInstance: {fileID: 172512068}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
