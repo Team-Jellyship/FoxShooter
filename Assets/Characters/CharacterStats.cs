@@ -24,8 +24,8 @@ namespace FoxShooter.Characters
 		public UnityEvent<CharacterStats, DamageType> onKillCharacter;
 
 
-		public bool alive {private set; get;  } = true;
-		public Team characterTeam { private set; get; }
+		public bool alive { private set; get;  } = true;
+		[field: SerializeField] public Team characterTeam { private set; get; }
 		[SerializeField] private float defaultHealth = 15;
 		[SerializeField] private float invulnerabilityTime;
 		[SerializeField] private float despawnTime = 0.5f;

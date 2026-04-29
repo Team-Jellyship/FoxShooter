@@ -187,6 +187,7 @@ MonoBehaviour:
   onKillCharacter:
     m_PersistentCalls:
       m_Calls: []
+  <characterTeam>k__BackingField: 1
   defaultHealth: 3
   invulnerabilityTime: 0
   despawnTime: 0.5

@@ -33,6 +33,13 @@ namespace FoxShooter.Characters
             {
                 return;
             }
+
+            // No friendly fire!
+            if (owner && owner.characterTeam == otherStats.characterTeam)
+            {
+                return;
+            }
+            
             hit.Invoke();
             otherStats.TakeDamage(damage, owner, false, damageType);
         }
