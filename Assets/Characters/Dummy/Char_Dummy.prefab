@@ -171,7 +171,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::FoxShooter.Characters.CharacterStats
   onDeath:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 482385922048550689}
+        m_TargetAssemblyTypeName: UnityEngine.Animator, UnityEngine
+        m_MethodName: SetTrigger
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: IsDead
+          m_BoolArgument: 0
+        m_CallState: 2
   onTakeDamage:
     m_PersistentCalls:
       m_Calls: []
@@ -189,7 +201,7 @@ MonoBehaviour:
       m_Calls: []
   defaultHealth: 3
   invulnerabilityTime: 0
-  despawnTime: 0.5
+  despawnTime: -1
   score: 10
   _animator: {fileID: 0}
 --- !u!54 &3953417084980186901
