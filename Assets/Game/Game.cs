@@ -48,10 +48,16 @@ namespace FoxShooter.Game
             _menuAttachmentPoint = new GameObject("menu");
             DontDestroyOnLoad(_menuAttachmentPoint);
             _gameSettings = Resources.Load<GameSettings>(GameSettings.SettingsFileName);
-            _transitionTable.Startup(_gameSettings.transitions);
+            if (_gameSettings.loadGameModeGraphOnStart)
+            {
+                _transitionTable.Startup(_gameSettings.transitions);
+            }
+            else
+            {
+                Cursor.lockState = CursorLockMode.Locked;
+            }
             statusEffects = _gameSettings.effectList;
             _gameSettings.scoreImporter.LoadScores();
-            // Cursor.lockState = CursorLockMode.Locked;
         }
 
         // Spawns a new menu object 

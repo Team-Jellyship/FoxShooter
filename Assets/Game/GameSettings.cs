@@ -15,6 +15,7 @@ namespace FoxShooter.Game
         [SerializeField] public StatusEffectList effectList;
         [SerializeField] public SceneReference defaultScene;
         [SerializeField] public ScoreImporter scoreImporter;
+        [SerializeField] public bool loadGameModeGraphOnStart = true;
         
         public static SerializedObject GetSerializedSettings()
         {

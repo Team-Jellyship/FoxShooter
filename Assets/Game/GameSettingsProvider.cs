@@ -28,6 +28,7 @@ namespace FoxShooter.Game
             EditorGUILayout.PropertyField(_settings.FindProperty("effectList"));
             EditorGUILayout.PropertyField(_settings.FindProperty("defaultScene"));
             EditorGUILayout.PropertyField(_settings.FindProperty("scoreImporter"));
+            EditorGUILayout.PropertyField(_settings.FindProperty("loadGameModeGraphOnStart"));
             _settings.ApplyModifiedPropertiesWithoutUndo();
         }
     }

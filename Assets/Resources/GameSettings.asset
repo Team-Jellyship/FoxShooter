@@ -18,3 +18,4 @@ MonoBehaviour:
     asset: {fileID: 102900000, guid: bb938008c687acd42935045497ec7ee4, type: 3}
     guid: bb938008c687acd42935045497ec7ee4
   scoreImporter: {fileID: 11400000, guid: 85f700e621264314089bd27e9353b777, type: 2}
+  loadGameModeGraphOnStart: 0
