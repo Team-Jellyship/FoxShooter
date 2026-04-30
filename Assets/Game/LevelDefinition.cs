@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Eflatun.SceneReference;
 using UnityEngine;
 
@@ -9,7 +8,10 @@ namespace FoxShooter.Game
     public class LevelDefinition : ScriptableObject
     {
         [SerializeField] public SceneReference scene;
+        [SerializeField] public Sprite thumbnail;
+        [SerializeField] public string displayName;
         [SerializeField] public List<LevelRank> ranks;
+        [SerializeField] public float highScore;
 
         private void OnValidate()
         {
@@ -18,7 +20,12 @@ namespace FoxShooter.Game
 
         public LevelRank GetRank(float score)
         {
-            for (var i = ranks.Count - 1; i > 0; --i)
+            if (ranks.Count == 0)
+            {
+                return LevelRank.unranked;
+            }
+            
+            for (var i = ranks.Count - 1; i >= 0; --i)
             {
                 if (score < ranks[i].score)
                 {
@@ -26,7 +33,12 @@ namespace FoxShooter.Game
                 }
             }
 
-            return LevelRank.unranked;
+            return ranks[0];
+        }
+
+        public LevelRank GetBestRank()
+        {
+            return GetRank(highScore);
         }
     }
 }

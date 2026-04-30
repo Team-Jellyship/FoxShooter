@@ -15,4 +15,7 @@ MonoBehaviour:
   scene:
     asset: {fileID: 102900000, guid: 75ecebfc18f04b643a41791d56e144d0, type: 3}
     guid: 75ecebfc18f04b643a41791d56e144d0
+  thumbnail: {fileID: 0}
+  displayName: Hangar
   ranks: []
+  highScore: 0
