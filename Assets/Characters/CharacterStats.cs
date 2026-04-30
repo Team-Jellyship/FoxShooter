@@ -85,6 +85,12 @@ namespace FoxShooter.Characters
 			Kill(source, type);
 		}
 
+		public void Death()
+		{
+			Debug.Log("Hello");
+			return;
+		}
+
 		public void Heal(float amount)
 		{
 			if (amount < 0.0f)
