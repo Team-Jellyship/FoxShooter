@@ -1,5 +1,6 @@
 ﻿using System;
 using FoxShooter.Game;
+using FoxShooter.Props.Projectiles;
 using FoxShooter.Scripts;
 using UnityEngine;
 using UnityEngine.Events;
@@ -14,11 +15,16 @@ namespace FoxShooter.Characters
         [SerializeField] private float damage;
         [SerializeField] private ViewRecoil viewRecoil;
         [SerializeField] private LayerMask mask;
-
         [SerializeField] private UnityEvent fired;
         [SerializeField] private UnityEvent hitTarget;
         [SerializeField] private CharacterStats owner;
 
+        [Header("Effect")]
+        [SerializeField] private GameObject hitEffect;
+        [SerializeField] private float hitSpeed;
+        [SerializeField] private Vector3 effectOffset;
+        [SerializeField] private float effectStartTime;
+        
         private bool _onCooldown;
         private TimerHandle _cooldownTimer;
         
@@ -47,8 +53,12 @@ namespace FoxShooter.Characters
             }
             
             fired.Invoke();
+            var hitTrail = Instantiate(hitEffect);
+            var gunPosition = transform.position +
+                transform.right * effectOffset.x +
+                transform.up * effectOffset.y +
+                transform.forward * effectOffset.z;
             
-            // Debug.DrawRay(transform.position, transform.forward * distance, Color.violetRed, 0.5f);
             if (Physics.Raycast(transform.position, transform.forward,
                     out var result, distance, mask, QueryTriggerInteraction.Collide))
             {
@@ -59,7 +69,13 @@ namespace FoxShooter.Characters
                     stats.TakeDamage(damage, owner, false);
                 }
                 
+                hitTrail.GetComponent<HitscanParticle>()?.SetPath(gunPosition, result.point, hitSpeed, effectStartTime);
             }
+            else
+            {
+                hitTrail.GetComponent<HitscanParticle>()?.SetPath(gunPosition, transform.position + transform.forward * distance, hitSpeed, effectStartTime);
+            }
+            
             
             if (viewRecoil != null)
             {

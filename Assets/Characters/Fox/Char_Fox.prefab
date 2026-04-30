@@ -683,6 +683,7 @@ MonoBehaviour:
           m_StringArgument: kill
           m_BoolArgument: 0
         m_CallState: 2
+  <characterTeam>k__BackingField: 0
   defaultHealth: 5
   invulnerabilityTime: 0
   despawnTime: -1
@@ -1273,6 +1274,10 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
   owner: {fileID: 2413653789905979878}
+  hitEffect: {fileID: 6768540095933952439, guid: acb4b30393d9d704d97bf256819a47d2, type: 3}
+  hitSpeed: 150
+  effectOffset: {x: 0.25, y: -0.1, z: 0}
+  effectStartTime: 0.025
   currentHeat: 0
   maxHeat: 100
   heatPerShot: 10

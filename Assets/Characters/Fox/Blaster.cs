@@ -6,6 +6,7 @@ namespace FoxShooter.Characters.Fox
 {
     public class Blaster : HitscanSource
     {
+        [Header("Blaster")]
         [SerializeField] private float currentHeat = 0.0f;
         [SerializeField] private float maxHeat = 100.0f;
         [SerializeField] private float heatPerShot = 10.0f;
