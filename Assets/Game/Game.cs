@@ -1,4 +1,5 @@
-﻿using Eflatun.SceneReference;
+﻿using System;
+using Eflatun.SceneReference;
 using FoxShooter.Characters;
 using FoxShooter.Game.GamemodeGraph.Runtime;
 using FoxShooter.Game.StatusEffects;
@@ -49,6 +50,7 @@ namespace FoxShooter.Game
             _gameSettings = Resources.Load<GameSettings>(GameSettings.SettingsFileName);
             _transitionTable.Startup(_gameSettings.transitions);
             statusEffects = _gameSettings.effectList;
+            _gameSettings.scoreImporter.LoadScores();
             // Cursor.lockState = CursorLockMode.Locked;
         }
 
@@ -79,6 +81,17 @@ namespace FoxShooter.Game
 
             score += points;
             scoreChanged.Invoke(score);
+        }
+
+        public void SaveCurrentCombo()
+        {
+            currentLevel.highScore = MathF.Max(currentLevel.highScore, levelMaxCombo);
+            Save();
+        }
+
+        public void Save()
+        {
+            _gameSettings.scoreImporter.SaveScores();
         }
 
         public void RestartCurrentLevel()

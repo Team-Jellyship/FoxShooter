@@ -27,6 +27,7 @@ namespace FoxShooter.Game
             EditorGUILayout.PropertyField(_settings.FindProperty("transitions"));
             EditorGUILayout.PropertyField(_settings.FindProperty("effectList"));
             EditorGUILayout.PropertyField(_settings.FindProperty("defaultScene"));
+            EditorGUILayout.PropertyField(_settings.FindProperty("scoreImporter"));
             _settings.ApplyModifiedPropertiesWithoutUndo();
         }
     }

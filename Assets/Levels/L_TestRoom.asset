@@ -26,4 +26,4 @@ MonoBehaviour:
     score: 3
   - name: D
     score: 1
-  highScore: 5
+  highScore: 0

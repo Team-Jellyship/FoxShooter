@@ -14,6 +14,7 @@ namespace FoxShooter.Game
         [SerializeField] public GamemodeTransitionData transitions;
         [SerializeField] public StatusEffectList effectList;
         [SerializeField] public SceneReference defaultScene;
+        [SerializeField] public ScoreImporter scoreImporter;
         
         public static SerializedObject GetSerializedSettings()
         {

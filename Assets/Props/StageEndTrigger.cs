@@ -19,6 +19,7 @@ namespace FoxShooter.Props
                 return;
             }
 
+            Game.Game.instance.SaveCurrentCombo();
             Game.Game.instance.nextLevel = nextLevel;
             Game.Game.instance.Command(GamemodeTransitionFlag.Advance);
         }

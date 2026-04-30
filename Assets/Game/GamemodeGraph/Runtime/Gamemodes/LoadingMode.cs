@@ -44,7 +44,7 @@ namespace FoxShooter.Game.GamemodeGraph.Runtime
             }
 
             SceneManager.LoadScene(_nextScene.BuildIndex);
-            Game.instance.currentLevel = level;
+            Game.instance.currentLevel = level ?? Game.instance.nextLevel;
             Game.instance.levelMaxCombo = 0;
             Game.instance.Command(GamemodeTransitionFlag.Loaded);
         }
