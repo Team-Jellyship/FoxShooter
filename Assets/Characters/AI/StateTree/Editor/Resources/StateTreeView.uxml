@@ -1,0 +1,7 @@
+<ui:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <Style src="project://database/Assets/Characters/AI/StateTree/Editor/Resources/StateTreeGraphEditor.uss?fileID=7433441132597879392&amp;guid=8bf753afdf2fb12449e8a8309dbbcac8&amp;type=3#StateTreeGraphEditor"/>
+    <ui:VisualElement name="Root" class="indented" style="height: 48px;">
+        <ui:Label text="Root&#10;" class="state" style="height: 48px; font-size: 18px;"/>
+    </ui:VisualElement>
+    <ui:TreeView name="TreeView"/>
+</ui:UXML>
