@@ -3,16 +3,12 @@
 namespace FoxShooter.Characters.AI.StateTree.Tasks
 {
     [Serializable]
-    public class Task
+    public abstract class Task
     {
-        public virtual TaskStatus Enter()
-        {
-            return TaskStatus.Succeeded;
-        }
+        public abstract TaskStatus Enter();
 
-        public virtual TaskStatus Update()
-        {
-            return TaskStatus.Active;
-        }
+        public abstract TaskStatus Update(TreeContext context, float time);
+
+        public virtual void Exit() {}
     }
 }

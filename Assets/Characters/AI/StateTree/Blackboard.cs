@@ -14,5 +14,17 @@ namespace FoxShooter.Characters.AI.StateTree
         {
             variables.Add(name, new BlackboardVariable<T>(name, defaultValue));
         }
+
+        public bool TryGetVariable<T>(string name, out BlackboardVariable<T> result)
+        {
+            if (variables.TryGetValue(name, out var value))
+            {
+                result = value as BlackboardVariable<T>;
+                return result == null;
+            }
+
+            result = null;
+            return false;
+        }
     }
 }

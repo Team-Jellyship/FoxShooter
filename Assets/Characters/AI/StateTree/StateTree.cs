@@ -20,14 +20,14 @@ namespace FoxShooter.Characters.AI.StateTree
          * necessary
          * </summary>
          */
-        private void Update()
+        private void Update(float time)
         {
             var treeContext = new TreeContext();
             
             for (var i = _activeStates.Count - 1; i >= 0; --i)
             {
                 var state = _activeStates[i];
-                var result = state.Update(treeContext);
+                var result = state.Update(treeContext, time);
                 if (result == null) { continue; }
                 CompleteTransition(result);
                 return;

@@ -102,6 +102,9 @@ namespace FoxShooter.Characters.AI.StateTree
          * <param name="context">
          * Tree context object, to pass to tasks
          * </param>
+         * <param name="time">
+         * How much time has elapsed since the last update
+         * </param>
          * 
          * <returns>
          * Next state to enter, if any child task succeeds or fails.
@@ -110,14 +113,14 @@ namespace FoxShooter.Characters.AI.StateTree
          * If all child tasks are in progress, returns null
          * </returns>
          */
-        public State Update(TreeContext context)
+        public State Update(TreeContext context, float time)
         {
             var succeeded = false;
             var canceled = false;
             
             foreach (var task in childTasks)
             {
-                var result = task.Update();
+                var result = task.Update(context, time);
                 switch (result)
                 {
                     case TaskStatus.Succeeded:

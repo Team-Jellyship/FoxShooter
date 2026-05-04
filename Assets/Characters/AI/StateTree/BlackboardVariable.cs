@@ -1,6 +1,5 @@
 ﻿using System;
 using UnityEngine;
-using UnityEngine.Serialization;
 
 namespace FoxShooter.Characters.AI.StateTree
 {
@@ -34,6 +33,11 @@ namespace FoxShooter.Characters.AI.StateTree
         {
             get => internalValue;
             set => internalValue = (T) value;
+        }
+
+        public T value
+        {
+            get => internalValue;
         }
 
         public override Type type
