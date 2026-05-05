@@ -20,12 +20,13 @@ namespace FoxShooter.Characters.AI.StateTree
         {
             blackboard = new Blackboard();
             blackboard.AddVariable<float>("time");
+            blackboard.AddVariable<float>("time2");
 
             stateTree = new StateTree
             {
                 _root = new State
                 {
-                    name = "start"
+                    name = "root"
                 }
             };
 
@@ -36,7 +37,8 @@ namespace FoxShooter.Characters.AI.StateTree
 
             _state2 = new State
             {
-                name = "state2"
+                name = "state2",
+                successState = stateTree._root
             };
             stateTree._root.AddState(_state1);
             stateTree._root.AddState(_state2);
@@ -68,6 +70,10 @@ namespace FoxShooter.Characters.AI.StateTree
             var testTask = new TestTask();
             testTask.timeLimit.Set(new BlackboardReference<float>(blackboard, "time"));
             _state1.childTasks.Add(testTask);
+
+            var testTask2 = new TestTask();
+            testTask2.timeLimit.Set(new BlackboardReference<float>(blackboard, "time2"));
+            _state2.childTasks.Add(testTask2);
             stateTree.Start();
         }
 

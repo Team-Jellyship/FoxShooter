@@ -10,6 +10,7 @@ namespace FoxShooter.Characters.AI.StateTree.Tasks
         
         public override TaskStatus Enter()
         {
+            _currentTime = 0.0f;
             return TaskStatus.Active;
         }
 

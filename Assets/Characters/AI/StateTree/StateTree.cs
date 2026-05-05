@@ -90,16 +90,30 @@ namespace FoxShooter.Characters.AI.StateTree
         
             for (; i >= 0; --i)
             {
-                if (i >= newActiveStates.Count || _activeStates[i] == newActiveStates[i])
+                if (i >= newActiveStates.Count)
                 {
-                    // Current index would be the common ancestor, so we don't need to enter that
+                    continue;
+                }
+                if (_activeStates[i] == newActiveStates[i])
+                {
                     break;
                 }
                 _activeStates[i].Exit();
                 _activeStates.RemoveAt(i);
             }
 
-            ++i;
+
+            // Except for entering a parent state directly...
+            if (i == newActiveStates.Count - 1)
+            {
+                _activeStates.RemoveAt(i);
+                newActiveStates[i].Exit();
+            }
+            // ...current index would be the common ancestor, so we don't need to enter that
+            else
+            {
+                ++i;
+            }
             for (; i < newActiveStates.Count; ++i)
             {
                 var result = newActiveStates[i].Enter(context);

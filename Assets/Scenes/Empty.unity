@@ -317,7 +317,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1552434531}
-  - component: {fileID: 1552434530}
+  - component: {fileID: 1552434532}
   m_Layer: 0
   m_Name: Test
   m_TagString: Untagged
@@ -325,28 +325,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1552434530
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1552434529}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e45f2afca60c4060a08c39d5273443d9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::FoxShooter.Characters.AI.StateTree.StateTreeAgent
-  variables:
-  - rid: 629504605802201234
-  references:
-    version: 2
-    RefIds:
-    - rid: 629504605802201234
-      type: {class: 'BlackboardVariable`1[[System.Single, mscorlib]]', ns: FoxShooter.Characters.AI.StateTree, asm: Assembly-CSharp}
-      data:
-        name: time
-        internalValue: 5
 --- !u!4 &1552434531
 Transform:
   m_ObjectHideFlags: 0
@@ -362,6 +340,34 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1552434532
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1552434529}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e45f2afca60c4060a08c39d5273443d9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::FoxShooter.Characters.AI.StateTree.StateTreeAgent
+  variables:
+  - rid: 629504608139477071
+  - rid: 629504608139477072
+  references:
+    version: 2
+    RefIds:
+    - rid: 629504608139477071
+      type: {class: 'BlackboardVariable`1[[System.Single, mscorlib]]', ns: FoxShooter.Characters.AI.StateTree, asm: Assembly-CSharp}
+      data:
+        name: time
+        internalValue: 0
+    - rid: 629504608139477072
+      type: {class: 'BlackboardVariable`1[[System.Single, mscorlib]]', ns: FoxShooter.Characters.AI.StateTree, asm: Assembly-CSharp}
+      data:
+        name: time2
+        internalValue: 0
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
