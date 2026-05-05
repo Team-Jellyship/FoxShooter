@@ -1,0 +1,56 @@
+
+
+
+
+#unity-text-input {
+    color: rgb(255, 255, 255);
+    margin-top: 0;
+    margin-right: 4px;
+    margin-bottom: 0;
+    margin-left: 4px;
+    padding-top: 0;
+    padding-right: 0;
+    padding-bottom: 0;
+    padding-left: 0;
+    height: 100%;
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0);
+    border-top-width: 0;
+    border-right-width: 0;
+    border-bottom-width: 0;
+    border-left-width: 0;
+}
+
+#toolbar Button {
+    background-color: rgb(60, 60, 60);
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+    border-bottom-left-radius: 0;
+    border-top-width: 0;
+    border-right-width: 0;
+    border-bottom-width: 0;
+    border-left-width: 0;
+    color: rgb(255, 255, 255);
+    height: 16px;
+    flex-shrink: 0;
+}
+
+#primary-window {
+    flex-direction: row;
+}
+
+#blackboard-container {
+    background-color: rgb(70, 70, 70);
+    flex-grow: 1;
+    flex-basis: 40%;
+}
+
+#tree-view {
+    flex-grow: 2;
+    flex-basis: 60%;
+    padding-top: 0;
+    padding-right: 0;
+    padding-bottom: 0;
+    padding-left: 0;
+}

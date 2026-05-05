@@ -7,6 +7,7 @@ namespace FoxShooter.Characters.AI.StateTree.Graph
     [Serializable]
     public class StateNode
     {
+        [SerializeField] public string name;
         [SerializeField] public StateNodeIdentifier id;
         [SerializeField] public List<StateNodeIdentifier> childStates;
         [SerializeField] public List<TaskNode> tasks;
