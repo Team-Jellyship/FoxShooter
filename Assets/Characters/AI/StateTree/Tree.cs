@@ -1,8 +1,10 @@
 ﻿using System.Collections.Generic;
+using UnityEditor;
+using UnityEditor.Callbacks;
 
 namespace FoxShooter.Characters.AI.StateTree
 {
-    public class StateTree
+    public class Tree
     {
         public Blackboard blackboard;
         public State _root;

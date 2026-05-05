@@ -1,7 +1,7 @@
 ﻿using System;
 using UnityEngine;
 
-namespace FoxShooter.Characters.AI.StateTree.UI
+namespace FoxShooter.Characters.AI.StateTree
 {
     [Serializable]
     public class BlackboardReference<T>
@@ -25,10 +25,6 @@ namespace FoxShooter.Characters.AI.StateTree.UI
             get
             {
                 _valueReference.TryGetTarget(out var reference);
-                if (reference == null)
-                {
-                    Debug.Log("NULLREFERENCE!!!!");
-                }
                 return reference == null ? default : reference.value;
             }
         }

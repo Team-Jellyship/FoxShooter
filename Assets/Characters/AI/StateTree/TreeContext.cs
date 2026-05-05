@@ -2,7 +2,7 @@
 {
     public class TreeContext
     {
-        public StateTree currentGraph;
+        public Tree currentGraph;
 
         public Blackboard blackboard;
     }

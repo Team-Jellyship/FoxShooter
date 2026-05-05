@@ -11,7 +11,7 @@ namespace FoxShooter.Characters.AI.StateTree
         [SerializeReference, HideInInspector] private List<BlackboardVariable> variables;
         
         public Blackboard blackboard;
-        public StateTree stateTree;
+        public Tree tree;
 
         private State _state1;
         private State _state2;
@@ -22,7 +22,7 @@ namespace FoxShooter.Characters.AI.StateTree
             blackboard.AddVariable<float>("time");
             blackboard.AddVariable<float>("time2");
 
-            stateTree = new StateTree
+            tree = new Tree
             {
                 _root = new State
                 {
@@ -38,13 +38,13 @@ namespace FoxShooter.Characters.AI.StateTree
             _state2 = new State
             {
                 name = "state2",
-                successState = stateTree._root
+                successState = tree._root
             };
-            stateTree._root.AddState(_state1);
-            stateTree._root.AddState(_state2);
-            stateTree._root.successState = _state1;
+            tree._root.AddState(_state1);
+            tree._root.AddState(_state2);
+            tree._root.successState = _state1;
             _state1.successState = _state2;
-            stateTree.blackboard = blackboard;
+            tree.blackboard = blackboard;
         }
 
         public void OnBeforeSerialize()
@@ -74,12 +74,12 @@ namespace FoxShooter.Characters.AI.StateTree
             var testTask2 = new TestTask();
             testTask2.timeLimit.Set(new BlackboardReference<float>(blackboard, "time2"));
             _state2.childTasks.Add(testTask2);
-            stateTree.Start();
+            tree.Start();
         }
 
         private void Update()
         {
-            stateTree.Update(Time.deltaTime);
+            tree.Update(Time.deltaTime);
         }
     }
 }

@@ -22,10 +22,5 @@ namespace FoxShooter.Characters.AI.StateTree.Tasks
             
             return _currentTime < limit ? TaskStatus.Active : TaskStatus.Succeeded;
         }
-
-        public override void Exit()
-        {
-            Debug.Log("Timer task ended");
-        }
     }
 }
