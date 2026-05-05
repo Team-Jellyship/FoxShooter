@@ -4,7 +4,8 @@ namespace FoxShooter.Characters.AI.StateTree
 {
     public class StateTree
     {
-        private State _root;
+        public Blackboard blackboard;
+        public State _root;
 
         /**
          * The currently active states, in order from
@@ -12,6 +13,11 @@ namespace FoxShooter.Characters.AI.StateTree
          */
         private readonly List<State> _activeStates = new();
 
+        public void Start()
+        {
+            CompleteTransition(_root);
+        }
+        
         /**
          * <summary>
          * Update each active state, in order from
@@ -20,9 +26,12 @@ namespace FoxShooter.Characters.AI.StateTree
          * necessary
          * </summary>
          */
-        private void Update(float time)
+        public void Update(float time)
         {
-            var treeContext = new TreeContext();
+            var treeContext = new TreeContext
+            {
+                blackboard = blackboard
+            };
             
             for (var i = _activeStates.Count - 1; i >= 0; --i)
             {
@@ -78,19 +87,20 @@ namespace FoxShooter.Characters.AI.StateTree
             
             // Ascend the tree (child -> parent) until hitting a common ancestor
             var i = _activeStates.Count - 1;
+        
             for (; i >= 0; --i)
             {
                 if (i >= newActiveStates.Count || _activeStates[i] == newActiveStates[i])
                 {
+                    // Current index would be the common ancestor, so we don't need to enter that
                     break;
                 }
                 _activeStates[i].Exit();
                 _activeStates.RemoveAt(i);
             }
 
-            // Current index would be the common ancestor, so we don't need to enter that
             ++i;
-            for (; i > newActiveStates.Count; ++i)
+            for (; i < newActiveStates.Count; ++i)
             {
                 var result = newActiveStates[i].Enter(context);
                 _activeStates.Add(newActiveStates[i]);
@@ -118,10 +128,10 @@ namespace FoxShooter.Characters.AI.StateTree
          */
         private static List<State> GetHierarchy(State state)
         {
-            var result = new List<State> { state };
+            var result = new List<State>();
             for (var parent = state; parent != null; parent = parent.parent)
             {
-                result.Add(parent);
+                result.Insert(0, parent);
             }
             return result;
         }

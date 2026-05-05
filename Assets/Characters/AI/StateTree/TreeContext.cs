@@ -2,13 +2,8 @@
 {
     public class TreeContext
     {
-        public StateTreeGraphOld currentGraph;
+        public StateTree currentGraph;
 
         public Blackboard blackboard;
-        
-        public State GetState(int index)
-        {
-            return currentGraph.GetState(index);
-        }
     }
 }

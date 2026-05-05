@@ -532,27 +532,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::FoxShooter.Characters.AI.StateTree.StateTreeAgent
   variables:
-  - rid: 629504543707889740
-  - rid: 629504543707889741
-  - rid: 629504543707889742
+  - rid: 629504605802201184
   references:
     version: 2
     RefIds:
-    - rid: 629504543707889740
-      type: {class: 'BlackboardVariable`1[[UnityEngine.GameObject, UnityEngine.CoreModule]]', ns: FoxShooter.Characters.AI.StateTree, asm: Assembly-CSharp}
+    - rid: 629504605802201184
+      type: {class: 'BlackboardVariable`1[[System.Single, mscorlib]]', ns: FoxShooter.Characters.AI.StateTree, asm: Assembly-CSharp}
       data:
-        name: Test
-        internalValue: {fileID: 0}
-    - rid: 629504543707889741
-      type: {class: 'BlackboardVariable`1[[System.Boolean, mscorlib]]', ns: FoxShooter.Characters.AI.StateTree, asm: Assembly-CSharp}
-      data:
-        name: Test2
-        internalValue: 0
-    - rid: 629504543707889742
-      type: {class: 'BlackboardVariable`1[[FoxShooter.Characters.CharacterStats, Assembly-CSharp]]', ns: FoxShooter.Characters.AI.StateTree, asm: Assembly-CSharp}
-      data:
-        name: Test3
-        internalValue: {fileID: 0}
+        name: time
+        internalValue: 5
 --- !u!1 &247858076
 GameObject:
   m_ObjectHideFlags: 0

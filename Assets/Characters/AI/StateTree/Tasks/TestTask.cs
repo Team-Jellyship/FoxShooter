@@ -1,8 +1,10 @@
-﻿namespace FoxShooter.Characters.AI.StateTree.Tasks
+﻿using UnityEngine;
+
+namespace FoxShooter.Characters.AI.StateTree.Tasks
 {
     public class TestTask : Task
     {
-        public TaskVariable<float> timeLimit;
+        [SerializeReference] public TaskVariable<float> timeLimit = new();
 
         private float _currentTime;
         
@@ -15,7 +17,14 @@
         {
             _currentTime += time;
 
-            return time >= timeLimit.Get(context) ? TaskStatus.Active : TaskStatus.Succeeded;
+            var limit = timeLimit.Get(context);
+            
+            return _currentTime < limit ? TaskStatus.Active : TaskStatus.Succeeded;
+        }
+
+        public override void Exit()
+        {
+            Debug.Log("Timer task ended");
         }
     }
 }

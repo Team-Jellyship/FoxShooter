@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using UnityEngine;
 
 namespace FoxShooter.Characters.AI.StateTree
 {
@@ -20,9 +21,15 @@ namespace FoxShooter.Characters.AI.StateTree
             if (variables.TryGetValue(name, out var value))
             {
                 result = value as BlackboardVariable<T>;
-                return result == null;
+                if (result != null)
+                {
+                    return true;
+                }
+                Debug.LogError($"[Blackboard] attempt to get variable '{name}' failed. Type mismatch. Expected type {typeof(T)}");
+                return false;
             }
 
+            Debug.LogError($"[Blackboard] Couldn't find blackboard variable with key '{name}'");
             result = null;
             return false;
         }

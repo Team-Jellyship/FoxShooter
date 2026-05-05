@@ -11,6 +11,7 @@ using UnityEngine;
 
 namespace FoxShooter.Characters.AI.StateTree
 {
+    [Serializable]
     public class State
     {
         /// A helpful identifier for visualizing in a graph and debug
@@ -69,6 +70,7 @@ namespace FoxShooter.Characters.AI.StateTree
         [CanBeNull]
         public State Enter(TreeContext context)
         {
+            Debug.Log($"[StateTree.State] Entering state '{name}'");
             var cancelled = false;
             var succeeded = false;
             
@@ -89,6 +91,11 @@ namespace FoxShooter.Characters.AI.StateTree
                     case TaskStatus.Active:
                         break;
                 }
+            }
+
+            if (childTasks.Count == 0)
+            {
+                return successState;
             }
 
             return cancelled ? cancelState : succeeded ? successState : null;
@@ -147,10 +154,22 @@ namespace FoxShooter.Characters.AI.StateTree
          */
         public void Exit()
         {
+            Debug.Log($"[StateTree.State] Exiting state '{name}'");
             foreach (var task in childTasks)
             {
-                Exit();
+                task.Exit();
             }
+        }
+
+        public void AddState(State state)
+        {
+            if (state.parent != null)
+            {
+                return;
+            }
+            
+            childStates.Add(state);
+            state.parent = this;
         }
     }
 }
