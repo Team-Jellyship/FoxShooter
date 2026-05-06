@@ -1,7 +1,3 @@
-
-
-
-
 #unity-text-input {
     color: rgb(255, 255, 255);
     margin-top: 0;
@@ -53,4 +49,38 @@
     padding-right: 0;
     padding-bottom: 0;
     padding-left: 0;
+}
+
+StateView #title {
+    background-color: rgb(255, 47, 112);
+    margin-top: 0;
+    margin-right: 0;
+    margin-bottom: 0;
+    margin-left: 0;
+    padding-top: 0;
+    padding-right: 0;
+    padding-bottom: 0;
+    padding-left: 0;
+}
+
+StateView #tasks-label {
+    background-color: rgb(188, 42, 87);
+    flex-grow: 1;
+    padding-top: 0;
+    padding-right: 0;
+    padding-bottom: 0;
+    padding-left: 0;
+    margin-top: 0;
+    margin-right: 0;
+    margin-bottom: 0;
+    margin-left: 0;
+}
+
+StateView #state-container {
+    flex-direction: row;
+}
+
+StateView {
+    flex-direction: column;
+    width: 100%;
 }

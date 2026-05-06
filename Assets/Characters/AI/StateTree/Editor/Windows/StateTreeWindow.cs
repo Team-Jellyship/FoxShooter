@@ -1,6 +1,7 @@
 ﻿using System;
 using FoxShooter.Characters.AI.StateTree.Graph;
 using FoxShooter.Characters.AI.StateTree.UI;
+using Unity.VisualScripting;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.UIElements;
@@ -12,10 +13,8 @@ namespace FoxShooter.Characters.AI.StateTree.Editor.Windows
         [SerializeField] public StateTreeGraph asset;
 
         private const string TreeViewFilename = "state-tree-view";
-        private const string StateViewFilename = "state-view";
         private const string WindowFilename = "state-tree-window";
         
-        private VisualTreeAsset _treeViewAsset;
         private VisualTreeAsset _stateViewAsset;
         private VisualTreeAsset _windowAsset;
 
@@ -23,7 +22,7 @@ namespace FoxShooter.Characters.AI.StateTree.Editor.Windows
         
         private StateTreeView _treeView;
 
-        static void Open(StateTreeGraph asset)
+        private static void Open(StateTreeGraph asset)
         {
             var windows = Resources.FindObjectsOfTypeAll<StateTreeWindow>();
             foreach (var window in windows)
@@ -36,7 +35,8 @@ namespace FoxShooter.Characters.AI.StateTree.Editor.Windows
 
             var newWindow = CreateWindow<StateTreeWindow>(typeof(StateTreeWindow));
             newWindow.titleContent.text = asset.name;
-            newWindow.asset = asset;
+            // newWindow.asset = asset;
+            newWindow.SetGraph(asset);
             newWindow.Show();
             newWindow.Focus();
         }
@@ -51,13 +51,18 @@ namespace FoxShooter.Characters.AI.StateTree.Editor.Windows
             LoadVisualAssets();
             
             _windowRoot = _windowAsset.CloneTree();
+            _treeView = _windowRoot.Q<StateTreeView>("tree-view");
             rootVisualElement.Add(_windowRoot);
+        }
+
+        public void SetGraph(StateTreeGraph graph)
+        {
+            asset = graph;
+            _treeView.Bind(graph);
         }
 
         private void LoadVisualAssets()
         {
-            _treeViewAsset = Resources.Load<VisualTreeAsset>(TreeViewFilename);
-            _stateViewAsset = Resources.Load<VisualTreeAsset>(StateViewFilename);
             _windowAsset = Resources.Load<VisualTreeAsset>(WindowFilename);
         }
 

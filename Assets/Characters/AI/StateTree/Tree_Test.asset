@@ -12,7 +12,26 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 90725b58bed642dc8eb6dcaaa66f0c06, type: 3}
   m_Name: Tree_Test
   m_EditorClassIdentifier: Assembly-CSharp::FoxShooter.Characters.AI.StateTree.Graph.StateTreeGraph
-  nodes: []
+  nodes:
+  - name: root
+    id:
+      id: 0
+    childStates:
+    - id: 1
+    tasks: []
+    success:
+      id: 0
+    cancel:
+      id: 0
+  - name: state1
+    id:
+      id: 1
+    childStates: []
+    tasks: []
+    success:
+      id: 0
+    cancel:
+      id: 0
   rootNode:
     id: 0
   references:
