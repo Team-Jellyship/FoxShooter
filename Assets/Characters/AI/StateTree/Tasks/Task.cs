@@ -7,7 +7,7 @@ namespace FoxShooter.Characters.AI.StateTree.Tasks
     public abstract class Task
     {
         private List<TaskVariable> _taskVariables;
-
+        
         protected Task()
         {
             _taskVariables = new List<TaskVariable>();

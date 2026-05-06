@@ -24,7 +24,7 @@ namespace FoxShooter.Characters.AI.StateTree
 
             tree = new Tree
             {
-                _root = new State
+                root = new State
                 {
                     name = "root"
                 }
@@ -38,11 +38,11 @@ namespace FoxShooter.Characters.AI.StateTree
             _state2 = new State
             {
                 name = "state2",
-                successState = tree._root
+                successState = tree.root
             };
-            tree._root.AddState(_state1);
-            tree._root.AddState(_state2);
-            tree._root.successState = _state1;
+            tree.root.AddState(_state1);
+            tree.root.AddState(_state2);
+            tree.root.successState = _state1;
             _state1.successState = _state2;
             tree.blackboard = blackboard;
         }
