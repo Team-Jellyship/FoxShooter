@@ -10,7 +10,7 @@ namespace FoxShooter.Characters.AI.StateTree.Graph
     public class TaskNode
     {
         [SerializeReference] public Type taskClassType;
-        [SerializeReference] public List<TaskVariableNode> variables;
+        [SerializeReference] public List<TaskVariableNode> variables = new();
 
         public Task GenerateTask()
         {
@@ -47,7 +47,7 @@ namespace FoxShooter.Characters.AI.StateTree.Graph
                 BindingFlags.NonPublic |
                 BindingFlags.Instance))
             {
-                if (taskVariable.FieldType != typeof(TaskVariable))
+                if (!taskVariable.FieldType.IsSubclassOf(typeof(TaskVariable)))
                 {
                     continue;
                 }

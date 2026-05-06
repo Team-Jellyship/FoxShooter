@@ -9,8 +9,8 @@ namespace FoxShooter.Characters.AI.StateTree.Graph
     {
         [SerializeField] public string name;
         [SerializeField] public StateNodeIdentifier id;
-        [SerializeField] public List<StateNodeIdentifier> childStates;
-        [SerializeField] public List<TaskNode> tasks;
+        [SerializeField] public List<StateNodeIdentifier> childStates = new();
+        [SerializeField] public List<TaskNode> tasks = new();
         [SerializeField] public StateNodeIdentifier success = StateNodeIdentifier.invalid;
         [SerializeField] public StateNodeIdentifier cancel = StateNodeIdentifier.invalid;
 
@@ -32,7 +32,8 @@ namespace FoxShooter.Characters.AI.StateTree.Graph
         {
             var node = new StateNode
             {
-                id = id
+                id = id,
+                name = state.name
             };
 
             foreach (var childState in state.childStates)

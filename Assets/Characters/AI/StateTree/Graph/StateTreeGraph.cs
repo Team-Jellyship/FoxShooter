@@ -14,7 +14,7 @@ namespace FoxShooter.Characters.AI.StateTree.Graph
     [CreateAssetMenu(fileName = "Tree", menuName = "StateTree/Tree")]
     public class StateTreeGraph : ScriptableObject
     {
-        [SerializeField] private List<StateNode> nodes;
+        [SerializeField] private List<StateNode> nodes = new();
         [SerializeField] private StateNodeIdentifier rootNode = StateNodeIdentifier.invalid;
         
         [OnOpenAsset(1)]
@@ -82,7 +82,7 @@ namespace FoxShooter.Characters.AI.StateTree.Graph
             while (stateQueue.Count > 0)
             {
                 var currentState = stateQueue.Dequeue();
-                stateDictionary.Add(currentState, new StateNodeIdentifier(stateQueue.Count));
+                stateDictionary.Add(currentState, new StateNodeIdentifier(stateDictionary.Count));
                 foreach (var childState in currentState.childStates)
                 {
                     stateQueue.Enqueue(childState);

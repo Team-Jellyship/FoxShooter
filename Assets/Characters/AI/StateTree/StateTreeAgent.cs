@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using FoxShooter.Characters.AI.StateTree.Graph;
 using FoxShooter.Characters.AI.StateTree.Tasks;
 using FoxShooter.Characters.AI.StateTree.UI;
+using TreeEditor;
 using UnityEngine;
 
 namespace FoxShooter.Characters.AI.StateTree
@@ -75,6 +77,8 @@ namespace FoxShooter.Characters.AI.StateTree
             testTask2.timeLimit.Set(new BlackboardReference<float>(blackboard, "time2"));
             _state2.childTasks.Add(testTask2);
             tree.Start();
+
+            var test = StateTreeGraph.SerializeTree(tree);
         }
 
         private void Update()
