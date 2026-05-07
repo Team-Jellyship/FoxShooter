@@ -171,5 +171,20 @@ namespace FoxShooter.Characters.AI.StateTree
             childStates.Add(state);
             state.parent = this;
         }
+
+        public bool RemoveChild(State state)
+        {
+            if (state.parent != this)
+            {
+                return false;
+            }
+            state.parent = null;
+            return childStates.Remove(state);
+        }
+
+        public override string ToString()
+        {
+            return name;
+        }
     }
 }

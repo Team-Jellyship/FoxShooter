@@ -1,4 +1,6 @@
 ﻿using System.Linq;
+using FoxShooter.Characters.AI.StateTree.UI;
+using UnityEngine;
 using UnityEngine.UIElements;
 
 namespace FoxShooter.Characters.AI.StateTree.Editor.Windows
@@ -9,9 +11,11 @@ namespace FoxShooter.Characters.AI.StateTree.Editor.Windows
         private readonly TextField _title;
         private readonly Label _tasksLabel;
         private readonly Label _resultLabel;
-        private readonly VisualElement _stateContainer;
-        private readonly VisualElement _childContainer;
-        private State _state;
+        public readonly VisualElement stateContainer;
+        public readonly VisualElement childContainer;
+        private StateTreeView _treeView;
+        
+        public State state { get; private set; }
 
         public StateView()
         {
@@ -33,35 +37,36 @@ namespace FoxShooter.Characters.AI.StateTree.Editor.Windows
                 name = "result-label"
             };
 
-            _stateContainer = new VisualElement
+            stateContainer = new VisualElement
             {
                 name = "state-container"
             };
 
-            _childContainer = new VisualElement()
+            childContainer = new VisualElement()
             {
                 name = "child-state-container"
             };
             
-            _stateContainer.Add(_title);
-            _stateContainer.Add(_tasksLabel);
-            _stateContainer.Add(_resultLabel);
+            stateContainer.Add(_title);
+            stateContainer.Add(_tasksLabel);
+            stateContainer.Add(_resultLabel);
+            stateContainer.RegisterCallback<ClickEvent>(Clicked);
             
-            Add(_stateContainer);
-            Add(_childContainer);
+            Add(stateContainer);
+            Add(childContainer);
         }
 
-        public void Bind(State state)
+        public void Bind(State state, StateTreeView rootView)
         {
-            for (var i = _childContainer.childCount - 1; i >= 0; --i) 
+            for (var i = childContainer.childCount - 1; i >= 0; --i) 
             {
-                _childContainer.RemoveAt(i);
+                childContainer.RemoveAt(i);
             }
-            _state = state;
-            
+            this.state = state;
+            _treeView = rootView;
             _title.RegisterCallback<ChangeEvent<string>>((evt) =>
             { 
-                _state.name = evt.newValue;
+                this.state.name = evt.newValue;
             });
             
             Update();
@@ -69,20 +74,37 @@ namespace FoxShooter.Characters.AI.StateTree.Editor.Windows
             foreach (var childState in state.childStates)
             {
                 var childStateView = new StateView();
-                _childContainer.Add(childStateView);
-                childStateView.Bind(childState);
+                new StateDragManipulator(childStateView, rootView);
+                childContainer.Add(childStateView);
+                childStateView.Bind(childState, rootView);
             }
         }
 
         public void Update()
         {
-            if (_state == null)
+            if (state == null)
             {
                 return;
             }
             
-            _title.value = _state.name;
-            _tasksLabel.text = string.Join(", ", _state.childTasks.Select(task => task.GetType().Name));
+            _title.value = state.name;
+            _tasksLabel.text = string.Join(", ", state.childTasks.Select(task => task.GetType().Name));
+        }
+
+        public void Select()
+        {
+            stateContainer.AddToClassList("selected");
+        }
+
+        public void Deselect()
+        {
+            stateContainer.RemoveFromClassList("selected");
+        }
+
+        private void Clicked(ClickEvent clickEvent)
+        {
+            Debug.Log($"Selected {state.name}");
+            _treeView?.Select(this);
         }
     }
 }

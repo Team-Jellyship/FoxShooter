@@ -8,7 +8,7 @@
         <ui:VisualElement name="blackboard-container" style="flex-grow: 1;"/>
         <FoxShooter.Characters.AI.StateTree.UI.StateTreeView name="tree-view">
             <FoxShooter.Characters.AI.StateTree.Editor.Windows.StateView data-source-type="FoxShooter.Characters.AI.StateTree.State, Assembly-CSharp"/>
-            <FoxShooter.Characters.AI.StateTree.Editor.Windows.StateView data-source-type="FoxShooter.Characters.AI.StateTree.State, Assembly-CSharp"/>
+            <FoxShooter.Characters.AI.StateTree.Editor.Windows.StateView data-source-type="FoxShooter.Characters.AI.StateTree.State, Assembly-CSharp" class="selected"/>
         </FoxShooter.Characters.AI.StateTree.UI.StateTreeView>
     </ui:VisualElement>
 </ui:UXML>

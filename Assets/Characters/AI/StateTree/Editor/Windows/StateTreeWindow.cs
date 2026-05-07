@@ -78,7 +78,7 @@ namespace FoxShooter.Characters.AI.StateTree.Editor.Windows
         public void SetGraph(StateTreeGraph graph)
         {
             asset = graph;
-            _treeView.Bind(graph);
+            _treeView?.Bind(graph);
         }
 
         private void LoadVisualAssets()

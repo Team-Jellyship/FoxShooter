@@ -21,6 +21,7 @@ namespace FoxShooter.Characters.AI.StateTree.UI
         private Tree _tree;
         private VisualElement _container;
         private StateView _rootView;
+        private StateView _currentlySelectedView;
 
         public void Bind(StateTreeGraph tree)
         {
@@ -33,7 +34,7 @@ namespace FoxShooter.Characters.AI.StateTree.UI
             }
             
             _rootView = new StateView();
-            _rootView.Bind(_tree.root);
+            _rootView.Bind(_tree.root, this);
             Add(_rootView);
         }
 
@@ -59,8 +60,33 @@ namespace FoxShooter.Characters.AI.StateTree.UI
             }
             
             _tree.AddState("New State");
-            _rootView.Bind(_tree.root);
+            _rootView.Bind(_tree.root, this);
             EditorUtility.SetDirty(treeGraph);
+        }
+
+        public void Select(StateView view)
+        {
+            if (_currentlySelectedView == view)
+            {
+                _currentlySelectedView.Deselect();
+                _currentlySelectedView = null;
+                return;
+            }
+            _currentlySelectedView?.Deselect();
+            _currentlySelectedView = view;
+            view.Select();
+        }
+        
+        public void MoveParent(StateView child, StateView newParent)
+        {
+            if (child.state == newParent.state)
+            {
+                return;
+            }
+            newParent.childContainer.Add(child);
+            
+            child.state.parent.RemoveChild(child.state);
+            newParent.state.AddState(child.state);
         }
     }
 }
