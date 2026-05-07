@@ -17,19 +17,33 @@ namespace FoxShooter.Characters.AI.StateTree.UI
         private const string SourceKey = "SourceCollection";
         private const int MaxDepth = 10;
 
-        private StateTreeGraph _treeGraph;
+        private StateTreeGraph treeGraph;
         private Tree _tree;
         private VisualElement _container;
         private StateView _rootView;
 
         public void Bind(StateTreeGraph tree)
         {
-            _treeGraph = tree;
+            treeGraph = tree;
             _tree = tree.GenerateTree();
 
             _rootView = new StateView();
             _rootView.Bind(_tree.root);
             Add(_rootView);
+        }
+
+        public void Save()
+        {
+            if (!treeGraph)
+            {
+                return;
+            }
+
+            var serializedVersion = StateTreeGraph.SerializeTree(_tree);
+            treeGraph.nodes = serializedVersion.nodes;
+            treeGraph.rootNode = serializedVersion.rootNode;
+            EditorUtility.SetDirty(treeGraph);
+            AssetDatabase.SaveAssetIfDirty(treeGraph);
         }
     }
 }

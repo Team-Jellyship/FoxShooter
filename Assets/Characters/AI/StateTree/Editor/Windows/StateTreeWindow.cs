@@ -19,8 +19,8 @@ namespace FoxShooter.Characters.AI.StateTree.Editor.Windows
         private VisualTreeAsset _windowAsset;
 
         private VisualElement _windowRoot;
-        
         private StateTreeView _treeView;
+        private Button _button;
 
         private static void Open(StateTreeGraph asset)
         {
@@ -28,11 +28,12 @@ namespace FoxShooter.Characters.AI.StateTree.Editor.Windows
             foreach (var window in windows)
             {
                 if (window.asset != asset) { continue; }
+                window.SetGraph(asset);
                 window.Show();
                 window.Focus();
                 return;
             }
-
+            
             var newWindow = CreateWindow<StateTreeWindow>(typeof(StateTreeWindow));
             newWindow.titleContent.text = asset.name;
             // newWindow.asset = asset;
@@ -52,7 +53,19 @@ namespace FoxShooter.Characters.AI.StateTree.Editor.Windows
             
             _windowRoot = _windowAsset.CloneTree();
             _treeView = _windowRoot.Q<StateTreeView>("tree-view");
+            _button = _windowRoot.Q<Button>("save-button");
+
+            _button.clicked += () =>
+            {
+                _treeView?.Save();
+            };
+            
             rootVisualElement.Add(_windowRoot);
+
+            if (asset)
+            {
+                _treeView.Bind(asset);
+            }
         }
 
         public void SetGraph(StateTreeGraph graph)

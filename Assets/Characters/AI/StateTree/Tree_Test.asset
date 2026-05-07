@@ -23,7 +23,7 @@ MonoBehaviour:
       id: 0
     cancel:
       id: 0
-  - name: state1
+  - name: test2
     id:
       id: 1
     childStates: []

@@ -14,8 +14,8 @@ namespace FoxShooter.Characters.AI.StateTree.Graph
     [CreateAssetMenu(fileName = "Tree", menuName = "StateTree/Tree")]
     public class StateTreeGraph : ScriptableObject
     {
-        [SerializeField] private List<StateNode> nodes = new();
-        [SerializeField] private StateNodeIdentifier rootNode = StateNodeIdentifier.invalid;
+        [SerializeField] public List<StateNode> nodes = new();
+        [SerializeField] public StateNodeIdentifier rootNode = StateNodeIdentifier.invalid;
         
         [OnOpenAsset(1)]
         public static bool OpenAsset(int instanceId, int line)
@@ -37,6 +37,8 @@ namespace FoxShooter.Characters.AI.StateTree.Graph
             {
                 return null;
             }
+            
+            Debug.Log("[StateTreeGraph] Generating tree from nodes...");
 
             var tree = new Tree();
             var stateDictionary = nodes.ToDictionary(node => node.id, node => node.GenerateState());

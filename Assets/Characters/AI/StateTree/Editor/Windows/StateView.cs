@@ -1,6 +1,4 @@
 ﻿using System.Linq;
-using FoxShooter.Characters.AI.StateTree;
-using FoxShooter.Characters.AI.StateTree.Graph;
 using UnityEngine.UIElements;
 
 namespace FoxShooter.Characters.AI.StateTree.Editor.Windows
@@ -19,16 +17,19 @@ namespace FoxShooter.Characters.AI.StateTree.Editor.Windows
         {
             _title = new TextField
             {
+                value = "Root",
                 name = "title"
             };
             
             _tasksLabel= new Label
             {
+                text = "task1, task2",
                 name = "tasks-label"
             };
             
             _resultLabel = new Label
             {
+                text = "Success -> ",
                 name = "result-label"
             };
 
@@ -37,8 +38,10 @@ namespace FoxShooter.Characters.AI.StateTree.Editor.Windows
                 name = "state-container"
             };
 
-            _childContainer = new VisualElement();
-            _childContainer.AddToClassList("child-state-container");
+            _childContainer = new VisualElement()
+            {
+                name = "child-state-container"
+            };
             
             _stateContainer.Add(_title);
             _stateContainer.Add(_tasksLabel);
