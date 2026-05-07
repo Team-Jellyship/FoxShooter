@@ -27,6 +27,11 @@ namespace FoxShooter.Characters.AI.StateTree.UI
             treeGraph = tree;
             _tree = tree.GenerateTree();
 
+            if (_tree == null)
+            {
+                return;
+            }
+            
             _rootView = new StateView();
             _rootView.Bind(_tree.root);
             Add(_rootView);
@@ -44,6 +49,18 @@ namespace FoxShooter.Characters.AI.StateTree.UI
             treeGraph.rootNode = serializedVersion.rootNode;
             EditorUtility.SetDirty(treeGraph);
             AssetDatabase.SaveAssetIfDirty(treeGraph);
+        }
+
+        public void AddState()
+        {
+            if (_tree == null)
+            {
+                return;
+            }
+            
+            _tree.AddState("New State");
+            _rootView.Bind(_tree.root);
+            EditorUtility.SetDirty(treeGraph);
         }
     }
 }

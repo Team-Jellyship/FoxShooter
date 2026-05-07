@@ -13,25 +13,25 @@ MonoBehaviour:
   m_Name: Tree_Test
   m_EditorClassIdentifier: Assembly-CSharp::FoxShooter.Characters.AI.StateTree.Graph.StateTreeGraph
   nodes:
-  - name: root
+  - name: Root
     id:
       id: 0
     childStates:
     - id: 1
     tasks: []
     success:
-      id: 0
+      id: -1
     cancel:
-      id: 0
-  - name: test2
+      id: -1
+  - name: Child1
     id:
       id: 1
     childStates: []
     tasks: []
     success:
-      id: 0
+      id: -1
     cancel:
-      id: 0
+      id: -1
   rootNode:
     id: 0
   references:

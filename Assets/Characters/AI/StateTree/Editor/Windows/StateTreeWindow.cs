@@ -21,6 +21,7 @@ namespace FoxShooter.Characters.AI.StateTree.Editor.Windows
         private VisualElement _windowRoot;
         private StateTreeView _treeView;
         private Button _button;
+        private Button _addStateButton;
 
         private static void Open(StateTreeGraph asset)
         {
@@ -53,11 +54,17 @@ namespace FoxShooter.Characters.AI.StateTree.Editor.Windows
             
             _windowRoot = _windowAsset.CloneTree();
             _treeView = _windowRoot.Q<StateTreeView>("tree-view");
+            
             _button = _windowRoot.Q<Button>("save-button");
-
             _button.clicked += () =>
             {
                 _treeView?.Save();
+            };
+
+            _addStateButton = _windowRoot.Q<Button>("new-state-button");
+            _addStateButton.clicked += () =>
+            {
+                _treeView?.AddState();
             };
             
             rootVisualElement.Add(_windowRoot);

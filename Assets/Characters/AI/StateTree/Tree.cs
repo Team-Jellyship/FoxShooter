@@ -159,5 +159,13 @@ namespace FoxShooter.Characters.AI.StateTree
             }
             return result;
         }
+
+        public void AddState(string name)
+        {
+            root?.AddState(new State
+            {
+                name = name
+            });
+        }
     }
 }

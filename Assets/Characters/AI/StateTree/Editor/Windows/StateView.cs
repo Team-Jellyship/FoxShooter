@@ -53,6 +53,10 @@ namespace FoxShooter.Characters.AI.StateTree.Editor.Windows
 
         public void Bind(State state)
         {
+            for (var i = _childContainer.childCount - 1; i >= 0; --i) 
+            {
+                _childContainer.RemoveAt(i);
+            }
             _state = state;
             
             _title.RegisterCallback<ChangeEvent<string>>((evt) =>

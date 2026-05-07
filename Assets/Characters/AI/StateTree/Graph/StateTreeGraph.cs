@@ -44,7 +44,13 @@ namespace FoxShooter.Characters.AI.StateTree.Graph
             var stateDictionary = nodes.ToDictionary(node => node.id, node => node.GenerateState());
             var stateNodeDictionary = nodes.ToDictionary(stateNode => stateNode.id);
 
-            tree.root = stateDictionary[rootNode];
+            if (!stateDictionary.TryGetValue(rootNode, out var root))
+            {
+                Debug.LogError("[StateTreeGraph] Failed to generate tree. The root node was missing.");
+                return null;
+            }
+
+            tree.root = root;
             var pendingStateConnections = new Queue<StateNode>();
             pendingStateConnections.Enqueue(stateNodeDictionary[rootNode]);
             
@@ -55,17 +61,23 @@ namespace FoxShooter.Characters.AI.StateTree.Graph
                 
                 foreach (var childStateId in pendingStateNode.childStates)
                 {
-                    pendingState.childStates.Add(stateDictionary[childStateId]);
+                    if (!stateDictionary.TryGetValue(childStateId, out var childState))
+                    {
+                        Debug.LogError("[StateTreeGraph] A child state was missing. It's possible the file was corrupted.");
+                        continue;
+                    }
+                    pendingState.childStates.Add(childState);
                     pendingStateConnections.Enqueue(stateNodeDictionary[childStateId]);
+                    
                 }
 
-                if (pendingStateNode.success)
+                if (pendingStateNode.success && stateDictionary.TryGetValue(pendingStateNode.success, out var success))
                 {
-                    pendingState.successState = stateDictionary[pendingStateNode.success];
+                    pendingState.successState = success;
                 }
-                if (pendingStateNode.cancel)
+                if (pendingStateNode.cancel && stateDictionary.TryGetValue(pendingStateNode.cancel, out var cancel))
                 {
-                    pendingState.cancelState = stateDictionary[pendingStateNode.cancel];
+                    pendingState.cancelState = cancel;
                 }
             }
 
