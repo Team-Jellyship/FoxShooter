@@ -41,5 +41,10 @@ namespace FoxShooter.Characters.AI.StateTree.Tasks
             }
             return result;
         }
+
+        public override string ToString()
+        {
+            return GetType().Name;
+        }
     }
 }

@@ -9,17 +9,31 @@ namespace FoxShooter.Characters.AI.StateTree.Graph
     [Serializable]
     public class TaskNode
     {
-        [SerializeReference] public Type taskClassType;
+        [SerializeField] public string taskClassType;
         [SerializeReference] public List<TaskVariableNode> variables = new();
 
         public Task GenerateTask()
         {
-            if (Activator.CreateInstance(taskClassType) is not Task newTask)
+            if (taskClassType == null)
+            {
+                Debug.LogError("[TaskNode] Failed to generate task. The Task type was null.");
+                return null;
+            }
+
+            var taskType = Type.GetType(taskClassType);
+            if (taskType == null)
+            {
+                Debug.LogError($"[TaskNode] Failed to generate task. Could not find type '{taskClassType}'");
+                return null;
+            }
+            
+            Debug.Log($"[TaskNode] Generating new '{taskType.Name} 'task from serialized data.");
+            if (Activator.CreateInstance(taskType) is not Task newTask)
             {
                 return null;
             }
 
-            foreach (var taskVariable in taskClassType.GetFields(
+            foreach (var taskVariable in taskType.GetFields(
                 BindingFlags.Public |
                 BindingFlags.NonPublic |
                 BindingFlags.Instance))
@@ -39,7 +53,7 @@ namespace FoxShooter.Characters.AI.StateTree.Graph
         {
             var taskNode = new TaskNode
             {
-                taskClassType = task.GetType()
+                taskClassType = task.GetType().FullName
             };
             
             foreach (var taskVariable in task.GetType().GetFields(

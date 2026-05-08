@@ -1,4 +1,6 @@
-﻿using Characters.AI.StateTree.Editor.Windows;
+﻿using System;
+using Characters.AI.StateTree.Editor.Windows;
+using FoxShooter.Characters.AI.StateTree.Tasks;
 using UnityEngine.UIElements;
 
 namespace FoxShooter.Characters.AI.StateTree.Editor.Windows
@@ -12,6 +14,7 @@ namespace FoxShooter.Characters.AI.StateTree.Editor.Windows
         private StateDropdown _successDropdown;
         private StateDropdown _cancelDropdown;
         private Label _taskTitle;
+        private TaskAdder _taskAdder;
         private VisualElement _taskContainer;
         
         public StateInspector()
@@ -40,6 +43,11 @@ namespace FoxShooter.Characters.AI.StateTree.Editor.Windows
                 text = "Tasks"
             };
 
+            _taskAdder = new TaskAdder
+            {
+                name = "task-adder"
+            };
+
             _taskContainer = new VisualElement
             {
                 name = "task-container"
@@ -48,11 +56,13 @@ namespace FoxShooter.Characters.AI.StateTree.Editor.Windows
             
             _successDropdown.RegisterCallback<ChangeEvent<State>>(changeEvent => SetSuccessState(changeEvent.newValue));
             _cancelDropdown.RegisterCallback<ChangeEvent<State>>(changeEvent => SetCancelState(changeEvent.newValue));
+            _taskAdder.typeAddRequested += AddTask;
             
             Add(_stateNameLabel);
             Add(_successDropdown);
             Add(_cancelDropdown);
             Add(_taskTitle);
+            Add(_taskAdder);
             Add(_taskContainer);
         }
 
@@ -69,6 +79,21 @@ namespace FoxShooter.Characters.AI.StateTree.Editor.Windows
             _stateNameLabel.text = state.name;
             _successDropdown.Bind(tree, state, state.successState);
             _cancelDropdown.Bind(tree, state, state.cancelState);
+
+            for (var i = _taskContainer.childCount - 1; i >= 0; --i)
+            {
+                _taskContainer.RemoveAt(i);
+            }
+
+            foreach (var task in state.childTasks)
+            {
+                var taskLabel = new Label
+                {
+                    name = "task-label",
+                    text = task.ToString()
+                };
+                _taskContainer.Add(taskLabel);
+            }
         }
 
         private void SetSuccessState(State state)
@@ -79,6 +104,15 @@ namespace FoxShooter.Characters.AI.StateTree.Editor.Windows
         private void SetCancelState(State state)
         {
             _activeState.cancelState = state;
+        }
+
+        private void AddTask(Type taskType)
+        {
+            var newTask = Activator.CreateInstance(taskType);
+            if (newTask is Task task)
+            {
+                _activeState.childTasks.Add(task);
+            }
         }
     }
 }
