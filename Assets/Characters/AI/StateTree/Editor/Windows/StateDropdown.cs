@@ -4,9 +4,9 @@ using UnityEngine.UIElements;
 namespace FoxShooter.Characters.AI.StateTree.Editor.Windows
 {
     [UxmlElement]
-    public sealed partial class StateSelector : PopupField<State>
+    public sealed partial class StateDropdown : PopupField<State>
     {
-        public StateSelector()
+        public StateDropdown()
         {
             formatListItemCallback = FormatListItem;
             formatSelectedValueCallback = FormatListItem;

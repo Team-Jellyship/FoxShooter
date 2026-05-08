@@ -9,8 +9,9 @@ namespace FoxShooter.Characters.AI.StateTree.Editor.Windows
         private State _activeState;
 
         private Label _stateNameLabel;
-        private StateSelector _successSelector;
-        private StateSelector _cancelSelector;
+        private StateDropdown _successDropdown;
+        private StateDropdown _cancelDropdown;
+        private Label _taskTitle;
         private VisualElement _taskContainer;
         
         public StateInspector()
@@ -21,16 +22,22 @@ namespace FoxShooter.Characters.AI.StateTree.Editor.Windows
                 text = "State"
             };
 
-            _successSelector = new StateSelector
+            _successDropdown = new StateDropdown
             {
                 name = "success-state-selector",
                 label = "Success"
             };
 
-            _cancelSelector = new StateSelector
+            _cancelDropdown = new StateDropdown
             {
                 name = "cancel-state-selector",
                 label = "Cancel"
+            };
+
+            _taskTitle = new Label
+            {
+                name = "task-title",
+                text = "Tasks"
             };
 
             _taskContainer = new VisualElement
@@ -39,12 +46,13 @@ namespace FoxShooter.Characters.AI.StateTree.Editor.Windows
             };
             
             
-            _successSelector.RegisterCallback<ChangeEvent<State>>(changeEvent => SetSuccessState(changeEvent.newValue));
-            _cancelSelector.RegisterCallback<ChangeEvent<State>>(changeEvent => SetCancelState(changeEvent.newValue));
+            _successDropdown.RegisterCallback<ChangeEvent<State>>(changeEvent => SetSuccessState(changeEvent.newValue));
+            _cancelDropdown.RegisterCallback<ChangeEvent<State>>(changeEvent => SetCancelState(changeEvent.newValue));
             
             Add(_stateNameLabel);
-            Add(_successSelector);
-            Add(_cancelSelector);
+            Add(_successDropdown);
+            Add(_cancelDropdown);
+            Add(_taskTitle);
             Add(_taskContainer);
         }
 
@@ -59,8 +67,8 @@ namespace FoxShooter.Characters.AI.StateTree.Editor.Windows
             }
             
             _stateNameLabel.text = state.name;
-            _successSelector.Bind(tree, state, state.successState);
-            _cancelSelector.Bind(tree, state, state.cancelState);
+            _successDropdown.Bind(tree, state, state.successState);
+            _cancelDropdown.Bind(tree, state, state.cancelState);
         }
 
         private void SetSuccessState(State state)

@@ -1,9 +1,11 @@
-<ui:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+<ui:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="True">
     <Style src="project://database/Assets/Characters/AI/StateTree/Editor/Resources/state-tree-window.uss?fileID=7433441132597879392&amp;guid=8bf753afdf2fb12449e8a8309dbbcac8&amp;type=3#state-tree-window"/>
-    <ui:VisualElement name="toolbar" style="background-color: rgb(32, 32, 32); flex-direction: row;">
-        <ui:Button text="New State" name="new-state-button" style="margin-top: 0; margin-right: 1px; margin-left: 1px; margin-bottom: 0; background-size: 100% 32px;"/>
-        <ui:Button text="Save" name="save-button" style="margin-top: 0; margin-right: 1px; margin-left: 1px; margin-bottom: 0; background-size: 100% 32px;"/>
-    </ui:VisualElement>
+    <Style src="project://database/Assets/Characters/AI/StateTree/Editor/Resources/state-tree-inspector.uss?fileID=7433441132597879392&amp;guid=5fc9ac5ec6d504842a36c6a0c12a661c&amp;type=3#state-tree-inspector"/>
+    <Style src="project://database/Assets/Characters/AI/StateTree/Editor/Resources/state-view.uss?fileID=7433441132597879392&amp;guid=3737767cbddd41e49b389e4d2d681f6e&amp;type=3#state-view"/>
+    <uie:Toolbar>
+        <uie:ToolbarButton text="Save" name="save-button"/>
+        <uie:ToolbarButton text="New State" name="new-state-button"/>
+    </uie:Toolbar>
     <ui:VisualElement name="primary-window" style="flex-grow: 1; height: 100%;">
         <FoxShooter.Characters.AI.StateTree.Editor.Windows.BlackboardView name="blackboard-view" style="flex-basis: 25%;">
             <FoxShooter.Characters.AI.StateTree.Editor.Windows.BlackboardVariableView name="blackboard-variable-view" class="placeholder"/>
@@ -11,6 +13,7 @@
         <FoxShooter.Characters.AI.StateTree.UI.StateTreeView name="tree-view" style="flex-basis: 50%; padding-right: 4px; padding-left: 4px;">
             <FoxShooter.Characters.AI.StateTree.Editor.Windows.StateView data-source-type="FoxShooter.Characters.AI.StateTree.State, Assembly-CSharp" class="placeholder"/>
             <FoxShooter.Characters.AI.StateTree.Editor.Windows.StateView data-source-type="FoxShooter.Characters.AI.StateTree.State, Assembly-CSharp" class="selected placeholder"/>
+            <FoxShooter.Characters.AI.StateTree.Editor.Windows.TaskClassDropdown/>
         </FoxShooter.Characters.AI.StateTree.UI.StateTreeView>
         <FoxShooter.Characters.AI.StateTree.Editor.Windows.StateInspector name="state-inspector"/>
     </ui:VisualElement>

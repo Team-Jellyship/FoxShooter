@@ -14,8 +14,8 @@ namespace FoxShooter.Characters.AI.StateTree.Graph
     [CreateAssetMenu(fileName = "Tree", menuName = "StateTree/Tree")]
     public class StateTreeGraph : ScriptableObject
     {
-        [SerializeField] public List<StateNode> nodes = new();
-        [SerializeField] public StateNodeIdentifier rootNode = StateNodeIdentifier.invalid;
+        [SerializeField] [HideInInspector] public List<StateNode> nodes = new();
+        [SerializeField] [HideInInspector] public StateNodeIdentifier rootNode = StateNodeIdentifier.invalid;
         [SerializeField] public Blackboard blackboard;
 
         public StateTreeGraph()

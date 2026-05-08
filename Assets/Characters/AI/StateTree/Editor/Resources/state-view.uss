@@ -1,0 +1,51 @@
+
+
+StateView {
+    flex-direction: column;
+    color: rgb(255, 255, 255);
+    margin-top: 8px;
+    margin-right: 0;
+    margin-bottom: 0;
+    margin-left: 8px;
+    font-size: 20px;
+}
+
+StateView #title {
+    background-color: rgb(183, 11, 59);
+    margin-top: 0;
+    margin-right: 0;
+    margin-bottom: 0;
+    margin-left: 0;
+    padding-top: 4px;
+    padding-right: 4px;
+    padding-bottom: 4px;
+    padding-left: 4px;
+}
+
+StateView #tasks-label {
+    background-color: rgb(132, 23, 54);
+    flex-grow: 0;
+    padding-top: 8px;
+    padding-right: 8px;
+    padding-bottom: 8px;
+    padding-left: 8px;
+    margin-top: 0;
+    margin-right: 0;
+    margin-bottom: 0;
+    margin-left: 0;
+    -unity-text-align: middle-left;
+}
+
+StateView #result-label {
+}
+
+StateView #state-container {
+    flex-direction: row;
+}
+
+StateView #child-state-container {
+    margin-top: 0;
+    margin-right: 0;
+    margin-bottom: 0;
+    margin-left: 16px;
+}

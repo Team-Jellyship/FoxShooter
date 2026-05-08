@@ -56,6 +56,7 @@ namespace FoxShooter.Characters.AI.StateTree.Editor.Windows
             LoadVisualAssets();
             
             _windowRoot = _windowAsset.CloneTree();
+            _windowRoot.style.height = Length.Percent(100);
 
             foreach (var placeholder in _windowRoot.Query(classes: "placeholder").ToList())
             {
@@ -92,6 +93,7 @@ namespace FoxShooter.Characters.AI.StateTree.Editor.Windows
             _treeView?.Bind(_tree);
             _blackboardView.Bind(graph.blackboard);
             _treeView?.selectedStateChanged.AddListener(SelectedStateChanged);
+            _stateInspector.visible = false;
         }
 
         private void LoadVisualAssets()
@@ -101,6 +103,7 @@ namespace FoxShooter.Characters.AI.StateTree.Editor.Windows
 
         private void SelectedStateChanged(State selectedState)
         {
+            _stateInspector.visible = selectedState != null;
             _stateInspector.Bind(_tree, selectedState);
         }
         

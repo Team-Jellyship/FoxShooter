@@ -18,7 +18,26 @@ MonoBehaviour:
       id: 0
     childStates:
     - id: 1
+    tasks: []
+    success:
+      id: 1
+    cancel:
+      id: -1
+  - name: state3
+    id:
+      id: 1
+    childStates:
     - id: 2
+    - id: 3
+    tasks: []
+    success:
+      id: 2
+    cancel:
+      id: -1
+  - name: state2
+    id:
+      id: 2
+    childStates: []
     tasks: []
     success:
       id: -1
@@ -26,30 +45,11 @@ MonoBehaviour:
       id: -1
   - name: New State
     id:
-      id: 1
+      id: 3
     childStates: []
     tasks: []
     success:
-      id: 0
-    cancel:
-      id: 2
-  - name: state3
-    id:
-      id: 2
-    childStates:
-    - id: 3
-    tasks: []
-    success:
-      id: 3
-    cancel:
       id: -1
-  - name: state2
-    id:
-      id: 3
-    childStates: []
-    tasks: []
-    success:
-      id: 1
     cancel:
       id: -1
   rootNode:

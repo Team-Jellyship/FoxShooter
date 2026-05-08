@@ -1,0 +1,12 @@
+
+
+#state-inspector {
+    flex-basis: 25%;
+    background-color: rgb(41, 41, 41);
+}
+
+#state-name-label {
+    color: rgb(255, 255, 255);
+    font-size: 24px;
+    -unity-text-align: upper-center;
+}
