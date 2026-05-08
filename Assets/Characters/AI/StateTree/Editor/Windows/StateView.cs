@@ -56,18 +56,38 @@ namespace FoxShooter.Characters.AI.StateTree.Editor.Windows
             Add(childContainer);
         }
 
-        public void Bind(State state, StateTreeView rootView)
+        public void Bind(State bindState, StateTreeView rootView)
         {
+            if (bindState == null)
+            {
+                return;
+            }
+            
             for (var i = childContainer.childCount - 1; i >= 0; --i) 
             {
                 childContainer.RemoveAt(i);
             }
-            this.state = state;
+            state = bindState;
             _treeView = rootView;
             _title.RegisterCallback<ChangeEvent<string>>((evt) =>
             { 
-                this.state.name = evt.newValue;
+                state.name = evt.newValue;
             });
+
+            _resultLabel.text = "";
+            if (state.successState != null)
+            {
+                _resultLabel.text += $"Success -> {state.successState.name}";
+
+                if (state.cancelState != null)
+                {
+                    _resultLabel.text += ", ";
+                }
+            }
+            if (state.cancelState != null)
+            {
+                _resultLabel.text += $"Cancel -> {state.cancelState.name}";
+            }
             
             Update();
 

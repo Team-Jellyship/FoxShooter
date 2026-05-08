@@ -23,12 +23,14 @@ namespace FoxShooter.Characters.AI.StateTree.Editor.Windows
 
             _successSelector = new StateSelector
             {
-                name = "success-state-selector"
+                name = "success-state-selector",
+                label = "Success"
             };
 
             _cancelSelector = new StateSelector
             {
-                name = "cancel-state-selector"
+                name = "cancel-state-selector",
+                label = "Cancel"
             };
 
             _taskContainer = new VisualElement

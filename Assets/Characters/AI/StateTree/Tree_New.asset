@@ -30,7 +30,7 @@ MonoBehaviour:
     childStates: []
     tasks: []
     success:
-      id: -1
+      id: 0
     cancel:
       id: 2
   - name: state3
@@ -40,16 +40,16 @@ MonoBehaviour:
     - id: 3
     tasks: []
     success:
-      id: 2
+      id: 3
     cancel:
       id: -1
-  - name: New State
+  - name: state2
     id:
       id: 3
     childStates: []
     tasks: []
     success:
-      id: -1
+      id: 1
     cancel:
       id: -1
   rootNode:
