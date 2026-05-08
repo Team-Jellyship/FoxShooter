@@ -16,6 +16,13 @@ namespace FoxShooter.Characters.AI.StateTree.Graph
     {
         [SerializeField] public List<StateNode> nodes = new();
         [SerializeField] public StateNodeIdentifier rootNode = StateNodeIdentifier.invalid;
+        [SerializeField] public Blackboard blackboard;
+
+        public StateTreeGraph()
+        {
+            blackboard = new Blackboard();
+            blackboard.AddVariable("test", "default");
+        }
         
         [OnOpenAsset(1)]
         public static bool OpenAsset(int instanceId, int line)

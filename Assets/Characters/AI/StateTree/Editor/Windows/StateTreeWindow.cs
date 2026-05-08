@@ -12,14 +12,15 @@ namespace FoxShooter.Characters.AI.StateTree.Editor.Windows
     {
         [SerializeField] public StateTreeGraph asset;
 
-        private const string TreeViewFilename = "state-tree-view";
         private const string WindowFilename = "state-tree-window";
         
-        private VisualTreeAsset _stateViewAsset;
         private VisualTreeAsset _windowAsset;
 
         private VisualElement _windowRoot;
+        
         private StateTreeView _treeView;
+        private BlackboardView _blackboardView;
+        
         private Button _button;
         private Button _addStateButton;
 
@@ -37,7 +38,6 @@ namespace FoxShooter.Characters.AI.StateTree.Editor.Windows
             
             var newWindow = CreateWindow<StateTreeWindow>(typeof(StateTreeWindow));
             newWindow.titleContent.text = asset.name;
-            // newWindow.asset = asset;
             newWindow.SetGraph(asset);
             newWindow.Show();
             newWindow.Focus();
@@ -53,7 +53,14 @@ namespace FoxShooter.Characters.AI.StateTree.Editor.Windows
             LoadVisualAssets();
             
             _windowRoot = _windowAsset.CloneTree();
+
+            foreach (var placeholder in _windowRoot.Query(classes: "placeholder").ToList())
+            {
+                placeholder.RemoveFromHierarchy();
+            }
+            
             _treeView = _windowRoot.Q<StateTreeView>("tree-view");
+            _blackboardView = _windowRoot.Q<BlackboardView>("blackboard-view");
             
             _button = _windowRoot.Q<Button>("save-button");
             _button.clicked += () =>
@@ -79,6 +86,7 @@ namespace FoxShooter.Characters.AI.StateTree.Editor.Windows
         {
             asset = graph;
             _treeView?.Bind(graph);
+            _blackboardView.Bind(graph.blackboard);
         }
 
         private void LoadVisualAssets()

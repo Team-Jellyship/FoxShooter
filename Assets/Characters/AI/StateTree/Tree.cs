@@ -7,21 +7,13 @@ namespace FoxShooter.Characters.AI.StateTree
     public class Tree
     {
         public Blackboard blackboard;
-        public State root = new State
-        {
-            name = "Root"
-        };
+        public State root;
 
         /**
          * The currently active states, in order from
          * root to child
          */
         private readonly List<State> _activeStates = new();
-
-        public Tree()
-        {
-            _activeStates.Add(root);
-        }
         
         public void Start()
         {

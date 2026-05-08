@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 90725b58bed642dc8eb6dcaaa66f0c06, type: 3}
-  m_Name: Tree_Test
+  m_Name: Tree_New
   m_EditorClassIdentifier: Assembly-CSharp::FoxShooter.Characters.AI.StateTree.Graph.StateTreeGraph
   nodes:
   - name: Root
@@ -18,15 +18,6 @@ MonoBehaviour:
       id: 0
     childStates:
     - id: 1
-    tasks: []
-    success:
-      id: -1
-    cancel:
-      id: -1
-  - name: Child1
-    id:
-      id: 1
-    childStates:
     - id: 2
     tasks: []
     success:
@@ -35,7 +26,26 @@ MonoBehaviour:
       id: -1
   - name: New State
     id:
+      id: 1
+    childStates: []
+    tasks: []
+    success:
+      id: -1
+    cancel:
+      id: -1
+  - name: state3
+    id:
       id: 2
+    childStates:
+    - id: 3
+    tasks: []
+    success:
+      id: -1
+    cancel:
+      id: -1
+  - name: New State
+    id:
+      id: 3
     childStates: []
     tasks: []
     success:
@@ -44,6 +54,13 @@ MonoBehaviour:
       id: -1
   rootNode:
     id: 0
+  blackboard:
+    onVariableAdded:
+      m_PersistentCalls:
+        m_Calls: []
+    onVariableRemoved:
+      m_PersistentCalls:
+        m_Calls: []
   references:
     version: 2
     RefIds: []

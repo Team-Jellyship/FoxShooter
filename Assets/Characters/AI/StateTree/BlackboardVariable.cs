@@ -11,6 +11,11 @@ namespace FoxShooter.Characters.AI.StateTree
         public abstract object objectData { get; set; }
 
         public abstract Type type { get; }
+
+        public override string ToString()
+        {
+            return name;
+        }
     }
 
     [Serializable]

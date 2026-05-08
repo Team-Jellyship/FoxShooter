@@ -3,9 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using FoxShooter.Characters.AI.StateTree.Editor.Windows;
 using FoxShooter.Characters.AI.StateTree.Graph;
+using JetBrains.Annotations;
 using Unity.AppUI.UI;
 using UnityEditor;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.UIElements;
 
 namespace FoxShooter.Characters.AI.StateTree.UI
@@ -17,11 +19,14 @@ namespace FoxShooter.Characters.AI.StateTree.UI
         private const string SourceKey = "SourceCollection";
         private const int MaxDepth = 10;
 
+        // Event can be null
+        public UnityEvent<State> selectedStateChanged = new();
+        public StateView currentlySelectedView { get; private set; }
+
         private StateTreeGraph treeGraph;
         private Tree _tree;
         private VisualElement _container;
         private StateView _rootView;
-        private StateView _currentlySelectedView;
 
         public void Bind(StateTreeGraph tree)
         {
@@ -66,15 +71,18 @@ namespace FoxShooter.Characters.AI.StateTree.UI
 
         public void Select(StateView view)
         {
-            if (_currentlySelectedView == view)
+            if (currentlySelectedView == view)
             {
-                _currentlySelectedView.Deselect();
-                _currentlySelectedView = null;
-                return;
+                currentlySelectedView.Deselect();
+                currentlySelectedView = null;
             }
-            _currentlySelectedView?.Deselect();
-            _currentlySelectedView = view;
-            view.Select();
+            else
+            {
+                currentlySelectedView?.Deselect();
+                currentlySelectedView = view;
+                view.Select();
+                selectedStateChanged.Invoke(currentlySelectedView.state);
+            }
         }
         
         public void MoveParent(StateView child, StateView newParent)
