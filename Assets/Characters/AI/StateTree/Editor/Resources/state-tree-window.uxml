@@ -5,12 +5,13 @@
         <ui:Button text="Save" name="save-button" style="margin-top: 0; margin-right: 1px; margin-left: 1px; margin-bottom: 0; background-size: 100% 32px;"/>
     </ui:VisualElement>
     <ui:VisualElement name="primary-window" style="flex-grow: 1; height: 100%;">
-        <FoxShooter.Characters.AI.StateTree.Editor.Windows.BlackboardView name="blackboard-view">
+        <FoxShooter.Characters.AI.StateTree.Editor.Windows.BlackboardView name="blackboard-view" style="flex-basis: 25%;">
             <FoxShooter.Characters.AI.StateTree.Editor.Windows.BlackboardVariableView name="blackboard-variable-view" class="placeholder"/>
         </FoxShooter.Characters.AI.StateTree.Editor.Windows.BlackboardView>
-        <FoxShooter.Characters.AI.StateTree.UI.StateTreeView name="tree-view">
+        <FoxShooter.Characters.AI.StateTree.UI.StateTreeView name="tree-view" style="flex-basis: 50%; padding-right: 4px; padding-left: 4px;">
             <FoxShooter.Characters.AI.StateTree.Editor.Windows.StateView data-source-type="FoxShooter.Characters.AI.StateTree.State, Assembly-CSharp" class="placeholder"/>
             <FoxShooter.Characters.AI.StateTree.Editor.Windows.StateView data-source-type="FoxShooter.Characters.AI.StateTree.State, Assembly-CSharp" class="selected placeholder"/>
         </FoxShooter.Characters.AI.StateTree.UI.StateTreeView>
+        <FoxShooter.Characters.AI.StateTree.Editor.Windows.StateInspector name="state-inspector"/>
     </ui:VisualElement>
 </ui:UXML>

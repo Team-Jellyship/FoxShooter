@@ -32,7 +32,7 @@ MonoBehaviour:
     success:
       id: -1
     cancel:
-      id: -1
+      id: 2
   - name: state3
     id:
       id: 2
@@ -40,7 +40,7 @@ MonoBehaviour:
     - id: 3
     tasks: []
     success:
-      id: -1
+      id: 2
     cancel:
       id: -1
   - name: New State

@@ -1,4 +1,5 @@
-﻿using UnityEngine.UIElements;
+﻿using UnityEngine;
+using UnityEngine.UIElements;
 
 namespace FoxShooter.Characters.AI.StateTree.Editor.Windows
 {
@@ -27,6 +28,7 @@ namespace FoxShooter.Characters.AI.StateTree.Editor.Windows
 
             _blackboard = blackboard;
             
+            Debug.Log($"[BlackboardView] Binding blackboard to view with {blackboard.variables.Count} variables.");
             foreach (var blackboardVariable in blackboard.variables.Values)
             {
                 var blackboardVariableView = new BlackboardVariableView();

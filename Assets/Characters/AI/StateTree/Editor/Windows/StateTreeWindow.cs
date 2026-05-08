@@ -3,6 +3,7 @@ using FoxShooter.Characters.AI.StateTree.Graph;
 using FoxShooter.Characters.AI.StateTree.UI;
 using Unity.VisualScripting;
 using UnityEditor;
+using UnityEditor.UIElements;
 using UnityEngine;
 using UnityEngine.UIElements;
 
@@ -12,14 +13,16 @@ namespace FoxShooter.Characters.AI.StateTree.Editor.Windows
     {
         [SerializeField] public StateTreeGraph asset;
 
+        private Tree _tree;
+
         private const string WindowFilename = "state-tree-window";
-        
         private VisualTreeAsset _windowAsset;
 
         private VisualElement _windowRoot;
         
         private StateTreeView _treeView;
         private BlackboardView _blackboardView;
+        private StateInspector _stateInspector;
         
         private Button _button;
         private Button _addStateButton;
@@ -61,12 +64,10 @@ namespace FoxShooter.Characters.AI.StateTree.Editor.Windows
             
             _treeView = _windowRoot.Q<StateTreeView>("tree-view");
             _blackboardView = _windowRoot.Q<BlackboardView>("blackboard-view");
+            _stateInspector = _windowRoot.Q<StateInspector>("state-inspector");
             
             _button = _windowRoot.Q<Button>("save-button");
-            _button.clicked += () =>
-            {
-                _treeView?.Save();
-            };
+            _button.clicked += Save;
 
             _addStateButton = _windowRoot.Q<Button>("new-state-button");
             _addStateButton.clicked += () =>
@@ -76,22 +77,45 @@ namespace FoxShooter.Characters.AI.StateTree.Editor.Windows
             
             rootVisualElement.Add(_windowRoot);
 
-            if (asset)
+            if (!asset)
             {
-                _treeView.Bind(asset);
+                return;
             }
+            
+            SetGraph(asset);
         }
 
         public void SetGraph(StateTreeGraph graph)
         {
             asset = graph;
-            _treeView?.Bind(graph);
+            _tree = asset.GenerateTree();
+            _treeView?.Bind(_tree);
             _blackboardView.Bind(graph.blackboard);
+            _treeView?.selectedStateChanged.AddListener(SelectedStateChanged);
         }
 
         private void LoadVisualAssets()
         {
             _windowAsset = Resources.Load<VisualTreeAsset>(WindowFilename);
+        }
+
+        private void SelectedStateChanged(State selectedState)
+        {
+            _stateInspector.Bind(_tree, selectedState);
+        }
+        
+        private void Save()
+        {
+            if (!asset)
+            {
+                return;
+            }
+
+            var serializedVersion = StateTreeGraph.SerializeTree(_tree);
+            asset.nodes = serializedVersion.nodes;
+            asset.rootNode = serializedVersion.rootNode;
+            EditorUtility.SetDirty(asset);
+            AssetDatabase.SaveAssetIfDirty(asset);
         }
 
         [InitializeOnLoadMethod]

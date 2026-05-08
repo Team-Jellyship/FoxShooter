@@ -142,7 +142,7 @@ namespace FoxShooter.Characters.AI.StateTree
          * root state
          * </returns>
          */
-        private static List<State> GetHierarchy(State state)
+        public static List<State> GetHierarchy(State state)
         {
             var result = new List<State>();
             for (var parent = state; parent != null; parent = parent.parent)
@@ -158,6 +158,18 @@ namespace FoxShooter.Characters.AI.StateTree
             {
                 name = name
             });
+        }
+
+        public List<State> GetAllStates()
+        {
+            var result = new List<State> { root };
+
+            for (var i = 0; i < result.Count; ++i)
+            {
+                result.AddRange(result[i].childStates);
+            }
+
+            return result;
         }
     }
 }

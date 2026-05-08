@@ -186,5 +186,10 @@ namespace FoxShooter.Characters.AI.StateTree
         {
             return name;
         }
+
+        public string GetFullName()
+        {
+            return string.Join(".", Tree.GetHierarchy(this));
+        }
     }
 }

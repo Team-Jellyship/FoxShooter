@@ -23,15 +23,13 @@ namespace FoxShooter.Characters.AI.StateTree.UI
         public UnityEvent<State> selectedStateChanged = new();
         public StateView currentlySelectedView { get; private set; }
 
-        private StateTreeGraph treeGraph;
         private Tree _tree;
         private VisualElement _container;
         private StateView _rootView;
 
-        public void Bind(StateTreeGraph tree)
+        public void Bind(Tree tree)
         {
-            treeGraph = tree;
-            _tree = tree.GenerateTree();
+            _tree = tree;
 
             if (_tree == null)
             {
@@ -43,20 +41,6 @@ namespace FoxShooter.Characters.AI.StateTree.UI
             Add(_rootView);
         }
 
-        public void Save()
-        {
-            if (!treeGraph)
-            {
-                return;
-            }
-
-            var serializedVersion = StateTreeGraph.SerializeTree(_tree);
-            treeGraph.nodes = serializedVersion.nodes;
-            treeGraph.rootNode = serializedVersion.rootNode;
-            EditorUtility.SetDirty(treeGraph);
-            AssetDatabase.SaveAssetIfDirty(treeGraph);
-        }
-
         public void AddState()
         {
             if (_tree == null)
@@ -66,7 +50,6 @@ namespace FoxShooter.Characters.AI.StateTree.UI
             
             _tree.AddState("New State");
             _rootView.Bind(_tree.root, this);
-            EditorUtility.SetDirty(treeGraph);
         }
 
         public void Select(StateView view)
@@ -81,8 +64,8 @@ namespace FoxShooter.Characters.AI.StateTree.UI
                 currentlySelectedView?.Deselect();
                 currentlySelectedView = view;
                 view.Select();
-                selectedStateChanged.Invoke(currentlySelectedView.state);
             }
+            selectedStateChanged.Invoke(currentlySelectedView?.state);
         }
         
         public void MoveParent(StateView child, StateView newParent)
