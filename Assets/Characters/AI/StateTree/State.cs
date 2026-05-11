@@ -47,7 +47,8 @@ namespace FoxShooter.Characters.AI.StateTree
          */
         public State cancelState;
 
-        public Action tasksChanged;
+        public delegate void TasksChanged();
+        public TasksChanged tasksChanged;
         
         public int id { get; private set; }
         
@@ -221,7 +222,7 @@ namespace FoxShooter.Characters.AI.StateTree
         public void AddTask(Task task)
         {
             _childTasks.Add(task);
-            tasksChanged();
+            tasksChanged?.Invoke();
         }
 
         /**
@@ -245,7 +246,7 @@ namespace FoxShooter.Characters.AI.StateTree
                 return false;
             }
             
-            tasksChanged();
+            tasksChanged?.Invoke();
             return true;
 
         }

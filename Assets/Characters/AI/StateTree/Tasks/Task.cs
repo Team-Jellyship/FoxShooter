@@ -6,6 +6,8 @@ namespace FoxShooter.Characters.AI.StateTree.Tasks
     [Serializable]
     public abstract class Task
     {
+        public IEnumerable<TaskVariable> taskVariables { get => _taskVariables; }
+        
         private List<TaskVariable> _taskVariables;
         
         protected Task()
@@ -29,15 +31,18 @@ namespace FoxShooter.Characters.AI.StateTree.Tasks
 
         public virtual void Exit() {}
 
-        public List<TaskVariable> GetVariables()
+        public List<Tuple<string, TaskVariable>> GetClassVariables()
         {
-            var result = new List<TaskVariable>();
+            var result = new List<Tuple<string, TaskVariable>>();
             foreach (var fieldInfo in GetType().GetFields())
             {
-                if (fieldInfo.FieldType == typeof(TaskVariable))
+                if (!fieldInfo.FieldType.IsSubclassOf(typeof(TaskVariable)))
                 {
-                    result.Add((TaskVariable)fieldInfo.GetValue(this));
+                    continue;
                 }
+                
+                var pair = new Tuple<string, TaskVariable>(fieldInfo.Name, (TaskVariable)fieldInfo.GetValue(this));
+                result.Add(pair);
             }
             return result;
         }

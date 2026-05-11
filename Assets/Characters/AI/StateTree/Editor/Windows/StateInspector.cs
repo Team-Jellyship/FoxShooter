@@ -68,6 +68,16 @@ namespace FoxShooter.Characters.AI.StateTree.Editor.Windows
 
         public void Bind(Tree tree, State state)
         {
+            if (state == _activeState)
+            {
+                return;
+            }
+            
+            if (_activeState != null)
+            {
+                _activeState.tasksChanged -= UpdateTasks;
+            }
+            
             _activeState = state;
 
             if (state == null)
@@ -79,6 +89,7 @@ namespace FoxShooter.Characters.AI.StateTree.Editor.Windows
             _stateNameLabel.text = state.name;
             _successDropdown.Bind(tree, state, state.successState);
             _cancelDropdown.Bind(tree, state, state.cancelState);
+            state.tasksChanged += UpdateTasks;
             
             UpdateTasks();
         }
@@ -97,12 +108,8 @@ namespace FoxShooter.Characters.AI.StateTree.Editor.Windows
             
             foreach (var task in _activeState.childTasks)
             {
-                var taskLabel = new Label
-                {
-                    name = "task-label",
-                    text = task.ToString()
-                };
-                _taskContainer.Add(taskLabel);
+                var taskView = new TaskView(task);
+                _taskContainer.Add(taskView);
             }
         }
 

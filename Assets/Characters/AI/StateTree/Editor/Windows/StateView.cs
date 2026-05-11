@@ -98,6 +98,8 @@ namespace FoxShooter.Characters.AI.StateTree.Editor.Windows
                 childContainer.Add(childStateView);
                 childStateView.Bind(childState, rootView);
             }
+
+            state.tasksChanged += Update;
         }
 
         public void Update()
