@@ -73,7 +73,7 @@ namespace FoxShooter.Characters.AI.StateTree.Graph
                         Debug.LogError("[StateTreeGraph] A child state was missing. It's possible the file was corrupted.");
                         continue;
                     }
-                    pendingState.AddState(childState);
+                    pendingState.AddChild(childState);
                     pendingStateConnections.Enqueue(stateNodeDictionary[childStateId]);
                     
                 }

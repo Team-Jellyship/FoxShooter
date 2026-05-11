@@ -23,7 +23,7 @@ namespace FoxShooter.Characters.AI.StateTree.Graph
 
             foreach (var task in tasks)
             {
-                state.childTasks.Add(task.GenerateTask());
+                state.AddTask(task.GenerateTask());
             }
             return state;
         }

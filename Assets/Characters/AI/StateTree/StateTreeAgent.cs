@@ -42,8 +42,8 @@ namespace FoxShooter.Characters.AI.StateTree
                 name = "state2",
                 successState = tree.root
             };
-            tree.root.AddState(_state1);
-            tree.root.AddState(_state2);
+            tree.root.AddChild(_state1);
+            tree.root.AddChild(_state2);
             tree.root.successState = _state1;
             _state1.successState = _state2;
             tree.blackboard = blackboard;
@@ -71,11 +71,11 @@ namespace FoxShooter.Characters.AI.StateTree
         {
             var testTask = new TestTask();
             testTask.timeLimit.Set(new BlackboardReference<float>(blackboard, "time"));
-            _state1.childTasks.Add(testTask);
+            _state1.AddTask(testTask);
 
             var testTask2 = new TestTask();
             testTask2.timeLimit.Set(new BlackboardReference<float>(blackboard, "time2"));
-            _state2.childTasks.Add(testTask2);
+            _state2.AddTask(testTask2);
             tree.Start();
 
             var test = StateTreeGraph.SerializeTree(tree);

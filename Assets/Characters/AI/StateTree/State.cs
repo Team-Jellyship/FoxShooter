@@ -29,7 +29,7 @@ namespace FoxShooter.Characters.AI.StateTree
          * task returns TaskStatus.Succeeded or TaskStatus.Failed, this will cause
          * the state to exit.
          */
-        [SerializeReference] public readonly List<Task> childTasks = new();
+        public IEnumerable<Task> childTasks { get => _childTasks; }
 
         /**
          * State that this is a child of. Can be null, if this state is a top
@@ -46,9 +46,12 @@ namespace FoxShooter.Characters.AI.StateTree
          * State to enter on a failure in either Enter or Update
          */
         public State cancelState;
+
+        public Action tasksChanged;
         
         public int id { get; private set; }
         
+        private readonly List<Task> _childTasks = new();
         
         /**
          * <summary>
@@ -66,7 +69,6 @@ namespace FoxShooter.Characters.AI.StateTree
          * If all child tasks are in progress, returns null
          * </returns>
          */
-        
         [CanBeNull]
         public State Enter(TreeContext context)
         {
@@ -74,7 +76,7 @@ namespace FoxShooter.Characters.AI.StateTree
             var cancelled = false;
             var succeeded = false;
             
-            foreach (var task in childTasks)
+            foreach (var task in _childTasks)
             {
                 var result = task.Enter();
                 switch (result)
@@ -93,7 +95,7 @@ namespace FoxShooter.Characters.AI.StateTree
                 }
             }
 
-            if (childTasks.Count == 0)
+            if (_childTasks.Count == 0)
             {
                 return successState;
             }
@@ -125,7 +127,7 @@ namespace FoxShooter.Characters.AI.StateTree
             var succeeded = false;
             var canceled = false;
             
-            foreach (var task in childTasks)
+            foreach (var task in _childTasks)
             {
                 var result = task.Update(context, time);
                 switch (result)
@@ -155,13 +157,24 @@ namespace FoxShooter.Characters.AI.StateTree
         public void Exit()
         {
             // Debug.Log($"[StateTree.State] Exiting state '{name}'");
-            foreach (var task in childTasks)
+            foreach (var task in _childTasks)
             {
                 task.Exit();
             }
         }
 
-        public void AddState(State state)
+        
+        /**
+         * <summary>
+         * Add a state to this state, as a child. Will fail if the child state
+         * already has a parent
+         * </summary>
+         *
+         * <param name="state">
+         * Child state to be added
+         * </param>
+         */
+        public void AddChild(State state)
         {
             if (state.parent != null)
             {
@@ -172,6 +185,20 @@ namespace FoxShooter.Characters.AI.StateTree
             state.parent = this;
         }
 
+        /**
+         * <summary>
+         * Remove a child state from this state. Does not do anything if
+         * the state to be removed is not a child of this state.
+         * </summary>
+         *
+         * <param name="state">
+         * State to be removed. This state will have its parent cleared
+         * </param>
+         *
+         * <returns>
+         * true if state could be removed, false otherwise
+         * </returns>
+         */
         public bool RemoveChild(State state)
         {
             if (state.parent != this)
@@ -182,14 +209,64 @@ namespace FoxShooter.Characters.AI.StateTree
             return childStates.Remove(state);
         }
 
-        public override string ToString()
+        /**
+         * <summary>
+         * Add a task to this state
+         * </summary>
+         *
+         * <param name="task">
+         * Task to be added
+         * </param>
+         */
+        public void AddTask(Task task)
         {
-            return name;
+            _childTasks.Add(task);
+            tasksChanged();
         }
 
+        /**
+         * <summary>
+         * Remove a child task
+         * </summary>
+         *
+         * <param name="task">
+         * Task to be removed
+         * </param>
+         *
+         * <returns>
+         * true if this task was removed successfully (because it was a child of this state)
+         * false otherwise
+         * </returns>
+         */
+        public bool RemoveTask(Task task)
+        {
+            if (!_childTasks.Remove(task))
+            {
+                return false;
+            }
+            
+            tasksChanged();
+            return true;
+
+        }
+
+        /**
+         * <summary>
+         * Get the state's name, including parent names
+         * </summary>
+         *
+         * <returns>
+         * state name, in the form 'parent.child'
+         * </returns>
+         */
         public string GetFullName()
         {
             return string.Join(".", Tree.GetHierarchy(this));
+        }
+
+        public override string ToString()
+        {
+            return name;
         }
     }
 }

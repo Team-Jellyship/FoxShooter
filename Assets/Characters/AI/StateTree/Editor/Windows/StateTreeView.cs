@@ -77,7 +77,7 @@ namespace FoxShooter.Characters.AI.StateTree.UI
             newParent.childContainer.Add(child);
             
             child.state.parent.RemoveChild(child.state);
-            newParent.state.AddState(child.state);
+            newParent.state.AddChild(child.state);
         }
     }
 }

@@ -79,13 +79,23 @@ namespace FoxShooter.Characters.AI.StateTree.Editor.Windows
             _stateNameLabel.text = state.name;
             _successDropdown.Bind(tree, state, state.successState);
             _cancelDropdown.Bind(tree, state, state.cancelState);
+            
+            UpdateTasks();
+        }
 
+        public void UpdateTasks()
+        {
             for (var i = _taskContainer.childCount - 1; i >= 0; --i)
             {
                 _taskContainer.RemoveAt(i);
             }
 
-            foreach (var task in state.childTasks)
+            if (_activeState == null)
+            {
+                return;
+            }
+            
+            foreach (var task in _activeState.childTasks)
             {
                 var taskLabel = new Label
                 {
@@ -111,7 +121,7 @@ namespace FoxShooter.Characters.AI.StateTree.Editor.Windows
             var newTask = Activator.CreateInstance(taskType);
             if (newTask is Task task)
             {
-                _activeState.childTasks.Add(task);
+                _activeState.AddTask(task);
             }
         }
     }
