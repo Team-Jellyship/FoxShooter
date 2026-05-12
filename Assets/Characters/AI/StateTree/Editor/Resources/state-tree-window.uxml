@@ -13,8 +13,9 @@
         <FoxShooter.Characters.AI.StateTree.UI.StateTreeView name="tree-view" style="flex-basis: 50%; padding-right: 4px; padding-left: 4px;">
             <FoxShooter.Characters.AI.StateTree.Editor.Windows.StateView data-source-type="FoxShooter.Characters.AI.StateTree.State, Assembly-CSharp" class="placeholder"/>
             <FoxShooter.Characters.AI.StateTree.Editor.Windows.StateView data-source-type="FoxShooter.Characters.AI.StateTree.State, Assembly-CSharp" class="selected placeholder"/>
-            <FoxShooter.Characters.AI.StateTree.Editor.Windows.TaskClassDropdown/>
         </FoxShooter.Characters.AI.StateTree.UI.StateTreeView>
-        <FoxShooter.Characters.AI.StateTree.Editor.Windows.StateInspector name="state-inspector"/>
+        <FoxShooter.Characters.AI.StateTree.Editor.Windows.StateInspector name="state-inspector">
+            <FoxShooter.Characters.AI.StateTree.Editor.Windows.GenericField class="placeholder"/>
+        </FoxShooter.Characters.AI.StateTree.Editor.Windows.StateInspector>
     </ui:VisualElement>
 </ui:UXML>

@@ -5,6 +5,7 @@ namespace FoxShooter.Characters.AI.StateTree.Tasks
     public class TestTask : Task
     {
         [SerializeReference] public TaskVariable<float> timeLimit = new();
+        [SerializeReference] public TaskVariable<KinematicCharacter> character = new();
 
         private float _currentTime;
         

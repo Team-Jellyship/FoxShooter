@@ -20,9 +20,9 @@ MonoBehaviour:
     - id: 1
     tasks: []
     success:
-      id: 0
+      id: 1
     cancel:
-      id: 0
+      id: 1
   - name: New State
     id:
       id: 1
@@ -30,9 +30,9 @@ MonoBehaviour:
     tasks:
     - taskClassType: FoxShooter.Characters.AI.StateTree.Tasks.TestTask
       variables:
-      - rid: 629504694881878096
+      - rid: 629504765670719534
     success:
-      id: -1
+      id: 0
     cancel:
       id: -1
   rootNode:
@@ -49,15 +49,15 @@ MonoBehaviour:
     RefIds:
     - rid: -2
       type: {class: , ns: , asm: }
-    - rid: 629504694881878096
-      type: {class: TaskVariableNode, ns: FoxShooter.Characters.AI.StateTree.Graph, asm: Assembly-CSharp}
-      data:
-        name: timeLimit
-        variable:
-          rid: 629504694881878097
     - rid: 629504694881878097
       type: {class: 'TaskVariable`1[[System.Single, mscorlib]]', ns: FoxShooter.Characters.AI.StateTree.Tasks, asm: Assembly-CSharp}
       data:
         tag: 0
         internalData:
           rid: -2
+    - rid: 629504765670719534
+      type: {class: TaskVariableNode, ns: FoxShooter.Characters.AI.StateTree.Graph, asm: Assembly-CSharp}
+      data:
+        name: timeLimit
+        variable:
+          rid: 629504694881878097

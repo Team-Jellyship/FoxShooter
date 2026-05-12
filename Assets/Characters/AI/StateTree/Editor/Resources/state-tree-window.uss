@@ -63,8 +63,6 @@
     border-bottom-color: rgb(255, 255, 255);
 }
 
-
-
 #blackboard-variable-view {
     flex-direction: row;
     background-color: rgb(53, 53, 53);
@@ -107,3 +105,11 @@
 .unity-base-dropdown__item {
     background-color: rgb(42, 42, 42);
 }
+
+
+
+
+
+
+
+

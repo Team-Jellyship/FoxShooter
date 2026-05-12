@@ -1,4 +1,5 @@
-﻿using FoxShooter.Characters.AI.StateTree.Tasks;
+﻿using System;
+using FoxShooter.Characters.AI.StateTree.Tasks;
 using UnityEngine.UIElements;
 
 namespace FoxShooter.Characters.AI.StateTree.Editor.Windows
@@ -57,12 +58,15 @@ namespace FoxShooter.Characters.AI.StateTree.Editor.Windows
 
             foreach (var taskVariable in task.GetClassVariables())
             {
-                var taskVariableLabel = new Label
+                /*var taskVariableLabel = new Label
                 {
                     name = "task-variable-label",
                     text = taskVariable.Item1
                 };
-                _taskVariableContainer.Add(taskVariableLabel);
+                _taskVariableContainer.Add(taskVariableLabel);*/
+
+                var newField = new GenericField(taskVariable.Item1, taskVariable.Item2.type, taskVariable.Item2.data);
+                _taskVariableContainer.Add(newField);
             }
         }
     }
