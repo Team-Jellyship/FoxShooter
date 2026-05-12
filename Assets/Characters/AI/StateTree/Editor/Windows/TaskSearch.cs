@@ -22,6 +22,7 @@ namespace FoxShooter.Characters.AI.StateTree.Editor.Windows
         {
             var visualAsset = Resources.Load<VisualTreeAsset>(TaskSearchFilename);
             var tree = visualAsset.CloneTree();
+            tree.AddToClassList("popup");
             
             var stringConverter = new SelectionEntry<Type>.StringConverter(type => type.Name);
             

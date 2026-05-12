@@ -1,20 +1,17 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using FoxShooter.Characters.AI.StateTree.Graph;
-using FoxShooter.Characters.AI.StateTree.Tasks;
-using FoxShooter.Characters.AI.StateTree.UI;
-using TreeEditor;
 using UnityEngine;
 
 namespace FoxShooter.Characters.AI.StateTree
 {
     public class StateTreeAgent : MonoBehaviour, ISerializationCallbackReceiver
     {
+        [SerializeField] public StateTreeGraph graph;
         [SerializeReference, HideInInspector] private List<BlackboardVariable> variables;
         
         public Blackboard blackboard;
-        public Tree tree;
 
+        private Tree _tree;
         private State _state1;
         private State _state2;
 
@@ -24,7 +21,7 @@ namespace FoxShooter.Characters.AI.StateTree
             blackboard.AddVariable<float>("time");
             blackboard.AddVariable<float>("time2");
 
-            tree = new Tree
+            /*tree = new Tree
             {
                 root = new State
                 {
@@ -46,7 +43,7 @@ namespace FoxShooter.Characters.AI.StateTree
             tree.root.AddChild(_state2);
             tree.root.successState = _state1;
             _state1.successState = _state2;
-            tree.blackboard = blackboard;
+            tree.blackboard = blackboard;*/
         }
 
         public void OnBeforeSerialize()
@@ -69,21 +66,21 @@ namespace FoxShooter.Characters.AI.StateTree
 
         private void Start()
         {
-            var testTask = new TestTask();
+            /*var testTask = new TestTask();
             testTask.timeLimit.Set(new BlackboardReference<float>(blackboard, "time"));
             _state1.AddTask(testTask);
 
             var testTask2 = new TestTask();
             testTask2.timeLimit.Set(new BlackboardReference<float>(blackboard, "time2"));
-            _state2.AddTask(testTask2);
-            tree.Start();
+            _state2.AddTask(testTask2);*/
 
-            var test = StateTreeGraph.SerializeTree(tree);
+            _tree = graph.GenerateTree();
+            _tree.Start();
         }
 
         private void Update()
         {
-            tree.Update(Time.deltaTime);
+            _tree.Update(Time.deltaTime);
         }
     }
 }

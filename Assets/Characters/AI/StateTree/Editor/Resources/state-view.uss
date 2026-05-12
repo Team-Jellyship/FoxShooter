@@ -1,13 +1,26 @@
-
-
 StateView {
     flex-direction: column;
     color: rgb(255, 255, 255);
     margin-top: 8px;
-    margin-right: 0;
-    margin-bottom: 0;
+    margin-right: 2px;
+    margin-bottom: 2px;
     margin-left: 8px;
     font-size: 20px;
+}
+
+.selected {
+    border-top-width: 1px;
+    border-right-width: 1px;
+    border-bottom-width: 1px;
+    border-left-width: 1px;
+    border-left-color: rgb(255, 255, 255);
+    border-right-color: rgb(255, 255, 255);
+    border-top-color: rgb(255, 255, 255);
+    border-bottom-color: rgb(255, 255, 255);
+    margin-top: -1px;
+    margin-right: -1px;
+    margin-bottom: -1px;
+    margin-left: -1px;
 }
 
 StateView #title {
@@ -37,10 +50,14 @@ StateView #tasks-label {
 }
 
 StateView #result-label {
+    font-size: 16px;
+    padding-left: 8px;
+    padding-right: 8px;
 }
 
 StateView #state-container {
     flex-direction: row;
+    -unity-text-align: middle-left;
 }
 
 StateView #child-state-container {

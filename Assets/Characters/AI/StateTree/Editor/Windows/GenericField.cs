@@ -21,10 +21,12 @@ namespace FoxShooter.Characters.AI.StateTree.Editor.Windows
     [UxmlElement]
     public partial class GenericField : VisualElement
     {
+        public Action<object> dataChanged;
+        
         private object _data;
         private Type _dataType;
-
         private VisualElement _fieldEditor;
+
 
         public GenericField()
         {
@@ -41,11 +43,19 @@ namespace FoxShooter.Characters.AI.StateTree.Editor.Windows
         {
             if (type == typeof(int))
             {
-                _fieldEditor = new IntegerField { label = label };
+                _fieldEditor = new IntegerField { label = label, value = (int)data };
+                _fieldEditor.RegisterCallback<ChangeEvent<int>>(value =>
+                {
+                    dataChanged?.Invoke(value.newValue);
+                });
             }
             else if (type == typeof(float))
             {
-                _fieldEditor = new FloatField { label = label };
+                _fieldEditor = new FloatField { label = label, value = (float)(data ?? 0.0f) };
+                _fieldEditor.RegisterCallback<ChangeEvent<float>>(value =>
+                {
+                    dataChanged?.Invoke(value.newValue);
+                });
             }
             else if (type == typeof(long))
             {

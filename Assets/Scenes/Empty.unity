@@ -352,9 +352,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e45f2afca60c4060a08c39d5273443d9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::FoxShooter.Characters.AI.StateTree.StateTreeAgent
+  graph: {fileID: 11400000, guid: f49232db929273e43aa94def259c95ec, type: 2}
   variables:
   - rid: 629504608139477071
   - rid: 629504608139477072
+  blackboard:
+    onVariableAdded:
+      m_PersistentCalls:
+        m_Calls: []
+    onVariableRemoved:
+      m_PersistentCalls:
+        m_Calls: []
   references:
     version: 2
     RefIds:

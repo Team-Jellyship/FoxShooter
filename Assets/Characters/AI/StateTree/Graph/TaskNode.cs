@@ -43,7 +43,7 @@ namespace FoxShooter.Characters.AI.StateTree.Graph
                 {
                     continue;
                 }
-                taskVariable.SetValue(newTask, node.variable);
+                taskVariable.SetValue(newTask, node.GenerateVariable());
             }
 
             return newTask;
@@ -65,11 +65,20 @@ namespace FoxShooter.Characters.AI.StateTree.Graph
                 {
                     continue;
                 }
-                taskNode.variables.Add(new TaskVariableNode
+                var taskVariableData = (TaskVariable) taskVariable.GetValue(task);
+                var nodeType = typeof(TaskVariableNode<>).MakeGenericType(taskVariableData.type);
+                var serializeMethod = nodeType.GetMethod("Serialize");
+                if (serializeMethod == null)
                 {
-                    name = taskVariable.Name,
-                    variable = (TaskVariable)taskVariable.GetValue(task)
-                });
+                    continue;
+                }
+                var args = new[] { taskVariable.Name, taskVariable.GetValue(task) };
+                var newNode = (TaskVariableNode) serializeMethod.Invoke(task, args);
+                if (newNode == null)
+                {
+                    continue;
+                }
+                taskNode.variables.Add(newNode);
             }
             return taskNode;
         }

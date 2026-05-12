@@ -1,5 +1,6 @@
 ﻿using System;
 using FoxShooter.Characters.AI.StateTree.Tasks;
+using UnityEngine;
 using UnityEngine.UIElements;
 
 namespace FoxShooter.Characters.AI.StateTree.Editor.Windows
@@ -66,6 +67,11 @@ namespace FoxShooter.Characters.AI.StateTree.Editor.Windows
                 _taskVariableContainer.Add(taskVariableLabel);*/
 
                 var newField = new GenericField(taskVariable.Item1, taskVariable.Item2.type, taskVariable.Item2.data);
+                newField.dataChanged = data =>
+                {
+                    Debug.Log("Variable changed");
+                    taskVariable.Item2.data = data;
+                };
                 _taskVariableContainer.Add(newField);
             }
         }

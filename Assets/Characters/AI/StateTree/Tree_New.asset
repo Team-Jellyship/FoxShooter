@@ -18,11 +18,12 @@ MonoBehaviour:
       id: 0
     childStates:
     - id: 1
+    - id: 2
     tasks: []
     success:
       id: 1
     cancel:
-      id: 1
+      id: 0
   - name: New State
     id:
       id: 1
@@ -30,7 +31,19 @@ MonoBehaviour:
     tasks:
     - taskClassType: FoxShooter.Characters.AI.StateTree.Tasks.TestTask
       variables:
-      - rid: 629504765670719534
+      - rid: 629504785752522831
+    success:
+      id: 2
+    cancel:
+      id: -1
+  - name: Test2
+    id:
+      id: 2
+    childStates: []
+    tasks:
+    - taskClassType: FoxShooter.Characters.AI.StateTree.Tasks.TestTask
+      variables:
+      - rid: 629504785752522832
     success:
       id: 0
     cancel:
@@ -47,17 +60,19 @@ MonoBehaviour:
   references:
     version: 2
     RefIds:
-    - rid: -2
-      type: {class: , ns: , asm: }
-    - rid: 629504694881878097
-      type: {class: 'TaskVariable`1[[System.Single, mscorlib]]', ns: FoxShooter.Characters.AI.StateTree.Tasks, asm: Assembly-CSharp}
-      data:
-        tag: 0
-        internalData:
-          rid: -2
-    - rid: 629504765670719534
-      type: {class: TaskVariableNode, ns: FoxShooter.Characters.AI.StateTree.Graph, asm: Assembly-CSharp}
+    - rid: 629504785752522831
+      type: {class: 'TaskVariableNode`1[[System.Single, mscorlib]]', ns: FoxShooter.Characters.AI.StateTree.Graph, asm: Assembly-CSharp}
       data:
         name: timeLimit
-        variable:
-          rid: 629504694881878097
+        type: 'FoxShooter.Characters.AI.StateTree.Tasks.TaskVariable`1[[System.Single,
+          mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]'
+        dataDebugDisplay: 4.23
+        internalData: 4.23
+    - rid: 629504785752522832
+      type: {class: 'TaskVariableNode`1[[System.Single, mscorlib]]', ns: FoxShooter.Characters.AI.StateTree.Graph, asm: Assembly-CSharp}
+      data:
+        name: timeLimit
+        type: 'FoxShooter.Characters.AI.StateTree.Tasks.TaskVariable`1[[System.Single,
+          mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]'
+        dataDebugDisplay: 6
+        internalData: 6

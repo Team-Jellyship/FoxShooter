@@ -7,14 +7,13 @@ namespace FoxShooter.Characters.AI.StateTree.Tasks
     [Serializable]
     public abstract class TaskVariable
     {
-        protected enum ContextTag : byte
+        public enum ContextTag : byte
         {
             Variable,
             Context,
             Blackboard
         }
-        [SerializeField] protected ContextTag tag;
-        
+        public ContextTag tag { get; protected set; }
         public abstract object data { get; set; }
         public abstract Type type { get; }
     }
@@ -30,7 +29,7 @@ namespace FoxShooter.Characters.AI.StateTree.Tasks
     {
         [SerializeReference] protected object internalData;
 
-        public override object data
+        public override sealed object data
         {
             get => internalData;
             set
@@ -47,6 +46,12 @@ namespace FoxShooter.Characters.AI.StateTree.Tasks
         
         public override Type type { get => typeof(T); }
 
+        public TaskVariable()
+        {
+            tag = ContextTag.Variable;
+            data = Activator.CreateInstance<T>();
+        }
+        
         public void Set(T variable)
         {
             tag = ContextTag.Variable;

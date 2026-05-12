@@ -73,7 +73,7 @@ namespace FoxShooter.Characters.AI.StateTree
         [CanBeNull]
         public State Enter(TreeContext context)
         {
-            // Debug.Log($"[StateTree.State] Entering state '{name}'");
+            Debug.Log($"[StateTree.State] Entering state '{name}'");
             var cancelled = false;
             var succeeded = false;
             
