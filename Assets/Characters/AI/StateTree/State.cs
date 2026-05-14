@@ -35,12 +35,12 @@ namespace FoxShooter.Characters.AI.StateTree
          * State that this is a child of. Can be null, if this state is a top
          * level state.
          */
-        public State parent;
+        public State parent { get; private set; }
         
         /**
          * State to enter on a success in either Enter or Update
          */
-        public State successState;
+        public State successState { get; private set; }
         
         /**
          * State to enter on a failure in either Enter or Update
@@ -49,6 +49,9 @@ namespace FoxShooter.Characters.AI.StateTree
 
         public delegate void TasksChanged();
         public TasksChanged tasksChanged;
+
+        public delegate void NextStatesChanged();
+        public NextStatesChanged nextStatesChanged;
         
         public int id { get; private set; }
         
@@ -263,6 +266,18 @@ namespace FoxShooter.Characters.AI.StateTree
         public string GetFullName()
         {
             return string.Join(".", Tree.GetHierarchy(this));
+        }
+
+        public void SetSuccessState(State success)
+        {
+            successState = success;
+            nextStatesChanged?.Invoke();
+        }
+
+        public void SetCancelState(State cancel)
+        {
+            cancelState = cancel;
+            nextStatesChanged?.Invoke();
         }
 
         public override string ToString()

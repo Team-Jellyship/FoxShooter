@@ -20,8 +20,8 @@ namespace FoxShooter.Characters.AI.StateTree.Graph
 
         public StateTreeGraph()
         {
-            blackboard = new Blackboard();
-            blackboard.AddVariable("test", "default");
+            /*blackboard = new Blackboard();
+            blackboard.AddVariable("test", "default");*/
         }
         
         [OnOpenAsset(1)]
@@ -80,11 +80,11 @@ namespace FoxShooter.Characters.AI.StateTree.Graph
 
                 if (pendingStateNode.success && stateDictionary.TryGetValue(pendingStateNode.success, out var success))
                 {
-                    pendingState.successState = success;
+                    pendingState.SetSuccessState(success);
                 }
                 if (pendingStateNode.cancel && stateDictionary.TryGetValue(pendingStateNode.cancel, out var cancel))
                 {
-                    pendingState.cancelState = cancel;
+                    pendingState.SetCancelState(cancel);
                 }
             }
 

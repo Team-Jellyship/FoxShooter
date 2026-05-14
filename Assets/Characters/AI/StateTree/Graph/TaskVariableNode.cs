@@ -10,7 +10,6 @@ namespace FoxShooter.Characters.AI.StateTree.Graph
     {
         [SerializeField] public string name;
         [SerializeField] public string type;
-        [SerializeField] public string dataDebugDisplay;
         
         public abstract object data { get; set; }
 
@@ -35,7 +34,6 @@ namespace FoxShooter.Characters.AI.StateTree.Graph
                 name = name,
                 type = taskVariable.GetType().FullName,
                 internalData = (T)taskVariable.data,
-                dataDebugDisplay = taskVariable.data.ToString()
             };
             // result.tag = taskVariable.tag;
             return result;

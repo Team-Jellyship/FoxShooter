@@ -1,4 +1,5 @@
 <ui:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="True">
+    <ui:Template name="blackboard-view" src="project://database/Assets/Characters/AI/StateTree/Editor/Resources/blackboard-view.uxml?fileID=9197481963319205126&amp;guid=c3483179558d9814491cfe7325aff1e0&amp;type=3#blackboard-view"/>
     <Style src="project://database/Assets/Characters/AI/StateTree/Editor/Resources/state-tree-window.uss?fileID=7433441132597879392&amp;guid=8bf753afdf2fb12449e8a8309dbbcac8&amp;type=3#state-tree-window"/>
     <Style src="project://database/Assets/Characters/AI/StateTree/Editor/Resources/state-tree-inspector.uss?fileID=7433441132597879392&amp;guid=5fc9ac5ec6d504842a36c6a0c12a661c&amp;type=3#state-tree-inspector"/>
     <Style src="project://database/Assets/Characters/AI/StateTree/Editor/Resources/state-view.uss?fileID=7433441132597879392&amp;guid=3737767cbddd41e49b389e4d2d681f6e&amp;type=3#state-view"/>
@@ -7,9 +8,7 @@
         <uie:ToolbarButton text="New State" name="new-state-button"/>
     </uie:Toolbar>
     <ui:VisualElement name="primary-window" style="flex-grow: 1; height: 100%;">
-        <FoxShooter.Characters.AI.StateTree.Editor.Windows.BlackboardView name="blackboard-view" style="flex-basis: 25%;">
-            <FoxShooter.Characters.AI.StateTree.Editor.Windows.BlackboardVariableView name="blackboard-variable-view" class="placeholder"/>
-        </FoxShooter.Characters.AI.StateTree.Editor.Windows.BlackboardView>
+        <ui:Instance template="blackboard-view" name="blackboard-view" style="flex-basis: 20%;"/>
         <FoxShooter.Characters.AI.StateTree.UI.StateTreeView name="tree-view" style="flex-basis: 50%; padding-right: 4px; padding-left: 4px; background-image: resource(&quot;StateTreeGrid&quot;); background-repeat: repeat repeat; background-size: 32px 32px;">
             <FoxShooter.Characters.AI.StateTree.Editor.Windows.StateView data-source-type="FoxShooter.Characters.AI.StateTree.State, Assembly-CSharp" class="placeholder"/>
             <FoxShooter.Characters.AI.StateTree.Editor.Windows.StateView data-source-type="FoxShooter.Characters.AI.StateTree.State, Assembly-CSharp" class="selected placeholder"/>

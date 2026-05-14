@@ -16,18 +16,14 @@ namespace FoxShooter.Characters.AI.StateTree
         // Maybe switch from UnityEvent for better support on other platforms
         [DoNotSerialize][HideInInspector] public UnityEvent<BlackboardVariable> onVariableAdded = new();
         [DoNotSerialize][HideInInspector] public UnityEvent<BlackboardVariable> onVariableRemoved = new();
-        
-        public void AddVariable<T>(string name)
-        {
-            var newVariable = new BlackboardVariable<T>(name);
-            variables.Add(name, newVariable);
-            onVariableAdded.Invoke(newVariable);
-        }
-        public void AddVariable<T>(string name, T defaultValue)
+
+        public void AddVariable<T>(string name, T defaultValue = default)
         {
             var newVariable = new BlackboardVariable<T>(name, defaultValue);
-            variables.Add(name, newVariable);
-            onVariableAdded.Invoke(newVariable);
+            if (variables.TryAdd(name, newVariable))
+            {
+                onVariableAdded.Invoke(newVariable);
+            }
         }
 
         public bool TryGetVariable<T>(string name, out BlackboardVariable<T> result)

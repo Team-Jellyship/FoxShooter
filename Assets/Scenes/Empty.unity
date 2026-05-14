@@ -349,33 +349,26 @@ MonoBehaviour:
   m_GameObject: {fileID: 1552434529}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e45f2afca60c4060a08c39d5273443d9, type: 3}
+  m_Script: {fileID: 11500000, guid: f0038c16c34866b4f9e25c9c0dc0f7e6, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::FoxShooter.Characters.AI.StateTree.StateTreeAgent
-  graph: {fileID: 11400000, guid: f49232db929273e43aa94def259c95ec, type: 2}
-  variables:
-  - rid: 629504608139477071
-  - rid: 629504608139477072
-  blackboard:
-    onVariableAdded:
-      m_PersistentCalls:
-        m_Calls: []
-    onVariableRemoved:
-      m_PersistentCalls:
-        m_Calls: []
+  m_EditorClassIdentifier: Unity.Behavior::Unity.Behavior.BehaviorGraphAgent
+  m_Graph: {fileID: -9092849885899099460, guid: f70fb5acf6d519a458806b9392b69be6, type: 2}
+  m_BlackboardVariableOverridesList:
+  - rid: 629504808582905939
+  m_OriginalGraph: {fileID: 0}
+  m_IsInitialised: 0
+  m_IsStarted: 0
   references:
     version: 2
     RefIds:
-    - rid: 629504608139477071
-      type: {class: 'BlackboardVariable`1[[System.Single, mscorlib]]', ns: FoxShooter.Characters.AI.StateTree, asm: Assembly-CSharp}
+    - rid: 629504808582905939
+      type: {class: 'BlackboardVariable`1[[UnityEngine.GameObject, UnityEngine.CoreModule]]', ns: Unity.Behavior, asm: Unity.Behavior}
       data:
-        name: time
-        internalValue: 0
-    - rid: 629504608139477072
-      type: {class: 'BlackboardVariable`1[[System.Single, mscorlib]]', ns: FoxShooter.Characters.AI.StateTree, asm: Assembly-CSharp}
-      data:
-        name: time2
-        internalValue: 0
+        GUID:
+          m_Value0: 1
+          m_Value1: 0
+        Name: Self
+        m_Value: {fileID: 1552434529}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

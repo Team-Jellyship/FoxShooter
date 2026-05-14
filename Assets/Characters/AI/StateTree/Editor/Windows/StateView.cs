@@ -73,23 +73,9 @@ namespace FoxShooter.Characters.AI.StateTree.Editor.Windows
             { 
                 state.name = evt.newValue;
             });
-
-            _resultLabel.text = "";
-            if (state.successState != null)
-            {
-                _resultLabel.text += $"Success -> {state.successState.name}";
-
-                if (state.cancelState != null)
-                {
-                    _resultLabel.text += ", ";
-                }
-            }
-            if (state.cancelState != null)
-            {
-                _resultLabel.text += $"Cancel -> {state.cancelState.name}";
-            }
             
-            Update();
+            SetNextStatesText();
+            SetTasksText();
 
             foreach (var childState in state.childStates)
             {
@@ -99,10 +85,11 @@ namespace FoxShooter.Characters.AI.StateTree.Editor.Windows
                 childStateView.Bind(childState, rootView);
             }
 
-            state.tasksChanged += Update;
+            state.tasksChanged += SetTasksText;
+            state.nextStatesChanged += SetNextStatesText;
         }
 
-        public void Update()
+        public void SetTasksText()
         {
             if (state == null)
             {
@@ -127,6 +114,24 @@ namespace FoxShooter.Characters.AI.StateTree.Editor.Windows
         {
             Debug.Log($"Selected {state.name}");
             _treeView?.Select(this);
+        }
+
+        private void SetNextStatesText()
+        {
+            _resultLabel.text = "";
+            if (state.successState != null)
+            {
+                _resultLabel.text += $"Success -> {state.successState.name}";
+
+                if (state.cancelState != null)
+                {
+                    _resultLabel.text += ", ";
+                }
+            }
+            if (state.cancelState != null)
+            {
+                _resultLabel.text += $"Cancel -> {state.cancelState.name}";
+            }
         }
     }
 }

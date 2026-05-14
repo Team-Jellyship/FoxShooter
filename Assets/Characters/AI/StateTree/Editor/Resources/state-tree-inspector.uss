@@ -1,6 +1,11 @@
 #state-inspector {
     flex-basis: 25%;
     background-color: rgb(41, 41, 41);
+    border-left-width: 4px;
+    border-left-color: rgb(22, 22, 22);
+    border-right-color: rgb(22, 22, 22);
+    border-top-color: rgb(22, 22, 22);
+    border-bottom-color: rgb(22, 22, 22);
 }
 
 #state-name-label {

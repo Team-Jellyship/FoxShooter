@@ -11,6 +11,8 @@ namespace Characters.AI.StateTree.Editor
         
         public override void OnInspectorGUI()
         {
+            base.OnInspectorGUI();
+            
             var agent = serializedObject.targetObject as StateTreeAgent;
             if (agent && agent.blackboard != null)
             {

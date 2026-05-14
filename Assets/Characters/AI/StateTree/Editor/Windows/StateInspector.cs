@@ -115,12 +115,12 @@ namespace FoxShooter.Characters.AI.StateTree.Editor.Windows
 
         private void SetSuccessState(State state)
         {
-            _activeState.successState = state;
+            _activeState?.SetSuccessState(state);
         }
 
         private void SetCancelState(State state)
         {
-            _activeState.cancelState = state;
+            _activeState?.SetCancelState(state);
         }
 
         private void AddTask(Type taskType)

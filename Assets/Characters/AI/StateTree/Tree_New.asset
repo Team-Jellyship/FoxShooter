@@ -23,7 +23,7 @@ MonoBehaviour:
     success:
       id: 1
     cancel:
-      id: 0
+      id: -1
   - name: New State
     id:
       id: 1
@@ -31,7 +31,8 @@ MonoBehaviour:
     tasks:
     - taskClassType: FoxShooter.Characters.AI.StateTree.Tasks.TestTask
       variables:
-      - rid: 629504785752522831
+      - rid: 629504815563276367
+      - rid: 629504815563276368
     success:
       id: 2
     cancel:
@@ -39,13 +40,34 @@ MonoBehaviour:
   - name: Test2
     id:
       id: 2
-    childStates: []
+    childStates:
+    - id: 3
     tasks:
     - taskClassType: FoxShooter.Characters.AI.StateTree.Tasks.TestTask
       variables:
-      - rid: 629504785752522832
+      - rid: 629504815563276369
+      - rid: 629504815563276370
     success:
       id: 0
+    cancel:
+      id: -1
+  - name: New State
+    id:
+      id: 3
+    childStates:
+    - id: 4
+    tasks: []
+    success:
+      id: 2
+    cancel:
+      id: -1
+  - name: New State
+    id:
+      id: 4
+    childStates: []
+    tasks: []
+    success:
+      id: -1
     cancel:
       id: -1
   rootNode:
@@ -60,19 +82,31 @@ MonoBehaviour:
   references:
     version: 2
     RefIds:
-    - rid: 629504785752522831
+    - rid: 629504815563276367
       type: {class: 'TaskVariableNode`1[[System.Single, mscorlib]]', ns: FoxShooter.Characters.AI.StateTree.Graph, asm: Assembly-CSharp}
       data:
         name: timeLimit
         type: 'FoxShooter.Characters.AI.StateTree.Tasks.TaskVariable`1[[System.Single,
           mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]'
-        dataDebugDisplay: 4.23
-        internalData: 4.23
-    - rid: 629504785752522832
+        internalData: 0
+    - rid: 629504815563276368
+      type: {class: 'TaskVariableNode`1[[FoxShooter.Characters.KinematicCharacter, Assembly-CSharp]]', ns: FoxShooter.Characters.AI.StateTree.Graph, asm: Assembly-CSharp}
+      data:
+        name: character
+        type: 'FoxShooter.Characters.AI.StateTree.Tasks.TaskVariable`1[[FoxShooter.Characters.KinematicCharacter,
+          Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]]'
+        internalData: {fileID: 0}
+    - rid: 629504815563276369
       type: {class: 'TaskVariableNode`1[[System.Single, mscorlib]]', ns: FoxShooter.Characters.AI.StateTree.Graph, asm: Assembly-CSharp}
       data:
         name: timeLimit
         type: 'FoxShooter.Characters.AI.StateTree.Tasks.TaskVariable`1[[System.Single,
           mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]'
-        dataDebugDisplay: 6
-        internalData: 6
+        internalData: 0
+    - rid: 629504815563276370
+      type: {class: 'TaskVariableNode`1[[FoxShooter.Characters.KinematicCharacter, Assembly-CSharp]]', ns: FoxShooter.Characters.AI.StateTree.Graph, asm: Assembly-CSharp}
+      data:
+        name: character
+        type: 'FoxShooter.Characters.AI.StateTree.Tasks.TaskVariable`1[[FoxShooter.Characters.KinematicCharacter,
+          Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]]'
+        internalData: {fileID: 0}

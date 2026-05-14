@@ -65,19 +65,23 @@ namespace FoxShooter.Characters.AI.StateTree.Graph
                 {
                     continue;
                 }
+                
                 var taskVariableData = (TaskVariable) taskVariable.GetValue(task);
                 var nodeType = typeof(TaskVariableNode<>).MakeGenericType(taskVariableData.type);
-                var serializeMethod = nodeType.GetMethod("Serialize");
+                var serializeMethod = nodeType.GetMethod("Serialize", BindingFlags.Static | BindingFlags.Instance | BindingFlags.Public);
                 if (serializeMethod == null)
                 {
                     continue;
                 }
+                
                 var args = new[] { taskVariable.Name, taskVariable.GetValue(task) };
-                var newNode = (TaskVariableNode) serializeMethod.Invoke(task, args);
+                var newNodeObject = serializeMethod.Invoke(task, args);
+                var newNode = (TaskVariableNode)newNodeObject;
                 if (newNode == null)
                 {
                     continue;
                 }
+                
                 taskNode.variables.Add(newNode);
             }
             return taskNode;

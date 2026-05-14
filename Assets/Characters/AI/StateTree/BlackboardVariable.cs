@@ -6,7 +6,7 @@ namespace FoxShooter.Characters.AI.StateTree
     [Serializable]
     public abstract class BlackboardVariable
     {
-        public string name;
+        [SerializeField] public string name;
         
         public abstract object objectData { get; set; }
 
