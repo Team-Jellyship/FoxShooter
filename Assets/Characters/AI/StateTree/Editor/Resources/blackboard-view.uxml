@@ -1,5 +1,6 @@
-<ui:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="True">
-    <FoxShooter.Characters.AI.StateTree.Editor.Windows.BlackboardView name="blackboard-view" style="flex-basis: 25%;">
-        <FoxShooter.Characters.AI.StateTree.Editor.Windows.BlackboardVariableView name="blackboard-variable-view" class="placeholder"/>
-    </FoxShooter.Characters.AI.StateTree.Editor.Windows.BlackboardView>
+<ui:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="True">
+    <Style src="project://database/Assets/Characters/AI/StateTree/Editor/Resources/blackboard-view.uss?fileID=7433441132597879392&amp;guid=811edbe8f18b3da42942f2a884b4518a&amp;type=3#blackboard-view"/>
+    <ui:Label text="Blackboard" name="blackboard-view-title"/>
+    <ui:Button text="+" name="blackboard-variable-button"/>
+    <ui:VisualElement name="blackboard-variable-container" style="flex-grow: 1;"/>
 </ui:UXML>

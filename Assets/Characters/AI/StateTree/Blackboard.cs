@@ -8,7 +8,7 @@ using UnityEngine.Events;
 namespace FoxShooter.Characters.AI.StateTree
 {
     [Serializable]
-    public class Blackboard : ISerializationCallbackReceiver
+    public class Blackboard : ScriptableObject, ISerializationCallbackReceiver
     {
         [SerializeField] private List<BlackboardVariable> _serializedVariables = new();
         public readonly Dictionary<string, BlackboardVariable> variables = new();
@@ -17,36 +17,36 @@ namespace FoxShooter.Characters.AI.StateTree
         [DoNotSerialize][HideInInspector] public UnityEvent<BlackboardVariable> onVariableAdded = new();
         [DoNotSerialize][HideInInspector] public UnityEvent<BlackboardVariable> onVariableRemoved = new();
 
-        public void AddVariable<T>(string name, T defaultValue = default)
+        public void AddVariable<T>(string newName, T defaultValue = default)
         {
-            var newVariable = new BlackboardVariable<T>(name, defaultValue);
-            if (variables.TryAdd(name, newVariable))
+            var newVariable = new BlackboardVariable<T>(newName, defaultValue);
+            if (variables.TryAdd(newName, newVariable))
             {
                 onVariableAdded.Invoke(newVariable);
             }
         }
 
-        public bool TryGetVariable<T>(string name, out BlackboardVariable<T> result)
+        public bool TryGetVariable<T>(string newName, out BlackboardVariable<T> result)
         {
-            if (variables.TryGetValue(name, out var value))
+            if (variables.TryGetValue(newName, out var value))
             {
                 result = value as BlackboardVariable<T>;
                 if (result != null)
                 {
                     return true;
                 }
-                Debug.LogError($"[Blackboard] attempt to get variable '{name}' failed. Type mismatch. Expected type {typeof(T)}");
+                Debug.LogError($"[Blackboard] attempt to get variable '{newName}' failed. Type mismatch. Expected type {typeof(T)}");
                 return false;
             }
 
-            Debug.LogError($"[Blackboard] Couldn't find blackboard variable with key '{name}'");
+            Debug.LogError($"[Blackboard] Couldn't find blackboard variable with key '{newName}'");
             result = null;
             return false;
         }
 
-        public bool RemoveVariable(string name)
+        public bool RemoveVariable(string variableName)
         {
-            if (!variables.Remove(name, out var variableToDelete))
+            if (!variables.Remove(variableName, out var variableToDelete))
             {
                 return false;
             }

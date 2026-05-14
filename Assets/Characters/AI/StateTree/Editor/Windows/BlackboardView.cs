@@ -3,24 +3,18 @@ using UnityEngine.UIElements;
 
 namespace FoxShooter.Characters.AI.StateTree.Editor.Windows
 {
-    [UxmlElement]
-    public partial class BlackboardView : VisualElement
+    public class BlackboardView
     {
         private Blackboard _blackboard;
 
         private VisualElement _blackboardVariableContainer;
+        private Button _blackboardVariableAdder;
 
-        public BlackboardView()
+        public BlackboardView(Blackboard blackboard, VisualElement rootElement)
         {
-            _blackboardVariableContainer = new VisualElement
-            {
-                name = "blackboard-variable-container"
-            };
-            Add(_blackboardVariableContainer);
-        }
+            _blackboardVariableContainer = rootElement.Q<VisualElement>("blackboard-variable-container");
+            _blackboardVariableAdder = rootElement.Q<Button>("blackboard-variable-button");
         
-        public void Bind(Blackboard blackboard)
-        {
             for (var i = _blackboardVariableContainer.childCount - 1; i >= 0; --i)
             {
                 _blackboardVariableContainer.RemoveAt(i);

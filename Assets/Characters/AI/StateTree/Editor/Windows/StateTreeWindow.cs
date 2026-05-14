@@ -64,7 +64,6 @@ namespace FoxShooter.Characters.AI.StateTree.Editor.Windows
             }
             
             _treeView = _windowRoot.Q<StateTreeView>("tree-view");
-            _blackboardView = _windowRoot.Q<BlackboardView>("blackboard-view");
             _stateInspector = _windowRoot.Q<StateInspector>("state-inspector");
             
             _button = _windowRoot.Q<Button>("save-button");
@@ -91,7 +90,7 @@ namespace FoxShooter.Characters.AI.StateTree.Editor.Windows
             asset = graph;
             _tree = asset.GenerateTree();
             _treeView?.Bind(_tree);
-            _blackboardView.Bind(graph.blackboard);
+            _blackboardView = new BlackboardView(graph.blackboard, _windowRoot.Q<VisualElement>("blackboard-view"));
             _treeView?.selectedStateChanged.AddListener(SelectedStateChanged);
             _stateInspector.visible = false;
         }
