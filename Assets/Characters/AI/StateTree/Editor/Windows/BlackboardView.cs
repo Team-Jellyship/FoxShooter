@@ -14,19 +14,27 @@ namespace FoxShooter.Characters.AI.StateTree.Editor.Windows
         {
             _blackboardVariableContainer = rootElement.Q<VisualElement>("blackboard-variable-container");
             _blackboardVariableAdder = rootElement.Q<Button>("blackboard-variable-button");
-        
+            
+            _blackboard = blackboard;
+            _blackboard.onVariablesChanged = UpdateVariables;
+
+            _blackboardVariableAdder.clicked += () =>
+            {
+                _blackboard.AddVariable<int>("test");
+            };
+            UpdateVariables();
+        }
+
+        private void UpdateVariables()
+        {
             for (var i = _blackboardVariableContainer.childCount - 1; i >= 0; --i)
             {
                 _blackboardVariableContainer.RemoveAt(i);
             }
-
-            _blackboard = blackboard;
-            
-            Debug.Log($"[BlackboardView] Binding blackboard to view with {blackboard.variables.Count} variables.");
-            foreach (var blackboardVariable in blackboard.variables.Values)
+            foreach (var blackboardVariable in _blackboard.variables.Values)
             {
                 var blackboardVariableView = new BlackboardVariableView();
-                blackboardVariableView.Bind(blackboard, blackboardVariable);
+                blackboardVariableView.Bind(_blackboard, blackboardVariable);
                 blackboardVariableView.name = "blackboard-variable-view";
                 _blackboardVariableContainer.Add(blackboardVariableView);
             }

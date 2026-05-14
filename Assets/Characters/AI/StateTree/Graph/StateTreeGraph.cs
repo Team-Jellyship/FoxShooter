@@ -16,13 +16,7 @@ namespace FoxShooter.Characters.AI.StateTree.Graph
     {
         [SerializeField] /*[HideInInspector]*/ public List<StateNode> nodes = new();
         [SerializeField] /*[HideInInspector]*/ public StateNodeIdentifier rootNode = StateNodeIdentifier.invalid;
-        [SerializeField] public Blackboard blackboard;
-
-        public StateTreeGraph()
-        {
-            /*blackboard = new Blackboard();
-            blackboard.AddVariable("test", "default");*/
-        }
+        [SerializeReference] public List<BlackboardVariable> variables = new();
         
         [OnOpenAsset(1)]
         public static bool OpenAsset(int instanceId, int line)
@@ -42,19 +36,45 @@ namespace FoxShooter.Characters.AI.StateTree.Graph
         {
             if (rootNode == StateNodeIdentifier.invalid)
             {
-                return null;
+                if (nodes.Count == 0)
+                {
+                    nodes.Add(new StateNode
+                    {
+                        name = "Root",
+                        id = new StateNodeIdentifier(0)
+                    });
+                    rootNode = new StateNodeIdentifier(0);
+                }
+                else
+                {
+                    rootNode = nodes[0].id;
+                }
             }
             
             Debug.Log("[StateTreeGraph] Generating tree from nodes...");
 
             var tree = new Tree();
+
+            for (var i = nodes.Count - 1; i >= 0; --i)
+            {
+                for (var j = i - 1; j >= 0; ++j)
+                {
+                    if (nodes[j].name != nodes[i].name) { continue; }
+                    
+                    nodes.RemoveAt(i);
+                    break;
+                }
+            }
             var stateDictionary = nodes.ToDictionary(node => node.id, node => node.GenerateState());
             var stateNodeDictionary = nodes.ToDictionary(stateNode => stateNode.id);
 
             if (!stateDictionary.TryGetValue(rootNode, out var root))
             {
                 Debug.LogError("[StateTreeGraph] Failed to generate tree. The root node was missing.");
-                return null;
+                tree.root ??= new State
+                {
+                    name = "root"
+                };
             }
 
             tree.root = root;
@@ -88,6 +108,13 @@ namespace FoxShooter.Characters.AI.StateTree.Graph
                 }
             }
 
+            // Build blackboard
+            tree.blackboard = new Blackboard();
+            foreach (var variable in variables)
+            {
+                tree.blackboard.AddVariable(variable);
+            }
+            
             return tree;
         }
 
@@ -115,6 +142,11 @@ namespace FoxShooter.Characters.AI.StateTree.Graph
                 result.nodes.Add(StateNode.Serialize(pair.Key, pair.Value, stateDictionary));
             }
             result.rootNode = stateDictionary[tree.root];
+
+            foreach (var blackboardVariable in tree.blackboard.variables.Values)
+            {
+                result.variables.Add(blackboardVariable);
+            }
             
             return result;
         }

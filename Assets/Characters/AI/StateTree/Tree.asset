@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 90725b58bed642dc8eb6dcaaa66f0c06, type: 3}
-  m_Name: Tree_New
+  m_Name: Tree
   m_EditorClassIdentifier: Assembly-CSharp::FoxShooter.Characters.AI.StateTree.Graph.StateTreeGraph
   nodes:
   - name: Root
@@ -24,13 +24,7 @@ MonoBehaviour:
       id: -1
   rootNode:
     id: 0
-  variables:
-  - rid: 629504826309869820
+  test: test
   references:
     version: 2
-    RefIds:
-    - rid: 629504826309869820
-      type: {class: 'BlackboardVariable`1[[System.Int32, mscorlib]]', ns: FoxShooter.Characters.AI.StateTree, asm: Assembly-CSharp}
-      data:
-        name: test5
-        internalValue: 0
+    RefIds: []

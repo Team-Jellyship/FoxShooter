@@ -16,6 +16,8 @@ namespace FoxShooter.Characters.AI.StateTree
         {
             return name;
         }
+
+        public abstract BlackboardVariable Clone();
     }
 
     [Serializable]
@@ -48,6 +50,11 @@ namespace FoxShooter.Characters.AI.StateTree
         public override Type type
         {
             get => typeof(T);
+        }
+
+        public override BlackboardVariable Clone()
+        {
+            return new BlackboardVariable<T>(name, internalValue);
         }
     }
 }

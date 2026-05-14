@@ -8,22 +8,32 @@ using UnityEngine.Events;
 namespace FoxShooter.Characters.AI.StateTree
 {
     [Serializable]
-    public class Blackboard : ScriptableObject, ISerializationCallbackReceiver
+    public class Blackboard : ISerializationCallbackReceiver
     {
+        [SerializeField] public string name;
         [SerializeField] private List<BlackboardVariable> _serializedVariables = new();
         public readonly Dictionary<string, BlackboardVariable> variables = new();
         
-        // Maybe switch from UnityEvent for better support on other platforms
-        [DoNotSerialize][HideInInspector] public UnityEvent<BlackboardVariable> onVariableAdded = new();
-        [DoNotSerialize][HideInInspector] public UnityEvent<BlackboardVariable> onVariableRemoved = new();
+        public Action<BlackboardVariable> onVariableAdded;
+        public Action<BlackboardVariable> onVariableRemoved;
+        public Action onVariablesChanged;
 
         public void AddVariable<T>(string newName, T defaultValue = default)
         {
             var newVariable = new BlackboardVariable<T>(newName, defaultValue);
-            if (variables.TryAdd(newName, newVariable))
-            {
-                onVariableAdded.Invoke(newVariable);
-            }
+            if (!variables.TryAdd(newName, newVariable)) { return; }
+            
+            onVariableAdded?.Invoke(newVariable);
+            onVariablesChanged?.Invoke();
+        }
+
+        public void AddVariable(BlackboardVariable blackboardVariable)
+        {
+            var newVariable = blackboardVariable.Clone();
+            if (!variables.TryAdd(newVariable.name, newVariable)) { return; }
+            
+            onVariableAdded?.Invoke(newVariable);
+            onVariablesChanged?.Invoke();
         }
 
         public bool TryGetVariable<T>(string newName, out BlackboardVariable<T> result)
@@ -51,7 +61,8 @@ namespace FoxShooter.Characters.AI.StateTree
                 return false;
             }
             
-            onVariableRemoved.Invoke(variableToDelete);
+            onVariableRemoved?.Invoke(variableToDelete);
+            onVariablesChanged?.Invoke();
             return true;
         }
 

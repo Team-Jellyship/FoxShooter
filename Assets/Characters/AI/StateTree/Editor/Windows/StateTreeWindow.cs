@@ -90,7 +90,7 @@ namespace FoxShooter.Characters.AI.StateTree.Editor.Windows
             asset = graph;
             _tree = asset.GenerateTree();
             _treeView?.Bind(_tree);
-            _blackboardView = new BlackboardView(graph.blackboard, _windowRoot.Q<VisualElement>("blackboard-view"));
+            _blackboardView = new BlackboardView(_tree.blackboard, _windowRoot.Q<VisualElement>("blackboard-view"));
             _treeView?.selectedStateChanged.AddListener(SelectedStateChanged);
             _stateInspector.visible = false;
         }
@@ -116,6 +116,7 @@ namespace FoxShooter.Characters.AI.StateTree.Editor.Windows
             var serializedVersion = StateTreeGraph.SerializeTree(_tree);
             asset.nodes = serializedVersion.nodes;
             asset.rootNode = serializedVersion.rootNode;
+            asset.variables = serializedVersion.variables;
             EditorUtility.SetDirty(asset);
             AssetDatabase.SaveAssetIfDirty(asset);
         }
