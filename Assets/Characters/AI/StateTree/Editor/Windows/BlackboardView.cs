@@ -37,6 +37,7 @@ namespace FoxShooter.Characters.AI.StateTree.Editor.Windows
                 {
                     name = "blackboard-variable-view"
                 };
+                AddManipulator(blackboardVariableView);
                 _blackboardVariableContainer.Add(blackboardVariableView);
             }
         }
@@ -57,6 +58,29 @@ namespace FoxShooter.Characters.AI.StateTree.Editor.Windows
                 return;
             }
             _blackboard.AddVariable(newVariable);
+        }
+
+        private void AddManipulator(BlackboardVariableView view)
+        {
+            var manipulator = new ContextualMenuManipulator(ContextMenuDelegate)
+            {
+                target = view
+            };
+        }
+
+        private void ContextMenuDelegate(ContextualMenuPopulateEvent menuEvent)
+        {
+            menuEvent.menu.AppendAction("Delete", DeleteBlackboardVariable, _ => DropdownMenuAction.Status.Normal, menuEvent.target);
+        }
+
+        private void DeleteBlackboardVariable(DropdownMenuAction menuAction)
+        {
+            var selectedVariable = (BlackboardVariableView)menuAction.userData;
+            if (selectedVariable == null)
+            {
+                return;
+            }
+            _blackboard.RemoveVariable(selectedVariable.variable.name);
         }
     }
 }

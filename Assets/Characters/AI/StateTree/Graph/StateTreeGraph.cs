@@ -85,17 +85,23 @@ namespace FoxShooter.Characters.AI.StateTree.Graph
             {
                 var pendingStateNode = pendingStateConnections.Dequeue();
                 var pendingState = stateDictionary[pendingStateNode.id];
-                
+
+                var invalidChildStates = new List<StateNodeIdentifier>();
                 foreach (var childStateId in pendingStateNode.childStates)
                 {
                     if (!stateDictionary.TryGetValue(childStateId, out var childState))
                     {
-                        Debug.LogError("[StateTreeGraph] A child state was missing. It's possible the file was corrupted.");
+                        Debug.LogError($"[StateTreeGraph] A child state was missing. Expected state id '{childStateId.id}'" +
+                                       $" in state '{pendingStateNode.name}'. It's possible the file was corrupted.");
+                        invalidChildStates.Add(childStateId);
                         continue;
                     }
                     pendingState.AddChild(childState);
                     pendingStateConnections.Enqueue(stateNodeDictionary[childStateId]);
-                    
+                }
+                foreach (var invalidChildState in invalidChildStates)
+                {
+                    pendingStateNode.childStates.Remove(invalidChildState);
                 }
 
                 if (pendingStateNode.success && stateDictionary.TryGetValue(pendingStateNode.success, out var success))
