@@ -25,12 +25,18 @@ MonoBehaviour:
   rootNode:
     id: 0
   variables:
-  - rid: 629504826309869820
+  - rid: 629504831706103808
+  - rid: 629504831706103809
   references:
     version: 2
     RefIds:
-    - rid: 629504826309869820
+    - rid: 629504831706103808
       type: {class: 'BlackboardVariable`1[[System.Int32, mscorlib]]', ns: FoxShooter.Characters.AI.StateTree, asm: Assembly-CSharp}
       data:
         name: test5
-        internalValue: 0
+        internalValue: 15
+    - rid: 629504831706103809
+      type: {class: 'BlackboardVariable`1[[UnityEngine.Vector3, UnityEngine.CoreModule]]', ns: FoxShooter.Characters.AI.StateTree, asm: Assembly-CSharp}
+      data:
+        name: test
+        internalValue: {x: 0, y: 0, z: 0}

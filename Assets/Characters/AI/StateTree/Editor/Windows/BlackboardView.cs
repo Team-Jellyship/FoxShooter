@@ -1,4 +1,6 @@
-﻿using UnityEngine;
+﻿using System;
+using System.Reflection;
+using UnityEngine;
 using UnityEngine.UIElements;
 
 namespace FoxShooter.Characters.AI.StateTree.Editor.Windows
@@ -9,6 +11,7 @@ namespace FoxShooter.Characters.AI.StateTree.Editor.Windows
 
         private VisualElement _blackboardVariableContainer;
         private Button _blackboardVariableAdder;
+        private TypeSearch _currentSearch;
 
         public BlackboardView(Blackboard blackboard, VisualElement rootElement)
         {
@@ -18,10 +21,7 @@ namespace FoxShooter.Characters.AI.StateTree.Editor.Windows
             _blackboard = blackboard;
             _blackboard.onVariablesChanged = UpdateVariables;
 
-            _blackboardVariableAdder.clicked += () =>
-            {
-                _blackboard.AddVariable<int>("test");
-            };
+            _blackboardVariableAdder.clicked += DisplayBlackboardTypeSelector;
             UpdateVariables();
         }
 
@@ -33,11 +33,30 @@ namespace FoxShooter.Characters.AI.StateTree.Editor.Windows
             }
             foreach (var blackboardVariable in _blackboard.variables.Values)
             {
-                var blackboardVariableView = new BlackboardVariableView();
-                blackboardVariableView.Bind(_blackboard, blackboardVariable);
-                blackboardVariableView.name = "blackboard-variable-view";
+                var blackboardVariableView = new BlackboardVariableView(_blackboard, blackboardVariable)
+                {
+                    name = "blackboard-variable-view"
+                };
                 _blackboardVariableContainer.Add(blackboardVariableView);
             }
+        }
+
+        private void DisplayBlackboardTypeSelector()
+        {
+            _currentSearch = new TypeSearch();
+            _currentSearch.selected += AddNewBlackboardVariable;
+            UnityEditor.PopupWindow.Show(_blackboardVariableAdder.worldBound, _currentSearch);
+        }
+
+        private void AddNewBlackboardVariable(Type type)
+        {
+            var blackboardVariableType = typeof(BlackboardVariable<>).MakeGenericType(type);
+            var newVariable = (BlackboardVariable)Activator.CreateInstance(blackboardVariableType, "test");
+            if (newVariable == null)
+            {
+                return;
+            }
+            _blackboard.AddVariable(newVariable);
         }
     }
 }

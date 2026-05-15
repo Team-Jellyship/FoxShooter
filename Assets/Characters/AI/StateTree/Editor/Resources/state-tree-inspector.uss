@@ -30,7 +30,7 @@
     padding-top: 16px;
 }
 
-GenericField {
+#state-inspector GenericField {
     flex-direction: row;
     background-color: rgb(53, 53, 53);
     margin-top: 4px;
@@ -51,11 +51,11 @@ GenericField {
     border-bottom-left-radius: 8px;
 }
 
-#generic-field-input {
+#state-inspector #generic-field-input {
     width: 100%;
 }
 
-#generic-field-input .unity-base-field__input {
+#state-inspector #generic-field-input .unity-base-field__input {
     background-color: rgb(41, 41, 41);
     border-top-left-radius: 4px;
     border-top-right-radius: 4px;
@@ -69,7 +69,7 @@ GenericField {
     color: rgb(255, 255, 255);
 }
 
-#generic-field-input .unity-object-field__input {
+#state-inspector #generic-field-input .unity-object-field__input {
     margin-right: 4px;
     border-left-color: rgba(0, 0, 0, 0);
     border-right-color: rgba(0, 0, 0, 0);
