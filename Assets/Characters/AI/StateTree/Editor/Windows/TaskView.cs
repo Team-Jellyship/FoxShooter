@@ -66,7 +66,7 @@ namespace FoxShooter.Characters.AI.StateTree.Editor.Windows
                 };
                 _taskVariableContainer.Add(taskVariableLabel);*/
 
-                var newField = new GenericField(taskVariable.Item1, taskVariable.Item2.type, taskVariable.Item2.data);
+                var newField = new GenericField(taskVariable.Item2.type, taskVariable.Item2.data);
                 newField.dataChanged = data =>
                 {
                     Debug.Log("Variable changed");

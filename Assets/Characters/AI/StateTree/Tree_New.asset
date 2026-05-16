@@ -25,18 +25,18 @@ MonoBehaviour:
   rootNode:
     id: 0
   variables:
-  - rid: 629504852695973889
-  - rid: 629504852695973890
+  - rid: 629504860569731149
+  - rid: 629504860569731150
   references:
     version: 2
     RefIds:
-    - rid: 629504852695973889
+    - rid: 629504860569731149
       type: {class: 'BlackboardVariable`1[[System.Int32, mscorlib]]', ns: FoxShooter.Characters.AI.StateTree, asm: Assembly-CSharp}
       data:
         name: test5
         internalValue: 15
-    - rid: 629504852695973890
+    - rid: 629504860569731150
       type: {class: 'BlackboardVariable`1[[System.Int32, mscorlib]]', ns: FoxShooter.Characters.AI.StateTree, asm: Assembly-CSharp}
       data:
-        name: test
+        name: test4
         internalValue: 63
