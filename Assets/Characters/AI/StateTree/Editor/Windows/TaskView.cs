@@ -59,19 +59,13 @@ namespace FoxShooter.Characters.AI.StateTree.Editor.Windows
 
             foreach (var taskVariable in task.GetClassVariables())
             {
-                /*var taskVariableLabel = new Label
-                {
-                    name = "task-variable-label",
-                    text = taskVariable.Item1
-                };
-                _taskVariableContainer.Add(taskVariableLabel);*/
-
-                var newField = new GenericField(taskVariable.Item2.type, taskVariable.Item2.data);
+                /*var newField = new GenericField(taskVariable.Item2.type, taskVariable.Item2.data);
                 newField.dataChanged = data =>
                 {
                     Debug.Log("Variable changed");
                     taskVariable.Item2.data = data;
-                };
+                };*/
+                var newField = new TaskVariableView(taskVariable.Item1, taskVariable.Item2);
                 _taskVariableContainer.Add(newField);
             }
         }

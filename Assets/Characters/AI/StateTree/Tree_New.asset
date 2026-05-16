@@ -16,8 +16,22 @@ MonoBehaviour:
   - name: Root
     id:
       id: 0
-    childStates: []
+    childStates:
+    - id: 1
     tasks: []
+    success:
+      id: -1
+    cancel:
+      id: -1
+  - name: New State
+    id:
+      id: 1
+    childStates: []
+    tasks:
+    - taskClassType: FoxShooter.Characters.AI.StateTree.Tasks.TestTask
+      variables:
+      - rid: 629504871388938401
+      - rid: 629504871388938402
     success:
       id: -1
     cancel:
@@ -25,17 +39,31 @@ MonoBehaviour:
   rootNode:
     id: 0
   variables:
-  - rid: 629504860569731149
-  - rid: 629504860569731150
+  - rid: 629504871388938403
+  - rid: 629504871388938404
   references:
     version: 2
     RefIds:
-    - rid: 629504860569731149
+    - rid: 629504871388938401
+      type: {class: 'TaskVariableNode`1[[System.Single, mscorlib]]', ns: FoxShooter.Characters.AI.StateTree.Graph, asm: Assembly-CSharp}
+      data:
+        name: timeLimit
+        type: 'FoxShooter.Characters.AI.StateTree.Tasks.TaskVariable`1[[System.Single,
+          mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]'
+        internalData: 3.47
+    - rid: 629504871388938402
+      type: {class: 'TaskVariableNode`1[[FoxShooter.Characters.KinematicCharacter, Assembly-CSharp]]', ns: FoxShooter.Characters.AI.StateTree.Graph, asm: Assembly-CSharp}
+      data:
+        name: character
+        type: 'FoxShooter.Characters.AI.StateTree.Tasks.TaskVariable`1[[FoxShooter.Characters.KinematicCharacter,
+          Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]]'
+        internalData: {fileID: 0}
+    - rid: 629504871388938403
       type: {class: 'BlackboardVariable`1[[System.Int32, mscorlib]]', ns: FoxShooter.Characters.AI.StateTree, asm: Assembly-CSharp}
       data:
         name: test5
         internalValue: 15
-    - rid: 629504860569731150
+    - rid: 629504871388938404
       type: {class: 'BlackboardVariable`1[[System.Int32, mscorlib]]', ns: FoxShooter.Characters.AI.StateTree, asm: Assembly-CSharp}
       data:
         name: test4

@@ -88,6 +88,13 @@ namespace FoxShooter.Characters.AI.StateTree
             return true;
         }
 
+        public List<BlackboardVariable<T>> GetVariablesOfType<T>()
+        {
+            return (from blackboardVariable in variables
+                where blackboardVariable.Value.type == typeof(T)
+                select (BlackboardVariable<T>)blackboardVariable.Value).ToList();
+        }
+
         public void OnBeforeSerialize()
         {
             _serializedVariables = variables.Values.ToList();

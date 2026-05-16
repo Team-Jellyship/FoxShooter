@@ -57,7 +57,7 @@ namespace FoxShooter.Characters.AI.StateTree.Graph
 
             for (var i = nodes.Count - 1; i >= 0; --i)
             {
-                for (var j = i - 1; j >= 0; ++j)
+                for (var j = i - 1; j >= 0; --j)
                 {
                     if (nodes[j].name != nodes[i].name) { continue; }
                     
