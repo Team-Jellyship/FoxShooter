@@ -16,6 +16,8 @@ namespace FoxShooter.Characters.AI.StateTree.Editor.Windows
         private Label _taskTitle;
         private TaskAdder _taskAdder;
         private VisualElement _taskContainer;
+
+        private Blackboard _blackboard;
         
         public StateInspector()
         {
@@ -66,8 +68,10 @@ namespace FoxShooter.Characters.AI.StateTree.Editor.Windows
             Add(_taskContainer);
         }
 
-        public void Bind(Tree tree, State state)
+        public void Bind(Tree tree, State state, Blackboard blackboard)
         {
+            _blackboard = blackboard;
+            
             if (state == _activeState)
             {
                 return;
@@ -108,7 +112,7 @@ namespace FoxShooter.Characters.AI.StateTree.Editor.Windows
             
             foreach (var task in _activeState.childTasks)
             {
-                var taskView = new TaskView(task);
+                var taskView = new TaskView(task, _blackboard);
                 _taskContainer.Add(taskView);
             }
         }

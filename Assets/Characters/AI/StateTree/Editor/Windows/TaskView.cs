@@ -30,7 +30,7 @@ namespace FoxShooter.Characters.AI.StateTree.Editor.Windows
             Add(_taskVariableContainer);
         }
 
-        public TaskView(Task task)
+        public TaskView(Task task, Blackboard blackboard)
         {
             _taskNameLabel = new Label
             {
@@ -44,10 +44,10 @@ namespace FoxShooter.Characters.AI.StateTree.Editor.Windows
             
             Add(_taskNameLabel);
             Add(_taskVariableContainer);
-            Bind(task);
+            Bind(task, blackboard);
         }
 
-        public void Bind(Task task)
+        public void Bind(Task task, Blackboard blackboard)
         {
             _task = task;
             _taskNameLabel.text = task.ToString();
@@ -65,7 +65,7 @@ namespace FoxShooter.Characters.AI.StateTree.Editor.Windows
                     Debug.Log("Variable changed");
                     taskVariable.Item2.data = data;
                 };*/
-                var newField = new TaskVariableView(taskVariable.Item1, taskVariable.Item2);
+                var newField = new TaskVariableView(taskVariable.Item1, taskVariable.Item2, blackboard);
                 _taskVariableContainer.Add(newField);
             }
         }

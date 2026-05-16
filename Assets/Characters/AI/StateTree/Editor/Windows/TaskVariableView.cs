@@ -26,7 +26,7 @@ namespace FoxShooter.Characters.AI.StateTree.Editor.Windows
             Add(_selectorButton);
         }
 
-        public TaskVariableView(string name, TaskVariable taskVariable)
+        public TaskVariableView(string name, TaskVariable taskVariable, Blackboard blackboard)
         {
             style.flexDirection = FlexDirection.Row;
             style.unityTextAlign = TextAnchor.MiddleCenter;
@@ -36,6 +36,17 @@ namespace FoxShooter.Characters.AI.StateTree.Editor.Windows
             {
                 name = "task-variable-selector-button",
                 text = "▾"
+            };
+            _selectorButton.clicked += () =>
+            {
+                var currentSearch = new BlackboardVariableSearch();
+                // currentSearch.selected += AddNewBlackboardVariable;
+                UnityEditor.PopupWindow.Show(_selectorButton.worldBound, currentSearch);
+                currentSearch.SetBlackboardSearch(blackboard, taskVariable.type);
+                currentSearch.selected = variable =>
+                {
+                    Debug.Log($"Selected variable {variable.name}");
+                };
             };
             
             Add(_variableField);

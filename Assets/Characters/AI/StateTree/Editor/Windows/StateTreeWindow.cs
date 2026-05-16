@@ -103,7 +103,7 @@ namespace FoxShooter.Characters.AI.StateTree.Editor.Windows
         private void SelectedStateChanged(State selectedState)
         {
             _stateInspector.visible = selectedState != null;
-            _stateInspector.Bind(_tree, selectedState);
+            _stateInspector.Bind(_tree, selectedState, _tree.blackboard);
         }
         
         private void Save()

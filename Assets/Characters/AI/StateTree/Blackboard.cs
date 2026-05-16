@@ -95,6 +95,13 @@ namespace FoxShooter.Characters.AI.StateTree
                 select (BlackboardVariable<T>)blackboardVariable.Value).ToList();
         }
 
+        public List<BlackboardVariable> GetVariablesOfType(Type type)
+        {
+            return (from blackboardVariable in variables
+                where blackboardVariable.Value.type == type
+                select blackboardVariable.Value).ToList();
+        }
+
         public void OnBeforeSerialize()
         {
             _serializedVariables = variables.Values.ToList();
