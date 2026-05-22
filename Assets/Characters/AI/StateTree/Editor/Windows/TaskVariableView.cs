@@ -35,10 +35,16 @@ namespace FoxShooter.Characters.AI.StateTree.Editor.Windows
             
             style.flexDirection = FlexDirection.Row;
             style.unityTextAlign = TextAnchor.MiddleCenter;
-            _variableField = new GenericField(taskVariable.type, taskVariable.data, name)
+
+            if (taskVariable.tag == TaskVariable.ContextTag.Variable)
             {
-                dataChanged = data => { taskVariable.data = data; }
-            };
+                _variableField = new GenericField(taskVariable.type, taskVariable.data, name)
+                {
+                    dataChanged = data => { taskVariable.data = data; }
+                };
+                Add(_variableField);
+            }
+            
             _selectorButton = new Button
             {
                 name = "task-variable-selector-button",
@@ -46,7 +52,6 @@ namespace FoxShooter.Characters.AI.StateTree.Editor.Windows
             };
             _selectorButton.clicked += Clicked;
             
-            Add(_variableField);
             Add(_selectorButton);
         }
 

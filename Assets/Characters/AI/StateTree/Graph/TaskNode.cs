@@ -65,26 +65,39 @@ namespace FoxShooter.Characters.AI.StateTree.Graph
                 {
                     continue;
                 }
-                
-                var taskVariableData = (TaskVariable) taskVariable.GetValue(task);
-                var nodeType = typeof(TaskVariableNode<>).MakeGenericType(taskVariableData.type);
-                var serializeMethod = nodeType.GetMethod("Serialize", BindingFlags.Static | BindingFlags.Instance | BindingFlags.Public);
-                if (serializeMethod == null)
+
+                var newVariable = MakeVariable(task, taskVariable);
+                if (newVariable != null)
                 {
-                    continue;
+                    taskNode.variables.Add(newVariable);
                 }
-                
-                var args = new[] { taskVariable.Name, taskVariable.GetValue(task) };
-                var newNodeObject = serializeMethod.Invoke(task, args);
-                var newNode = (TaskVariableNode)newNodeObject;
-                if (newNode == null)
-                {
-                    continue;
-                }
-                
-                taskNode.variables.Add(newNode);
             }
             return taskNode;
+        }
+
+        private static TaskVariableNode MakeVariable(Task task, FieldInfo taskVariable)
+        {
+            var taskVariableData = (TaskVariable) taskVariable.GetValue(task);
+
+            var nodeType = GetSerializedType(taskVariableData);
+            var serializeMethod = nodeType.GetMethod("Serialize", BindingFlags.Static | BindingFlags.Instance | BindingFlags.Public);
+            if (serializeMethod == null)
+            {
+                return null;
+            }
+
+            var args = new[] { taskVariable.Name, taskVariable.GetValue(task) };
+            return (TaskVariableNode)serializeMethod.Invoke(task, args);
+        }
+        
+        private static Type GetSerializedType(TaskVariable variable)
+        {
+            return variable.tag switch
+            {
+                TaskVariable.ContextTag.Blackboard => typeof(TaskVariableBlackboardReference<>).MakeGenericType(variable.type),
+                TaskVariable.ContextTag.Variable => typeof(TaskVariableNode<>).MakeGenericType(variable.type),
+                _ => null
+            };
         }
     }
 }
