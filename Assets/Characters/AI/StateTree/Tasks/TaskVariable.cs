@@ -1,5 +1,6 @@
 ﻿using System;
 using FoxShooter.Characters.AI.StateTree.UI;
+
 using UnityEngine;
 
 namespace FoxShooter.Characters.AI.StateTree.Tasks
@@ -16,6 +17,12 @@ namespace FoxShooter.Characters.AI.StateTree.Tasks
         public ContextTag tag { get; protected set; }
         public abstract object data { get; set; }
         public abstract Type type { get; }
+
+        public void Set(BlackboardReference reference)
+        {
+            tag = ContextTag.Blackboard;
+            data = reference;
+        }
     }
     
     /**
